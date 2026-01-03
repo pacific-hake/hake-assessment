@@ -1,0 +1,395 @@
+
+\rfoot{Assessment}
+
+# Assessment {#sec:assessment}
+
+## Modeling results {#sec:assessment-modeling-results}
+
+### Changes from `r last_assess_yr` {#sec:assessment-changes}
+
+A `bridging' model was constructed to evaluate the component-specific
+effects of the steps to change from the `r last_assess_yr` base model to
+the `r assess_yr` base model. The steps are as follows:
+
+- Update to the latest version of Stock Synthesis, version `r ss_version`, to
+follow current best practices;
+
+Stock Synthesis version `r ss_version` includes a number of changes since the
+version used by @JTC2024. However, none of the changes were specifically relevant
+to this assessment, and thus, the software update had no effect on assessment
+results (Figure~\@ref(fig:main-bridge-summary-1-fig)).
+
+## Stock {-}
+
+TODO: Text here is unedited from last year's Executive summary.
+
+This assessment reports the status of the coastal `r sp` (or `r common_name`,
+*`r science_name`*) stock off the west coast of the United States (U.S.) and Canada
+at the start of `r assess_yr`. This stock exhibits seasonal migratory
+behavior, ranging from offshore and generally southern waters during the
+winter spawning season to coastal areas between northern California and
+northern British Columbia during the spring, summer, and fall when the
+fishery is conducted. The stock tends to move farther to the north during the
+summer in years with warmer water compared to years with colder waters. Older
+`r sp` tend to migrate farther north than younger `r sp` in all years, with
+catches in Canadian waters typically consisting of fish greater than four years
+old. Separate, and much smaller, populations of `r sp` occurring in the major
+inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
+Sound, and the Gulf of California, are not included in this analysis.
+
+## Catches {-}
+
+(ref:es-catches-cap) Total `r sp` catch used in the assessment by sector,
+`r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
+sectors where they are represented.
+
+(ref:es-catches-alt) This figure shows that catches in four of the last six
+years have been the largest in the time series.
+
+```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4}
+
+plot_catches(ct, xlim = c(start_yr, last_data_yr))
+```
+
+TODO: Text here is unedited from last year's Executive summary.
+
+Coast-wide fishery landings of `r sp` averaged `r f(mean(ct$Total))`~t
+from `r min(ct$Year)` to `r max(ct$Year)`, with a low of
+`r f(min(ct$Total))`~t in
+`r ct$Year[ct$Total == min(ct$Total)]` and a peak of
+`r f(max(ct$Total))`~t in
+`r ct$Year[ct$Total == max(ct$Total)]`
+(Figure \@ref(fig:es-catches-fig)).
+Prior to `r min(ct$Year)`, total removals were negligible compared to the
+modern fishery. Over the early period (`r min(ct$Year)`--1990) most removals
+were from foreign or joint-venture fisheries. Across the time series, annual
+catch in U.S. waters averaged `r f(mean(ct[["U.S. Total"]]))`~t
+(`r f(sum(ct[["U.S. Total"]]) / sum(ct$Total) * 100, 1)`% of the total catch),
+while catch from Canadian waters averaged `r f(mean(ct[["Canada Total"]]))`~t.
+Over the last 10 years, `r max(ct$Year) - 9`--`r max(ct$Year)`
+(Table \@ref(tab:es-catches-tab)), the average coast-wide catch was
+`r ct_mean_10yrs`~t with U.S. and Canadian catches averaging
+`r ct_us_mean_10yrs`~t and `r ct_can_mean_10yrs`~t, respectively. Since 2017,
+the coast-wide catch has been declining annually through `r end_yr - 1` to
+`r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
+carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
+`r last_yr_us_attained`% of its quota and in Canada it was
+`r last_yr_can_attained`% in `r assess_yr - 1`.
+
+
+```{r es-catches-tab, results = "asis", echo = FALSE}
+
+table_catch(
+  ct,
+  inc_foreign_jv = FALSE,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Total ", sp, " catch used in the assessment by sector for the most recent ",
+    "ten years. U.S. tribal catches are included in the sectors where they are ",
+    "represented."),
+  font_size = 7,
+  header_font_size = 7,
+  longtable = TRUE)
+```
+
+In this document, the terms catch and landings are used interchangeably.
+Estimates of discard within the target fishery are included but discarding
+of `r sp` in non-target fisheries is not. Discard from all fisheries,
+including those that do not target `r sp`, is estimated to be less than 1% of
+landings in recent years. The catches in `r  last_data_yr` declined below
+the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
+pattern of declining catches over recent years (especially in Canada). Landings
+between 2001 and 2008 were predominantly comprised of fish from the very large
+1999 year class, with a cumulative removal (through `r end_yr - 1`) from
+that cohort of
+`r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~million metric tonnes].
+Through `r last_data_yr`, the cumulative catches of the 2010, 2014, and 2016
+year classes were estimated at
+`r f(cohort_catch_2010 / 1e6, 2)`~Mt,
+`r f(cohort_catch_2014 / 1e6, 2)`~Mt, and
+`r f(cohort_catch_2016 / 1e6, 2)`~Mt, respectively. In the
+`r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
+
+## Data and assessment {-}
+
+TODO: Text here is unedited from last year's Executive summary.
+
+This Joint Technical Committee (JTC) assessment depends on fishery
+landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
+of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
+(`r survey_start_yr`--`r survey_end_yr`),
+fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`),
+maturity-at-age data, and
+weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011,
+the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
+by the index increasing in 2012, 2013, and again in 2015 before decreasing to
+near the time series average in 2017. The survey
+(Figure~\@ref(fig:es-survey-biomass-fig)) shows a decline from 2019 (the fourth
+highest of the series) to 2023 (the third lowest of the series).
+Age-composition data from the aggregated fisheries and the acoustic survey
+provide data that facilitates estimating relative
+cohort strength, i.e., strong and weak cohorts.
+No survey data are used to inform the size of the
+`r last_data_yr-2`--`r last_data_yr` year classes.
+
+(ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
+(Mt). Approximate 95% confidence intervals are based on
+sampling variability (intervals without the additional squid/`r sp`
+apportionment uncertainty included in 2009, black line).
+
+(ref:es-survey-biomass-alt) This figure shows that the survey estimate has
+decreased from 2019 to 2021.
+
+```{r es-survey-biomass-fig, fig.cap = "(ref:es-survey-biomass-cap)"}
+
+plot_survey_biomass(base_model, index = "age2")
+```
+
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and
+retrospective investigations to evaluate the potential consequences of
+parameter uncertainty, alternative structural models, and historical
+performance of the assessment model, respectively. The Bayesian approach
+combines prior knowledge about natural mortality, stock--recruitment steepness
+(e.g., a parameter for stock productivity), and several other parameters, with
+likelihoods for the acoustic survey biomass index, acoustic survey
+age-composition data, and fishery age-composition
+data. Integrating the joint posterior distribution over model parameters
+provides probabilistic inferences about uncertain model parameters and
+forecasts derived from those parameters; this is done via Markov chain Monte
+Carlo sampling using the efficient No-U-Turn Sampler (NUTS). Sensitivity
+analyses are used to identify alternative model assumptions that may also
+be consistent with the data. All models, including bridging, sensitivity,
+and retrospective models, use a Bayesian framework for estimation.
+Retrospective analyses identify possible poor performance of the assessment
+model with respect to future predictions. Past assessments have conducted
+closed-loop simulations that provide insights into how alternative
+combinations of survey frequency, assessment model selectivity assumptions,
+changes in the distribution or `r sp`, and harvest control rules affect expected
+management outcomes given repeated application of these procedures over
+the long term. The results of past (and ongoing) closed-loop simulations
+help inform decisions made for this assessment.
+
+This `r assess_yr` assessment is again configured using Stock Synthesis. The
+same general population dynamics structure as the base assessment model from
+`r last_assess_yr` was used except for terminal recruitment and forecast
+recruitment deviations (so from 2023 onwards), which were fixed at zero in this assessment.
+Updates to data in this assessment include incorporating
+<!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
+fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
+`r end_yr-1`,
+maturity-at-age data for `r end_yr-2`,
+<!-- the `r survey_end_yr` age-1 index estimate, -->
+and minor changes to pre-`r end_yr-1` data. The model-based
+approaches used to develop the input weight-at-age matrix and time-varying
+temperature-dependent maturity were retained from last year's assessment
+to inform fecundity.
+
+The relative index of age-1 fish from the survey was not used to fit this
+assessment model because it was found to have a strong influence on estimates
+of recruitment even for cohorts that had several years of data, and because it lacks
+time-specific measurements of uncertainty.
+Thus, the only data point that can directly inform the size of
+the 2023 cohort is from age-1 observations in the commercial fishery
+in 2024. Given the unique seasonal
+fishing conditions during the year and that this fishery-dependent data point
+can be overly influential on the
+estimated 2023 recruitment, estimated recruitment in 2023 was
+based solely on the stock--recruitment relationship, with no estimated
+recruitment deviations (i.e., deviations fixed at zero, giving average recruitment).
+By necessity, this was also done for 2024 and the
+projection years. This differs to previous assessment models, for which
+recruitments at the end of the time series included a random component (extra variability
+around the stock-recruitment relationship).
+
+This assessment continues to use (since 2014) time-varying
+(rather than constant) selectivity to maintain flexibility within the
+fishery dynamics given variability in `r sp` distribution patterns.
+The Dirichlet-multinomial estimation approach to weighting composition data
+was retained, and a sensitivity to an alternative data-weighting approach was
+investigated. Time-varying fecundity, which was introduced in 2019, was
+retained and improved upon with time-varying estimates of maturity in 2024.
+Assumptions for the forecast period for weight at age, maturity at age, and
+selectivity continue to be based on conditions during the last five years,
+as done since the 2020 assessment.
+
+## Management performance {-}
+
+TODO: Text here is unedited from last year's Executive summary.
+
+Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
+utilization rate (proportion of catch target removed) has been
+`r tot_last_10_yrs_attainment`% and catches have been below coast-wide
+targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
+`r end_yr - 1`, the mean utilization rates differed between the U.S.
+(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%).
+While Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
+over the past few years to historic lows. The utilization rate for the coast-wide
+fishery this year was the lowest of the previous decade (`r tot_2024_attainment`%)
+due, in part, to difficulties locating aggregations of fish during the spring and
+throughout the year in northern areas.
+The usual `r us_allotment_percent`% and `r can_allotment_percent`%
+allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
+Agreement for `r sp`, was implemented for the `r last_assess_yr` fishery.
+Total landings last exceeded the coast-wide quota in 2002 when utilization
+was 112%.
+
+```{r es-landings-tac-tab, results = "asis", echo = FALSE}
+
+table_landings_tac(
+  ct,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Recent trends in ", sp, " landings and management decisions. Catch ",
+    "targets in 2020 and 2021 were specified unilaterally. All landings ",
+    "and catch targets are given in tonnes."),
+  font_size = 7,
+  header_font_size = 7,
+  longtable = TRUE)
+```
+
+
+## Forecast decision tables {-}
+
+TODO: Text here is unedited from last year's Executive summary.
+
+The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
+harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
+wide range of uncertainty, the 95% credibility interval being
+`r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
+
+Decision tables give the projected population status (relative spawning
+biomass) and fishing intensity relative to the target under different
+catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
+and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
+projected outcome for each potential catch level and year (row) across the
+quantiles (columns) of the posterior distribution. Tables show results for up
+to three years (only two years in subsequent assessments following JMC advice)
+of future catch levels based on subsequent estimates of stock
+status and fishing intensity.
+Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
+spawning biomass for several of the catch alternatives. Population dynamics
+and governing parameters assumed during the forecast period include selectivity,
+weight-at-age and fecundity-at-age averaged over the five
+most recent years (`r assess_yr - 5`--`r assess_yr - 1`), and constant
+values for all other parameters.
+
+A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
+default harvest rate catch target. But, the projected median relative fishing
+intensity can be slightly different than the target because the `r fspr_40`
+default harvest-rate catch limit is calculated using baseline
+selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
+forecasted catches use selectivity averaged over the last five
+years. Recent changes in selectivity will thus be reflected in the
+determination of fishing relative to the default harvest policy. For example,
+fishing at the `r fspr_40` default harvest-rate catch limit
+(scenario `r letters[ct_levels_vals$ct_default_policy_ind]`: default HR)
+in `r assess_yr - 1` results in a median relative fishing intensity of
+`r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
+
+Management metrics that were identified as important to the Joint Management
+Committee and the Advisory Panel in 2012 are presented for
+`r forecast_yrs[2]` and `r forecast_yrs[3]` projections
+(Tables~\@ref(tab:es-risk-year-1-tab) and~\@ref(tab:es-risk-year-2-tab);
+Figures~\@ref(fig:es-risk-year-1-fig) and~\@ref(fig:es-risk-year-2-fig)).
+These metrics summarize the probability of various outcomes from the base model
+given each potential management action. Although not linear, probabilities can
+be interpolated from these results with reasonable accuracy for intermediate catch values in
+`r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1-fig)).
+However, interpolation is not appropriate for the default harvest rule scenario
+in `r assess_yr + 1` because it is conditional on the `r assess_yr` catch.
+
+```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
+
+let <- letters[seq_along(base_model$forecasts[[length(base_model$forecasts)]])]
+last_let <- let[length(let)]
+
+table_decision(
+  base_model,
+  type = "biomass",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
+  caption = paste0(
+      "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
+      "beginning of the year. Catch alternatives are defined by letters a-",
+      last_let, " and are a constant value across all forecasted years unless ",
+      "otherwise defined in the first column. Acronyms are defined in the ",
+      "glossary (Appendix~\\@ref(sec:app-glossary))."),
+  bold_letters = TRUE,
+  digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger. You will have to check this with trial-and-error, building the
+  # document, checking the table and adjusting, over and over until it looks
+  # right
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
+\clearpage
+
+```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
+
+table_decision(
+  base_model,
+  type = "spr",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
+  caption = paste0(
+      "Forecast quantiles of Pacific Hake relative fishing intensity ",
+      rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
+      "Catch alternatives are defined by letters a-", last_let, " and are a constant ",
+      "value across all forecasted years unless otherwise defined in the ",
+      "first column. Acronyms are defined in the glossary ",
+      "(Appendix~\\@ref(sec:app-glossary))."),
+  bold_letters = TRUE,
+  digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
+<!-- Commenting out in 2025 as did not happen, as we only have the one
+bouncing-around catch alternatve.
+This explains why probabilities can sometimes decline (rather than rise) with
+increased assess_yr + 1 and assess_yr + 2 catch levels
+(Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab);
+Figures~\@ref(fig:es-risk-year-2-fig) and~\@ref(fig:es-risk-year-3-fig)).
+-->
+
+(ref:es-depletion-comparison-cap) Median and 95% posterior
+credibility intervals of estimated relative spawning biomass to the start
+of `r end_yr` from the base model and projections to the start of
+`r forecast_yrs[length(forecast_yrs)]` for several catch alternatives, which
+are defined in Table~\@ref(tab:es-decisions-biomass-tab).
+
+(ref:es-depletion-comparison-alt) This figure shows that the median
+relative spawning biomass is projected to remain flat for the next 3 years
+with zero catch and to decline for all non-zero catch levels evaluated.
+
+```{r es-depletion-comparison-fig, fig.cap = "(ref:es-depletion-comparison-cap)"}
+
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
+# `fore_inds` below are the indices of those forecast values in that list.
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 10, 11),
+                          forecast_yrs = forecast_yrs)
+```
+
+\newpage

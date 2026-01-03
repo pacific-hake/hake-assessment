@@ -1,0 +1,1390 @@
+```{r load-project-variables, echo = FALSE}
+
+# Put any variables you intend to use in the text here.
+# Note that the function f() is for formatting and is defined in
+# `R/utils-f.R`
+
+# -----------------------------------------------------------------------------
+# ct_levels is a list of N 3-item lists of catch levels with values found in
+# `doc/forecast-descriptions.csv` and pre-loaded into the base_model.
+#  Its columns are:
+#  1-4. Values for catch to forecast for four years (1 column each)
+#  5.   Their pretty names to appear in the document
+#  6.   Their directory names
+#  7    The forecast type (constant for all years or 10% reduction each
+#       year, etc)
+#  8.   Special - Signifies that the catch level is a special one which will
+#       have additional text in the table (default HR, SPR100, etc)
+# Each element of the `ct_levels` list is a list of length 3, .representing
+# 1. A vector of the catch levels
+# 2. The name of the catch scenario to be shown in the decision tables
+# 3. The directory name for the catch scenario
+# -----------------------------------------------------------------------------
+ct_levels_vals <- base_model$ct_levels_vals
+ct_levels <- base_model$ct_levels
+
+# -----------------------------------------------------------------------------
+# Indices for the forecasts list, which list items above are the TAC case and
+#  default policy case
+# This is used in the one-page summary and a plot comparing several catch cases,
+#  and elsewhere
+# -----------------------------------------------------------------------------
+ct_levels_num <- length(ct_levels)
+ct_actual_ind <- base_model$ct_levels_vals$ct_actual_ind
+ct_tac_last_ind <- base_model$ct_levels_vals$ct_tac_last_ind
+ct_tac_ind <- base_model$ct_levels_vals$ct_tac_ind
+ct_spr100_ind <- base_model$ct_levels_vals$ct_spr100_ind
+ct_default_policy_ind <- base_model$ct_levels_vals$ct_default_policy_ind
+ct_stable_ind <- base_model$ct_levels_vals$ct_stable_ind
+ct_reduction_rows <- base_model$ct_levels_vals$ct_reduction_rows
+ct_constant_rows <- base_model$ct_levels_vals$ct_constant_rows
+ct_constant_str <- base_model$ct_levels_vals$ct_constant_str
+ct_reduction_str <- base_model$ct_levels_vals$ct_reduction_str
+
+# Shortened names -------------------------------------------------------------
+mc <- base_model$mcmccalcs
+last_yr_mc <- last_yr_base_model$mcmccalcs
+extramc <- base_model$extra_mcmc
+
+# Attainment in the past ------------------------------------------------------
+ct_last10 <- ct |>
+  dplyr::filter(Year %in% (end_yr - 10):(end_yr - 1))
+ct_last5 <- ct |>
+  dplyr::filter(Year %in% (end_yr - 5):(end_yr - 1))
+ct_last2 <- ct |>
+  dplyr::filter(Year %in% (end_yr - 2):(end_yr - 1))
+ct_last1 <- ct |>
+  dplyr::filter(Year == end_yr - 1)
+ct_secondlast <- ct |>
+  dplyr::filter(Year == end_yr - 2)
+us_last_5_yrs_attainment <- ct_last5 |>
+  pull(`us_attain`) |>
+  mean() |>
+  f(1)
+us_last_2_yrs_attainment <- ct_last2 |>
+  pull(`us_attain`) |>
+  mean() |>
+  f(0)
+can_last_5_yrs_attainment <- ct_last5 |>
+  pull(`can_attain`) |>
+  mean() |>
+  f(1)
+can_last_2_yrs_attainment <- ct_last2 |>
+  pull(`can_attain`) |>
+  mean() |>
+  f(0)
+tot_last_5_yrs_attainment <- ct_last5 |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_last_10_yrs_attainment <- ct_last10 |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_penult_yr_attainment <- ct_last2 |>
+  dplyr::filter(Year == last_data_yr - 1) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_last_yr_attainment <- ct_last1 |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_2015_attainment <- ct |>
+  dplyr::filter(Year == 2015) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_2024_attainment <- ct |>
+  dplyr::filter(Year == 2024) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
+tot_9192_attainment <- ct |>
+  dplyr::filter(Year %in% 1991:1992) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(0)
+tot_9399_attainment <- ct |>
+  dplyr::filter(Year %in% 1993:1999) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(0)
+
+# Allotments ------------------------------------------------------------------
+can_allotment_percent <- 26.12
+us_allotment_percent <- 73.88
+# ... allotments in catch -----------------------------------------------------
+can_allotment_percent_last_yr <- f(pull(ct_last1, `Canada TAC`) /
+                                     pull(ct_last1, `Total TAC`) * 100, 2)
+us_allotment_percent_last_yr <- f(pull(ct_last1, `U.S. TAC`) /
+                                    pull(ct_last1, `Total TAC`) * 100, 2)
+# Further TAC sources ---------------------------------------------------------
+ft <- further_tac_df
+last_yr_us_tribal <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_tribal_quota)
+last_yr_us_research <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_research_quota)
+last_yr_us_non_tribal <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_nontribal_quota)
+last_yr_us_tribal_quota_reallocated <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_tribal_quota_reallocated)
+last_yr_us_tribal_reallocate_dates <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_tribal_reallocate_dates)
+last_yr_us_tribal_reallocate_dates_f <-
+  format(as.Date(as.character(last_yr_us_tribal_reallocate_dates),
+                 "%d-%b"),
+         "%B %d")
+last_yr_us_tribal_max_landed <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_tribal_max_landed)
+last_yr_us_shore_quota_reallocated <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_shore_reallocated)
+last_yr_us_cp_quota_reallocated <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_cp_reallocated)
+last_yr_us_ms_quota_reallocated <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(us_ms_reallocated)
+
+# Catch -----------------------------------------------------------------------
+# ... recent catch ------------------------------------------------------------
+last_5_yrs_total_ct <- ct_last5 |>
+  pull(Total)
+long_term_avge_ct <- mean(ct$Total)
+ct_limit_quantiles <- base_model$mcmcvals$ct_limit_quantiles
+# ... recent catch, last year -------------------------------------------------
+last_yr_landings <- ct_last1 |>
+  pull(Total) |>
+  f(0)
+last_yr_tac <- ct_last1 |>
+  pull(`Total TAC`) |>
+  f(0)
+last_yr_us_rank <- ct |>
+  mutate(rank = rank(-1 * `U.S. Total`)) |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(rank) |>
+  ordinal()
+last_yr_can_rank <- ct |>
+  mutate(rank = rank(-1 * `Canada Total`)) |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(rank) |>
+  ordinal()
+# ... catch over the last 10 years --------------------------------------------
+ct_last_10yrs <- ct |>
+  slice_tail(n = 10)
+ct_mean_10yrs <- f(mean(ct_last_10yrs$Total))
+ct_us_mean_10yrs <- f(mean(ct_last_10yrs$`U.S. Total`))
+ct_can_mean_10yrs <- f(mean(ct_last_10yrs$`Canada Total`))
+# ... US Catch by fleet, last year --------------------------------------------
+last_yr_us_research_ct <- ct |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(`U.S. Research`)
+last_yr_us_cp_ct <- ct |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(`U.S. Catcher-processor`)
+last_yr_us_ms_ct <- ct |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(`U.S. Mothership`)
+last_yr_us_shore_ct <- ct |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(`U.S. Shoreside`)
+last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
+  dplyr::filter(year == last_data_yr) |>
+  pull(catch) |>
+  sum() |>
+  tidyr::replace_na(0)
+catcher_processor_ct <- ((ct_last1 |>
+                            pull(`U.S. Catcher-processor`)) /
+                           (last_yr_us_cp_quota_reallocated) * 100) |>
+  f(1)
+mothership_ct <- ((ct_last1 |>
+                     pull(`U.S. Mothership`)) /
+                    (last_yr_us_ms_quota_reallocated) * 100) |>
+  f(1)
+shore_based_ct <- ((ct_last1 |>
+                      pull(`U.S. Shoreside`) -
+                      last_yr_us_ti_ct) /
+                     (last_yr_us_shore_quota_reallocated) * 100) |>
+  f(1)
+
+# Attainment ------------------------------------------------------------------
+# ... US Attainment, catch, and TAC -------------------------------------------
+last_yr_us_landings <- ct_last1 |>
+  pull(`U.S. Total`) |>
+  f(0)
+last_yr_us_attained <- ct_last1 |>
+  pull(us_attain) |>
+  f(1)
+last_2yr_us_attained_diff <- (ct_last1 |>
+                                pull(us_attain) -
+                                ct_secondlast |>
+                                pull(us_attain)) |>
+  f(1)
+last_yr_us_tac <- ct_last1 |>
+  pull(`U.S. TAC`) |>
+  f(0)
+# ... US Attainment by fleet, last year ---------------------------------------
+last_yr_us_cp_ct_percent <- f(last_yr_us_cp_ct /
+                                last_yr_us_cp_quota_reallocated * 100,
+                              1)
+last_yr_us_ms_ct_percent <- f(last_yr_us_ms_ct /
+                                last_yr_us_ms_quota_reallocated * 100,
+                              1)
+last_yr_us_shore_ct_percent <- f(last_yr_us_shore_ct /
+                                   last_yr_us_shore_quota_reallocated * 100,
+                                 1)
+
+# ... Canada Attainment, catch, and TAC ---------------------------------------
+last_yr_can_carryover <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(can_carried_over) |>
+  f(0)
+last_yr_can_attained <- ct_last1 |>
+  pull(can_attain) |>
+  f(1)
+last_2yr_can_attained_diff <- ((ct_last1 |>
+                                  pull(can_attain)) -
+                                 (ct_secondlast |>
+                                    pull(can_attain))) |>
+  f(1)
+last_yr_can_landings <- ct_last1 |>
+  pull(`Canada Total`) |>
+  f(0)
+last_yr_can_tac <- ct_last1 |>
+  pull(`Canada TAC`) |>
+  f(0)
+last_yr_can_tac_jv <- ft |>
+  dplyr::filter(Year == last_data_yr) |>
+  pull(can_jv_tac) |>
+  f(0)
+last_yr_can_shoreside_tac <- ((ct_last1 |>
+                                 pull(`Canada TAC`)) -
+                                (ft |>
+                                   dplyr::filter(Year == last_data_yr) |>
+                                   pull(can_jv_tac))) |>
+  f(0)
+latest_yr_can_jv <- ct |>
+  dplyr::filter(`Canada Joint-venture` > 0) |>
+  pull(Year) |>
+  max()
+last_yr_can_shore <- ct_last1 |>
+  pull(`Canada Shoreside`) |>
+  f(0)
+last_yr_can_freezer <- ct_last1 |>
+  pull(`Canada Freezer-trawler`) |>
+  f(0)
+last_yr_can_jv <- ct_last1 |>
+  pull(`Canada Joint-venture`) |>
+  f(0)
+last_yr_can_shore_percent <- ((ct_last1 |>
+                                 pull(`Canada Shoreside`)) /
+                                (ct_last1 |>
+                                   pull(`Canada Total`)) * 100) |>
+  f(1)
+last_yr_can_freezer_percent <- ((ct_last1 |>
+                                   pull(`Canada Freezer-trawler`)) /
+                                  (ct_last1 |>
+                                     pull(`Canada Total`)) * 100) |>
+  f(1)
+last_yr_can_jv_percent <- ((ct_last1 |>
+                              pull(`Canada Joint-venture`)) /
+                             (ct_last1 |>
+                                pull(`Canada Total`)) * 100) |>
+  f(1)
+# Years since 2000 (including 2000) that JV catch has been zero
+terminal_yr_us_jv_foreign <- ct |>
+  dplyr::filter(`U.S. Foreign` > 0 | `U.S. Joint-venture` > 0) %>%
+  slice(nrow(.)) |>
+  pull(Year)
+first_yr_us_atsea <- ct |>
+  dplyr::filter(`U.S. Catcher-processor` > 0 | `U.S. Mothership` > 0) |>
+  slice(1) |>
+  pull(Year)
+
+# Survey values ---------------------------------------------------------------
+survey_biomass <- base_model$dat$CPUE |>
+  dplyr::filter(index == 2) |>
+  pull(var = obs, name = year) / 1e6
+
+survey_comps <- base_model$dat$agecomp |>
+  dplyr::filter(fleet == 2)
+rownames(survey_comps) <- survey_comps$year
+
+survey_last_yr <- survey_comps %>%
+  slice(nrow(.))
+
+survey_last_yr_age <- survey_last_yr |>
+  select(matches("^a", ignore.case = FALSE)) |>
+  select(-ageerr) |> 
+  unlist(1) |>
+  sort(decreasing = TRUE)
+names(survey_last_yr_age) <- gsub("^a", "", names(survey_last_yr_age))
+
+survey_a2_prop <- f(survey_last_yr_age[names(survey_last_yr_age) == 2], 1)
+last_survey_yr <- max(as.numeric(names(survey_biomass)))
+# Millions of tonnes
+last_survey_yr_biomass <- base_model$dat$CPUE |>
+  dplyr::filter(index == 2, year == max(year)) |>
+  mutate(obs = obs / 1e6) |>
+  pull(obs) |>
+  f(2)
+penult_survey_yr <- base_model$dat$CPUE |>
+  dplyr::filter(index == 2) |>
+  pull(year) |>
+  sort() %>%
+  `[`(length(.) - 1)
+
+# How many times higher is the last survey than the one before it?
+last_factor_penult <- base_model$dat$CPUE |>
+  dplyr::filter(index == 2) |>
+  mutate(new = obs / lag(obs)) |>
+  dplyr::filter(year %in% c(last_survey_yr)) |>
+  pull(new) |>
+  f(1)
+
+# Age-1 survey
+survey_age1_yrs <- base_model$dat$CPUE |>
+  dplyr::filter(index == 3) |>
+  pull(year)
+# Spawning Biomass and Depletion estimates ------------------------------------
+curr_depl_lower <- f(mc$dlower[names(mc$dlower) == end_yr] * 100, 0)
+curr_depl_median <- f(mc$dmed[names(mc$dmed) == end_yr] * 100, 0)
+curr_depl_upper <- f(mc$dupper[names(mc$dupper) == end_yr] * 100, 0)
+# These are millions of tons:
+curr_bio_lower <- f(mc$slower[names(mc$slower) == end_yr], 3)
+curr_bio_median <- f(mc$smed[names(mc$smed) == end_yr], 3)
+curr_bio_upper <- f(mc$supper[names(mc$supper) == end_yr], 3)
+# These are metric tonnes:
+curr_bio_lower_tonnes <- f(mc$slower[names(mc$slower) == end_yr] * 1e6, 0)
+curr_bio_median_tonnes <- f(mc$smed[names(mc$smed) == end_yr] * 1e6, 0)
+curr_bio_upper_tonnes <- f(mc$supper[names(mc$supper) == end_yr] * 1e6, 0)
+# ... spawning biomass for previous year --------------------------------------
+# (calculated in this assessment) in millions of tonnes and then tonnes
+prev_bio_lower <- f(mc$slower[names(mc$slower) == last_data_yr], 3)
+prev_bio_median <- f(mc$smed[names(mc$smed) == last_data_yr], 3)
+prev_bio_upper <- f(mc$supper[names(mc$supper) == last_data_yr], 3)
+prev_bio_lower_tonnes <- f(mc$slower[names(mc$slower) == last_data_yr] * 1e6, 0)
+prev_bio_median_tonnes <- f(mc$smed[names(mc$smed) == last_data_yr] * 1e6, 0)
+
+ratio_bio_median_curr_last <- mc$smed[names(mc$smed) == end_yr] /
+  mc$smed[names(mc$smed) == last_data_yr]
+if(ratio_bio_median_curr_last > 1){
+  diff_bio_median_last_curr <-
+    f((mc$smed[names(mc$smed) == end_yr] /
+         mc$smed[names(mc$smed) == last_data_yr] - 1) * 100)
+  diff_bio_median_last_curr_text <- "higher than"
+}else{
+  diff_bio_median_last_curr <-
+    f((mc$smed[names(mc$smed) == end_yr] /
+         mc$smed[names(mc$smed) == last_data_yr]) * 100)
+  diff_bio_median_last_curr_text <- "of"
+}
+prev_bio_upper_tonnes <- f(mc$supper[names(mc$supper) == last_data_yr] * 1e6, 0)
+
+# ... spawning biomass for previous year (last year's assessment) -------------
+prev_bio_lower_last_assess <-
+  f(last_yr_mc$slower[names(mc$slower) == last_data_yr], 3)
+prev_bio_median_last_assess <-
+  f(last_yr_mc$smed[names(mc$smed) == last_data_yr], 3)
+prev_bio_upper_last_assess <-
+  f(last_yr_mc$supper[names(mc$supper) == last_data_yr], 3)
+
+# Forecasting -----------------------------------------------------------------
+# Median fishing intensity at Default HR
+fi_at_hcr <- NULL
+if(!is.null(base_model$forecasts)){
+  fore <- base_model$forecasts[[as.character(assess_yr)]] 
+  nms <- fore |> names()
+  default_hr_nm <- grep("default-hr", nms, value = TRUE)
+  fi_at_hcr <- f(fore[[default_hr_nm]]$spr |>
+                   dplyr::filter(yr == assess_yr) |>
+                   pull(`50%`), 2)
+}
+
+# ... first forecast year depletion and spawning biomass estimates ------------
+fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
+# ... second forecast year depletion and spawning biomass estimates -----------
+fore_tac_mcmc_yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
+# Biomass medians for last year's TAC catch level -----------------------------
+endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
+
+endyr_plus_3_fore_tac_catch <- NULL
+last_yr_tac_fore_1_biomass <- NULL
+last_yr_tac_fore_2_biomass <- NULL
+last_yr_tac_fore_3_biomass <- NULL
+
+if(!is.null(endyr_plus_3_fore[[ct_tac_ind]]$depl)){
+  endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$depl |> 
+    t() |> 
+    as_tibble(rownames = "yr")
+  last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+  last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr + 1) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+  
+  last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr + 2) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+}
+
+curr_catch_tac_value <- ct_levels[[ct_tac_ind]][[1]][1]
+catch_col <- sym(paste0("ForeCatch_", end_yr))
+yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
+
+last_yr_tac_risk_1_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_1_biomass_decline <-
+    base_model$risks[[as.character(end_yr)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
+
+catch_col <- sym(paste0("ForeCatch_", end_yr + 1))
+yr_prob_col <- paste0("SSB_", end_yr + 2, "<SSB_", end_yr + 1)
+
+last_yr_tac_risk_2_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_2_biomass_decline <-
+    base_model$risks[[as.character(end_yr + 1)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
+
+yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
+
+last_yr_tac_risk_2_bforty <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_2_bforty <-
+    base_model$risks[[as.character(end_yr + 1)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
+
+catch_col <- sym(paste0("ForeCatch_", end_yr + 2))
+yr_prob_col <- paste0("SSB_", end_yr + 3, "<SSB_", end_yr + 2)
+
+last_yr_tac_risk_3_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_3_biomass_decline <-
+    base_model$risks[[as.character(end_yr + 2)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
+
+# Numbers at age calculations for bubble plot caption -------------------------
+median_nat_no_yr <- extramc$natage_med |>
+  select(-yr)
+# Billions of fish
+max_median_nat <- f(max(median_nat_no_yr) / 1e3, 1)
+yr_of_max_median_nat_ind <- which(median_nat_no_yr == max(median_nat_no_yr))
+yr_of_max_median_nat <- extramc$natage_med[yr_of_max_median_nat_ind, "yr"]
+
+# Executive Summary and Assessment section ------------------------------------
+num_mcmc_samples <- base_model$mcmcvals$num_mcmc_samples
+median_bio_min <- f(min(mc$smed[names(mc$smed) %in% start_yr:end_yr]), 3)
+median_bio_min_yr <- names(which.min(mc$smed[names(mc$smed) %in% start_yr:end_yr]))
+median_intensity <- mc$pmed
+median_intensity_2007_to_2010 <- median_intensity[c("2007", "2008", "2009", "2010")]
+median_intensity_2007_to_2010_min <- f(min(median_intensity_2007_to_2010) * 100, 0)
+median_intensity_2007_to_2010_max <- f(max(median_intensity_2007_to_2010) * 100, 0)
+median_intensity_2007_to_2011 <- median_intensity[c("2007", "2008", "2009", "2010", "2011")]
+median_intensity_2007_to_2011_min <- f(min(median_intensity_2007_to_2011) * 100, 0)
+median_intensity_2007_to_2011_max <- f(max(median_intensity_2007_to_2011) * 100, 0)
+# Includes > end_yr
+median_intensity_above_one_all_yrs <- names(which(mc$pmed[1:(last_assess_yr-start_yr+1)] > 1))
+median_intensity_above_one_yrs <- median_intensity_above_one_all_yrs[
+  median_intensity_above_one_all_yrs < end_yr]
+median_intensity_above_1_text <- paste(
+  ifelse(
+    test = !length(median_intensity_above_one_all_yrs),
+    "for all years",
+    "except for the years "
+  ),
+  str_flatten(
+    median_intensity_above_one_all_yrs,
+    collapse = ", ",
+    last = ", and "
+  ),
+  sep = ""
+)
+median_intensity_2010 <- f(mc$pmed["2010"] * 100, 1)
+median_intensity_2011 <- f(mc$pmed["2011"] * 100, 1)
+median_intensity_2015 <- f(mc$pmed["2015"] * 100, 1)
+median_intensity_2017 <- f(mc$pmed["2017"] * 100, 1)
+median_intensity_2018 <- f(mc$pmed["2018"] * 100, 1)
+median_intensity_2019 <- f(mc$pmed["2019"] * 100, 1)
+median_intensity_2020 <- f(mc$pmed["2020"] * 100, 1)
+median_intensity_2021 <- f(mc$pmed["2021"] * 100, 1)
+median_intensity_2022 <- f(mc$pmed["2022"] * 100, 1)
+median_intensity_2023 <- f(mc$pmed["2023"] * 100, 1)
+median_intensity_2024 <- f(mc$pmed["2024"] * 100, 1)
+median_intensity_penult_yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
+median_relative_bio <- mc$dmed
+# Remove extra non-year columns to avoid warnings below
+
+median_relative_bio <-
+  median_relative_bio[grepl("^[0-9]+$",
+                            names(median_relative_bio))]
+median_relative_bio <-
+  median_relative_bio[names(median_relative_bio) %in% start_yr:end_yr]
+median_relative_bio_2007_to_2010 <-
+  median_relative_bio[c("2007", "2008", "2009", "2010")]
+median_relative_bio_2007_to_2010_min <-
+  f(min(median_relative_bio_2007_to_2010), 2)
+median_relative_bio_2007_to_2010_max <-
+  f(max(median_relative_bio_2007_to_2010), 2)
+median_relative_bio_2007_to_2011 <-
+  median_relative_bio[c("2007", "2008", "2009", "2010", "2011")]
+median_relative_bio_2007_to_2011_min <-
+  f(min(median_relative_bio_2007_to_2011), 2)
+median_relative_bio_2007_to_2011_max <-
+  f(max(median_relative_bio_2007_to_2011), 2)
+# When below target, 0.4
+median_relative_bio_below_target <-
+  median_relative_bio[median_relative_bio < 0.4]
+# Has been above target since
+median_relative_bio_above_target_since <-
+  max(as.numeric(names(median_relative_bio_below_target)), na.rm = TRUE) + 1
+median_relative_bio_2017 <- f(mc$dmed["2017"] * 100, 1)
+
+# Recruitments in current assessment vs last assessment -----------------------
+prev_assess_recruitment_lower  <- last_yr_mc$rlower
+prev_assess_recruitment_med  <- last_yr_mc$rmed
+# Want years only
+prev_assess_recruitment_med <-
+  prev_assess_recruitment_med[grepl("^[0-9]{4}$", names(prev_assess_recruitment_med))]
+prev_assess_recruitment_upper <- last_yr_mc$rupper
+
+# Current assessment w/o final projection year --------------------------------
+# since not in previous assessment)
+compareable_names <- names(mc$rlower) %in%
+  names(prev_assess_recruitment_lower)
+recruitment_med_to_compare <- mc$rmed[compareable_names]
+
+# Recruitment estimates for cohorts
+# this assessment's median estimate of cohorts recruitment
+# These seem to rely on last year's assessment, so are currently (2024-01-21)
+# wrong because of Issue #1106.
+med_est_2021_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)
+med_est_2020_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)
+med_est_2019_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]), 1)
+# % increase from last year
+perc_inc_2021_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
+                                        (prev_assess_recruitment_med)["2021"]) * 100), 0)
+perc_inc_2020_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+                                        (prev_assess_recruitment_med)["2020"]) * 100), 0)
+perc_inc_2019_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
+                                        (prev_assess_recruitment_med)["2019"]) * 100), 0)
+
+# Biomass probabilities -------------------------------------------------------
+# ... biomass declines next year to year after with zero catch ----------------
+zero_catch_prob_bio_down_1 <- NULL
+zero_catch_prob_bio_down_2 <- NULL
+zero_catch_prob_bio_down_3 <- NULL
+largest_next_catch_index <-NULL
+largest_next_catch <- NULL
+prob_next_over_b10 <- NULL
+prob_next_over_b40 <- NULL
+dfo_probs_curr <- NULL
+dfo_probs_fore <- NULL
+next_treaty_catch <- NULL
+pfmc_prob_next_yr_below_b40 <- NULL
+pfmc_prob_next_yr_below_b25 <- NULL
+same_catch_as_last_yr <- NULL
+same_catch_prob_next_year_below_b40 <- NULL
+same_catch_prob_yr_after_next_below_b40 <- NULL
+
+if(!is.null(base_model$risks)){
+  zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
+  # ... biomass declines year after next to year after that with 0 catch --------
+  zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2] |> pull())
+  # ... biomass declines 2 years after next to year after that with 0 catch -----
+  zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1, 2] |> pull())
+  # Reference point probabilities -----------------------------------------------
+  # ... reference points next year given largest catch this year ----------------
+  largest_next_catch_index <-
+    which.max(pull(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)]))
+  largest_next_catch <-
+    f(pull(base_model$risks[[1]][largest_next_catch_index, paste0("ForeCatch_",
+                                                                  assess_yr)]),
+      0)
+  prob_next_over_b10 <-
+    f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                             paste0("Bratio_",
+                                                    assess_yr + 1,
+                                                    "<0.10")]),
+      0)
+  prob_next_over_b40 <-
+    f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                             paste0("Bratio_",
+                                                    assess_yr + 1, "<0.40")]),
+      0)
+  # ... Canadian (DFO) provisional reference points -----------------------------
+  dfo_probs_curr <- base_model$risks[[1]] |>
+    select(last_col(2):last_col())
+  dfo_probs_fore <- base_model$risks[[2]] |>
+    select(last_col(2):last_col())
+  
+  # ... US (PFMC) stock size reference points based on default Treaty HCR -------
+  next_treaty_catch <- 
+    f(base_model$ct_levels[[ct_default_policy_ind]][[1]][1], 0)
+  pfmc_prob_next_yr_below_b40 <-
+    f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                          assess_yr + 1,
+                                                          "<0.40")] |> pull())
+  pfmc_prob_next_yr_below_b25 <-
+    f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                          assess_yr + 1,
+                                                          "<0.25")] |> pull())
+  if(length(ct_actual_ind)){
+  same_catch_as_last_yr <-
+    f(base_model$ct_levels[[ct_actual_ind]][[1]][1], 0)
+  same_catch_prob_next_year_below_b40 <-
+    f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
+                                                  assess_yr + 1,
+                                                  "<0.40")] |> pull())
+  same_catch_prob_yr_after_next_below_b40 <-
+    f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
+                                                  assess_yr + 2,
+                                                  "<0.40")] |> pull())
+  }
+}
+# ... current biomass being above/below B40%, B25%, and B10% ------------------
+probs_curr_b40 <- base_model$mcmcvals$probs_curr_b40
+probs_curr_b25 <- base_model$mcmcvals$probs_curr_b25
+probs_curr_b10 <- base_model$mcmcvals$probs_curr_b10
+probs_curr_below_b40 <- base_model$mcmcvals$probs_curr_below_b40
+probs_curr_below_b25 <- base_model$mcmcvals$probs_curr_below_b25
+dfo_prob_next_over_40bmsy <- NULL
+dfo_prob_next_over_80bmsy <- NULL
+dfo_prob_next_over_bmsy <- NULL
+if(!is.null(dfo_probs_fore)){
+# ... next year DFO probs given largest catch this year -----------------------
+dfo_prob_next_over_40bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">0.4SSB_MSY")] |> pull())
+dfo_prob_next_over_80bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">0.8SSB_MSY")] |> pull())
+dfo_prob_next_over_bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">SSB_MSY")] |> pull())
+}
+
+# ... Prob most recent relative fishing intensity is above target of 1 --------
+probs_curr_rel_fish_intens_above_1 <-
+  base_model$mcmcvals$probs_curr_rel_fish_intens_above_1
+
+catches_below_200000_since_1986 <-
+  number_to_word(length(dplyr::filter(ct, `Total` <= 200000,
+                               Year > 1986)$Year))
+
+# Age compositions ------------------------------------------------------------
+# Canadian year range for ages
+can_age_yrs <- c(can_ft_age_df$year,
+                 can_ss_age_df$year,
+                 can_jv_age_df$year) |>
+  unique() |>
+  sort()
+can_age_yrs_min <- min(can_age_yrs)
+can_age_yrs_max <- max(can_age_yrs)
+# ... age composition data for data section -----------------------------------
+survey_age_years <-
+  base_model$dat$agecomp[base_model$dat$agecomp$fleet == 2, ]$year
+max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
+max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
+# ... Canadian Freezer trawlers age data --------------------------------------
+last_year_can_ages_ft <- can_ft_age_df |>
+  dplyr::filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |> 
+  unlist()
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 1)
+max_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+max_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 2)
+second_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+second_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 3)
+third_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+third_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 4)
+fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+# ... Canadian Shoreside age data ---------------------------------------------
+last_yr_can_ages_ss <- can_ss_age_df |>
+  dplyr::filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |> 
+  unlist()
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 1)
+max_shoreside_age_prop_age <- ss_age_prop_holder[1]
+max_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 2)
+second_shoreside_age_prop_age <- ss_age_prop_holder[1]
+second_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 3)
+third_shoreside_age_prop_age <- ss_age_prop_holder[1]
+third_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 4)
+fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
+fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+
+# ... US age data -------------------------------------------------------------
+us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "num_samples"] |>
+  pull()
+us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "num_samples"] |>
+  pull()
+us_last_yr_age_cp <- us_cp_age_df |>
+  dplyr::filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
+  sort(decreasing = TRUE)
+us_age_1_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[1])
+us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
+us_age_2_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[2])
+us_age_2_prop_cp <- f(us_last_yr_age_cp[2] * 100, 1)
+us_age_3_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[3])
+us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
+us_age_4_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[4])
+us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
+
+us_last_yr_age_ms <- us_ms_age_df |>
+  dplyr::filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
+  sort(decreasing = TRUE)
+us_age_1_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[1])
+us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
+us_age_2_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[2])
+us_age_2_prop_ms <- f(us_last_yr_age_ms[2] * 100, 1)
+us_age_3_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[3])
+us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
+us_age_4_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[4])
+us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
+
+us_last_yr_age_shore <- us_sb_age_df |>
+  dplyr::filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
+  sort(decreasing = TRUE)
+us_age_1_prop_age_shore <-
+  as.numeric(names(us_last_yr_age_shore)[1])
+us_age_1_prop_shore <-
+  f(us_last_yr_age_shore[1] * 100, 1)
+us_age_2_prop_age_shore <-
+  as.numeric(names(us_last_yr_age_shore)[2])
+us_age_2_prop_shore <-
+  f(us_last_yr_age_shore[2] * 100, 1)
+us_age_3_prop_age_shore <-
+  as.numeric(names(us_last_yr_age_shore)[3])
+us_age_3_prop_shore <-
+  f(us_last_yr_age_shore[3] * 100, 1)
+us_age_4_prop_age_shore <-
+  as.numeric(names(us_last_yr_age_shore)[4])
+us_age_4_prop_shore <-
+  f(us_last_yr_age_shore[4] * 100, 1)
+
+# Recruitment -----------------------------------------------------------------
+#  ... years median recruitment is below the mean of the median ---------------
+# recruitments for years > 2010 and < (end_yr - 1) ; end_yr - 1 won't be well
+# estimated
+recruitment_med_since_2010 <-
+  mc$rmed[which(names(mc$rmed) %in% 2010:end_yr &
+                  names(mc$rmed) %in% start_yr:(end_yr - 1))]
+yrs_since_2010_recruitment_med_below_mean <- names(recruitment_med_since_2010[recruitment_med_since_2010  < mean(mc$rmed)])
+# ... est, recruitment in 2014 and 2016 in billions ---------------------------
+recruitment_med_in_2014 <- f(mc$rmed["2014"], 3)
+last_assess_recruitment_med_in_2014 <-
+  f(last_yr_mc$rmed["2014"], 3)
+
+prob_percent_2014_rec_gt_2010_rec <-
+  base_model$mcmcvals$prob_percent_2014_rec_gt_2010_rec
+prob_percent_2016_rec_gt_2010_rec <-
+  base_model$mcmcvals$prob_percent_2016_rec_gt_2010_rec
+prob_percent_2020_rec_gt_2010_rec <-
+  base_model$mcmcvals$prob_percent_2020_rec_gt_2010_rec
+# These next ones need the updated .rds from changes in load_mcmcvals_vals(),
+# so setting up for 2025 assessment and commenting out.
+# prob_percent_2021_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2021_rec_gt_2010_rec
+# prob_percent_2022_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2022_rec_gt_2010_rec
+# prob_percent_2023_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2023_rec_gt_2010_rec
+# prob_percent_2024_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2024_rec_gt_2010_rec
+
+prob_percent_2014_rec_gt_2016_rec <-
+  base_model$mcmcvals$prob_percent_2014_rec_gt_2016_rec
+prob_percent_2016_rec_gt_2010_rec <-
+  base_model$mcmcvals$prob_percent_2016_rec_gt_2010_rec
+prob_percent_2010_rec_gt_1980_rec <-
+  base_model$mcmcvals$prob_percent_2010_rec_gt_1980_rec
+
+recruitment_lower_in_2016 <- f(mc$rlower["2016"], 3)
+recruitment_med_in_2016 <- f(mc$rmed["2016"], 3)
+recruitment_upper_in_2016 <- f(mc$rupper["2016"], 3)
+
+recruitment_lower_in_2021 <- f(mc$rlower["2021"], 3)
+recruitment_med_in_2021 <- f(mc$rmed["2021"], 3)
+recruitment_upper_in_2021 <- f(mc$rupper["2021"], 3)
+
+sd_med_recr_dev_estimates <-
+  f(sd(mc$devmed[names(mc$devmed) >= 1970 &
+                   names(mc$devmed) <= (last_data_yr - 2)]), 2)
+
+# Exploitation ----------------------------------------------------------------
+exploitation_med_2010 <- f(mc$fmed["2010"],2)
+exploitation_med_2012 <- f(mc$fmed["2012"],2)
+exploitation_med_2011 <- f(mc$fmed["2011"],2)
+exploitation_med_2015 <- f(mc$fmed["2015"],2)
+exploitation_med_2017 <- f(mc$fmed["2017"],2)
+exploitation_med_2018 <- f(mc$fmed["2018"],2)
+exploitation_med_2019 <- f(mc$fmed["2019"],2)
+exploitation_med_2020 <- f(mc$fmed["2020"],2)
+exploitation_med_2021 <- f(mc$fmed["2021"],2)
+exploitation_med_2023 <- f(mc$fmed["2023"],2)
+exploitation_med_2024 <- f(mc$fmed["2024"],2)
+exploitation_med_penult_yr <- f(mc$fmed[as.character(last_data_yr)], 2)
+
+# Priors settings from the control file ---------------------------------------
+param_details <- table_param_est_bounds(base_model,
+                                        start_rec_dev_yr = recruit_dev_start_yr,
+                                        end_rec_dev_yr = end_yr - 1,
+                                        ret_df = TRUE)
+m_prior <- param_details |>
+  dplyr::filter(param == "m") |>
+  pull(prior_str) |>
+  split_prior_info(dec_points = 2, first_to_lower = TRUE)
+
+# ... Dirichlet Multinomial priors --------------------------------------------
+effn_priors <- base_model$mcmcparams$effn_priors
+effn_prior <- base_model$mcmcparams$effn_prior
+sel_phi_val <- base_model$mcmcparams$sel_phi_val
+
+# Cohort specifics ------------------------------------------------------------
+# ... Cohort catch ------------------------------------------------------------
+cohort_catch_1999 <- sum(cohort_catch(base_model, 1999))
+cohort_catch_2010 <- sum(cohort_catch(base_model, 2010))
+cohort_catch_2014 <- sum(cohort_catch(base_model, 2014))
+cohort_catch_2016 <- sum(cohort_catch(base_model, 2016))
+cohort_catch_2017 <- sum(cohort_catch(base_model, 2017))
+cohort_catch_2020 <- sum(cohort_catch(base_model, 2020))
+# ... Cumulative sums of Cohorts for use in JMC presentation ------------------
+cohort_cum_sum_1999 <- cumsum(cohort_catch(base_model, 1999))
+cohort_cum_sum_2010 <- cumsum(cohort_catch(base_model, 2010))
+cohort_cum_sum_2014 <- cumsum(cohort_catch(base_model, 2014))
+cohort_cum_sum_2016 <- cumsum(cohort_catch(base_model, 2016))
+cohort_cum_sum_2017 <- cumsum(cohort_catch(base_model, 2017))
+cohort_cum_sum_2020 <- cumsum(cohort_catch(base_model, 2020))
+cohort_cum_sum_2021 <- cumsum(cohort_catch(base_model, 2021))
+ages_1999 <- as.numeric(names(cohort_cum_sum_1999)) - 1999
+ages_2010 <- as.numeric(names(cohort_cum_sum_2010)) - 2010
+ages_2014 <- as.numeric(names(cohort_cum_sum_2014)) - 2014
+ages_2016 <- as.numeric(names(cohort_cum_sum_2016)) - 2016
+ages_2017 <- as.numeric(names(cohort_cum_sum_2017)) - 2017
+ages_2020 <- as.numeric(names(cohort_cum_sum_2020)) - 2020
+# ... Cohort medians, credible intervals --------------------------------------
+rec_2010 <- get_rec_ci(last_yr_base_model, base_model, 2010)
+rec_2014 <- get_rec_ci(last_yr_base_model, base_model, 2014)
+rec_2016 <- get_rec_ci(last_yr_base_model, base_model, 2016)
+rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
+rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
+rec_2021 <- get_rec_ci(last_yr_base_model, base_model, 2021)
+rec_2022 <- get_rec_ci(last_yr_base_model, base_model, 2022)
+rec_2023 <- get_rec_ci(last_yr_base_model, base_model, 2023)
+rec_2024 <- get_rec_ci(last_yr_base_model, base_model, 2024)
+
+# Estimated prop at age (numbers) of the catch in first forecast year ---------
+fore_catch_prop <- map_df(extramc$natsel_prop * 100, ~{f(median(.x))}) |>
+  complete(fill = list(0:20, val = 0))
+
+# Credible intervals for age5 -------------------------------------------------
+# (pick the biggest cohort from fore_catch_prop; note natsel_prop columns
+# start with age-0).
+fore_catch_prop_age2_lower <- quantile(extramc$natsel_prop |> pull(`2`),
+                                       probs[1]) * 100
+fore_catch_prop_age2_upper <- quantile(extramc$natsel_prop |> pull(`2`),
+                                       probs[3]) * 100
+fore_catch_prop_age3_lower <- quantile(extramc$natsel_prop |> pull(`3`),
+                                       probs[1]) * 100
+fore_catch_prop_age3_upper <- quantile(extramc$natsel_prop |> pull(`3`),
+                                       probs[3]) * 100
+fore_catch_prop_age4_lower <- quantile(extramc$natsel_prop |> pull(`4`),
+                                       probs[1]) * 100
+fore_catch_prop_age4_upper <- quantile(extramc$natsel_prop |> pull(`4`),
+                                       probs[3]) * 100
+fore_catch_prop_age6_lower <- quantile(extramc$natsel_prop |> pull(`6`),
+                                       probs[1]) * 100
+fore_catch_prop_age6_upper <- quantile(extramc$natsel_prop |> pull(`6`),
+                                       probs[3]) * 100
+fore_catch_prop_age7_lower <- quantile(extramc$natsel_prop |> pull(`7`),
+                                       probs[1]) * 100
+fore_catch_prop_age7_upper <- quantile(extramc$natsel_prop |> pull(`7`),
+                                       probs[3]) * 100
+
+# Estimated prop at age (catch) of catch in first forecast year ---------------
+fore_catch_prop_wt <- map_df(extramc$natselwt_prop * 100, ~{f(median(.x))}) |>
+  complete(fill = list(0:20, val = 0))
+
+fore_catch_prop_wt_age2_median <- median(extramc$natselwt_prop |> pull(`2`)) * 100
+fore_catch_prop_wt_age3_median <- median(extramc$natselwt_prop |> pull(`3`)) * 100
+fore_catch_prop_wt_age4_median <- median(extramc$natselwt_prop |> pull(`4`)) * 100
+fore_catch_prop_wt_age5_median <- median(extramc$natselwt_prop |> pull(`5`)) * 100
+fore_catch_prop_wt_age6_median <- median(extramc$natselwt_prop |> pull(`6`)) * 100
+fore_catch_prop_wt_age7_median <- median(extramc$natselwt_prop |> pull(`7`)) * 100
+fore_catch_prop_wt_age9_median <- median(extramc$natselwt_prop |> pull(`9`)) * 100
+fore_catch_prop_wt_age10_median <- median(extramc$natselwt_prop |> pull(`10`)) * 100
+fore_catch_prop_wt_age11_median <- median(extramc$natselwt_prop |> pull(`11`)) * 100
+
+# Sigma_r, standard deviation of recruitment variability ----------------------
+sigma_r <- f(base_model$sigma_R_in, 2)
+sigma_r_sens <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  sigma_r_sens <- sens_models[[1]][grep("Sigma R", sens_models_names[[1]])] |>
+    map_dbl("sigma_R_in") |>
+    f(2)
+}
+# Alternative sigma_r based on posterior of recdevs ---------------------------
+sigma_r_alt_allyr <- base_model$mcmcvals$sigma_r_alt_allyr
+sigma_r_this_year_main <- base_model$mcmcvals$sigma_r_this_year_main
+sigma_r_last_year_main <- last_yr_base_model$mcmcvals$sigma_r_this_year_main
+
+sigma_r_sens1 <- NULL
+sigma_r_hi_main <- NULL
+sigma_r_lo_main <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  sigma_r_sens1 <- sens_models[[1]] |>
+    map_chr(~{.x$mcmcvals$sigma_r_this_year_main}) |>
+    set_names(sens_models_names[[1]])
+
+  sigma_r_hi_main <- sigma_r_sens1[grep("Sigma.+1.[5-9]",
+                                        names(sigma_r_sens1),
+                                        value = TRUE)]
+  sigma_r_lo_main <- sigma_r_sens1[grep("Sigma.+1.[0-4]",
+                                        names(sigma_r_sens1),
+                                        value = TRUE)]
+}
+
+# Range of "main" recdevs -----------------------------------------------------
+recr_era_main_tmp <- base_model$recruit$era == "Main"
+recr_era_early_tmp <- base_model$recruit$era == "Early"
+main_recdev_start <- min(base_model$recruit$Yr[recr_era_main_tmp])
+main_recdev_end <- max(base_model$recruit$Yr[recr_era_main_tmp])
+main_recdev_early <- min(base_model$recruit$Yr[recr_era_early_tmp])
+
+# Range of "main" bias adjustment period for recdevs -------------------------
+biasadjust_tmp <- base_model$recruit$biasadjuster ==
+  max(base_model$recruit$biasadjuster)
+main.recdevbias.start <-
+  min(base_model$recruit$Yr[biasadjust_tmp])
+main.recdevbias.end <-
+  max(base_model$recruit$Yr[biasadjust_tmp])
+
+# Weight-at-age for the base model --------------------------------------------
+# Fleets 1 and 2 are the same in the hake model
+wt_at_age <-
+  base_model$wtatage |>
+  as_tibble() %>%
+  set_names(tolower(names(.))) |>
+  dplyr::filter(year %in% start_yr_age_comps:(end_yr - 1)) |>
+  dplyr::filter(fleet == 1) |>
+  select(year, matches("^\\d+$"))
+
+# Define number of 'recent' years for several tables --------------------------
+num_recent_yrs <- 10
+
+# Dirichlet-Multinomial parameters ---------------------------------------------
+# MCMC quantiles for the fishery DM parameter
+log_theta_fishery_lower <- base_model$mcmcvals$log_theta_fishery_lower
+log_theta_fishery_median <- base_model$mcmcvals$log_theta_fishery_median
+log_theta_fishery_upper <- base_model$mcmcvals$log_theta_fishery_upper
+# MCMC quantiles for the survey DM parameter
+log_theta_survey_lower <- base_model$mcmcvals$log_theta_survey_lower
+log_theta_survey_median <- base_model$mcmcvals$log_theta_survey_median
+log_theta_survey_upper <- base_model$mcmcvals$log_theta_survey_upper
+# Dirichlet-Multinomial data weighting parameters-------------------------------
+dm_weight_fishery_lower <- base_model$mcmcvals$dm_weight_fishery_lower
+dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
+dm_weight_fishery_upper <- base_model$mcmcvals$dm_weight_fishery_upper
+dm_weight_survey_lower <- base_model$mcmcvals$dm_weight_survey_lower
+dm_weight_survey_median <- base_model$mcmcvals$dm_weight_survey_median
+dm_weight_survey_upper <- base_model$mcmcvals$dm_weight_survey_upper
+
+# MCMC parameter estimates for base model -------------------------------------
+# ... natural mortality -------------------------------------------------------
+nat_m <- base_model$mcmcvals$nat_m
+nat_m_02 <- NULL
+nat_m_03 <- NULL
+nat_m_hamel <- NULL
+f_nat_m_02 <- NULL
+f_nat_m_03 <- NULL
+f_nat_m_hamel <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  nat_m_02 <- sens_models[[1]][[6]]$mcmcvals$nat_m
+  nat_m_03 <- sens_models[[1]][[7]]$mcmcvals$nat_m
+  nat_m_hamel <- sens_models[[1]][[8]]$mcmcvals$nat_m
+  f_nat_m_02 <- f(nat_m_02, 3)
+  f_nat_m_03 <- f(nat_m_03, 3)
+  f_nat_m_hamel <- f(nat_m_hamel, 3)
+}
+# ... steepness ---------------------------------------------------------------
+steep <- base_model$mcmcvals$steep
+steep_prior_05 <- NULL
+f_steep_prior_05 <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  steep_prior_05 <- sens_models[[1]][[2]]$mcmcvals$steep
+  f_steep_prior_05 <- f(steep_prior_05, 3)
+}
+# ... bratio ------------------------------------------------------------------
+bratio_curr <- base_model$mcmcvals$bratio_curr
+bratio_age1 <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  bratio_age1 <- sens_models[[2]][[2]]$mcmcvals$bratio_curr
+}
+# ... depletion ---------------------------------------------------------------
+depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
+# ... joint probability -------------------------------------------------------
+# (%age) of being being both above the target relative fishing intensity
+# in `end_yr - 1` and below the B40 reference point at the start of `end_yr`
+joint_percent_prob_above_below <-
+  base_model$mcmcvals$joint_percent_prob_above_below
+
+# Probabilities for historical performance analyses ---------------------------
+# Note that calculations also get done within plot_historical_probs() and
+#  plot_historical_probs_retro().
+historical_probs_df <- base_model$mcmcvals$historical_probs_df
+
+prob_decline_from_2019_to_2020_historic <-
+  historical_probs_df |>
+  dplyr::filter(year == 2019) |>
+  select("P_decline") |>
+  as.numeric() |>
+  f()
+
+prob_decline_from_2019_to_2020_curr <-
+  historical_probs_df |>
+  dplyr::filter(year == 2019) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
+  f()
+
+prob_decline_from_2012_to_2013_historic <-
+  historical_probs_df |>
+  dplyr::filter(year == 2012) |>
+  select("P_decline") |>
+  as.numeric() |>
+  f()
+
+prob_decline_from_2012_to_2013_curr <-
+  historical_probs_df |>
+  dplyr::filter(year == 2012) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
+  f()
+
+# Retrospective setup for the document ----------------------------------------
+# Retrospective setup has been done in the RDS creation part of the code,
+# so it is included in the RDS files already.
+# The code here is to create a list of incremental lists, each on having one
+# more year subtracted so that when plotted, we can watch each extra year get
+# added on one by one
+retro_inc_nms <- list(c("Base model",
+                        " -1 year"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years",
+                        " -4 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years",
+                        " -4 years",
+                        " -5 years"))
+
+retros_biomass_incremental <- map(retro_inc_nms, \(retro_mdls){
+  base_model$retrospectives$biomass_df$d |>
+    dplyr::filter(model %in% retro_mdls)
+  })
+retros_bo_incremental <- map(retro_inc_nms, \(retro_mdls){
+  base_model$retrospectives$biomass_df$bo |>
+    dplyr::filter(model %in% retro_mdls)
+  })
+
+retros_biomass_incremental <- map2(retros_biomass_incremental,
+                                   retros_bo_incremental, \(d, bo){
+                                     list(d = d, bo = bo)
+                                   })
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
+# Set up bridge model groups for plotting ------------------------------------
+iter <- 0
+d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
+  iter <<- iter + 1
+  create_group_df_biomass(.x, .y,
+                          end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_rel_biomass <- map2(bridge_models, bridge_models_names, ~{
+  iter <<- iter + 1
+  create_group_df_biomass(.x, .y,
+                          rel = TRUE,
+                          end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_recdev <- map2(bridge_models, bridge_models_names, ~{
+  iter <<- iter + 1
+  create_group_df_recr(.x, .y,
+                       devs = TRUE,
+                       end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
+  iter <<- iter + 1
+  create_group_df_index(.x, .y,
+                        survey_type = "age1")
+})
+iter <- 0
+d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
+  iter <<- iter + 1
+  create_group_df_index(.x, .y,
+                        survey_type = "age2")
+})
+
+# Set up sensitivity model groups for plotting -------------------------------
+# Biomass  -------------------------------------------------------------------
+d_obj_sens_biomass <- NULL
+d_obj_sens_rel_biomass <- NULL
+d_obj_sens_recr <- NULL
+d_obj_sens_recdev <- NULL
+d_obj_sens_age1_index_grp2 <- NULL
+d_obj_sens_age1_index_grp3 <- NULL
+d_obj_sens_age1_index_grp4 <- NULL
+d_obj_sens_age2_index_grp2 <- NULL
+d_obj_sens_age2_index_grp3 <- NULL
+d_obj_sens_age2_index_grp4 <- NULL
+if(!all(is.na(sens_models[[1]]))){
+  d_obj_sens_biomass <- map2(sens_models, sens_models_names, ~{
+    create_group_df_biomass(.x, .y)
+  })
+  d_obj_sens_rel_biomass <- map2(sens_models, sens_models_names, ~{
+    create_group_df_biomass(.x, .y, rel = TRUE)
+  })
+  d_obj_sens_recr <- map2(sens_models, sens_models_names, ~{
+    create_group_df_recr(.x, .y)
+  })
+  d_obj_sens_recdev <- map2(sens_models, sens_models_names, ~{
+    create_group_df_recr(.x, .y, devs = TRUE)
+  })
+  # extra mcmc required for these
+  d_obj_sens_age1_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+    create_group_df_index(.x, .y, "age1")
+  })
+  d_obj_sens_age1_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+    create_group_df_index(.x, .y, "age1")
+  })
+  d_obj_sens_age1_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+    create_group_df_index(.x, .y, "age1")
+  })
+  d_obj_sens_age2_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+    create_group_df_index(.x, .y, "age2")
+  })
+  d_obj_sens_age2_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+    create_group_df_index(.x, .y, "age2")
+  })
+  d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+    create_group_df_index(.x, .y, "age2")
+  })
+}
+
+sens_base_bratio <-  NULL
+if(!all(is.na(sens_models[[1]]))){
+  sens_base_bratio <- f(100 * sens_models[[2]][[1]]$derived_quants["Bratio_2016", "Value"], 1)
+}
+
+sens_grp2_2_bratio <-  NULL
+if(!all(is.na(sens_models[[1]]))){
+  sens_grp2_2_bratio <- f(100 * sens_models[[2]][[2]]$derived_quants["Bratio_2016", "Value"], 1)
+}
+
+sens_base_forecatch <-  NULL
+if(!all(is.na(sens_models[[1]]))){
+  sens_base_forecatch <- f(100 * sens_models[[2]][[1]]$derived_quants["ForeCatch_2016", "Value"], 1)
+}
+
+sens_grp2_2_forecatch <-  NULL
+if(!all(is.na(sens_models[[1]]))){
+  sens_grp2_2_forecatch <- f(100 * sens_models[[2]][[2]]$derived_quants["ForeCatch_2016", "Value"], 1)
+}
+
+# Values used in management presentation
+last_yr_catch_fore <- NULL
+if(length(ct_actual_ind)){
+  last_yr_catch_fore <- base_model$ct_levels[[ct_actual_ind]][[1]][1]
+}
+ct_col <- paste0("ForeCatch_", forecast_yrs[1])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[2], "<0.40")
+below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[2], "<0.10")
+below10_col_sym <- sym(below10_col)
+
+prob_max_below_40_yr1 <- NULL
+prob_max_below_10_yr1 <- NULL
+prob_decl_yr1_zero_catch <- NULL
+prob_decl_yr1_other_catch <- NULL
+prob_below_b40_yr1_last_yr_catch <- NULL
+prob_all_catch_greater <- NULL
+prob_decl_last_yr_catch <- NULL
+prob_decl_yr1_other_catch <- NULL
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr1 <- base_model$risks[[1]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr1 <- base_model$risks[[1]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+  prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym < 1) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    slice(2) |>
+    pull(!!decl_col_sym) |>
+    f()
+  if(!is.null(last_yr_catch_fore)){
+    prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!below40_col) |>
+      f()
+    # Probability of decline if the catch this coming year is the same as last
+    # year's catch
+    prob_decl_last_yr_catch <- base_model$risks[[1]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!decl_col_sym) |>
+      f()
+  }
+  prob_all_catch_greater <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym > 0.01) |>
+    pull(!!decl_col_sym) |>
+    min() |>
+    f()
+}
+
+ct_col <- paste0("ForeCatch_", forecast_yrs[2])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[3], "<SSB_", forecast_yrs[2])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[3], "<0.40")
+below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[3], "<0.10")
+below10_col_sym <- sym(below10_col)
+
+prob_max_below_40_yr2 <-NULL
+prob_max_below_10_yr2 <- NULL
+prob_decl_yr2_zero_catch <- NULL
+prob_decl_yr2_other_catch <- NULL
+prob_below_b40_yr2_last_yr_catch <- NULL
+    
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr2 <- base_model$risks[[2]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr2 <- base_model$risks[[2]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+  prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym < 1) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
+    as_tibble() |>
+    slice(2) |>
+    pull(!!decl_col_sym) |>
+    f()
+  if(!is.null(last_yr_catch_fore)){
+    prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!below40_col) |>
+      f()
+  }
+}
+
+ct_col <- paste0("ForeCatch_", forecast_yrs[3])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[4], "<SSB_", forecast_yrs[3])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[4], "<0.40")
+below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[4], "<0.10")
+below10_col_sym <- sym(below10_col)
+
+prob_max_below_40_yr3 <- NULL
+prob_max_below_10_yr3 <- NULL
+  
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr3 <- base_model$risks[[3]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr3 <- base_model$risks[[3]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+}
+```

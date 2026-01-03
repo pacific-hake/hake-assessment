@@ -1,0 +1,304 @@
+---
+title: |
+  | \vspace{0cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
+# subtitle: |
+# \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
+project_variables:
+  sp: "Pacific Hake"
+  common_name: "Pacific whiting"
+  science_name: "Merluccius productus"
+  simple_name: "hake"
+  survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
+  assess_yr: 2025
+  last_assess_yr: 2024
+  last_data_yr: 2024
+  model_version: "02"
+  last_yr_model_version: "02"
+  ss_version: "3.30.23.1"
+  fig_label_color: "black"
+  fig_title_font_face: "plain"
+  fig_tick_font_face: "plain"
+  # Title and x and y axis labels font size
+  fig_title_font_size: 14
+  fig_tick_font_size: 11
+  fig_tick_length_cm: 0.15
+  fig_height: 5
+  fig_width: 8
+  # margin arguments are in this order: top, right,bottom, left
+  fig_margins: "margin(12, 12, 12, 12)"
+  # The latex position by default for all figures. Modify individual
+  # figure positions by editing the `doc/object-placement.csv` file
+  fig_pos: "htb"
+  fig_filetype: "png"
+  # Increasing `dots_per_inch` for figure output increases the file size a LOT issue 1095
+  dots_per_inch: 300
+author: |
+  Joint Technical Committee of the Pacific Hake/Whiting Agreement \
+  Between the Governments of the United States and Canada \
+  \
+  \
+date: "`r curr_time_date()`"
+header: ""    # or "Draft working paper --- Do not cite or circulate"
+output:
+ hake_pdf:
+   latex_engine: lualatex
+   # Keep the tex file around for debugging purposes
+   keep_tex: true
+   # Do not modify. Modified by gotest() function for testing
+   test: false
+   # Figure captions
+   # Do not modify, allows usage of `fig.cap` knitr chunk option for
+   fig_caption: yes
+
+   # Accessibility settings ----------------------------------------------------
+   #
+   # If `true`, alternative figure text and figure tags are added for
+   # PDF web accessibility compliance
+   accessible_pdf: true
+   # ---------------------------------------------------------------------------
+
+   # Font settings -------------------------------------------------------------
+   #
+   font_size_pt: 12pt
+   # Available fonts in alphabetical order. Uncomment one only
+   # See `post_process_modify_font_info()`
+   #font: "baskervillef"
+   #font: "ibm plex sans"
+   #font: "ibm plex serif"
+   #font: "roboto"
+   #font: "robotoserif"
+   font: "texgyrepagella"
+   # ---------------------------------------------------------------------------
+
+   # Chunk output and image directories, title page picture -------------------
+   knitr_figures_dir: "knitr-figs"
+   knitr_cache_dir: "knitr-cache"
+   figures_dir: "image-files"
+   title_page_image: "image-files/hake-line-drawing.png"
+   title_page_image_width_cm: 12
+
+   # Footer text --------------------------------------------------------------
+   footer_left: "`r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
+   # NOTE: cannot use backticks inside R-chunk which already uses backticks
+   # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
+   #footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
+   footer_right: " " # "DRAFT - Do not circulate"
+   # ---------------------------------------------------------------------------
+
+   # Table of contents and reference link settings ----------------------------
+   #
+   # Do not modify `toc`, it must be false as the Table of Contents is
+   # added by post processor
+   toc: false
+   # These `toc_` variables change the appearance of the table of contents
+   # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
+   # Note this also determines subsubsection numbering in the document sections
+   toc_depth: 3
+   toc_section_indent_inch: 0
+   toc_section_num_width_inch: 0.2
+   toc_subsection_indent_inch: 0.3
+   toc_subsection_num_width_inch: 0.35
+   toc_subsubsection_indent_inch: 0.5
+   toc_subsubsection_num_width_inch: 0.45
+   # If `underline_links` is `true`, then `toc_link_text_color`,
+   # `cite_link_text_color`, and `url_link_text_color` below will
+   # be ignored and text will be black. The underline link colors will be
+   # used for underlined links instead. You can have either all colored
+   # text links or colored underlines for links, but not both. All link types
+   # must be either colored text or colored underlines.
+   underline_links: false
+   # See `xcolor` package documentation for color lists, Section 4
+   # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
+   # and `x11names`, so basically all colors listed
+   # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
+   # If colors are left out or `null`, they will be black by default
+   color_links: true
+   toc_underline_link_color: Blue
+   toc_link_text_color: Blue
+   # Color of the citation links in the text. These are dealt with in
+   # `post_process_table_of_contents()`
+   cite_underline_link_color: DarkOliveGreen
+   cite_link_text_color: DarkOliveGreen
+   # `post_process_table_of_contents()`
+   # Color of the URL links in the text.
+   url_underline_link_color: RoyalBlue1
+   url_link_text_color: RoyalBlue1
+   # ---------------------------------------------------------------------------
+
+   # Headrule and Footrule settings --------------------------------------------
+   #
+   # Can be left blank and defaults will be used.
+   # See `post_process_add_headers_footers()`
+   # Headrule line definitions ----------------------------
+   headrule_width_pt: 0.5
+   # Use double lines for header
+   headrule_double_lines: false
+   # Width of the top line, width of bottom line is `headrule_width_pt` above
+   headrule_double_width_pt: 2
+   # Space between the double lines
+   headrule_double_space_mm: 1
+   #
+   # Footrule line definitions ----------------------------
+   footrule_width_pt: 0.5
+   # Use double lines for footer
+   footrule_double_lines: false
+   # Width of the top line, width of bottom line is `footrule_width_pt` above
+   footrule_double_width_pt: 2
+   # Space between the double lines
+   footrule_double_space_mm: 1
+   # ---------------------------------------------------------------------------
+
+   includes:
+     in_header: "preamble.tex"
+documentclass: article # Do not modify
+knit: (function(input, ...) {
+       render()
+      })
+# `classoption` is papersize (a4, a5, letter)
+classoption: letterpaper
+header-includes:
+link-citations: true # Do not modify
+bibliography: bib/refs.bib # Do not modify
+csl: csl/csas.csl # Do not modify
+---
+
+```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
+
+# Need rlang library for %||%
+library(rlang)
+
+# user and home setup ----
+# Current user's name on the system
+# If regular desktop R session, use Sys.getenv("USERNAME")
+# If on RStudio server, use Sys.getenv("RSTUDIO_USER_IDENTITY")
+user <- ifelse(Sys.getenv("USERNAME") == "",
+               Sys.getenv("RSTUDIO_USER_IDENTITY"),
+               Sys.getenv("USERNAME"))
+if(user == "grandin"){
+  # Add specialized user code here
+}
+
+# system_() figures out which OS you are on and runs the proper function
+home <- system_("echo $HOME", intern = TRUE)
+
+if(home == ""){
+  stop("`home` is an empty string. The `system(echo $HOME)` call failed ",
+       "which means the $HOME variable in the OS is not set")
+}
+models_dir <- "/srv/hake/models"
+test <- rmarkdown::metadata$output$`hake_pdf`$test %||% FALSE
+if(test){
+  # Necessary for `gotest()` testing
+  devtools::load_all(paste0(home, "/github/pacific-hake/hake-assessment"))
+}else{
+  # For regular doc build
+  devtools::load_all(here::here())
+}
+
+# This grabs the YAML `project_variables` and `outputs` from above
+yaml_proj_vars <- rmarkdown::metadata$project_variables
+output_vars <- rmarkdown::metadata$output$`hake_pdf`
+figures_dir <- output_vars$figures_dir
+
+# Don't modify anything in `opts_chunk$set()`. Modify the YAML
+# `project_variables` above
+knitr::opts_chunk$set(
+  # `collapse` - If `TRUE`, source code and output will remain together in
+  # one chunk (inseparable from each other in the document). Probably
+  # doesn't apply for this document but remains in case any source code is
+  # shown
+  collapse = TRUE,
+  # Don't show warnings, messages, or source code (respectively)
+  # in the document
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  # Create the `knitr_cache_dir` and `knitr_figs_dir` directories for caching
+  cache = TRUE,
+  # `cache.path` is required to have a trailing slash
+  cache.path = ifelse(substr(output_vars$knitr_cache_dir,
+                             nchar(output_vars$knitr_cache_dir),
+                             nchar(output_vars$knitr_cache_dir)) != "/",
+                      paste0(output_vars$knitr_cache_dir, "/"),
+                      output_vars$knitr_cache_dir),
+  # cache.lazy - if `FALSE`, load the models at the beginning all at once
+  cache.lazy = FALSE,
+  # Prevents invalidation of the cache when only comments are entered
+  # in chunks
+  cache.comments = FALSE,
+  results = "hide",
+  comment = "#>",
+  dev = yaml_proj_vars$fig_filetype,
+  dpi = yaml_proj_vars$dots_per_inch,
+  # `fig.path` is required to have a trailing slash
+  fig.path = ifelse(substr(output_vars$knitr_figures_dir,
+                           nchar(output_vars$knitr_figures_dir),
+                           nchar(output_vars$knitr_figures_dir)) != "/",
+                    paste0(output_vars$knitr_figures_dir, "/"),
+                    output_vars$knitr_figures_dir),
+  fig.align = "center",
+  fig.pos = yaml_proj_vars$fig_pos,
+  fig.height = yaml_proj_vars$fig_height,
+  fig.width = yaml_proj_vars$fig_width,
+  out.height = "\\textheight",
+  out.width = "\\textwidth")
+```
+
+<!-- \small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
+information only. They are in a pre-review, pre-decisional state and should not
+be formally cited or reproduced. They are to be considered provisional and do
+not represent any determination or policy of NOAA or the Department of Commerce.
+-->
+
+\normalsize
+
+\newpage
+
+This document reports the collaborative efforts of the official U.S. and
+Canadian members of the Joint Technical Committee, and others that
+contributed significantly.
+
+\
+
+Authors of this document are (all authors contribute extensively so the
+order rotates annually):
+
+Kelli F. Johnson^1,2^ \
+Andrew M. Edwards^3^ \
+Aaron M. Berger^4^ \
+Chris J. Grandin^3^ \
+Chantel R. Wetzel^1^ \
+
+^1^ *Northwest Fisheries Science Center, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S.~Department of
+  Commerce, 2725 Montlake Blvd.~East, Seattle, WA 98112-2097, USA*
+
+^2^ *Office of Science and Technology, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S.~Department of
+  Commerce, 7600 Sand Point Way Northeast, Seattle, WA 98115, USA*
+
+^3^ *Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
+
+^4^ *Northwest Fisheries Science Center, National Marine
+  Fisheries Service, National Oceanic and Atmospheric Administration,
+  U.S.~Department of Commerce, 2032 SE OSU Dr. Bldg.~955, Newport, OR
+  97365-5275, USA*
+
+
+\
+
+<!-- This DRAFT document is non-citable. -->
+
+This document should be cited as follows:
+
+Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
+`r rmarkdown::metadata$project_variables$assess_yr`. Status of the
+`r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
+Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
+Prepared by the Joint Technical Committee of the U.S. and Canada
+`r rmarkdown::metadata$project_variables$sp`/Whiting Agreement, National
+Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+
+
+TABLE OF CONTENTS GOES HERE

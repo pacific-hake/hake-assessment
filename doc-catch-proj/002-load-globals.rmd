@@ -1,0 +1,89 @@
+```{r load-globals, echo = FALSE}
+
+# Extract YAML sections -------------------------------------------------------
+proj_vars <- rmarkdown::metadata$project_variables
+output <- rmarkdown::metadata$output$`hake_pdf`
+
+if(!length(proj_vars)){
+  stop("Document compilation not run properly. You must run this code ",
+       "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
+       "which is a simple wrapper for `bookdown::render_book()`")
+}
+
+# Globals for YAML tags -------------------------------------------------------
+# Create a global variable for each item in the `project_variables` section
+# of the YAML part of `000-launcher.rmd`
+list2env(proj_vars, envir = globalenv())
+
+# System info variables -------------------------------------------------------
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
+
+# Model directories -----------------------------------------------------------
+last_yr_models_dir <- file.path(models_dir,
+                                last_assess_yr,
+                                paste0(last_yr_model_version, "-version"))
+models_dir <- file.path(models_dir,
+                        assess_yr,
+                        paste0(model_version, "-version"))
+
+output_csv_dir <- here("doc", out_csv_path)
+end_yr <- assess_yr
+
+# Forecast years --------------------------------------------------------------
+# `forecast_yrs` is a vector of years to forecast for. This is calculated from
+# the number of `catch_year` columns in the forecast descriptions CSV file
+# and always begins in the current assessment year (`assess_yr`)
+fore_file <- here::here(doc_path, forecast_descriptions_fn)
+if(!file.exists(fore_file)){
+  stop("File `", fore_file, "` does not exist.")
+}
+fore_desc_df <- read_csv(fore_file, col_types = cols())
+fore_num_yrs <- length(grep("catch_year" , names(fore_desc_df)))
+if(!fore_num_yrs){
+  stop("There are no column names containing `catch_year` in the forecast ",
+       "definition file `", fore_file, "`")
+}
+forecast_yrs <- seq(assess_yr, (assess_yr + fore_num_yrs - 1))
+
+# Figure margins  -------------------------------------------------------------
+# `figure_margins` is special because it is an R expression in the YAML
+# code and not just a plain value. It has to be parsed from a text string
+# into an R expression using `eval(parse())`
+yaml_check_margin_format(fig_margins)
+fig_margins <- eval(parse(text = fig_margins))
+
+# Document title --------------------------------------------------------------
+# Extract document title for use in \\hypersetup in
+# `post_process_modify_link_colors()`
+doc_title <- rmarkdown::metadata$title
+doc_title <- gsub(".*\\\\TitleFont\\{(.*)\\}.*$", "\\1", doc_title)
+# Replace `r code` chunk with year (assuming it is year here)
+doc_title <- gsub("(.*)`r\\s+.*`(.*)", paste0("\\1", assess_yr, "\\2"), doc_title)
+
+# Document author -------------------------------------------------------------
+# Extract document author for use in \\hypersetup in
+# `post_process_modify_link_colors()`
+doc_author <- gsub("\\\n", "", rmarkdown::metadata$author)
+doc_author <- gsub("\\\\\\\\\\\\", "", doc_author)
+doc_author <- gsub("\\s*$", "", doc_author)
+doc_author <- gsub("\\\\", "\\\\\\\\", doc_author)
+
+# Footer text  ----------------------------------------------------------------
+# Evaluate the footer text from YAML inputs
+footer_left <- extract_inline_rcode(
+  output$footer_left)
+footer_right <- extract_inline_rcode(
+  output$footer_right)
+
+# Theme set for ggplot --------------------------------------------------------
+theme_set(hake_theme(ax_label_color = fig_label_color,
+                     ax_title_font_size = fig_title_font_size,
+                     ax_tick_font_size = fig_tick_font_size,
+                     ax_title_font_face = fig_title_font_face,
+                     ax_tick_font_face = fig_tick_font_face,
+                     ax_tick_length_cm = fig_tick_length_cm,
+                     margin_def = fig_margins))
+```
