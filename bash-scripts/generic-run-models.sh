@@ -46,7 +46,12 @@ bailing out.\n" ; exit 1; }
 # repo root, uncomment the next line and comment the line after it
 #project  _path=`Rscript -e "cat(dirname(here::here()))"`
 project_path="/srv/hake"
+
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 models_path="models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year

@@ -35,7 +35,11 @@ keep_index_fit_posts=FALSE
 # the function `create_rds_file()` and the functions it calls
 first=0
 
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 project_path="/srv/hake"
 models_path="models"
 . ./get-assess-year.sh

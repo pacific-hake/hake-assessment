@@ -5,7 +5,11 @@
 # models directory structures, like if a new sensitivity is added. It will
 # also update the timestamps for all model directories
 
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 models_html="models/models.html"
 
 Rscript -e "setwd('$repo_path'); \

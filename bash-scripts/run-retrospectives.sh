@@ -16,7 +16,11 @@
 #   ||
 #   $project_path
 
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
 # Enter a year as an argument here to force it to be that year, even if

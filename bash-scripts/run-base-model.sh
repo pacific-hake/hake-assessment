@@ -26,7 +26,11 @@ SECONDS=0
 #   ||
 #   $project_path
 
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
 #models_path=$repo_path/models
@@ -37,7 +41,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
-ss_exe="ss3"
+ss_exe="ss3_2025"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250

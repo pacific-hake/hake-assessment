@@ -23,7 +23,11 @@
 #   ||
 #   $project_path
 
+# The following seems to introduce a leading newline when tried in 2026
 repo_path=`Rscript -e "cat(here::here())"`
+# Remove leading newline
+repo_path=`echo $repo_path | tr -d '\n'`
+
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
 #models_path=$repo_path/models
