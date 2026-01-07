@@ -147,11 +147,23 @@ run_forecasts <- function(model = NULL,
                               Nareas = 1,
                               nseas = 1,
                               verbose = FALSE)
-      fore$Ncatch <- length(forecast_yrs[1:catch_ind])
-      fore$ForeCatch <- data.frame(Year = forecast_yrs[1:catch_ind],
-                                   Seas = 1,
-                                   Fleet = 1,
-                                   Catch_or_F = ct_level[[1]][1:catch_ind])
+      fore_ncatch <- length(forecast_yrs[1:catch_ind])
+      fore_catch <- data.frame(Year = forecast_yrs[1:catch_ind],
+                               Seas = 1,
+                               Fleet = 1,
+                               Catch_or_F = ct_level[[1]][1:catch_ind])
+
+      if(!is.null(fore$ForeCatch)){
+        if(nrow(fore$ForeCatch) >= 1){
+          fore_ncatch <- fore_ncatch + nrow(fore$ForeCatch)
+          names(fore$ForeCatch) <- names(fore_catch)
+          fore_catch <- fore$ForeCatch |> bind_rows(fore_catch)
+          rownames(fore_catch) <- NULL
+        }
+      }
+
+      fore$Ncatch <- fore_ncatch
+      fore$ForeCatch <- fore_catch
 
       SS_writeforecast(fore,
                        dir = new_forecast_dir,
