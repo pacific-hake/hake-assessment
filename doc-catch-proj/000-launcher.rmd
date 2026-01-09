@@ -263,11 +263,12 @@ contributed significantly.
 Authors of this document are (all authors contribute extensively so the
 order rotates annually):
 
-Kelli F. Johnson^1,2^ \
 Andrew M. Edwards^3^ \
 Aaron M. Berger^4^ \
 Chris J. Grandin^3^ \
 Chantel R. Wetzel^1^ \
+Kelli F. Johnson^1,2^ \
+Kiva L. Oken^1^ \
 
 ^1^ *Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S.~Department of
@@ -292,7 +293,7 @@ Chantel R. Wetzel^1^ \
 
 This document should be cited as follows:
 
-Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
+A.M. Edwards, A.M. Berger, C.J. Grandin, C.R. Wetzel, Johnson, K.F., and K.L. Oken.
 `r rmarkdown::metadata$project_variables$assess_yr`. Status of the
 `r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
