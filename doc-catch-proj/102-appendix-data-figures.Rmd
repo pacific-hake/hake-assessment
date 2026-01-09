@@ -1,0 +1,100 @@
+\newpage
+
+\rfoot{Figures}
+
+# Figures {#sec:figures}
+
+(ref:main-catches-cap) Total `r sp` catch used in the assessment by sector,
+`r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
+sectors where they are represented.
+
+(ref:main-catches-alt) This figure shows that catches have declined each year
+from the historical peak in 2017.
+
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5}
+
+plot_catches(ct, xlim = c(start_yr, last_data_yr))
+```
+
+(ref:main-us-depths-cap) Distribution of fishing depths (left) and bottom
+depths (right), in meters, of hauls targeting `r sp` in the U.S.
+Catcher-Processor and Mothership sectors from
+`r last_data_yr - 4`--`r last_data_yr`. Horizontal lines in each box
+represent the median depth and boxes encompass the middle 50% of the
+data. Whiskers encompass the 95% quantiles.
+
+(ref:main-us-depths-alt) This figure shows that bottom depths have been
+approximately 500 meters and fishing depths approximately 300 meters on
+average in the last 5 years for United States fleets.
+
+```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4}
+
+yrs <- (last_data_yr - 4):last_data_yr
+depth_lims <- c(0, 700)
+depth_breaks <- seq(depth_lims[1], depth_lims[2], 100)
+
+plot_depth_2_panel(us_atsea_fishing_depth_df,
+                   us_atsea_bottom_depth_df,
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
+```
+
+(ref:main-can-depths-cap) Distribution of fishing depths (left) and bottom
+depths (right), in meters, of hauls targeting `r sp` in the Canadian
+fleets from `r last_data_yr - 4`--`r last_data_yr`. Horizontal lines in each
+box represent the median depth and boxes encompass the middle 50% of the
+data. Whiskers encompass the 95% quantiles.
+
+(ref:main-can-depths-alt) This figure shows that for the last five years in
+Canada freezer trawlers fished from 250 to 400 meters
+and shoreside vessels more consistently fished at an approximate bottom depth of 200 meters.
+Freezer trawlers fished at a gear depth of approximately 100 to 300 meters and
+shoreside vessels at a depth of approximately 150 to 250 meters. Bottom depths
+for both fleets have become shallower with fishing being closer to the bottom.
+
+```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8}
+
+plot_depth_4_panel(can_ft_gear_depth_df,
+                   can_ft_bottom_depth_df,
+                   can_ss_gear_depth_df,
+                   can_ss_bottom_depth_df,
+                   fleet_1_name = "Freezer trawlers",
+                   fleet_2_name = "Shoreside",
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
+```
+
+(ref:main-age-proportions-fig-cap) Add caption.
+
+(ref:main-age-proportions-alt) Add alt caption.
+
+```{r main-age-proportions-fig fig.cap = "(ref:main-age-proportions-cap)", fig.height = 8}
+
+ages <- can_ss_age_df |>
+  names() %>%
+  grep("^[0-9]+$", ., value = TRUE) |>
+  as.numeric() |> 
+  sort()
+plot_age_comp_bubbles_data(list(can_ss_age_df,
+                                can_ft_age_df,
+                                us_sb_age_df,
+                                us_cp_age_df,
+                                us_ms_age_df),
+                           c("Canadian Shoreside",
+                             "Canadian Freezer-Trawlers",
+                             "U.S. Shoreside",
+                             "U.S. Catcher-Processor",
+                             "U.S. Mothership"),
+                           years = c(last_data_yr - 6, last_data_yr)) +
+  theme(#axis.title.x = element_text(size = 8),
+        #axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8),
+        strip.text = element_text(size = 8)) +
+  scale_y_continuous(breaks = ages)
+```
+
+
+\clearpage

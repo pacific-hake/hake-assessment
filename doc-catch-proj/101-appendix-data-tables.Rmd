@@ -1,0 +1,184 @@
+\newpage
+
+\rfoot{Tables}
+
+# Tables {#sec:tables}
+
+```{r main-catches-us-tab, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "us",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr,
+    "--", last_data_yr, ". Tribal catches are included in the fleet totals. ",
+    "Research catch includes landed catch associated with research-related ",
+    "activities. Catch associated with surveys and discarded bycatch in ",
+    "fisheries not targeting hake is not currently included in the table or ",
+    "model."),
+  font_size = 8,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+```{r main-catches-can-tab, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "can",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in Canadian waters by fleet, ",
+    start_yr, "--", last_data_yr, "."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+```{r main-landings-tac-tab, results = "asis", echo = FALSE}
+table_landings_tac(
+  ct,
+  start_yr = start_yr,
+  end_yr = last_data_yr,
+  caption = paste0(
+    sp,
+    " landings and management decisions, ", start_yr, "--", last_data_yr, ". ",
+    "A dash (--)  indicates the management decision was either not ",
+    "specified or was unknown to the authors at the time of this ",
+    "assessment."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-sampling-history-tab, results = "asis", echo = FALSE}
+table_sampling_history(
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  replace_start_yr = 2010,
+  caption = paste0(
+    "Annual summary of U.S. and Canadian fishery sampling included in this ",
+    "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr,
+    ". The majority of values are reported as number of hauls but U.S. ",
+    "shoreside and Canadian Shoreside fleets are reported as the number ",
+    "of trips. A dash (--) indicates there was no sampled catch. The ",
+    "number of fish with otoliths sampled per haul has varied over time but ",
+    "is typically small."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-us-cp-age-data-tab, results = "asis", echo = FALSE}
+table_age_data(
+  fleet = "us_cp",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Catcher-Processor fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+\newpage
+
+```{r main-us-ms-age-data-tab, results = "asis", echo = FALSE}
+table_age_data(
+  fleet = "us_ms",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Mothership fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-us-sb-age-data-tab, results = "asis", echo = FALSE}
+table_age_data(
+  fleet = "us_sb",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "shoreside fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-can-ss-age-data-tab, results = "asis", echo = FALSE}
+table_age_data(
+  fleet = "can_ss",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Shoreside fleet. Proportions are calculated from numbers of individuals ",
+    "in each age group. Age 15$+$ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-can-ft-age-data-tab, results = "asis", echo = FALSE}
+table_age_data(
+  fleet = "can_ft",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Freezer trawler fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-input-age-data-fishery-tab, results = "asis", echo = FALSE}
+table_input_age_data(
+  base_model,
+  fleet = "fishery",
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Aggregated fishery age-proportion data used in the base model. ",
+    "Proportions are calculated from numbers of individuals in each age ",
+    "group where the contributions from each fleet are weighted by the ",
+    "catch in that fleet. Sample sizes are sum of hauls and trips from ",
+    "individual fleets (shown in preceding tables) as described in ",
+    "Section~\\@ref(sec:data-fishery-biological-data). Age 15$+$ is an ",
+    "accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+
+<!-- This is needed to cite within a table caption, see how it is included
+the caption below. Note it is OUTSIDE of a knitr chunk. -->
+(ref:cite-jtc2018) @JTC2018
+
