@@ -3,39 +3,9 @@
 
 # Assessment {#sec:assessment}
 
-## Modeling results {#sec:assessment-modeling-results}
+## Data and assessment {-}
 
-### Changes from `r last_assess_yr` {#sec:assessment-changes}
-
-A `bridging' model was constructed to evaluate the component-specific
-effects of the steps to change from the `r last_assess_yr` base model to
-the `r assess_yr` base model. The steps are as follows:
-
-- Update to the latest version of Stock Synthesis, version `r ss_version`, to
-follow current best practices;
-
-Stock Synthesis version `r ss_version` includes a number of changes since the
-version used by @JTC2024. However, none of the changes were specifically relevant
-to this assessment, and thus, the software update had no effect on assessment
-results (Figure~\@ref(fig:main-bridge-summary-1-fig)).
-
-## Stock {-}
-
-TODO: Text here is unedited from last year's Executive summary.
-
-This assessment reports the status of the coastal `r sp` (or `r common_name`,
-*`r science_name`*) stock off the west coast of the United States (U.S.) and Canada
-at the start of `r assess_yr`. This stock exhibits seasonal migratory
-behavior, ranging from offshore and generally southern waters during the
-winter spawning season to coastal areas between northern California and
-northern British Columbia during the spring, summer, and fall when the
-fishery is conducted. The stock tends to move farther to the north during the
-summer in years with warmer water compared to years with colder waters. Older
-`r sp` tend to migrate farther north than younger `r sp` in all years, with
-catches in Canadian waters typically consisting of fish greater than four years
-old. Separate, and much smaller, populations of `r sp` occurring in the major
-inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
-Sound, and the Gulf of California, are not included in this analysis.
+Add text here for the describing the catch-only projection.
 
 ## Catches {-}
 
@@ -110,108 +80,6 @@ year classes were estimated at
 `r f(cohort_catch_2014 / 1e6, 2)`~Mt, and
 `r f(cohort_catch_2016 / 1e6, 2)`~Mt, respectively. In the
 `r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
-
-## Data and assessment {-}
-
-TODO: Text here is unedited from last year's Executive summary.
-
-This Joint Technical Committee (JTC) assessment depends on fishery
-landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
-of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
-(`r survey_start_yr`--`r survey_end_yr`),
-fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`),
-maturity-at-age data, and
-weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011,
-the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
-by the index increasing in 2012, 2013, and again in 2015 before decreasing to
-near the time series average in 2017. The survey
-(Figure~\@ref(fig:es-survey-biomass-fig)) shows a decline from 2019 (the fourth
-highest of the series) to 2023 (the third lowest of the series).
-Age-composition data from the aggregated fisheries and the acoustic survey
-provide data that facilitates estimating relative
-cohort strength, i.e., strong and weak cohorts.
-No survey data are used to inform the size of the
-`r last_data_yr-2`--`r last_data_yr` year classes.
-
-(ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
-(Mt). Approximate 95% confidence intervals are based on
-sampling variability (intervals without the additional squid/`r sp`
-apportionment uncertainty included in 2009, black line).
-
-(ref:es-survey-biomass-alt) This figure shows that the survey estimate has
-decreased from 2019 to 2021.
-
-```{r es-survey-biomass-fig, fig.cap = "(ref:es-survey-biomass-cap)"}
-
-plot_survey_biomass(base_model, index = "age2")
-```
-
-The assessment uses a Bayesian estimation approach, sensitivity analyses, and
-retrospective investigations to evaluate the potential consequences of
-parameter uncertainty, alternative structural models, and historical
-performance of the assessment model, respectively. The Bayesian approach
-combines prior knowledge about natural mortality, stock--recruitment steepness
-(e.g., a parameter for stock productivity), and several other parameters, with
-likelihoods for the acoustic survey biomass index, acoustic survey
-age-composition data, and fishery age-composition
-data. Integrating the joint posterior distribution over model parameters
-provides probabilistic inferences about uncertain model parameters and
-forecasts derived from those parameters; this is done via Markov chain Monte
-Carlo sampling using the efficient No-U-Turn Sampler (NUTS). Sensitivity
-analyses are used to identify alternative model assumptions that may also
-be consistent with the data. All models, including bridging, sensitivity,
-and retrospective models, use a Bayesian framework for estimation.
-Retrospective analyses identify possible poor performance of the assessment
-model with respect to future predictions. Past assessments have conducted
-closed-loop simulations that provide insights into how alternative
-combinations of survey frequency, assessment model selectivity assumptions,
-changes in the distribution or `r sp`, and harvest control rules affect expected
-management outcomes given repeated application of these procedures over
-the long term. The results of past (and ongoing) closed-loop simulations
-help inform decisions made for this assessment.
-
-This `r assess_yr` assessment is again configured using Stock Synthesis. The
-same general population dynamics structure as the base assessment model from
-`r last_assess_yr` was used except for terminal recruitment and forecast
-recruitment deviations (so from 2023 onwards), which were fixed at zero in this assessment.
-Updates to data in this assessment include incorporating
-<!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
-fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
-`r end_yr-1`,
-maturity-at-age data for `r end_yr-2`,
-<!-- the `r survey_end_yr` age-1 index estimate, -->
-and minor changes to pre-`r end_yr-1` data. The model-based
-approaches used to develop the input weight-at-age matrix and time-varying
-temperature-dependent maturity were retained from last year's assessment
-to inform fecundity.
-
-The relative index of age-1 fish from the survey was not used to fit this
-assessment model because it was found to have a strong influence on estimates
-of recruitment even for cohorts that had several years of data, and because it lacks
-time-specific measurements of uncertainty.
-Thus, the only data point that can directly inform the size of
-the 2023 cohort is from age-1 observations in the commercial fishery
-in 2024. Given the unique seasonal
-fishing conditions during the year and that this fishery-dependent data point
-can be overly influential on the
-estimated 2023 recruitment, estimated recruitment in 2023 was
-based solely on the stock--recruitment relationship, with no estimated
-recruitment deviations (i.e., deviations fixed at zero, giving average recruitment).
-By necessity, this was also done for 2024 and the
-projection years. This differs to previous assessment models, for which
-recruitments at the end of the time series included a random component (extra variability
-around the stock-recruitment relationship).
-
-This assessment continues to use (since 2014) time-varying
-(rather than constant) selectivity to maintain flexibility within the
-fishery dynamics given variability in `r sp` distribution patterns.
-The Dirichlet-multinomial estimation approach to weighting composition data
-was retained, and a sensitivity to an alternative data-weighting approach was
-investigated. Time-varying fecundity, which was introduced in 2019, was
-retained and improved upon with time-varying estimates of maturity in 2024.
-Assumptions for the forecast period for weight at age, maturity at age, and
-selectivity continue to be based on conditions during the last five years,
-as done since the 2020 assessment.
 
 ## Management performance {-}
 
@@ -365,13 +233,6 @@ table_decision(
   longtable = TRUE)
 ```
 
-<!-- Commenting out in 2025 as did not happen, as we only have the one
-bouncing-around catch alternatve.
-This explains why probabilities can sometimes decline (rather than rise) with
-increased assess_yr + 1 and assess_yr + 2 catch levels
-(Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab);
-Figures~\@ref(fig:es-risk-year-2-fig) and~\@ref(fig:es-risk-year-3-fig)).
--->
 
 (ref:es-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
