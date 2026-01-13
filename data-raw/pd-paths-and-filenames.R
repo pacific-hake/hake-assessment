@@ -2,7 +2,7 @@
 # any new package data to file R/data.R
 
 # Paths ----
-create_data_hake("doc_path", "doc")
+create_data_hake("doc_path", "doc-catch-proj")
 create_data_hake("out_csv_path", "out-csv")
 create_data_hake("mcmc_path", "mcmc")
 create_data_hake("sso_path", "sso")
