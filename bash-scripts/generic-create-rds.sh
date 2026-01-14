@@ -26,7 +26,7 @@ out.\n" ; exit 1; }
 repo_path=`Rscript -e "cat(here::here())"`
 # Remove leading newline
 repo_path=`echo $repo_path | tr -d '\n'`
-`
+
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
 #project  path=`Rscript -e "cat(dirname(here::here()))"`
@@ -36,7 +36,7 @@ models_path="models"
 # *Never* change `year_path` manually here. Instead, to assign a manual year,
 # add it as an argument to the `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="02-version"
+version_path="01-version"
 
 # In the following assignment, only `$type_path ` comes from the calling script
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
