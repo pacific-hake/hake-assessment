@@ -19,7 +19,8 @@ run_ct_levels(
 
 \item{model_path}{The model directory name}
 
-\item{forecast_yrs}{A vector of forecast years}
+\item{forecast_yrs}{A vector of forecast years (do not include a catch
+projection model year, se \code{is_catch_proj_model})}
 
 \item{...}{Passes arguments to \code{\link[=run_ct_levels_default_hr]{run_ct_levels_default_hr()}},
 \code{\link[=run_ct_levels_spr_100]{run_ct_levels_spr_100()}}, and \code{\link[=run_ct_levels_stable_catch]{run_ct_levels_stable_catch()}}}

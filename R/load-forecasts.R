@@ -9,6 +9,9 @@
 #' lists used
 #' @param forecast_yrs A vector of forecast years
 #' @param verbose Logical. If `TRUE`, show messages
+#' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
+#' be treated as a catch projected year meaning the `forecast_yrs` are in
+#' addition to that. All will be loaded as forecasts however
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
@@ -17,6 +20,7 @@ load_forecasts <- function(model_path = NULL,
                            first = 0,
                            forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
                            verbose = TRUE,
+                           is_catch_proj_model = FALSE,
                            ...){
 
   if(!check_forecasts(model_path, ...)){
@@ -45,7 +49,7 @@ load_forecasts <- function(model_path = NULL,
   # Make sure only year directories exist here
   pat <- paste0("^", forecasts_prepend, "20[0-9]{2}$")
   num_forecasts <- length(grep(pat, dir_nms))
-  if(num_forecasts != length(forecast_yrs)){
+  if(num_forecasts != length(forecast_yrs) && !is_catch_proj_model){
     stop("The number of actual forecast years run (", num_forecasts, ") ",
          "does not match the number of forecast years specified in the ",
          "model (", length(forecast_yrs), "). Check the contents of the ",
@@ -75,7 +79,6 @@ load_forecasts <- function(model_path = NULL,
     fore_subdir <- dir(fore_path)
     # Eliminate extra forecast runs, possibly done after the document was
     # created, for the JMC meeting or some other reason
-    fore_paths <- ct_levels_names[dir_nms %in% ct_levels_names]
     lvls_lst <- imap(ct_levels, \(catch_level, catch_level_ind){
       fore_level_path <- file.path(fore_path, catch_level[[3]])
       message("Loading from ", fore_level_path)
@@ -101,6 +104,7 @@ load_forecasts <- function(model_path = NULL,
       names(depl) <- gsub("Bratio_", "", names(depl))
 
       # Now, filter out the projected years only
+      forecast_yrs <- forecast_yrs[forecast_yrs %in% names(spr)]
       spr_proj_cols <- spr |>
         select(all_of(as.character(forecast_yrs)))
       depl_proj_cols <- depl |>

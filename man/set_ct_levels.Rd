@@ -7,7 +7,8 @@ the catch levels and extra information used for the assessment document}
 \usage{
 set_ct_levels(
   fn = here(doc_path, forecast_descriptions_fn),
-  inc_fi_and_stable_catch = FALSE
+  inc_fi_and_stable_catch = FALSE,
+  ...
 )
 }
 \arguments{
@@ -15,6 +16,8 @@ set_ct_levels(
 
 \item{inc_fi_and_stable_catch}{Logical. If \code{TRUE}, include the Fishing
 intensity = 100\% and the Stable Catch scenarios}
+
+\item{...}{Absorb arguments meant for other functions}
 }
 \value{
 A list of 2 lists:

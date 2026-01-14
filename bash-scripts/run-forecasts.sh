@@ -57,7 +57,10 @@ does not exist, bailing out." ; exit 1; }
   Rscript -e " \
     setwd('$repo_path'); \
     devtools::load_all(); \
-    run_forecasts(model_path = '$model_path')" \
-> /dev/null 2>&1; \
+    run_forecasts(model_path = '$model_path',
+                  run_spr_100 = FALSE,
+                  run_stable_catch = FALSE,
+                  is_catch_proj_model = TRUE)" \
+  > /dev/null 2>&1; \
   printf "\nBase model forecasts complete\n" \
 )

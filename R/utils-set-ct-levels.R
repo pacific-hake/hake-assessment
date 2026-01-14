@@ -4,6 +4,7 @@
 #' @param fn The name of the file containing the forecast description data
 #' @param inc_fi_and_stable_catch Logical. If `TRUE`, include the Fishing
 #' intensity = 100% and the Stable Catch scenarios
+#' @param ... Absorb arguments meant for other functions
 #'
 #' @return A list of 2 lists:
 #' List 1 is a list of lists of length-3 vectors. Each list represents a catch
@@ -16,7 +17,8 @@
 #'
 #' @export
 set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn),
-                          inc_fi_and_stable_catch = FALSE){
+                          inc_fi_and_stable_catch = FALSE,
+                          ...){
 
   ret <- list()
 

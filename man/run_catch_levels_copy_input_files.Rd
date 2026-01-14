@@ -5,7 +5,13 @@
 \title{Copy the necessary files from a models' work directories to the directory
 required to run dynamic catch levels runs}
 \usage{
-run_catch_levels_copy_input_files(model, pth, inp_files_only = FALSE)
+run_catch_levels_copy_input_files(
+  model,
+  pth,
+  inp_files_only = FALSE,
+  is_catch_proj_model = FALSE,
+  ...
+)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
@@ -17,6 +23,9 @@ run will occur. Example:
 \item{inp_files_only}{Logical. If \code{TRUE}, on;ly copy the SS3 inputs files
 which are in the package data variable \link{ss_input_files}. If \code{FALSE},
 include 'derposts,sso' and 'ss.psv' as well}
+
+\item{is_catch_proj_model}{Logical. If \code{TRUE}, The first forecast year will
+be appended to the forecast.ss file.}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}} If the function returns, all files were copied

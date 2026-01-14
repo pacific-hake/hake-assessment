@@ -14,17 +14,17 @@
 #' @return Nothing, the 'forecast.ss' file will have the catch numbers at the
 #' end of the file under 'Catch_or_F'
 #' @export
-run_ct_levels_default_hr <- function(
-    model,
-    forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
-    ss_exe = NULL,
-    keep_files = FALSE,
-    ...){
+run_ct_levels_default_hr <- function(model,
+                                     forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+                                     ss_exe = NULL,
+                                     keep_files = FALSE,
+                                     ...){
 
   ss_exe <- get_ss3_exe_name(ss_exe)
 
   pth <- here(model$path, ct_levels_path, default_hr_path)
   run_catch_levels_copy_input_files(model, pth)
+
   dest_derposts_fullpath_fn <- file.path(pth, derposts_fn)
   forecast_fullpath_fn <- file.path(pth, forecast_fn)
 
@@ -48,11 +48,19 @@ run_ct_levels_default_hr <- function(
                             Nareas = 1,
                             nseas = 1,
                             verbose = FALSE)
-    fore$Ncatch <- length(forecast_yrs[1:i])
-    fore$ForeCatch <- data.frame(Year = forecast_yrs[1:i],
-                                 Seas = 1,
-                                 Fleet = 1,
-                                 Catch_or_F = default_hr_catch[1:i])
+
+    fore_catch <- data.frame(Year = forecast_yrs[1:i],
+                             Seas = 1,
+                             Fleet = 1,
+                             Catch_or_F = default_hr_catch[1:i])
+
+    if(nrow(fore$ForeCatch) > 0){
+      names(fore$ForeCatch) <- names(fore_catch)
+      fore_catch <- bind_rows(fore$ForeCatch[1, ], fore_catch)
+    }
+    fore$ForeCatch <- fore_catch
+    fore$Ncatch <- nrow(fore$ForeCatch)
+
     SS_writeforecast(fore,
                      dir = pth,
                      overwrite = TRUE,

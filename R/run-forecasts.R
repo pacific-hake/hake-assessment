@@ -110,6 +110,7 @@ run_forecasts <- function(model = NULL,
 
       nm <- ct_level[[3]]
       catch_ind <- which(forecast_yrs == year)
+
       new_forecast_dir <- file.path(fore_path, nm)
       dir.create(new_forecast_dir, showWarnings = FALSE)
       file_chmod(new_forecast_dir, output_permissions)
@@ -142,28 +143,24 @@ run_forecasts <- function(model = NULL,
 
       # Insert fixed catches into forecast file
       forecast_file <- file.path(new_forecast_dir, forecast_fn)
+
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
                               Nareas = 1,
                               nseas = 1,
                               verbose = FALSE)
-      fore_ncatch <- length(forecast_yrs[1:catch_ind])
+
       fore_catch <- data.frame(Year = forecast_yrs[1:catch_ind],
                                Seas = 1,
                                Fleet = 1,
                                Catch_or_F = ct_level[[1]][1:catch_ind])
 
-      if(!is.null(fore$ForeCatch)){
-        if(nrow(fore$ForeCatch) >= 1){
-          fore_ncatch <- fore_ncatch + nrow(fore$ForeCatch)
-          names(fore$ForeCatch) <- names(fore_catch)
-          fore_catch <- fore$ForeCatch |> bind_rows(fore_catch)
-          rownames(fore_catch) <- NULL
-        }
+      if(nrow(fore$ForeCatch) > 0){
+        names(fore$ForeCatch) <- names(fore_catch)
+        fore_catch <- bind_rows(fore$ForeCatch[1, ], fore_catch)
       }
-
-      fore$Ncatch <- fore_ncatch
       fore$ForeCatch <- fore_catch
+      fore$Ncatch <- nrow(fore$ForeCatch)
 
       SS_writeforecast(fore,
                        dir = new_forecast_dir,

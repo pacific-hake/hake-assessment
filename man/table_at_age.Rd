@@ -17,6 +17,7 @@ table_at_age(
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  ret_df = FALSE,
   ...
 )
 }
@@ -42,6 +43,9 @@ the headers will have the same font size as the table cell data}
 
 \item{header_vert_scale}{Scale factor to create the vertical spacing value.
 See \code{header_vert_spacing}}
+
+\item{ret_df}{Logical. If \code{TRUE}, return a data frame of the table, If
+\code{FALSE}, return a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} object}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 

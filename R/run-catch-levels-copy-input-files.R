@@ -8,12 +8,16 @@
 #' @param inp_files_only Logical. If `TRUE`, on;ly copy the SS3 inputs files
 #' which are in the package data variable [ss_input_files]. If `FALSE`,
 #' include 'derposts,sso' and 'ss.psv' as well
+#' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
+#' be appended to the forecast.ss file.
 #'
 #' @return [base::invisible()] If the function returns, all files were copied
 #' successfully. If they were not, an error is thrown
 run_catch_levels_copy_input_files <- function(model,
                                               pth,
-                                              inp_files_only = FALSE){
+                                              inp_files_only = FALSE,
+                                              is_catch_proj_model = FALSE,
+                                              ...){
 
   dir.create(pth, showWarnings = FALSE)
   file_chmod(pth, output_permissions)
@@ -36,6 +40,7 @@ run_catch_levels_copy_input_files <- function(model,
                                    ss_input_files),
                          file.path(pth, ss_input_files),
                          copy.mode = TRUE)
+
   if(!all(copy_flag)){
     stop("At least one SS3 imput file failed to copy from directory\n`",
          model$path, "` to directory\n`", pth,

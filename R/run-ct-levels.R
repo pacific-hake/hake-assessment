@@ -2,7 +2,8 @@
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
 #' @param model_path The model directory name
-#' @param forecast_yrs A vector of forecast years
+#' @param forecast_yrs A vector of forecast years (do not include a catch
+#' projection model year, se `is_catch_proj_model`)
 #' @param ... Passes arguments to [run_ct_levels_default_hr()],
 #' [run_ct_levels_spr_100()], and [run_ct_levels_stable_catch()]
 #'
@@ -16,6 +17,10 @@ run_ct_levels <- function(model = NULL,
                           run_stable_catch = TRUE,
                           ...){
 
+  # if(is_catch_proj_model){
+  #   # Add preceding year to vector of forecasts for the ct levels to include
+  #   forecast_yrs <- c(forecast_yrs[1] - 1,forecast_yrs)
+  # }
   if(!any(c(run_default_hr,
             run_spr_100,
             run_stable_catch))){

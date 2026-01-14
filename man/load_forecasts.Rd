@@ -9,6 +9,7 @@ load_forecasts(
   first = 0,
   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
   verbose = TRUE,
+  is_catch_proj_model = FALSE,
   ...
 )
 }
@@ -20,6 +21,10 @@ lists used}
 \item{forecast_yrs}{A vector of forecast years}
 
 \item{verbose}{Logical. If \code{TRUE}, show messages}
+
+\item{is_catch_proj_model}{Logical. If \code{TRUE}, The first forecast year will
+be treated as a catch projected year meaning the \code{forecast_yrs} are in
+addition to that. All will be loaded as forecasts however}
 
 \item{...}{Absorbs arguments intended for other functions}
 

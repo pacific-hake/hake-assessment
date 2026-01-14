@@ -12,6 +12,9 @@
 #' @param model_path The model directory name
 #' @param inc_fi_and_stable_catch Logical. If `TRUE`, include the Fishing
 #' intensity = 100% and the Stable Catch scenarios
+##' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
+#' be assumed to be constant and removed from the ct levels
+#'
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of 3-element lists of vectors of 3 catch levels
@@ -28,6 +31,7 @@
 #' @export
 load_ct_levels <- function(model_path,
                            inc_fi_and_stable_catch = FALSE,
+                           is_catch_proj_model = FALSE,
                            ...){
 
   if(!check_catch_levels(model_path,
@@ -106,6 +110,10 @@ load_ct_levels <- function(model_path,
     ct_levels[ct_inds][[.x]][1] <- cust_ct_levels[.x]
     ct_levels[ct_inds][[.x]]
   })
+
+  if(is_catch_proj_model){
+    ct_levels[[length(ct_levels)]][[1]] <- ct_levels[[length(ct_levels)]][[1]][-1]
+  }
 
   list(ct_levels = ct_levels,
        ct_levels_vals = ct_levels_lst$ct_levels_vals)

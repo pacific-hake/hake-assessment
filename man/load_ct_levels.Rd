@@ -4,13 +4,21 @@
 \alias{load_ct_levels}
 \title{Load catch levels from SS forecast files.}
 \usage{
-load_ct_levels(model_path, inc_fi_and_stable_catch = FALSE, ...)
+load_ct_levels(
+  model_path,
+  inc_fi_and_stable_catch = FALSE,
+  is_catch_proj_model = FALSE,
+  ...
+)
 }
 \arguments{
 \item{model_path}{The model directory name}
 
 \item{inc_fi_and_stable_catch}{Logical. If \code{TRUE}, include the Fishing
 intensity = 100\% and the Stable Catch scenarios}
+
+\item{is_catch_proj_model}{Logical. If \code{TRUE}, The first forecast year will
+be assumed to be constant and removed from the ct levels}
 
 \item{...}{Absorbs arguments intended for other functions}
 }
