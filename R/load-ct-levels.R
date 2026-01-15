@@ -12,7 +12,7 @@
 #' @param model_path The model directory name
 #' @param inc_fi_and_stable_catch Logical. If `TRUE`, include the Fishing
 #' intensity = 100% and the Stable Catch scenarios
-##' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
+#' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
 #' be assumed to be constant and removed from the ct levels
 #'
 #' @param ... Absorbs arguments intended for other functions

@@ -176,10 +176,10 @@ last_let <- let[length(let)]
 
 table_decision(
   base_model,
+  is_catch_proj_model = TRUE,
   type = "biomass",
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
-  inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-",
@@ -209,6 +209,7 @@ table_decision(
 table_decision(
   base_model,
   type = "spr",
+  is_catch_proj_model = TRUE,
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
   inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
@@ -249,7 +250,7 @@ with zero catch and to decline for all non-zero catch levels evaluated.
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 10, 11),
+                          fore_inds = c(1, 2, 6, 7, 10),
                           forecast_yrs = forecast_yrs)
 ```
 

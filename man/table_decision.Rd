@@ -19,6 +19,7 @@ table_decision(
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  is_catch_proj_model = FALSE,
   ret_df = FALSE,
   ...
 )
@@ -55,6 +56,10 @@ the headers will have the same font size as the table cell data}
 
 \item{header_vert_scale}{Scale factor to create the vertical spacing value.
 See \code{header_vert_spacing}}
+
+\item{is_catch_proj_model}{Logical. If \code{TRUE}, The first forecast year will
+be assumed to be constant and removed from the ct levels and the decision
+table}
 
 \item{ret_df}{Logical. If \code{TRUE}, return a data frame (tibble()) instead
 of the \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}

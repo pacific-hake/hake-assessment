@@ -23,6 +23,9 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
+#' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
+#' be assumed to be constant and removed from the ct levels and the decision
+#' table
 #' @param ret_df Logical. If `TRUE`, return a data frame (tibble()) instead
 #' of the [kableExtra::kbl()].
 #' @param ... Arguments passed to [knitr::kable()]
@@ -43,6 +46,7 @@ table_decision <- \(
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  is_catch_proj_model = FALSE,
   ret_df = FALSE,
   ...){
 
@@ -90,6 +94,22 @@ table_decision <- \(
       "i",  "",                                "",
       "j",  paste0(model$endyr, " TAC"),       "",
       "k",  "Default HR",                      paste0("(",
+                                                      fspr_40_10_for_latex_table,
+                                                      ")"))
+  }
+  if(is_catch_proj_model){
+    letter_df = tribble(
+      ~let,  ~row1_text,                        ~row2_text,
+      "a",  "",                                "",
+      "b",  "",                                "",
+      "c",  "",                                "",
+      "d",  "",                                "",
+      "e",  "",                                "",
+      "f",  "",                                "",
+      "g",  "2025 TAC",                        "",
+      "h",  "",                                "",
+      "i",  "",                                "",
+      "j",  "Default HR",                      paste0("(",
                                                       fspr_40_10_for_latex_table,
                                                       ")"))
   }
@@ -147,8 +167,19 @@ table_decision <- \(
   }
 
   # Extract the catch levels for the three years shown in the table (3)
-  ct_levels <- map(model$forecasts[[3]][forecast_inds], ~{
-    .x$fore_catch$catch
+  # if(is_catch_proj_model){
+  #   # 4 because there is an extra year at the beginning
+  #   obj <- model$forecasts[[4]][forecast_inds]
+  # }else{
+  #   obj <- model$forecasts[[3]][forecast_inds]
+  # }
+  obj <- model$forecasts[[3]][forecast_inds]
+  ct_levels <- map(obj, ~{
+    if(is_catch_proj_model){
+      out <- .x$fore_catch$catch[-1]
+    }else{
+      out <- .x$fore_catch$catch
+    }
   }) |>
     unlist() |>
     enframe(name = NULL, value = "Catch (t)")
@@ -194,6 +225,9 @@ table_decision <- \(
 
   # Extract a vector of the forecast years,
   forecast_yrs <- forecast[[1]]$fore_catch$year
+  if(is_catch_proj_model){
+    forecast_yrs <- forecast_yrs[-1]
+  }
   if(length(forecast_yrs) != 4){
     stop("The number of forecast years in the model is not 4. The decision ",
          "function is currently designed for 4 years only")
