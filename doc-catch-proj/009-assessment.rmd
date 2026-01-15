@@ -21,7 +21,6 @@ years have been the largest in the time series.
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
 
-TODO: Text here is unedited from last year's Executive summary.
 
 Coast-wide fishery landings of `r sp` averaged `r f(mean(ct$Total))`~t
 from `r min(ct$Year)` to `r max(ct$Year)`, with a low of
@@ -256,10 +255,10 @@ plot_depl_fore_comparison(base_model,
 
 \clearpage
 
-## Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
+# Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
 
 The Scientific Review Group (SRG) meeting was held from February
-10--14th, 2024, as a virtual meeting.
+10--14th, 2025, as a virtual meeting.
 
 The following are the 'SRG Recommendations and Conclusions for the Stock
 Assessment' from the 2025 SRG report and the associated responses from the
@@ -271,7 +270,7 @@ JTC:
 
 2. **The SRG recommends continuing sensitivities for steepness, natural mortality, σR, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
 
-*Response -- The recommended set of sensitivity model runs were not applicable for the 2026 base model, which is based soley on a projection of the 2025 base model where the realized total catch in 2025 is specifically used. The standard set of senstivity model runs will be incorporated into next year's stock assessment.*
+*Response -- The recommended set of sensitivity model runs were not applicable for the 2026 base model, which is based solely on a projection of the 2025 base model where the realized total catch in 2025 is specifically used. The standard set of sensitivity model runs will be incorporated into next year's stock assessment.*
 
 3. **The SRG recommends that the JTC continue exploring alternative ways of estimating natural mortality to update the current approach in the model, and particularly consider options which have age-based natural mortality, and may be external to SS3.**
 
@@ -331,7 +330,6 @@ are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
 
 *Response -- TODO, not fully updated from last year's text: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.*
 
-*Sensitivity analyses using alternative input sample sizes, following the
-Stewart and Hamel (2014) approach, will continue to be evaluated in subsequant full assessments.*
+*Sensitivity analyses using alternative input sample sizes, following the Stewart and Hamel (2014) approach, will continue to be evaluated in subsequent assessments.*
 
 \newpage
