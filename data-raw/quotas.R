@@ -1,5 +1,5 @@
 quotas <- utils::read.csv(
-  file = file.path("data-raw", "quotas.csv"),
+  file = here("data-raw", "quotas.csv"),
   sep = ",",
   header = TRUE,
   check.names = FALSE
