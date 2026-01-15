@@ -1,3 +1,3 @@
 ```{r source-load-models, echo = FALSE}
-source(here::here("doc/003-load-models.R"))
+source(here::here(doc_path, "003-load-models.R"))
 ```

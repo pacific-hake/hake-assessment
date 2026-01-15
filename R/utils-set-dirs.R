@@ -163,8 +163,8 @@ set_dirs <- function(
   br_grps <- dirs[[2]]
   walk(br_grps, \(grp){
     if(any(is.na(grp))){
-      stop("Bridge model directories missing. Check your bridge model ",
-           "directory names carefully!\n\n")
+      warning("Bridge model directories missing. Check your bridge model ",
+              "directory names carefully!\n\n")
     }
   })
 

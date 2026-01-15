@@ -9,10 +9,10 @@ project_variables:
   science_name: "Merluccius productus"
   simple_name: "hake"
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
-  assess_yr: 2025
-  last_assess_yr: 2024
-  last_data_yr: 2024
-  model_version: "02"
+  assess_yr: 2026
+  last_assess_yr: 2025
+  last_data_yr: 2025
+  model_version: "01"
   last_yr_model_version: "02"
   ss_version: "3.30.23.1"
   fig_label_color: "black"

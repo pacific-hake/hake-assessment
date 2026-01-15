@@ -968,12 +968,7 @@ fore_catch_prop_wt_age11_median <- median(extramc$natselwt_prop |> pull(`11`)) *
 
 # Sigma_r, standard deviation of recruitment variability ----------------------
 sigma_r <- f(base_model$sigma_R_in, 2)
-sigma_r_sens <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  sigma_r_sens <- sens_models[[1]][grep("Sigma R", sens_models_names[[1]])] |>
-    map_dbl("sigma_R_in") |>
-    f(2)
-}
+
 # Alternative sigma_r based on posterior of recdevs ---------------------------
 sigma_r_alt_allyr <- base_model$mcmcvals$sigma_r_alt_allyr
 sigma_r_this_year_main <- base_model$mcmcvals$sigma_r_this_year_main
@@ -982,18 +977,6 @@ sigma_r_last_year_main <- last_yr_base_model$mcmcvals$sigma_r_this_year_main
 sigma_r_sens1 <- NULL
 sigma_r_hi_main <- NULL
 sigma_r_lo_main <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  sigma_r_sens1 <- sens_models[[1]] |>
-    map_chr(~{.x$mcmcvals$sigma_r_this_year_main}) |>
-    set_names(sens_models_names[[1]])
-
-  sigma_r_hi_main <- sigma_r_sens1[grep("Sigma.+1.[5-9]",
-                                        names(sigma_r_sens1),
-                                        value = TRUE)]
-  sigma_r_lo_main <- sigma_r_sens1[grep("Sigma.+1.[0-4]",
-                                        names(sigma_r_sens1),
-                                        value = TRUE)]
-}
 
 # Range of "main" recdevs -----------------------------------------------------
 recr_era_main_tmp <- base_model$recruit$era == "Main"
@@ -1043,34 +1026,12 @@ dm_weight_survey_upper <- base_model$mcmcvals$dm_weight_survey_upper
 # MCMC parameter estimates for base model -------------------------------------
 # ... natural mortality -------------------------------------------------------
 nat_m <- base_model$mcmcvals$nat_m
-nat_m_02 <- NULL
-nat_m_03 <- NULL
-nat_m_hamel <- NULL
-f_nat_m_02 <- NULL
-f_nat_m_03 <- NULL
-f_nat_m_hamel <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  nat_m_02 <- sens_models[[1]][[6]]$mcmcvals$nat_m
-  nat_m_03 <- sens_models[[1]][[7]]$mcmcvals$nat_m
-  nat_m_hamel <- sens_models[[1]][[8]]$mcmcvals$nat_m
-  f_nat_m_02 <- f(nat_m_02, 3)
-  f_nat_m_03 <- f(nat_m_03, 3)
-  f_nat_m_hamel <- f(nat_m_hamel, 3)
-}
 # ... steepness ---------------------------------------------------------------
 steep <- base_model$mcmcvals$steep
-steep_prior_05 <- NULL
-f_steep_prior_05 <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  steep_prior_05 <- sens_models[[1]][[2]]$mcmcvals$steep
-  f_steep_prior_05 <- f(steep_prior_05, 3)
-}
+
 # ... bratio ------------------------------------------------------------------
 bratio_curr <- base_model$mcmcvals$bratio_curr
-bratio_age1 <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  bratio_age1 <- sens_models[[2]][[2]]$mcmcvals$bratio_curr
-}
+
 # ... depletion ---------------------------------------------------------------
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
@@ -1095,7 +1056,7 @@ prob_decline_from_2019_to_2020_curr <-
   historical_probs_df |>
   dplyr::filter(year == 2019) |>
   select("P_decline_curr") |>
-  as.numeric() |>
+  # as.numeric() |>
   f()
 
 prob_decline_from_2012_to_2013_historic <-
@@ -1118,140 +1079,11 @@ prob_decline_from_2012_to_2013_curr <-
 # The code here is to create a list of incremental lists, each on having one
 # more year subtracted so that when plotted, we can watch each extra year get
 # added on one by one
-retro_inc_nms <- list(c("Base model",
-                        " -1 year"),
-                      c("Base model",
-                        " -1 year",
-                        " -2 years"),
-                      c("Base model",
-                        " -1 year",
-                        " -2 years",
-                        " -3 years"),
-                      c("Base model",
-                        " -1 year",
-                        " -2 years",
-                        " -3 years",
-                        " -4 years"),
-                      c("Base model",
-                        " -1 year",
-                        " -2 years",
-                        " -3 years",
-                        " -4 years",
-                        " -5 years"))
 
-retros_biomass_incremental <- map(retro_inc_nms, \(retro_mdls){
-  base_model$retrospectives$biomass_df$d |>
-    dplyr::filter(model %in% retro_mdls)
-  })
-retros_bo_incremental <- map(retro_inc_nms, \(retro_mdls){
-  base_model$retrospectives$biomass_df$bo |>
-    dplyr::filter(model %in% retro_mdls)
-  })
-
-retros_biomass_incremental <- map2(retros_biomass_incremental,
-                                   retros_bo_incremental, \(d, bo){
-                                     list(d = d, bo = bo)
-                                   })
-retro_cohorts <- (end_yr - 11):(end_yr - 2)
 # Set up bridge model groups for plotting ------------------------------------
-iter <- 0
-d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
-  iter <<- iter + 1
-  create_group_df_biomass(.x, .y,
-                          end_yrs = bridge_model_end_yr[[iter]])
-})
-iter <- 0
-d_obj_bridge_rel_biomass <- map2(bridge_models, bridge_models_names, ~{
-  iter <<- iter + 1
-  create_group_df_biomass(.x, .y,
-                          rel = TRUE,
-                          end_yrs = bridge_model_end_yr[[iter]])
-})
-iter <- 0
-d_obj_bridge_recdev <- map2(bridge_models, bridge_models_names, ~{
-  iter <<- iter + 1
-  create_group_df_recr(.x, .y,
-                       devs = TRUE,
-                       end_yrs = bridge_model_end_yr[[iter]])
-})
-iter <- 0
-d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
-  iter <<- iter + 1
-  create_group_df_index(.x, .y,
-                        survey_type = "age1")
-})
-iter <- 0
-d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
-  iter <<- iter + 1
-  create_group_df_index(.x, .y,
-                        survey_type = "age2")
-})
 
 # Set up sensitivity model groups for plotting -------------------------------
 # Biomass  -------------------------------------------------------------------
-d_obj_sens_biomass <- NULL
-d_obj_sens_rel_biomass <- NULL
-d_obj_sens_recr <- NULL
-d_obj_sens_recdev <- NULL
-d_obj_sens_age1_index_grp2 <- NULL
-d_obj_sens_age1_index_grp3 <- NULL
-d_obj_sens_age1_index_grp4 <- NULL
-d_obj_sens_age2_index_grp2 <- NULL
-d_obj_sens_age2_index_grp3 <- NULL
-d_obj_sens_age2_index_grp4 <- NULL
-if(!all(is.na(sens_models[[1]]))){
-  d_obj_sens_biomass <- map2(sens_models, sens_models_names, ~{
-    create_group_df_biomass(.x, .y)
-  })
-  d_obj_sens_rel_biomass <- map2(sens_models, sens_models_names, ~{
-    create_group_df_biomass(.x, .y, rel = TRUE)
-  })
-  d_obj_sens_recr <- map2(sens_models, sens_models_names, ~{
-    create_group_df_recr(.x, .y)
-  })
-  d_obj_sens_recdev <- map2(sens_models, sens_models_names, ~{
-    create_group_df_recr(.x, .y, devs = TRUE)
-  })
-  # extra mcmc required for these
-  d_obj_sens_age1_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
-    create_group_df_index(.x, .y, "age1")
-  })
-  d_obj_sens_age1_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
-    create_group_df_index(.x, .y, "age1")
-  })
-  d_obj_sens_age1_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
-    create_group_df_index(.x, .y, "age1")
-  })
-  d_obj_sens_age2_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
-    create_group_df_index(.x, .y, "age2")
-  })
-  d_obj_sens_age2_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
-    create_group_df_index(.x, .y, "age2")
-  })
-  d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
-    create_group_df_index(.x, .y, "age2")
-  })
-}
-
-sens_base_bratio <-  NULL
-if(!all(is.na(sens_models[[1]]))){
-  sens_base_bratio <- f(100 * sens_models[[2]][[1]]$derived_quants["Bratio_2016", "Value"], 1)
-}
-
-sens_grp2_2_bratio <-  NULL
-if(!all(is.na(sens_models[[1]]))){
-  sens_grp2_2_bratio <- f(100 * sens_models[[2]][[2]]$derived_quants["Bratio_2016", "Value"], 1)
-}
-
-sens_base_forecatch <-  NULL
-if(!all(is.na(sens_models[[1]]))){
-  sens_base_forecatch <- f(100 * sens_models[[2]][[1]]$derived_quants["ForeCatch_2016", "Value"], 1)
-}
-
-sens_grp2_2_forecatch <-  NULL
-if(!all(is.na(sens_models[[1]]))){
-  sens_grp2_2_forecatch <- f(100 * sens_models[[2]][[2]]$derived_quants["ForeCatch_2016", "Value"], 1)
-}
 
 # Values used in management presentation
 last_yr_catch_fore <- NULL
@@ -1275,6 +1107,7 @@ prob_below_b40_yr1_last_yr_catch <- NULL
 prob_all_catch_greater <- NULL
 prob_decl_last_yr_catch <- NULL
 prob_decl_yr1_other_catch <- NULL
+
 if(!is.null(base_model$risks)){
   prob_max_below_40_yr1 <- base_model$risks[[1]] |>
     as_tibble() |>

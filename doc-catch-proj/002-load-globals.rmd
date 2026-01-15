@@ -29,7 +29,7 @@ models_dir <- file.path(models_dir,
                         assess_yr,
                         paste0(model_version, "-version"))
 
-output_csv_dir <- here("doc", out_csv_path)
+output_csv_dir <- here(doc_path, out_csv_path)
 end_yr <- assess_yr
 
 # Forecast years --------------------------------------------------------------
