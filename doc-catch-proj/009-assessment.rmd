@@ -68,17 +68,7 @@ of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
 landings in recent years. The catches in `r  last_data_yr` declined below
 the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
-pattern of declining catches over recent years (especially in Canada). Landings
-between 2001 and 2008 were predominantly comprised of fish from the very large
-1999 year class, with a cumulative removal (through `r end_yr - 1`) from
-that cohort of
-`r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~million metric tonnes].
-Through `r last_data_yr`, the cumulative catches of the 2010, 2014, and 2016
-year classes were estimated at
-`r f(cohort_catch_2010 / 1e6, 2)`~Mt,
-`r f(cohort_catch_2014 / 1e6, 2)`~Mt, and
-`r f(cohort_catch_2016 / 1e6, 2)`~Mt, respectively. In the
-`r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
+pattern of declining catches over recent years (especially in Canada). 
 
 ## Management performance {-}
 
