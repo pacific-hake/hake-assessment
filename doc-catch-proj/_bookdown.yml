@@ -9,8 +9,8 @@ rmd_files: ["000-launcher.rmd",
             # comment out sections below only.
             "007-introduction.rmd",
             "009-assessment.rmd",
-            #"011-acknowledgements.rmd",
-            #"012-references.rmd",
+            "011-acknowledgements.rmd",
+            "012-references.rmd",
             ## File 100 is required to make all that follow it appendices.
             #"100-start-appendices.rmd",
             #"101-appendix-data-tables.rmd",
