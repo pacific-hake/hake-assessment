@@ -73,8 +73,8 @@ output:
    # Chunk output and image directories, title page picture -------------------
    knitr_figures_dir: "knitr-figs"
    knitr_cache_dir: "knitr-cache"
-   figures_dir: "image-files"
-   title_page_image: "image-files/hake-line-drawing.png"
+   figures_dir: "../doc/image-files"
+   title_page_image: "../doc/image-files/hake-line-drawing.png"
    title_page_image_width_cm: 12
 
    # Footer text --------------------------------------------------------------
@@ -158,8 +158,8 @@ knit: (function(input, ...) {
 classoption: letterpaper
 header-includes:
 link-citations: true # Do not modify
-bibliography: bib/refs.bib # Do not modify
-csl: csl/csas.csl # Do not modify
+bibliography: ../doc/bib/refs.bib # Do not modify
+csl: ../doc/csl/csas.csl # Do not modify
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
