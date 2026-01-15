@@ -23,8 +23,17 @@ extract_alt_text <- function(inp_str){
     bd <- bd[-grep("^#", bd)]
   }
 
-  fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
-  fns <- here(doc_path, fns)
+  fns <- gsub("\"", "", bd)
+  fns <- gsub(",", "", fns)
+  fns <- gsub(".*rmd_files: +", "", fns)
+  fns <- gsub("\\[", "", fns)
+  fns <- gsub("]", "", fns)
+  rel_dir_inds <- grep("^\\.\\.\\/", fns)
+  if(length(rel_dir_inds)){
+    fns[-rel_dir_inds] <- here(doc_path, fns[-rel_dir_inds])
+  }else{
+    fns <- here(doc_path, fns)
+  }
 
   alt_str <- paste0(inp_str, "-alt")
 
