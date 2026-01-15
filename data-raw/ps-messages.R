@@ -1,6 +1,5 @@
 # Source this file to apply changes. Don't forget to add documentation for
 # any new package data to file R/data.R
-library(usethis)
 
 create_data_hake("parallelism_warning",
   paste0("Your operating system does not support\n",
