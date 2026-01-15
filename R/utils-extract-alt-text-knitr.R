@@ -15,7 +15,7 @@
 extract_alt_text <- function(inp_str){
 
 
-  bd_lines <- readLines(here("doc/_bookdown.yml"))
+  bd_lines <- readLines(here(doc_path, "_bookdown.yml"))
   bd_rmd_raw <- grep("\\.rmd", bd_lines, value = TRUE)
   # Remove commented-out lines (for speed)
   bd <- gsub("^ *", "", bd_rmd_raw)
@@ -24,9 +24,10 @@ extract_alt_text <- function(inp_str){
   }
 
   fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
-  fns <- here("doc", fns)
+  fns <- here(doc_path, fns)
 
   alt_str <- paste0(inp_str, "-alt")
+
   k <- map(fns, ~{
     rmd <- readLines(.x)
     x <- grep(alt_str, rmd)

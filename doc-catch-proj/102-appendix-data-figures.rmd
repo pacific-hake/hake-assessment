@@ -11,7 +11,7 @@ sectors where they are represented.
 (ref:main-catches-alt) This figure shows that catches have declined each year
 from the historical peak in 2017.
 
-```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5}
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 4, out.height = "4in"}
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
@@ -27,7 +27,7 @@ data. Whiskers encompass the 95% quantiles.
 approximately 500 meters and fishing depths approximately 300 meters on
 average in the last 5 years for United States fleets.
 
-```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4}
+```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, out.height = "4in"}
 
 yrs <- (last_data_yr - 4):last_data_yr
 depth_lims <- c(0, 700)
@@ -53,7 +53,7 @@ Freezer trawlers fished at a gear depth of approximately 100 to 300 meters and
 shoreside vessels at a depth of approximately 150 to 250 meters. Bottom depths
 for both fleets have become shallower with fishing being closer to the bottom.
 
-```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8}
+```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, out.height = "8in"}
 
 plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
@@ -70,7 +70,7 @@ plot_depth_4_panel(can_ft_gear_depth_df,
 
 (ref:main-age-proportions-alt) Add alt caption.
 
-```{r main-age-proportions-fig fig.cap = "(ref:main-age-proportions-cap)", fig.height = 8}
+```{r main-age-proportions-fig, fig.cap = "(ref:main-age-proportions-cap)", fig.height = 8, out.height = "8in"}
 
 ages <- can_ss_age_df |>
   names() %>%

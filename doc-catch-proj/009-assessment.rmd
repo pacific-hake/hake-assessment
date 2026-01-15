@@ -16,7 +16,7 @@ sectors where they are represented.
 (ref:es-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
-```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4}
+```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4, out.height = "4in"}
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
@@ -245,7 +245,7 @@ are defined in Table~\@ref(tab:es-decisions-biomass-tab).
 relative spawning biomass is projected to remain flat for the next 3 years
 with zero catch and to decline for all non-zero catch levels evaluated.
 
-```{r es-depletion-comparison-fig, fig.cap = "(ref:es-depletion-comparison-cap)"}
+```{r es-depletion-comparison-fig, fig.cap = "(ref:es-depletion-comparison-cap)", fig.height = 4, out.height = "4in"}
 
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.

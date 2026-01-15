@@ -14,7 +14,7 @@ rmd_files: ["000-launcher.rmd",
             ## File 100 is required to make all that follow it appendices.
             "100-start-appendices.rmd",
             "101-appendix-data-tables.rmd",
-            #"102-appendix-data-figures.rmd",
+            "102-appendix-data-figures.rmd",
             #"111-appendix-srg-requests.rmd",
             #"121-appendix-glossary.rmd",
             #"131-appendix-fishery-report-canada.rmd",
