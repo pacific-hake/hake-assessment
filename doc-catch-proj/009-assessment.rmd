@@ -72,8 +72,6 @@ pattern of declining catches over recent years (especially in Canada).
 
 ## Management performance {-}
 
-TODO: Text here is unedited from last year's Executive summary.
-
 Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 `r tot_last_10_yrs_attainment`% and catches have been below coast-wide
@@ -82,8 +80,8 @@ targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
 (`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%).
 While Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
 over the past few years to historic lows. The utilization rate for the coast-wide
-fishery this year was the lowest of the previous decade (`r tot_2024_attainment`%)
-due, in part, to difficulties locating aggregations of fish during the spring and
+fishery this year (`r tot_2025_attainment`%) increased relative to the last two years 
+which had low attainment due to difficulties locating aggregations of fish during the spring and
 throughout the year in northern areas.
 The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
