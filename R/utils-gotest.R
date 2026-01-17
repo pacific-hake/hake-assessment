@@ -59,7 +59,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   type <- get_doc_type(index_fn)
 
   if(type == "doc"){
-    fns_lst <- gotest_doc_get_src_dest_filenames()
+    fns_lst <- gotest_doc_get_src_dest_filenames(bookdown_lst)
   }else if(type == "beamer"){
     fns_lst <- gotest_beamer_get_src_dest_filenames(bookdown_lst,
                                                     my_figures_dir = figures_dir)
@@ -71,29 +71,32 @@ gotest <- function(config_fn = "_bookdown.yml",
   dest_fns <- fns_lst$dest_fns
 
   work_dr <- tempdir()
-  setwd(work_dr)
-  unlink("*", recursive = TRUE, force = TRUE)
-
-  dir.create("doc")
-  dir.create(file.path("doc", figures_dir))
+  # Remove all old files if they exist
+  unlink(file.path(work_dr, "*"), recursive = TRUE, force = TRUE)
+  dir.create(file.path(work_dr, doc_path))
+  dir.create(file.path(work_dr, figures_dir))
   if(type == "beamer"){
-    dir.create("doc/images")
+    dir.create(file.path(work_dr, doc_path, "images"))
   }else if(type == "doc"){
-    dir.create("doc/bib")
-    dir.create("doc/csl")
+    dir.create(file.path(work_dr, doc_path, "bib"))
+    dir.create(file.path(work_dr, doc_path, "csl"))
+    dir.create(file.path(work_dr, doc_path, figures_dir))
   }
+  dest_fns <- file.path(work_dr, dest_fns)
+
+  copy_success <- map2(src_fns, dest_fns, ~{
+    file.copy(.x, .y, overwrite = TRUE, copy.mode = TRUE)
+  })
+
+  setwd(work_dr)
 
   # Needed for `here::here()` to work right
   writeLines("", ".here")
 
-  map2(src_fns, dest_fns, ~{
-    file.copy(.x, .y, overwrite = TRUE, copy.mode = TRUE)
-  })
-
   # Needed to set `here:here()` correctly
-  i_am(paste0("./doc/", index_fn))
+  i_am(paste0("./", doc_path, "/", index_fn))
 
-  setwd("doc")
+  setwd(doc_path)
   # Create the bookdown configuration file _bookdown.yml
   bd_lines <- c(
     'book_filename: "test"',
@@ -134,7 +137,7 @@ gotest <- function(config_fn = "_bookdown.yml",
                             "",
                             knitr_figures_dir)
   # Already in "doc" at this point so this will be created in "doc" dir
-  dir.create(here::here("doc", knitr_figures_dir))
+  dir.create(here::here(doc_path, knitr_figures_dir))
 
   # Edit the launcher to be in test mode. Need to keep leading spaces due to
   # YAML formatting specs

@@ -37,12 +37,12 @@ post_process_move_table_captions <- function(x,
   }
 
   settings_fn <- caption_adjustments_fn
-  doc_dr <- here("doc")
+  doc_dr <- here(doc_path)
   if(!dir.exists(doc_dr)){
-    stop("The `doc` directory which contains the file `", settings_fn, " ",
-         "does not exist")
+    stop("The `", doc_path, "` directory which contains the file `",
+         settings_fn, "` does not exist")
   }
-  settings_fn <- here("doc", settings_fn)
+  settings_fn <- here(doc_path, settings_fn)
   if(!file.exists(settings_fn)){
     stop("The caption adjustments CSV file does not exist. This file ",
          "should be here:\n", settings_fn)

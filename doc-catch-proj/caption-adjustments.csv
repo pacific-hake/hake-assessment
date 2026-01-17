@@ -1,0 +1,26 @@
+# For manual adjustments of captions. Some of the captions will not line up
+# perfectly with the header and footer lines. Nudging them a bit left or
+# right will line them up perfectly
+#
+# Note that all these tags have to be in the ORDER IN WHICH THEY APPEAR
+# IN THE DOCUMENT! The values are determined by trial-and-error looking at
+# the document after it's built
+#
+# Make sure you prepend the label with tab: for tables and fig: for figures
+#
+# Column descriptions:
+# chunk_label: The knitr chunk label for the chunk which creates the
+#   table or figure
+# adjustment: Amount in pts to move the caption. A negative number means
+#   move it left and positive means move it to the right
+
+chunk_label,adjustment
+#tab:main-catches-us-tab,-4
+#tab:main-assessment-changes-tab,-26
+#tab:main-est-numbers-at-age-tab,-12
+#tab:main-est-exp-rate-at-age-tab,-14
+#tab:main-est-catch-at-age-tab,-6
+#tab:main-ci-posterior-tab,-16
+#tab:main-risk-year-1-tab,-4
+#tab:main-risk-year-2-tab,-4
+#tab:main-risk-year-3-tab,-4
