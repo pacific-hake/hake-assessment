@@ -1,13 +1,7 @@
 
-\rfoot{Assessment}
+\rfoot{Catches}
 
-# Assessment {#sec:assessment}
-
-## Data and assessment {-}
-
-Add text here for the describing the catch-only projection.
-
-## Catches {-}
+# Catches {#sec:catches}
 
 (ref:es-catches-cap) Total `r sp` catch used in the assessment by sector,
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
@@ -70,7 +64,9 @@ landings in recent years. The catches in `r  last_data_yr` declined below
 the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
 pattern of declining catches over recent years (especially in Canada). 
 
-## Management performance {-}
+\rfoot{Management performance}
+
+# Management performance {#sec:management-performance}
 
 Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
@@ -104,8 +100,9 @@ table_landings_tac(
   longtable = TRUE)
 ```
 
+\rfoot{Forecast decision tables}
 
-## Forecast decision tables {-}
+# Forecast decision tables {#sec:forecast}
 
 TODO: Text here is unedited from last year's Executive summary.
 
@@ -242,6 +239,8 @@ plot_depl_fore_comparison(base_model,
 ```
 
 \clearpage
+
+\rfoot{Response to `r end_yr - 1` Scientific Review Group (SRG) review}
 
 # Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
 

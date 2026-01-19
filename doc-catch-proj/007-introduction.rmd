@@ -4,10 +4,6 @@
 
 # Introduction {#sec:introduction}
 
-## Stock {-}
-
-TODO: Text here is unedited from last year's Executive summary.
-
 This assessment reports the status of the coastal `r sp` (or `r common_name`,
 *`r science_name`*) stock off the west coast of the United States (U.S.) and Canada
 at the start of `r assess_yr`. This stock exhibits seasonal migratory
@@ -21,3 +17,23 @@ catches in Canadian waters typically consisting of fish greater than four years
 old. Separate, and much smaller, populations of `r sp` occurring in the major
 inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
 Sound, and the Gulf of California, are not included in this analysis.
+
+This `r assess_yr` Joint Technical Committee (JTC) assessment is based on
+projections from the `r end_yr` stock assessment [@JTC2025] estimated population
+dynamics, and associated parameter estimates, where the `r end_yr` fishery landings
+were specifically added as data (i.e., not assumed as in all other projection years
+shown in decision tables). No other `r end_yr` data were added to the assessment,
+though available data can be found in Appendix~\@ref(sec:tables)
+and Appendix~\@ref(sec:figures) for reference. This type of stock assessment is often
+referred to as a catch-only projection. It is a widespread method used to provide updated management advice given updates to recent catch history while using an already approved stock assessment. The `r assess_yr` assessment is again configured using Stock
+Synthesis (version `r ss_version`). 
+
+A projection based assessment for `r assess_yr` was chosen because the acoustic survey
+biomass data were unavailable in time to be incorporated into a fully updated assessment
+as a result of the extended U.S. federal government shutdown. Further, it has yet to be
+determined how to incorporate the new 2025 Integrated West Coast Pelagic Survey (IWCPS)
+estimates into the existing survey time series in a compatible way.  Thus, the JTC
+decided that without complete survey information a fully updated assessment based
+solely on fishery age composition data alone for two years in a row would considerably
+increase the risk for a biased assessment result and the management decisions based
+on that result.
