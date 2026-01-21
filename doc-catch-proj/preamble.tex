@@ -1,0 +1,214 @@
+% Add header line. `\PassOptionsToPackage` is used to pass options to
+% a package that has already been loaded. Bookdown creates code to loads
+% the geometry package before this preamble is loaded, so this is needed to
+% add options after the fact. To include footer line, see
+% `\renewcommand{\footrulewidth}` below, after fancyhdr is loaded.
+%\flushbottom
+% uncomment showframe below to show the geometry layout in the document
+\usepackage[layoutheight=12in,
+            layoutwidth=8.5in,
+            layoutvoffset=-0.5in,
+            includefoot,
+            twoside,
+            left=1in,
+            right=1in,
+            top=1in,
+            bottom=1.5in,
+            bindingoffset=0.5in,
+            footskip=0.5in
+            %showframe
+            ]{geometry}
+
+% To see the frames on each page showing margins and text outline areas
+% for debugging purposes.
+% \usepackage{showframe}
+% \renewcommand*\ShowFrameColor{\color{red}}
+
+% Needed for the `\KOMAoptions` calls that are used to change a page from
+% portrait to landscape. See the R function
+% `hake::post_process_landscape_tables()` which is where it is injected into
+% the TEX file
+\usepackage[usegeometry]{typearea}
+
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+  \fancyhead{}
+
+  \fancyfoot[C]{\thepage}
+
+  \fancyfoot{}
+  \fancyfoot[L]{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[R]{}
+}
+% INSERT headrule and footrule here - do not remove this comment
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% For centering with fixed width column or right cell values in a tabular
+% Use 'C' instead of 'c' in latex table code
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+% http://tex.stackexchange.com/questions/664/why-should-i-use-
+% usepackaget1fontenc\usepackage[T1]{fontenc}
+
+% This provides `\sectionfont{}` which we use to make section fonts uppercase
+% with this command: `\sectionfont{\makeUpperCase}`
+\usepackage{sectsty}
+
+% Provides control over the `\maketitle` command
+\usepackage{titling}
+
+% Provides normal numeric numbering for pages
+\pagenumbering{arabic}
+
+% Math packages
+\usepackage{mathptmx}
+\usepackage{nccmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% For bold math symbols in equations
+\usepackage{bm}
+
+\ifPDFTeX
+  % PDFlatex requirements
+  \usepackage{lmodern}
+\else
+  % Lualatex requirements
+  % Command to find fonts (TexLive) - not case sensitive
+  % luaotfload-tool --find="IBM Plex Serif" --fuzzy
+  % luaotfload-tool --find="ibm plex serif" --fuzzy
+  \usepackage{fontspec}
+  %\setsansfont{CMU Sans Serif}
+  %\setmonofont{CMU Typewriter Text} % Consolas
+  %
+  % Do not change the following line, the font is changed in the YAML
+  % part of 000-launcher.rmd and the post processor looks for this line to
+  % replace with your selection
+  \setmainfont{IBM Plex Serif}
+
+  % Needed by lualatex to print unicode symbols
+  \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
+  % Create an alias for bm->symbf when using lualatex to avoid
+  % missing font errors
+  \let\bm\symbf
+\fi
+
+% Don't use `eqnarray`, it's old and buggy when combined with many newer
+% packages. `\align` is from `amsmath` package
+% These don't work though. It is impossible due to the way align is
+% implemented. We can't use them. Place \begin{align} and \end{lalign}
+% directly in the document instead
+\newcommand{\eb}{\begin{align}}
+\newcommand{\ee}{\end{align}}
+
+% Keep whole paragraph on one page instead of a single line on the next page.
+\usepackage[all]{nowidow}
+
+% Used to make the headers in tables via the kableExtra::linebreak() function.
+\usepackage{makecell}
+% These two commands make the table header cells set up by `linebreaker()`
+% have their text closer together vertically. They work in conjunction with
+% `\makecell`.
+\usepackage{array}
+\renewcommand\cellset{\renewcommand\arraystretch{0.5}
+\setlength\extrarowheight{1pt}}
+
+% Needed for `H` placement option for plots.
+\usepackage{float}
+
+% To make a float on its own page appear at the top instead of vertically
+% centered. From: http://stackoverflow.com/questions/2009420/how-to-put-a-
+% figure-on-the-top-of-a-page-on-its-own-in-latex
+\makeatletter
+\setlength\@fptop{0pt}
+\makeatother
+
+% Caption indentation and style.
+\usepackage[format = plain,
+            justification = justified,
+            indention = 3mm,
+            labelsep = period,
+            font = {small},
+            % `singlelinecheck = false` is required for the post processing
+            % for moving captions to work
+            singlelinecheck = false,
+            labelfont = bf]{caption}
+
+% Page number in the bottom center of page.
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+
+% Font settings for the title page.
+\newcommand*{\TitleFont}{
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}
+      \fontsize{20}{24}
+      \selectfont}
+
+\usepackage{graphicx}
+
+% For the table of contents, `\tocdepth` is the depth to show in the table
+% of contents (TOC) and secnumdepth is the depth the numbering should take
+% place in the document overall
+\usepackage{tocloft}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+
+% Setup hyperlink attributes here plus more in post_process_modify_link_colors()
+\PassOptionsToPackage{breaklinks=true,
+  bookmarksopen,
+  bookmarksdepth=3,
+  hypertexnames=false}{hyperref}
+
+% Provides `\landscape`. Unnecessary for compiling after running the post
+% processing script (`hake::post_process()`) in R but needed for the
+% pre-post-processed build to work without error (during the
+% `bookdown::render_book()` call)
+\usepackage{pdflscape}
+
+% Makes TeX faster by loading more longtable rows (100) at a time into memory
+\setcounter{LTchunksize}{400}
+
+% Necessary to avoid "over 100 dead cycles" error from pdflatex
+\maxdeadcycles=200
+
+% Necessary to avoid "too many unprocessed floats" error from pdflatex
+\extrafloats{1000}
+
+% This ensures all section headers are centered on the page
+\usepackage{sectsty}
+\sectionfont{\nohang\centering}
+
+% This changes the names of the appendices from a simple letter only
+% (e.g. A) to this format:
+% Appendix A:
+% It also places the Appendix A on its own line above the title line.
+% % Centering is added here to match with the main document centering above
+\usepackage{titlesec}
+\usepackage[titletoc,title]{appendix}
+\makeatletter
+\g@addto@macro\appendix{
+  \titleformat{\section}[display]
+    {\centering\normalfont\Large\bfseries}{\appendixname\enspace\thesection}{0.1em}{}
+}
+\makeatother
+
+% This makes the section headers all uppercase
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}{1}{0mm} % name, level, indent
+{-18pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt} % beforeskip afterskip
+{\centering\normalfont\large\bfseries\MakeUppercase}}
+\makeatother
+
+% To show the number of pages in the document
+\usepackage{lastpage}
+
+% PREAMBLE EOF - do not remove, required by preprocessor
+%
