@@ -116,8 +116,8 @@ gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL,
                file.path(doc_path, forecast_descriptions_fn),
                file.path(doc_path, object_placement_fn),
                file.path(doc_path, "preamble.tex"),
-               file.path(doc_path, "bib/refs.bib"),
-               file.path(doc_path, "csl/csas.csl"))
+               file.path(doc_path, bib_src_fn),
+               file.path(doc_path, csl_src_fn))
 
   dest_fns <- c(file.path(doc_path, "000-launcher.rmd"),
                 file.path(doc_path, "001-load-packages.rmd"),
