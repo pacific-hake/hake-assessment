@@ -20,7 +20,7 @@ run_forecasts(
 \item{forecast_yrs}{A vector of forecast years}
 
 \item{ss_exe}{The name of the SS3 executable. If run standalone,
-this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
+this will be \link{ss_executable}. If run from the context of of the \link[bookdown:bookdown-package]{bookdown::bookdown}
 document, this will be set as a YAML key/tag}
 
 \item{...}{Arguments passed to \code{\link[=fetch_ct_levels]{fetch_ct_levels()}}}

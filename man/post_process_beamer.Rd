@@ -20,5 +20,5 @@ Post-process the TEX file output by Bookdown for beamer presentations
 }
 \details{
 Called by \code{\link[=hake_beamer]{hake_beamer()}} to post-process the LaTeX compiled by the
-\link{bookdown} package
+\link[bookdown:bookdown-package]{bookdown::bookdown} package
 }

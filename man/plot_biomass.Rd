@@ -91,10 +91,11 @@ plot_depl_fore_comparison(
   y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0], "1.5", "2"),
   y_colors = c("black", "red", "green", "black", "blue", "black", "black"),
   alpha = 0.2,
-  leg_pos = c(0.15, 0.83),
+  leg_pos = c(0.15, 0.8),
   leg_ncol = 1,
   leg_font_size = 12,
   forecast_yrs,
+  is_catch_proj = FALSE,
   point_size = ts_pointsize,
   point_shape = ts_pointshape
 )
@@ -502,6 +503,10 @@ only}
 
 \item{ax_label_color}{Color of the font for the X and Y axis tick and
 title labels}
+
+\item{is_catch_proj_model}{Logical. If \code{TRUE}, The model is assumed to be a
+catch projection model only and the plotting will be adjusted to account for
+this}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

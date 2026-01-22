@@ -5,9 +5,9 @@
 \alias{hake}
 \title{hake: A package for creating the Pacific hake stock assessment document}
 \description{
-Uses the \link{bookdown}, \link{rmarkdown}, and \link{knitr} packages along with
+Uses the \link[bookdown:bookdown-package]{bookdown::bookdown}, \link[rmarkdown:rmarkdown-package]{rmarkdown::rmarkdown}, and \link[knitr:knitr-package]{knitr::knitr} packages along with
 TexLive's \code{lualatex} to generate a PDF of the stock assessment document.
-Also included are \link{bookdown} beamer presentation templates for the various
+Also included are \link[bookdown:bookdown-package]{bookdown::bookdown} beamer presentation templates for the various
 meetings required.
 }
 \details{

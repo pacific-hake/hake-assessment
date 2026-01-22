@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-enact-privacy-rule.R
 \name{enact_privacy_rule}
 \alias{enact_privacy_rule}
-\title{Apply the confidentiality rule to spatial data. Copied from the \link{gfplot}
+\title{Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot::gfplot}
 package}
 \usage{
 enact_privacy_rule(dat, bin_width, n_minimum_vessels, x_lim, y_lim)
@@ -29,7 +29,7 @@ events removed due to privacy limitations, and 3) The total number of
 fishing events in \code{dat}
 }
 \description{
-Apply the confidentiality rule to spatial data. Copied from the \link{gfplot}
+Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot::gfplot}
 package
 }
 \details{

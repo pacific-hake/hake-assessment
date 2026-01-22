@@ -20,5 +20,5 @@ Post-process the TEX file output by Bookdown
 }
 \details{
 Called by \code{\link[=hake_pdf]{hake_pdf()}} to post-process the LaTeX compiled by the
-\link{bookdown} package
+\link[bookdown:bookdown-package]{bookdown::bookdown} package
 }

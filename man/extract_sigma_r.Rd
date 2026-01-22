@@ -51,6 +51,6 @@ returned from \code{\link[r4ss:SS_output]{r4ss::SS_output()}}. Typically, this t
 MLE results, but this function also offers the capability to calculate this
 info from the table of MCMC results as well.
 
-Based on the non-exported function \code{extract_sigma_R_info()} in \link{r4ss},
+Based on the non-exported function \code{extract_sigma_R_info()} in \link[r4ss:r4ss-package]{r4ss::r4ss},
 but with a wrapper for more than one model
 }
