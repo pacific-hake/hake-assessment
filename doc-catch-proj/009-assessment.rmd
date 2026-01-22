@@ -75,15 +75,16 @@ targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
 `r end_yr - 1`, the mean utilization rates differed between the U.S.
 (`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%).
 While Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
-over the past few years to historic lows. The utilization rate for the coast-wide
+over the past several years to historic lows. The utilization rate for the coast-wide
 fishery this year (`r tot_2025_attainment`%) increased relative to the last two years 
 which had low attainment due to difficulties locating aggregations of fish during the spring and
 throughout the year in northern areas.
 The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
 Agreement for `r sp`, was implemented for the `r last_assess_yr` fishery.
-Total landings last exceeded the coast-wide quota in 2002 when utilization
-was 112%.
+The U.S. proportion of the coastwide catch has exceeded 90% in each of the last
+four years. Total landings last exceeded the coast-wide quota in 2002
+when utilization was 112%.
 
 ```{r es-landings-tac-tab, results = "asis", echo = FALSE}
 
