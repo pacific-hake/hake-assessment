@@ -18,22 +18,40 @@ old. Separate, and much smaller, populations of `r sp` occurring in the major
 inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
 Sound, and the Gulf of California, are not included in this analysis.
 
-This Joint Technical Committee (JTC) assessment is based on
-projections from the `r last_data_yr` stock assessment [@JTC2025] estimated population
-dynamics, and associated parameter estimates, where the `r last_data_yr` fishery landings
-were specifically added as data (i.e., not assumed as in all other projection years
-shown in decision tables). No other `r last_data_yr` data were added to the assessment,
-though available data can be found in Appendix~\@ref(sec:tables)
+The base model for this Joint Technical Committee (JTC) assessment is the base
+model from the `r last_data_yr` stock assessment [@JTC2025], projected forward
+to the start of `r assess_yr` using the fishery catches from `r last_data_yr`. 
+There is no updated fitting of the model to data; thus all parameter estimates
+are the same as given in @JTC2025. 
+No other `r last_data_yr` data were added to the assessment model,
+though available updated data are presented in Appendix~\@ref(sec:tables)
 and Appendix~\@ref(sec:figures) for reference. This type of stock assessment is often
-referred to as a catch-only projection. It is a widespread method used to provide updated management advice given updates to recent catch history while using an already approved stock assessment. The `r assess_yr` assessment is again configured using Stock
-Synthesis (version `r ss_version`). 
+referred to as a catch-only projection. It is a widespread method used to
+provide updated management advice given updates to recent catch history while
+using an already approved stock assessment.
 
-A projection based assessment for `r assess_yr` was chosen because the acoustic survey
-biomass data were not available in time to be incorporated into a fully updated assessment
-as a result of the extended U.S. federal government shutdown. Further, it has yet to be
+The `r last_data_yr` base model was a statistical catch-at-age population
+model fit in a Bayesian context using  Markov chain Monte
+Carlo sampling via the efficient No-U-Turn Sampler [@JTC2025]. The model assumes 
+that the `r sp` population is a single coast-wide stock subject to
+one aggregated fleet with combined male and female population dynamics. 
+The `r assess_yr` base model therefore has the same assumptions and is then run
+forward to the
+start of `r assess_yr` using the known catch for `r last_data_yr`. It is
+again configured using Stock Synthesis [@MethotWetzel2013] version `r ss_version`. 
+
+Such a catch-only projection assessment for `r assess_yr` was chosen because the acoustic survey
+biomass estimate and age data were not available in time to be incorporated into a fully updated assessment,
+as a result of the extended U.S. federal government shutdown in `r last_data_yr`. Furthermore, it has yet to be
 determined how to incorporate the new 2025 Joint U.S.-Canada Integrated West
-Coast Pelagics Survey estimates into the existing survey time series in a
-compatible way.  Thus, the JTC decided that without complete survey information a
-fully updated assessment based solely on fishery age composition data alone for two
-years in a row would considerably increase the risk for an inaccurate assessment
-result used to inform management decisions.
+Coast Pelagics Survey biomass estimate and data into the existing survey time series in a
+compatible way, because of changes in survey design. 
+Thus, the JTC decided that conducting the usual fully updated assessment
+(i.e. estimating all the parameters again) without complete survey information
+would not be appropriate. Such an assessment would be based solely on
+fishery-age composition data for two 
+consecutive years, whereas usually this only occurs for a single year
+(in-between the biannual survey). The absence of survey information to constrain
+the model would considerably increase the risk of inaccurate assessment
+results being used to inform management decisions.
+
