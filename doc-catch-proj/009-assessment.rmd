@@ -252,7 +252,9 @@ While this year is a projection based assessment, the JTC provides the following
 
 1. **The SRG recommends a thorough analysis of catch and biomass distribution for Canada and US that examines latitudinal shifts over time, and seeks to explain poor fishery performance in recent years. The SRG recommends developing a limited set of standardized descriptive spatial distribution metrics (such as center of gravity) to support future year discussions.**
 
-*Response -- TODO The ...*
+*Response -- The JTC continues to support an analysis across available data sources to better understand the current distribution of the stock along the U.S. West Coast. The planned work of building species distribution models incorporating environmental factors across the transboundary range of Pacific has been delayed due to staffing changes at the NWFSC.*
+
+*The JTC is also continuing work evaluating patterns of Pacific Hake in the U.S. West Coast Bottom Trawl Survey in California waters where fishery data are limited. The JTC will also continue work investigating spatial fishing effort, catch, and revenue over time using data summary tools (e.g., [Pacific Fishing Effort Mapping Project](https://geo.psmfc.org/portal/apps/storymaps/stories/7bc1a025e2fd43e49efb011cd15e1d4e)).*
 
 2. **The SRG recommends continuing sensitivities for steepness, natural mortality, σR, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
 
@@ -260,45 +262,15 @@ While this year is a projection based assessment, the JTC provides the following
 
 3. **The SRG recommends that the JTC continue exploring alternative ways of estimating natural mortality to update the current approach in the model, and particularly consider options which have age-based natural mortality, and may be external to SS3.**
 
-*Response -- TODO, not updated from last year's text yet:  `r sp` have several natural predators, including themselves,
-particularly on younger ages. Recently, [Trzcinski et al. (2024)](https://scholar.
-google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.
-pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=
-AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:
-AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified `r sp` as the largest
-mean proportion of the diet of harbor seals. Additionally, the abundance of harbor
-seals is near carrying capacity in Canadian waters and has been since the late 1990s.
-Stock Synthesis allows for the inclusion of a predator index to estimate predation
-mortality in addition to baseline natural mortality. Data for predation mortality can be
-absolute numbers of dead fish due to the predator, an index of predator effort, and
-predation composition (age or length) data. A predation index based on estimated
-abundance of harbor seals could be added to the assessment model, but this has not
-been explored.*
+*Response -- `r sp` have several natural predators, including themselves, particularly on younger ages. Recently, [Trzcinski et al. (2024)](https://www.int-res.com/articles/meps_oa/m743p113.pdf) identified `r sp` as the largest mean proportion of the diet of harbor seals. Additionally, the abundance of harbor seals is near carrying capacity in Canadian waters and has been since the late 1990s. Stock Synthesis allows for the inclusion of a predator index to estimate predation mortality in addition to baseline natural mortality. Data for predation mortality can be
+absolute numbers of dead fish due to the predator, an index of predator effort, and predation composition (age or length) data. A predation index based on estimated abundance of harbor seals could be added to the assessment model, but this has not been explored.*
 
-*A potential, better path forward is to use Dynamic Structural Equation
-Modeling (DSEM) to include indices for multiple predators and allow for two-way
-interactions between them and $M$. This capability is not, and will not be,
-available within Stock Synthesis but is possible using models written in
-Template Model Builder. A proof of concept has been implemented at the Alaska
-Fisheries Science Center and discussions are ongoing to implement this in the
-Fisheries Integrated Modeling System (FIMS). Thus, for the 2025 assessment a
-simple version of FIMS will be fit, where the simple version does not have the
-capacity to estimate ageing error or facilitate DSEMs. A more complex FIMS
-model will be presented to the SRG in 2026.*
+*A potential, better path forward is to use Dynamic Structural Equation Modeling (DSEM) to include indices for multiple predators and allow for two-way interactions between them and $M$. This capability is not, and will not be,
+available within Stock Synthesis but is possible using models written in Template Model Builder. A proof of concept has been implemented at the Alaska Fisheries Science Center and work is ongoing to implement this in the Fisheries Integrated Modeling System (FIMS).*
 
-*In 2023 the JTC unsuccessfully estimated age-specific $M$ using Stock
-Synthesis, where it was seen as an unsuccessful exercise because estimates of
-$M$ increased with age due to a lack of data to inform the estimates.
-Second, the JTC explored the use of Lorenzen $M$ but this is not possible in
-Stock Synthesis without simultaneously estimating growth. Thus, the JTC sees
-using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model
-with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a
-way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of
-estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4, 5,
-and 6$^+$, where the $M$ at-age estimates are strictly natural mortality due to
-cannibalism. Two sensitivities were run for this assessment, one where
-baseline mortality at age was fixed and one where it was estimated. Results
-are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
+*In 2025, the JTC presented sensitivities to using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4, 5, and 6$^+$, where the $M$ at-age estimates are strictly natural mortality due to cannibalism.* 
+
+*The JTC plans to continue to evaluate how to account for age-based and potentially time-varying mortality in future assessments.*
 
 4. **The SRG recommends examining alternative structural assumptions for the stock assessment. More complex structural assumptions may utilize the data more thoroughly, explain different trends across areas and/or fleets, and estimate stock status more accurately, but simpler models may be more appropriate for determination of the TAC. The MSE can be used to determine best performing assessment models for management. Priority avenues of examinations include multiple fleets (e.g., fleets-as-areas) and alternative parametric and time-varying (or time-invariant) selectivity patterns.**
 
@@ -314,7 +286,7 @@ are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
 
 7. **The SRG encourages the JTC to consider alternative methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).**
 
-*Response -- TODO, not fully updated from last year's text: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.*
+*Response -- The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.  Additionally, there is intersection between this research and alternative model fleet structure and the impact of alternative ways to determine input sample size within each fleet which the JTC will consider in ongoing research.*
 
 *Sensitivity analyses using alternative input sample sizes, following the Stewart and Hamel (2014) approach, will continue to be evaluated in subsequent assessments.*
 
