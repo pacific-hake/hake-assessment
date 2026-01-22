@@ -34,11 +34,11 @@ repo_path=`echo $repo_path | tr -d '\n'`
 models_path="/srv/hake/models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="02-version"
+version_path="01-version"
 type_path="05-test-models"
-model_name="00-edna"
+model_name="05-base-stochastic-forecast-recruitment"
 
-ss_exe="ss3"
+ss_exe="ss3_2024"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250

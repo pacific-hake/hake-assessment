@@ -44,7 +44,7 @@ models_path="/srv/hake/models"
 year_path=$assess_year
 version_path="01-version"
 type_path="05-test-models"
-model_name="04-base-with-high-recruitment"
+model_name="05-base-stochastic-forecast-recruitment"
 
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 
@@ -60,8 +60,7 @@ does not exist, bailing out." ; exit 1; }
     run_forecasts(model_path = '$model_path',
                   run_spr_100 = FALSE,
                   run_stable_catch = FALSE,
-                  is_catch_proj_model = TRUE,#
-                  forecast_yrs = 2026:2035,
+                  is_catch_proj_model = TRUE,
                   ss_exe = 'ss3_2024')" #\
   #> /dev/null 2>&1; \
   printf "\nBase model forecasts complete\n" \

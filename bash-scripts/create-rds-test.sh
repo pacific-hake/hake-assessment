@@ -16,7 +16,7 @@
 # Build RDS files for some sensitivity models. Do not put more than 6 here
 # as the machine will run out of memory
 
-models=(14-long-base)
+models=(05-base-stochastic-forecast-recruitment)
 
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
