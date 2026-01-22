@@ -55,3 +55,10 @@ consecutive years, whereas usually this only occurs for a single year
 the model would considerably increase the risk of inaccurate assessment
 results being used to inform management decisions.
 
+In this document we present data that are updated from the `r last_data_yr`
+assessment, figures and tables related to projections from the `r assess_yr`
+base model, a Glossary, and an updated hake-specific ecosystem summary. Since
+there is no new fitting to data, we refer readers to @JTC2025 for details
+regarding data that has not been updated, parameter estimates, model
+diagnostics, sensitivity analyses, etc.~that have not changed from the 
+`r last_data_yr` assessment.
