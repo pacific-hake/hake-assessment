@@ -1,0 +1,369 @@
+\newpage
+
+\rfoot{Ecosystem report}
+
+# Hake-specific ecosystem summary {#sec:app-ecosystem-report}
+
+Contributed by Kristin N. Marshall, Mary E. Hunsicker, and Andrew M. Edwards
+
+The base model for this stock assessment includes
+year-specific maturity-at-age that explicitly accounts for changes in temperature, and
+empirical weight-at-age data that may be due to ecosystem effects. As such, the
+assessment is consistent with an `Ecosystem Approach to Fisheries
+Management'.
+
+Section~\@ref(sec:recruitment-variables) discusses
+relevant ecosystem information that has been previously
+found to influence `r sp` recruitment [@VestfalsEtAl2023].
+We focus on easily-available and updatable
+information, and what is presented here is not exhaustive. As such it should be
+considered a first step in providing an operational summary (updatable and
+expanded upon every year) of relevant
+ecosystem information for `r sp`. Section~\@ref(sec:ecosystem-conditions) then describes
+broader ecosystem and environmental conditions relevant to `r sp`. A risk table
+(Table~\@ref(tab:app-ecosystem-report-risk-tab)) summarizes conditions, uncertainty,
+and concerns related to `r sp`.
+
+## Ecosystem variables relevant for recruitment {#sec:recruitment-variables}
+
+We present some of the indicators that @VestfalsEtAl2023
+and subsequent analyses (Marshall et al., pers. comm.) found to correlate with
+higher
+`r sp` recruitment deviations (Table
+\@ref(tab:app-ecosystem-report-indicators-tab)).
+@VestfalsEtAl2023 used estimated hake recruitment deviations from 1980 to 2010, based on results in
+the @JTC2020 hake assessment and ocean model variables from the University of
+California, Santa Cruz Regional Ocean Modeling System (ROMS) hindcast. We also conducted a preliminary update using
+a newer ocean modeling product (GLORYS, described below) that extends the analysis to a more
+recent time period (1993 to 2023), and used extended statistical methods that focus
+on within-sample and out-of-sample prediction for variable selection
+(K.~Marshall, pers.~comm.).
+
+\begin{table}[hbp]
+\centering
+\caption{\label{tab:app-ecosystem-report-indicators-tab}Descriptions of easily
+available ecosystem variables that were found to influence `r sp`
+recruitment either by Vestfals et al. (2023) or our updated analyses (unpublished).
+Variables are in order of life-history stage, following Table~A1 of Vestfals et
+al. (2023); see that reference for full details. Shelf break is considered
+between 100 and 2,000~m isobaths, defining the longitudinal extent for several
+variables. The first subscripts refer to life-history stage
+(`pre` is preconditioning, while JA is Jan-Apr, in the egg to late larvae stage).}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{p{3cm}p{6cm}p{6cm}}
+\toprule
+Abbreviation~of variable & Definition & Effect on recruitment; expectation for an increase in
+variable\\
+\midrule
+
+PREY$_{\mbox{pre,her}}$ & Pacific Herring spawning biomass off the west coast of
+Vancouver Island & Increased competition with herring on summer feeding grounds
+leads to poorer feeding conditions and reduced adult condition;
+$\downarrow$ recruitment the following year\\
+
+BI$_{\mbox{pre}}$ & North Pacific Current Bifurcation Index & Northward-shifted
+bifurcation leads to increased advection of prey southwards, leading to poorer
+feeding conditions off British Columbia, Washington, and Oregon, and reduced
+adult condition;
+$\downarrow$ recruitment the following year\\
+
+PDO$_{\mbox{pre}}$ & Pacific Decadal Oscillation during preconditioning (Apr-Sep) & Indicator of basin-scale
+processes, negative phase linked to higher productivity and improved adult condition (Apr-Sep);
+$\downarrow$ recruitment the following year\\
+
+NPGO$_{\mbox{pre}}$ & North Pacific Gyre Oscillation during preconditioning
+(Apr-Sep) & Indicator of basin-scale
+processes, positive phase linked to higher nutrient concentrations and
+productivity, and improved adult condition;
+$\uparrow$ recruitment the following year\\
+
+TEMP$_{\mbox{spawn}}$ & Mean temperature during spawning (shelf break,
+Jan-Mar, 130-500~m depth, 31-36°~N) &
+At higher temperatures, fish are less likely to spawn but growth rate of larvae
+increases;
+$\cup$-shaped relationship with recruitment that year\\
+
+AST$_{\mbox{eggs}}$ & Net along-shore transport (shelf break,
+Jan-Mar, 40-60~m depth, 31-36°~N)
+& Increased northward advection away from juvenile nursery areas decreases
+recruitment; $\downarrow$ recruitment that year\\
+
+MLD$_{\mbox{yolk}}$ & Mean mixed layer depth (shelf break
+Jan-Apr, 31-36°~N)
+& Larvae aggregate at base of mixed layer so mixed layer depth may limit how far
+they rise in the water column affecting later transport; $\downarrow$ recruitment that year\\
+
+SSH$_{\mbox{JA.c}}$ & Average sea-surface
+height off California as an indicator of basin-scale processes (from coast to
+30~km offshore, Jan-Apr, 34.5-42.5°~N) &
+Higher sea surface is indicative of higher productivity and better conditions for copepods;
+$\uparrow$ recruitment that year\\
+
+MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
+Mar-Jun, 31-37°~N)
+& Larvae aggregate at base of mixed layer so mixed layer depth may limit how far they rise in the
+water column affecting later transport, and possibly less competition and
+predation when mixed layer shallower; % Kristin's guess
+$\uparrow$ recruitment that year\\
+
+PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m isobath,
+Mar-Jun, 75-275~m depth, 33.5-34.5°~N)
+& Increased northward
+advection away from juvenile nursery areas decreases recruitment; $\downarrow$ recruitment that year \\
+
+PRED$_{\mbox{age0.age1hake}}$ & Biomass of age-1 Pacific Hake (from this stock assessment)
+& Age-1 hake predate on pelagic juveniles (roughly Apr-Sep); $\downarrow$ recruitment that year \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+Overall, this resulted in 11 ecosystem indices described in Table~\@ref(tab:app-ecosystem-report-indicators-tab) that correlate with recruitment deviations of `r sp`. These include three of the five indices included in
+the best-fitting model of @VestfalsEtAl2023 (see their Figure~7), and three of
+the further nine indices found in their top 16 candidate models (their
+Table~2).
+Time series for five indices are based on values amalgamated in the pacea R
+package [@EdwardsEtAl2024]. The other six indices
+were calculated from outputs of the Global
+Ocean Physics Reanalysis ([GLORYS12V1]((https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description))) product, which is a global ocean
+eddy-resolving oceanographic model covering 1993 onwards. Details of spatial,
+depth, and temporal ranges are given in Table~\@ref(tab:app-ecosystem-report-indicators-tab).
+
+The following variables are taken from pacea. Pacific Herring (\emph{Clupea pallasii}) spawning biomass index was
+calculated from latest results [@DFO2024] of the stock assessment, which is conducted using
+a statistical catch-at-age model [@ClearyEtAl2019]. The North Pacific Current
+Bifurcation Index (BI) was developed by @MalickEtAl2017, who found that a northward-shifted bifurcation was
+associated with increased salmon productivity in British Columbia and
+Washington State waters. The index is
+[updated annually](https://github.com/michaelmalick/bifurcation-index/) (Michael
+Malick, pers.~comm.).
+The Pacific Decadal Oscillation (PDO) is a monthly index which is a long-lived
+El Niño-like pattern of Pacific climate variability [@MantuaEtAl1997].
+The North Pacific Gyre Oscillation (NPGO) is a climate pattern
+that is significantly correlated with fluctuations of salinity,
+nutrients, and chlorophyll-a in long-term observations in the
+California Current and Gulf of Alaska [@DiLorenzoEtAl2024].
+The estimates of age-1 `r sp` are taken from this current assessment model (and will
+be updated in pacea). The six further indices were calculated from
+GLORYS outputs by K.~Marshall.
+
+Estimates of `r sp` recruitment from this assessment are presented alongside the
+five indices calculated using outputs from pacea
+(Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig))
+and the six indices calculated from GLORYS output
+(Figure~\@ref(fig:app-ecosystem-summary-from-glorys-fig)).
+All indices are standardised over the ranges of years shown (different for each
+figure), such that each index has a mean of zero and standard deviation of
+one. The x-axis corresponds to the year for which recruitment is expected to be
+influenced by the ecosystem variable represented by the index. For example,
+PREY$_{\mbox{pre,her}}$ is an index representing Pacific Herring spawning biomass off the west coast of
+Vancouver Island (Table~\@ref(tab:app-ecosystem-report-indicators-tab)). @VestfalsEtAl2023 found that increased herring biomass led to
+increased competition with hake on summer feeding grounds, leading to poorer
+feeding conditions and reduced adult condition. `r sp` recruitment would then be
+affected the following year. Thus, the PREY$_{\mbox{pre,her}}$ index for year 2020 in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig)
+represents the herring spawning biomass in 2019, because that is the biomass
+expected to influence hake recruitment in 2020. A similar shift is done for the
+other three variables that influence the adult preconditioning stage of hake.
+
+The notation PREY$_{\mbox{pre,her}}$ represents herring being a prey item for
+adult hake in the preconditioning stage, although @VestfalsEtAl2023 found a
+competition effect (not a predator-prey effect as originally hypothesised).
+
+Some variables are plotted with a flipped y-axis, so that upwards in all plots
+consistently corresponds to conditions supposedly good for hake recruitment.
+For example, a lower herring biomass is expected to correspond to an increase in hake
+recruitment, and so the y-axis for the herring index in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig)
+is flipped, so that lower-than-average herring biomass is upwards on the
+plot. It is coloured blue to represent a negative herring biomass
+anomaly. Similarly, red represents a positive herring biomass anomaly but
+values point downwards to indicate a negative potential effect on hake
+recruitment. A similar flip is done for all variables for which a negative index
+was found to
+correspond to positive hake recruitment, to make it easier to
+visualise potential effects. A similar approach is taken for
+Figure~\@ref(fig:app-ecosystem-summary-from-glorys-fig).
+
+We have not conducted further analyses on these time series, but present them as
+a first attempt to compile varied ecosystem information into single figures that
+can
+stimulate thinking about ecosystem effects, and
+that can be updated and expanded upon for future assessments. Note that the
+strongest driver of hake recruitment found by
+@VestfalsEtAl2023 was eddy kinetic energy between May and September (during the
+female spawning preconditioning stage) from point Conception to Cape Blanco, but
+an up-to-date index of this was not easily available.
+
+<!-- Figures currently built in pacea/R-temp/ecosystem-summary-hake-make-figures.R on dev-andy branch -->
+
+(ref:app-ecosystem-summary-from-pacea-cap) Estimated hake recruitment from this assessment (top), plus five ecosystem indices
+based on the pacea R package. The x-axis corresponds to the
+expected influenced year
+of `r sp` recruitment (see
+text). Red (blue) bars represent a positive (negative) index, with the y-axis flipped for four
+indices so that
+upwards represents a positive expected influence on recruitment.
+
+(ref:app-ecosystem-summary-from-pacea-alt) This figure shows
+time series of hake recruitment plus five ecosystem indices.
+
+```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "ecosystem_summary_from_pacea.png"),
+                 error = FALSE)
+```
+
+(ref:app-ecosystem-summary-from-glorys-cap) Estimated `r sp` recruitment from
+the current assessment model (top), plus six ecosystem calculated from GLORYS
+output. Axes are defined as in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig) and in the
+text. *Recruitment has a $\cup$-shaped relationship
+with mean temperature during spawning and for simplicity we do not flip the axis.
+
+(ref:app-ecosystem-summary-from-glorys-alt) This figure shows
+time series of hake recruitment plus six further ecosystem indices.
+
+```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "ecosystem_summary_from_glorys.png"),
+                 error = FALSE) #
+```
+
+\clearpage
+
+\begin{table}[tbp]
+\centering
+\caption{\label{tab:app-ecosystem-report-risk-tab}
+`Risk table' for Pacific Hake, to document ecosystem and climate factors
+potentially affecting stock productivity and uncertainty or other concerns
+arising from the stock assessment (see text). Level~1 is a favourable ranking,
+Level~2 neutral, and Level~3 is unfavourable. CVA is the Climate Variability
+Assessment approach (McClure et al., 2023).}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{p{5cm}p{5cm}p{5cm}}
+\toprule
+Ecosystem and environmental conditions & Assessment data inputs &
+Assessment model fits and structural uncertainty\\
+\midrule
+\begin{itemize}
+  \itemindent = -8pt
+  \item Recruitment: 2021-2024 recruitment indicators neutral to favorable
+  \item Prey: favorable (krill, juvenile hake)
+  \item Predators: unfavorable (increasing)
+  \item CVA rank: low
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Very reliable catch reporting
+  \item Generally well-sampled fishery-dependent and \protect{-independent} age
+  compositions
+  \item Informative age-2+ fishery-independent survey biomass index every other
+  year
+  \item Informative age-1 recruitment index every other year
+  \item Includes externally estimated time-varying weight-at-age (growth) and
+  time-varying and temperature-dependent maturity (fecundity) as data inputs
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Fully Bayesian stock assessment, integrating over multiple sources of
+  parametric uncertainty
+  \item High recruitment variability and no information on recent recruitment in
+  assessment model from 2023 onwards, given no survey in 2024
+  \item Key demographics estimated using priors (natural mortality and
+  steepness)
+  \item Clear identity of large cohorts after at least age-3
+  \item Model fits well to age compositions, though occasionally at the expense
+  of the survey index of abundance
+  \item Uncertain how changes in the distribution of fishing relate to migration
+  patterns and stock abundance
+  \end{itemize} \\
+\hline
+Level~2 (medium agreement, robust evidence) & Level~1 & Level 2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+## Ecosystem and environmental conditions {#sec:ecosystem-conditions}
+
+To start the process of discussing the vulnerability of `r sp` to climate change,
+we evaluated recent trends in environmental drivers of hake recruitment and
+growth, predators, and prey, along with the climate vulnerability assessment
+(CVA) rank assigned to hake by @McClureEtAl2023. We did not consider
+competitors, habitat, or non-fisheries human activities (such as offshore wind
+development) during this evaluation. Overall, we consider ecosystem and
+environmental conditions to be neutral (Level 2) for hake, with medium to high
+confidence, based on medium agreement among indicators and robust evidence.
+We use this, plus information related to this stock assessment, to fill out
+the `risk table'
+in Table~\@ref(tab:app-ecosystem-report-risk-tab), based on the framework
+outlined by the [California Current Integrated Ecosystem Assessment (CCIEA) team](https://www.pcouncil.org/documents/2024/07/review-material-cciea-team-report-on-fep-initiative-4.pdf/).
+
+
+**Recruitment**
+
+A strong El Niño in 2023-24 caused warmer than average ocean temperatures in
+winter and spring. As expected during an El Niño, the biomass of lipid-rich
+northern copepods was generally lower during this period and indicators of krill
+abundance were below average. However, these conditions rapidly subsided in late
+spring. A delayed but strong spring upwelling ushered in cool and productive
+conditions, and the biomass of northern copepods and krill rebounded to near
+average levels for the remainder of the year. Overall, environmental conditions
+in winter and spring were likely less favorable for age-0 hake in 2024
+[@VestfalsEtAl2023, Table A.1] but conditions transitioned to those more favorable for
+hake productivity in summer and fall. Observations of larval hake off Southern
+California were above average during 2022-2024 and juvenile hake from Central
+California were at or above average 2021-2024.
+
+In 2025, the ecosystem is transitioning back to La Niña conditions, however
+large areas of warmer than average temperatures are still prevalent. In
+addition, marine heatwaves are forecasted to occur in offshore waters with the
+possibility of moving into coastal regions in summer and fall. It’s uncertain
+whether these conditions will negatively impact hake recruitment.
+
+**Hake distribution**
+
+Seasonal forecasts of hake distribution in the northern region of the California
+Current Ecosystem
+[@MalickHunsickerEtAl2020] were not available at the time of writing this
+summary, however these temperature-driven forecasts will be presented at the
+2025 SRG meeting. Given what we know about the influence of temperature on hake
+distribution and the role of temperature as a proxy for prey availability
+[@MalickHunsickerEtAl2020, @Phillips2022], we suspect that the delayed
+upwelling observed in 2024 may have delayed the extent of the northern migration
+of hake in the spring. Return to average conditions later in summer may have
+supported a later northern shift as feeding conditions for hake improved.
+
+**Predators and prey**
+
+`r sp` are common in many predator's diets (e.g., Bluefin Tuna, Swordfish,
+sharks, marine mammals, Sablefish, Arrowtooth Flounder, and adult hake). Recent
+trends (i.e. over the last five years) in many of these populations of hake
+predators are stable or increasing, suggesting mild concern about increased
+predation. For example, the consumption of hake by Bluefin Tuna and Swordfish
+has been well above average in recent years and the spawning biomass of these
+species has increased over this period as well (Leising et al., in prep).
+<!-- We
+assume that long term trends, in particular those related to recovery of marine
+mammals over several decades, are implicitly represented in the stock assessment
+and do not represent notable changes that warrant inclusion in the risk
+table.-->
+However, recent indices of prey abundance are favorable. Krill is a
+dominant diet item for juvenile and adult hake
+[@WippelEtAl2017, @Phillips2022, @BizzarroEtAl2023]. The CCIEA krill indicator shows an
+increasing trend in the central CCE over the last five years.
+
+**Climate vulnerability assessment results**
+
+Hake are highly exposed with low sensitivity to climate change, with an overall
+rank of low [@McClureEtAl2023]. However, we note that the CVA work pre-dates
+recent studies on the relationships between hake distribution and recruitment
+and ocean conditions [@MalickHunsickerEtAl2020, @VestfalsEtAl2023].
+
+\clearpage
