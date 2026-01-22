@@ -82,7 +82,9 @@ output:
    # NOTE: cannot use backticks inside R-chunk which already uses backticks
    # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
    #footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
-   footer_right: " " # "DRAFT - Do not circulate"
+   footer_right: "DRAFT - Do not circulate"  # did not show up in 2026
+   # footer_right: " " 
+
    # ---------------------------------------------------------------------------
 
    # Table of contents and reference link settings ----------------------------
@@ -244,11 +246,11 @@ knitr::opts_chunk$set(
   out.width = "\\textwidth")
 ```
 
-<!-- \small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
+<!-- Add this for DRAFT: -->
+\small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
 information only. They are in a pre-review, pre-decisional state and should not
 be formally cited or reproduced. They are to be considered provisional and do
 not represent any determination or policy of NOAA or the Department of Commerce.
--->
 
 \normalsize
 
@@ -289,17 +291,17 @@ Kiva L. Oken^3^ \
 
 \
 
-<!-- This DRAFT document is non-citable. -->
+This DRAFT document is non-citable. 
 
-This document should be cited as follows:
+<!-- This document should be cited as follows: 
 
-A.M. Edwards, A.M. Berger, C.J. Grandin, C.R. Wetzel, Johnson, K.F., and K.L. Oken.
+Edwards, A.M., A.M. Berger, C.J. Grandin, C.R. Wetzel, Johnson, K.F., and K.L. Oken.
 `r rmarkdown::metadata$project_variables$assess_yr`. Status of the
 `r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
 Prepared by the Joint Technical Committee of the U.S. and Canada
 `r rmarkdown::metadata$project_variables$sp`/Whiting Agreement, National
 Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
-
+-->
 
 TABLE OF CONTENTS GOES HERE
