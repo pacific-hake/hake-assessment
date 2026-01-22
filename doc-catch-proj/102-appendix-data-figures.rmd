@@ -2,7 +2,10 @@
 
 \rfoot{Figures}
 
-# Figures {#sec:figures}
+# Data Figures {#sec:figures}
+
+This appendix contains empirical data figures only, there are no model output figures included. The `r last_data_yr` assessment is a simple projection model which includes only the total `r last_data_yr` catch. The figures presented here contain historical data as well as the data for `r last_data_yr`, even though they were not used in modelling for this year. The `r last_data_yr` data presented here will be used in future assessment years' model runs.
+
 
 (ref:main-catches-cap) Total `r sp` catch used in the assessment by sector,
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
