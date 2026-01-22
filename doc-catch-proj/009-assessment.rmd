@@ -60,9 +60,9 @@ In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
-landings in recent years. The catches in `r  last_data_yr` declined below
-the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
-pattern of declining catches over recent years (especially in Canada). 
+landings in recent years. The catches in `r  last_data_yr` are near the 
+long-term average catch (`r f(long_term_avge_ct)`~t), but, particularly in Canada,
+the catches have generally declined over recent years. 
 
 \rfoot{Management performance}
 
