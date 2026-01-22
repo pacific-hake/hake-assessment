@@ -101,7 +101,7 @@ Remotes:
 ByteCompile: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 SystemRequirements: luahbtex (>= 1.16.0) - https://www.luatex.org/
 Config/testthat/parallel: true
 Config/testthat/edition: 2
