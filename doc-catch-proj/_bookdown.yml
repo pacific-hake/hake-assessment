@@ -21,7 +21,7 @@ rmd_files: ["000-launcher.rmd",
             #"132-appendix-fishery-report-us.rmd",
             #"141-appendix-estimated-parameters.rmd",
             #"151-appendix-eDNA-index.rmd",
-            #"161-appendix-ecosystem-report.rmd",
+            "161-appendix-ecosystem-report.rmd",
             "999-blank.rmd"]
 # `delete_merged_file`: If false, the `hake.Rmd` file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created

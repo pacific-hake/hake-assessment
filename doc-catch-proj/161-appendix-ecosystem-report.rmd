@@ -4,7 +4,7 @@
 
 # Hake-specific ecosystem summary {#sec:app-ecosystem-report}
 
-Contributed by Kristin N. Marshall, Mary E. Hunsicker, and Andrew M. Edwards
+Contributed by Mary E. Hunsicker and Andrew M. Edwards
 
 The base model for this stock assessment includes
 year-specific maturity-at-age that explicitly accounts for changes in temperature, and
@@ -17,15 +17,15 @@ relevant ecosystem information that has been previously
 found to influence `r sp` recruitment [@VestfalsEtAl2023].
 We focus on easily-available and updatable
 information, and what is presented here is not exhaustive. This approach was
-introduced in the 2025 stock assessment, and is updated here.
-It should be considered as a gradually improving provision of an operational
+introduced in the 2025 stock assessment [@JTC2025], and is updated here.
+It should be considered as an incrementally-improving operational
 (updatable and expanded upon every year) hake-specific ecosystem summary.
 Section~\@ref(sec:ecosystem-conditions) then describes
 broader ecosystem and environmental conditions relevant to `r sp`. A risk table
 (Table~\@ref(tab:app-ecosystem-report-risk-tab)) summarizes conditions, uncertainty,
 and concerns related to `r sp`.
 
-## Ecosystem variables relevant for recruitment TODO {#sec:recruitment-variables}
+## Ecosystem variables relevant for recruitment {#sec:recruitment-variables}
 
 We present some of the indicators that @VestfalsEtAl2023
 and subsequent analyses (Marshall et al., pers. comm.) found to correlate with
@@ -120,9 +120,9 @@ PRED$_{\mbox{age0.age1hake}}$ & Biomass of age-1 Pacific Hake (from this stock a
 \end{tabular}
 \end{table}
 
-HERE
-
-Overall, this resulted in 11 ecosystem indices described in Table~\@ref(tab:app-ecosystem-report-indicators-tab) that correlate with recruitment deviations of `r sp`. These include three of the five indices included in
+Overall, this resulted in 11 ecosystem indices described in
+Table~\@ref(tab:app-ecosystem-report-indicators-tab) that have been found
+previously to correlate with recruitment deviations of `r sp`. These include three of the five indices included in
 the best-fitting model of @VestfalsEtAl2023 (see their Figure~7), and three of
 the further nine indices found in their top 16 candidate models (their
 Table~2).
@@ -130,26 +130,45 @@ Time series for five indices are based on values amalgamated in the pacea R
 package [@EdwardsEtAl2024]. The other six indices
 were calculated from outputs of the Global
 Ocean Physics Reanalysis ([GLORYS12V1]((https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description))) product, which is a global ocean
-eddy-resolving oceanographic model covering 1993 onwards. Details of spatial,
+eddy-resolving oceanographic model covering 1993 onwards. 
+Details of spatial,
 depth, and temporal ranges are given in Table~\@ref(tab:app-ecosystem-report-indicators-tab).
 
 The following variables are taken from pacea. Pacific Herring (\emph{Clupea pallasii}) spawning biomass index was
-calculated from latest results [@DFO2024] of the stock assessment, which is conducted using
+calculated from updated results [@DFO2025] of the stock assessment, which is conducted using
 a statistical catch-at-age model [@ClearyEtAl2019]. The North Pacific Current
 Bifurcation Index (BI) was developed by @MalickEtAl2017, who found that a northward-shifted bifurcation was
 associated with increased salmon productivity in British Columbia and
 Washington State waters. The index is
 [updated annually](https://github.com/michaelmalick/bifurcation-index/) (Michael
-Malick, pers.~comm.).
+Malick, pers.~comm.), though 2025 values are not yet available.
 The Pacific Decadal Oscillation (PDO) is a monthly index which is a long-lived
 El Niño-like pattern of Pacific climate variability [@MantuaEtAl1997].
 The North Pacific Gyre Oscillation (NPGO) is a climate pattern
 that is significantly correlated with fluctuations of salinity,
 nutrients, and chlorophyll-a in long-term observations in the
 California Current and Gulf of Alaska [@DiLorenzoEtAl2024].
-The estimates of age-1 `r sp` are taken from this current assessment model (and will
-be updated in pacea). The six further indices were calculated from
-GLORYS outputs by K.~Marshall.
+The Pacific Herring, PDO and NPGO variables all have an extra year of
+values compared to those shown in the 2025 `r sp` stock assessment [@JTC2025].
+
+The estimates of age-1 `r sp` are taken from the current assessment model. Since
+the current base model did not involve updated data, the recruitment estimates
+are unchanged from the 2025 base model, and so the index of age-1 `r sp` is the
+same as for the 2025 assessment.
+
+The six further indices were calculated for the 2025 stock assessment from
+GLORYS outputs by K.~Marshall, with assistance of several colleagues in the
+extraction of model results, wrangling, and analysis. 
+For 2026 we have streamlined the process of obtaining outputs from GLORYS, such
+that three of the GLORYS products used here can now be extracted purely using R
+code (soon to be available in pacea), rather than requiring use of a more
+complex python and R setup
+(thanks to Megan Feddern, Nick Tolimieri, and Eric Ward, all NOAA, for sharing their code
+for this). Thus, three indices are updated this year (namely 
+TEMP$_{\mbox{spawn}}$,
+MLD$_{\mbox{yolk}}$, and 
+MLD$_{\mbox{latelarv}}$), 
+with the other three anticipated to be updatable for future assessments.
 
 Estimates of `r sp` recruitment from this assessment are presented alongside the
 five indices calculated using outputs from pacea
@@ -172,7 +191,8 @@ other three variables that influence the adult preconditioning stage of hake.
 
 The notation PREY$_{\mbox{pre,her}}$ represents herring being a prey item for
 adult hake in the preconditioning stage, although @VestfalsEtAl2023 found a
-competition effect (not a predator-prey effect as originally hypothesised).
+competition effect (not a predator-prey effect as originally hypothesised, based
+on conventional wisdom).
 
 Some variables are plotted with a flipped y-axis, so that upwards in all plots
 consistently corresponds to conditions supposedly good for hake recruitment.
@@ -189,15 +209,26 @@ correspond to positive hake recruitment, to make it easier to
 visualise potential effects. A similar approach is taken for
 Figure~\@ref(fig:app-ecosystem-summary-from-glorys-fig).
 
+In the analogous figures in the 2025 `r sp` stock assessment we showed
+recruitments for recent years (specifically 2023, 2024, and 2025). But in
+hindsight these should not be shown because they were not fit to data and so just
+represented median hake recruitment with no recruitment deviations. Given our
+current recruitment estimates are unchanged from the 2025 assessment, we omit
+them from the figures. This highlights that the stock assessment model has no
+information on recruitment in those years (whereas relevant ecosystem
+information is available) and motivates continued investigation
+into potential drivers of recruitment. 
+
 We have not conducted further analyses on these time series, but present them as
-a first attempt to compile varied ecosystem information into single figures that
+an unpdated attempt to compile varied ecosystem information into single figures that
 can
 stimulate thinking about ecosystem effects, and
 that can be updated and expanded upon for future assessments. Note that the
 strongest driver of hake recruitment found by
 @VestfalsEtAl2023 was eddy kinetic energy between May and September (during the
 female spawning preconditioning stage) from point Conception to Cape Blanco, but
-an up-to-date index of this was not easily available.
+an up-to-date index of this was not easily available, though should be for next
+year (in collaboration with Wei Cheng, NOAA).
 
 <!-- Figures currently built in pacea/R-temp/ecosystem-summary-hake-make-figures.R on dev-andy branch -->
 
@@ -293,7 +324,7 @@ Level~2 (medium agreement, robust evidence) & Level~1 & Level 2\\
 \end{tabular}
 \end{table}
 
-## Ecosystem and environmental conditions TODO {#sec:ecosystem-conditions}
+## Ecosystem and environmental conditions TODO FOR 2026 {#sec:ecosystem-conditions}
 
 To start the process of discussing the vulnerability of `r sp` to climate change,
 we evaluated recent trends in environmental drivers of hake recruitment and
