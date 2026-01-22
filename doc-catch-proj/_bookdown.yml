@@ -1,7 +1,7 @@
  # name of the pdf file that is created: hake.pdf
 book_filename: "hake"
 rmd_files: ["000-launcher.rmd",
-            "../doc/001-load-packages.rmd",
+            "001-load-packages.rmd",
             "002-load-globals.rmd",
             "003-load-models.rmd",
             "004-load-project-variables.rmd",

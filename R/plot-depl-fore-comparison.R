@@ -4,6 +4,9 @@
 #' @param fore_inds Indices of the `model$ct_levels` list to include as
 #' forecast catch streams in the plot
 #' @param forecast_yrs A vector of the forecast years
+#' @param is_catch_proj_model Logical. If `TRUE`, The model is assumed to be a
+#' catch projection model only and the plotting will be adjusted to account for
+#' this
 #' @export
 plot_depl_fore_comparison <- function(
     model,
@@ -39,10 +42,11 @@ plot_depl_fore_comparison <- function(
       "black",
       "black"),
     alpha = 0.2,
-    leg_pos = c(0.15, 0.83),
+    leg_pos = c(0.15, 0.8),
     leg_ncol = 1,
     leg_font_size = 12,
     forecast_yrs,
+    is_catch_proj = FALSE,
     point_size = ts_pointsize,
     point_shape = ts_pointshape){
 
@@ -134,6 +138,13 @@ plot_depl_fore_comparison <- function(
   yoob_historic <- calc_yoob(historic,
                              ylim,
                              "5%", "50%", "95%", show_arrows)
+
+  if(is_catch_proj){
+    yoob_historic$d <- dplyr::rows_update(
+      x = yoob_historic$d,
+      y = yoob_fore$d,
+      by = c("model", "year"), unmatched = "ignore")
+    }
 
   g <- ggplot(yoob_fore$d,
               aes(fill = model,

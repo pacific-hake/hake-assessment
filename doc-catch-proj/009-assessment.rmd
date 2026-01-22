@@ -236,7 +236,8 @@ with zero catch and to decline for all non-zero catch levels evaluated.
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 7, 10),
-                          forecast_yrs = forecast_yrs)
+                          forecast_yrs = forecast_yrs,
+                          is_catch_proj = TRUE)
 ```
 
 \clearpage
