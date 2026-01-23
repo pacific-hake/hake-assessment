@@ -1,0 +1,36 @@
+\newpage
+
+\rfoot{Canadian fishery report}
+
+# Report of the `r assess_yr - 1` `r sp` fishery in Canada {#sec:app-can-fishery-report}
+
+**Prepared by the Canadian Advisory Panel on January 23, 2026 for inclusion in this assessment document.**
+
+
+The 2025 Canadian Offshore Pacific Hake fishery catch was the second lowest
+recorded since the fishery began in the late 1970s, with 3988 mt caught at
+today’s date. This is a negligible increase from the 3,105 mt caught in 2024.
+
+The reports from the fishermen were consistent; fishing was very poor as
+evident in the extremely low catch. The fleet reported no body of Hake on
+the Canadian Zone that allowed for a fishery to take place. What little catch
+occurred was in the traditional grounds off Ucluelet. FAS activity was largely
+one vessel only, and they searched the traditional area off Winter Harbour in
+the shallows and off the edge, but no fish was found. The fish that were
+encountered were again large older +1,000gr. The bycatch was primarily Pollock.
+The market for Hake was strong again in 2025, but the catches were not there
+to supply the fleet or the plants. The FAS Vessels accounted for an estimated
+95% of the catch in 2024.
+
+(ref:app-can-ap-report-cap) Weekly cumulative landings of `r sp` as
+reported by the Canadian Advisory Panel (AP) from 2015 to 2025.
+
+(ref:app-can-ap-report-alt) This figure shows another year of very low catch for the Canadian fishery
+
+```{r app-can-ap-report-fig, fig.cap = "(ref:app-can-ap-report-cap)", results = "asis", out.height = "4in"}
+
+include_graphics(file.path(figures_dir,"2026-canada-ap-catch-plot.png"), error = FALSE)
+```
+
+
+\clearpage
