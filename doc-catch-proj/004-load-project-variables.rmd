@@ -158,7 +158,10 @@ last_yr_us_ms_quota_reallocated <- ft |>
 last_5_yrs_total_ct <- ct_last5 |>
   pull(Total)
 long_term_avge_ct <- mean(ct$Total)
-ct_limit_quantiles <- base_model$mcmcvals$ct_limit_quantiles
+ct_limit_quantiles <- f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_",
+                                                                    assess_yr)]],
+                                            probs = probs)))
+names(ct_limit_quantiles) <- c("lower", "median", "upper")
 # ... recent catch, last year -------------------------------------------------
 last_yr_landings <- ct_last1 |>
   pull(Total) |>
