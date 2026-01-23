@@ -32,5 +32,4 @@ reported by the Canadian Advisory Panel (AP) from 2015 to 2025.
 include_graphics(file.path(figures_dir,"2026-canada-ap-catch-plot.png"), error = FALSE)
 ```
 
-
 \clearpage
