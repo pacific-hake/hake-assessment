@@ -107,12 +107,12 @@ table_landings_tac(
 
 For the 2025 stock assessment [@JTC2025], the spawning biomass was estimated at the start
 of 2025, and then projections were done assuming different catch scenarios that
-specified catches in 2025, 2026, and 2027. This
-gave estimated biomass quantities at the start of 2026, 2027, and 2028. The
-recruitment deviations were set to 0 for 2023 to 2027. This covers the two years
+specified catches in 2025 and 2026. This
+gave estimated biomass quantities at the start of 2026 and 2027. The
+recruitment deviations were set to 0 for 2023 to 2026. This covers the two years
 (2023 and 2024) for which no survey data was used to fit the model, and the
-three projection years (2025, 2026, and 2027). 
-This was a change from previous stock assessments, in which deviations were
+two projection years (2025 and 2026). 
+This was a change from previous stock assessments (i.e., 2024 and earlier), in which deviations were
 random non-zero values that could allow very large (or very small) random
 recruitments to occur and propagate through the projection years as the
 cohorts matured. The change to zero recruitment deviations was deemed
@@ -122,9 +122,9 @@ of the 2023 year class from the 2024 fishery was considered suspect given the
 unique fishing conditions during the year" [@JTC2025]. 
 Retaining the non-zero assumption could have allowed
  "potentially large recruitments that can inflate the forecast
-biomass yet are based on limited or no data and so may not materialise in
+biomass yet are based on limited or no data and so may not materialize in
 practice" [@JTC2025]. 
-We keep zero recruitment deviations for the 2026 base model for 2023 onwards
+We retain the zero recruitment deviations structure for the 2026 base model for 2023 onwards
 as we are using the same assumptions as for the 2025 base model, and we are not
 fitting to new data, so there is no new information to fit cohorts from 2023
 onwards. 
@@ -139,7 +139,7 @@ assumption leads to assumed recruitments close to around 0.38$R_0$, see
 Figure~e of @JTC2025, and does not allow for the occasional large recruitments 
 seen when using the assumption of non-zero-recruitment deviations as for, say,
 the distributions of the 2023 and
-2024 recuitments in Figure~f of the 2024 assessment [@JTC2024] . 
+2024 recruitments in Figure~f of the 2024 assessment [@JTC2024] . 
 
 For this assessment, we present projections for just one year, rather than three
 years as for previous assessment. So we assume
