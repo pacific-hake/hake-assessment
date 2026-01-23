@@ -267,9 +267,8 @@ table_decision <- \(
              "There are only ", ncol(spr), " forecast years and you chose ",
              "to show ", num_yrs_to_show, ". See `table_decision(type = 'spr')`")
       }
-      spr <- spr[, seq(num_yrs_to_show)]
       tmp <- spr|>
-        dplyr::filter(yr %in% forecast_yrs[-length(forecast_yrs)]) |>
+        dplyr::filter(yr %in% forecast_yrs[seq(num_yrs_to_show)]) |>
         select(-c("25%", "75%"))
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
       tmp
@@ -278,7 +277,7 @@ table_decision <- \(
     map_df(~{.x}) |>
     mutate_at(vars(-1), ~{f(.x, digits)})
 
-  # Contiforenue building the table data frame by connecting the value columns to
+  # Continue building the table data frame by connecting the value columns to
   # the previously-constructed data frame (with letters and catch forecast
   # columns)
   d <- bind_cols(d, forecast_tab)
