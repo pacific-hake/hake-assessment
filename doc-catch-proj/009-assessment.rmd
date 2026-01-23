@@ -105,8 +105,6 @@ table_landings_tac(
 
 # Forecast decision tables {#sec:forecast}
 
-TODO: Text here is unedited from last year's Executive summary.
-
 The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
 harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
@@ -117,9 +115,8 @@ biomass) and fishing intensity relative to the target under different
 catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
 and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
 projected outcome for each potential catch level and year (row) across the
-quantiles (columns) of the posterior distribution. Tables show results for up
-to three years (only two years in subsequent assessments following JMC advice)
-of future catch levels based on subsequent estimates of stock
+quantiles (columns) of the posterior distribution. Tables show results for
+two years of future catch levels based on subsequent estimates of stock
 status and fishing intensity.
 Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
@@ -140,19 +137,6 @@ fishing at the `r fspr_40` default harvest-rate catch limit
 (scenario `r letters[ct_levels_vals$ct_default_policy_ind]`: default HR)
 in `r assess_yr - 1` results in a median relative fishing intensity of
 `r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
-
-Management metrics that were identified as important to the Joint Management
-Committee and the Advisory Panel in 2012 are presented for
-`r forecast_yrs[2]` and `r forecast_yrs[3]` projections
-(Tables~\@ref(tab:es-risk-year-1-tab) and~\@ref(tab:es-risk-year-2-tab);
-Figures~\@ref(fig:es-risk-year-1-fig) and~\@ref(fig:es-risk-year-2-fig)).
-These metrics summarize the probability of various outcomes from the base model
-given each potential management action. Although not linear, probabilities can
-be interpolated from these results with reasonable accuracy for intermediate catch values in
-`r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)).
-However, interpolation is not appropriate for the default harvest rule scenario
-in `r assess_yr + 1` because it is conditional on the `r assess_yr` catch.
 
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
