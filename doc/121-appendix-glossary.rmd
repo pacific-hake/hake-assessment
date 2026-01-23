@@ -393,15 +393,16 @@ as shown in equation \@ref(eq:appendix-glossary-spr).
 increases with SPR from the origin and passes through 1-SPR of 0.6 and fishing
 intensity of 1.0.
 
-```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:glossary-fishing-intensity-illustration-cap)", fig.width = 5, out.height = "5in"}
+```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:glossary-fishing-intensity-illustration-cap)", out.height = "4in"}
+
 plot_intensity_illustration(0.4)
 ```
 (ref:glossary-spr-illustration-cap) Illustration of the spawning potential
 ratio (SPR) calculation based on the combination of maturity and fecundity used
 in the model, using the Markov chain Monte Carlo (MCMC) estimates of natural
 mortality, selectivity, and fishing mortality in the final year of the base
-model used in this year's assessment. The light blue bars represent unfished
-values, the dark blue bars represent fished values.
+model used in the `r base_model$endyr + 1` assessment. The light blue bars
+represent unfished values, the dark blue bars represent fished values.
 
 (ref:glossary-spr-illustration-alt) Numbers per recruit decrease exponentially from
 zero. Biomass per recruit peaks at age-3 fish which is the age at which fishing

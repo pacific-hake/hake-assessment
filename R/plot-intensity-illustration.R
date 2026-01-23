@@ -47,5 +47,5 @@ plot_intensity_illustration <- function(target = 0.4){
     scale_y_continuous(breaks = seq(0, 1.5, 0.5)) +
     xlab("1 - SPR") +
     ylab("Fishing intensity") +
-    theme(plot.margin = margin(c(20, 6, 6, 6)))
+    theme(axis.title.x = element_text(vjust = 0.5))
 }

@@ -129,6 +129,7 @@ plot_spr_illustration <- function(model,
     ylab("") +
     ggtitle("Female spawning biomass per recruit") +
     theme(plot.margin = margin(c(0, 0, 6, 0))) +
+    theme(axis.title.x = element_text(vjust = 1)) +
     scale_y_continuous(labels = ~{f(.x, 2)})
 
   # calculate spawning potential with and without fishing and SPR
