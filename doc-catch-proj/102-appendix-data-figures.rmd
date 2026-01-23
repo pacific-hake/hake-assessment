@@ -69,9 +69,9 @@ plot_depth_4_panel(can_ft_gear_depth_df,
                    y_breaks = depth_breaks)
 ```
 
-(ref:main-age-proportions-fig-cap) Add caption.
+(ref:main-age-proportions-cap) Recent age-proportion data for U.S. and Canadian fleets. Proportions are calculated from numbers of individuals in each age group. Age 15$+$ is an accumulator group.
 
-(ref:main-age-proportions-alt) Add alt caption.
+(ref:main-age-proportions-alt) The U.S. fleets observe higher age-proportions of younger fish compared to the Canadian fleets.
 
 ```{r main-age-proportions-fig, fig.cap = "(ref:main-age-proportions-cap)", fig.height = 8, out.height = "8in"}
 
