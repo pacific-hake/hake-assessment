@@ -7,8 +7,8 @@
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
 sectors where they are represented.
 
-(ref:es-catches-alt) This figure shows that catches in four of the last six
-years have been the largest in the time series.
+(ref:es-catches-alt) This figure shows that coast wide catches have generally 
+declined in recent years.
 
 ```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4, out.height = "4in"}
 
@@ -33,8 +33,8 @@ Over the last 10 years, `r max(ct$Year) - 9`--`r max(ct$Year)`
 (Table \@ref(tab:es-catches-tab)), the average coast-wide catch was
 `r ct_mean_10yrs`~t with U.S. and Canadian catches averaging
 `r ct_us_mean_10yrs`~t and `r ct_can_mean_10yrs`~t, respectively. Since 2017,
-the coast-wide catch has been declining annually through `r end_yr - 1` to
-`r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
+the coast-wide catch has been declining annually through 2024, with catches 
+increasing in `r end_yr-1`to `r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
 carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
 `r last_yr_can_attained`% in `r assess_yr - 1`.
@@ -60,7 +60,7 @@ In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
-landings in recent years. The catches in `r  last_data_yr` are near the 
+landings in recent years. The coast-wdie catches in `r  last_data_yr` are near the 
 long-term average catch (`r f(long_term_avge_ct)`~t), but, particularly in Canada,
 the catches have sharply declined over recent years. 
 
