@@ -158,6 +158,8 @@ table_age_data(
   landscape()
 ```
 
+<!--
+
 ```{r main-input-age-data-fishery-tab, results = "asis", echo = FALSE}
 table_input_age_data(
   base_model,
@@ -179,6 +181,7 @@ table_input_age_data(
   landscape()
 ```
 
+-->
 
 <!-- This is needed to cite within a table caption, see how it is included
 the caption below. Note it is OUTSIDE of a knitr chunk. -->
