@@ -11,6 +11,7 @@ table_risk(
   index = 1,
   digits = 2,
   type = c("probability", "percent"),
+  is_catch_proj = FALSE,
   font_size = 10,
   header_font_size = 10,
   header_vert_spacing = 12,
@@ -32,6 +33,9 @@ can be from 1 to N-1}
 \item{type}{One of \code{probability} or \code{percent}. If \code{probability}, the table
 columns will be decimal probabilities, if \code{percent} they will be expressed
 as percentages and a percent symbol (\%) will be added to the column headers}
+
+\item{is_catch_proj}{Logical. If \code{TRUE}, the model end year will be two
+years prior to the current year, so this allows for an index}
 
 \item{font_size}{The table data and header font size in points}
 

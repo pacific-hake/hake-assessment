@@ -10,6 +10,8 @@
 #' @param type One of `probability` or `percent`. If `probability`, the table
 #' columns will be decimal probabilities, if `percent` they will be expressed
 #' as percentages and a percent symbol (%) will be added to the column headers
+#' @param is_catch_proj Logical. If `TRUE`, the model end year will be two
+#' years prior to the current year, so this allows for an index
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
 #' the headers will have the same font size as the table cell data
@@ -26,6 +28,7 @@ table_risk <- function(model,
                        index = 1,
                        digits = 2,
                        type = c("probability", "percent"),
+                       is_catch_proj = FALSE,
                        font_size = 10,
                        header_font_size = 10,
                        header_vert_spacing = 12,
@@ -34,9 +37,10 @@ table_risk <- function(model,
 
   type <- match.arg(type)
 
-  if(index > length(model$risks)){
-    stop("`index` must be less than or equal to ", length(model$risks))
+  if(index > length(model$risks) || index < 1){
+    stop("`index` must be between 1 and ", length(model$risks))
   }
+
   risk <- model$risks[[index]] |>
                         as_tibble()
   # Remove columns about MSY which are DFO values
@@ -44,9 +48,10 @@ table_risk <- function(model,
     select(-contains("MSY"))
   # Fix tiny catch of less than 0.49 to zero, only for first (catch) column
   ct_col <- grep(paste0("^ForeCatch_",
-                        model$endyr + index, "$"),
+                        model$endyr + index + ifelse(is_catch_proj, 1, 0), "$"),
                  names(risk),
                  value = TRUE)
+
   ct_col_sym <- sym(ct_col)
   risk <- risk |>
     mutate(!!ct_col_sym := ifelse(!!ct_col_sym < 0.49,
@@ -62,12 +67,15 @@ table_risk <- function(model,
     risk <- risk |>
       mutate_at(vars(-(!!ct_col_sym)), ~{paste0(f(.x, digits), "\\%")})
   }
-risk <- risk |>
-  mutate(!!ct_col_sym := f(!!ct_col_sym)) |>
-  mutate(let = paste0(letters[seq_len(nrow(risk))], ":")) |>
-  select(let, everything()) %>%
-  setNames(c("", names(.)[-1]))
+  risk <- risk |>
+    mutate(!!ct_col_sym := f(!!ct_col_sym)) |>
+    mutate(let = paste0(letters[seq_len(nrow(risk))], ":")) |>
+    select(let, everything()) %>%
+    setNames(c("", names(.)[-1]))
 
+  if(index == 0){
+    index <- 1
+  }
   # Add nice header names
   col_names <- c("",
                  paste0("Catch (t)\nin ", forecast_yrs[index]),
