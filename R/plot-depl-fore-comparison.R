@@ -85,7 +85,7 @@ plot_depl_fore_comparison <- function(
 
   fore_future <- fore |>
     mutate(year = as.numeric(year)) |>
-    dplyr::filter(year >= min(forecast_yrs))
+    dplyr::filter(year %in% forecast_yrs)
 
   historic_med <- enframe(model$mcmccalcs$dmed)
   historic_lo <- enframe(model$mcmccalcs$dlower)
