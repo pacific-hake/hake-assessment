@@ -19,12 +19,22 @@ extract_label_from_figure_filename <- function(fn){
   bd_lines <- readLines(here(doc_path, "_bookdown.yml"))
   bd_rmd_raw <- grep("\\.rmd", bd_lines, value = TRUE)
   # Remove commented-out lines (for speed)
-  bd <- gsub("^ *", "", bd_rmd_raw)
-  if(length(grep("^#", bd))){
-    bd <- bd[-grep("^#", bd)]
+  fns <- trimws(bd_rmd_raw)
+  if(length(grep("^#", fns))){
+    fns <- fns[-grep("^#", fns)]
   }
-  fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
-  fns <- here(doc_path, fns)
+  fns <- gsub("^rmd_files: *\\[(.*)", "\\1", fns)
+  fns <- gsub("(.+)]", "\\1", fns)
+  fns <- gsub("\"", "", fns)
+  fns <- gsub(",", "", fns)
+
+  # Find the indices of any relative paths
+  inds_relpaths <- grep("\\.\\.\\/", fns)
+  if(length(inds_relpaths)){
+    fns[-inds_relpaths] <- here(doc_path, fns[-inds_relpaths])
+  }else{
+    fns <- here(doc_path, fns)
+  }
 
   k <- map(fns, ~{
     rmd <- readLines(.x)
