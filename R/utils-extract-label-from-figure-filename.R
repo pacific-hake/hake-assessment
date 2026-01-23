@@ -16,7 +16,7 @@
 #' @export
 extract_label_from_figure_filename <- function(fn){
 
-  bd_lines <- readLines(here("doc/_bookdown.yml"))
+  bd_lines <- readLines(here(doc_path, "_bookdown.yml"))
   bd_rmd_raw <- grep("\\.rmd", bd_lines, value = TRUE)
   # Remove commented-out lines (for speed)
   bd <- gsub("^ *", "", bd_rmd_raw)
@@ -24,7 +24,7 @@ extract_label_from_figure_filename <- function(fn){
     bd <- bd[-grep("^#", bd)]
   }
   fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
-  fns <- here("doc", fns)
+  fns <- here(doc_path, fns)
 
   k <- map(fns, ~{
     rmd <- readLines(.x)
