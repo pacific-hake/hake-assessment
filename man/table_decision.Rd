@@ -10,6 +10,7 @@ table_decision(
   type = c("biomass", "spr"),
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
+  num_yrs_to_show = 3,
   inc_fi_stable_catch = FALSE,
   bold_letters = TRUE,
   digits = 2,
@@ -33,6 +34,10 @@ table_decision(
 itself is an object of the \code{model} list}
 
 \item{rows_to_show}{A vector of letters of rows to show. If \code{NULL}, show}
+
+\item{num_yrs_to_show}{The number of forecast years to show for each catch
+level scenario in the decision table. Each lettered row group section will
+have this many rows of catch projections}
 
 \item{inc_fi_stable_catch}{Logical. If \code{TRUE}, include the two rows of
 forecasts for fishing intensity equal to 100\% and stable catch for the first

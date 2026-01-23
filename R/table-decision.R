@@ -6,6 +6,9 @@
 #' @param forecast_inds The indices to use in the `forecasts` object which
 #' itself is an object of the `model` list
 #' @param rows_to_show A vector of letters of rows to show. If `NULL`, show
+#' @param num_yrs_to_show The number of forecast years to show for each catch
+#' level scenario in the decision table. Each lettered row group section will
+#' have this many rows of catch projections
 #' @param inc_fi_stable_catch Logical. If `TRUE`, include the two rows of
 #' forecasts for fishing intensity equal to 100% and stable catch for the first
 #' two years
@@ -37,6 +40,7 @@ table_decision <- \(
   type = c("biomass", "spr"),
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
+  num_yrs_to_show = 3,
   inc_fi_stable_catch = FALSE,
   bold_letters = TRUE,
   digits = 2,
@@ -52,6 +56,10 @@ table_decision <- \(
 
   type <- match.arg(type)
 
+  if(num_yrs_to_show < 2){
+    stop("You must have at least 2 rows for each letter section in the ",
+         "decision table. See argument `num_yrs_to_show` in `table_decision()`")
+  }
   # `letter_df` A data frame with three columns called `let`, `row1_text`,
   # and `row2_text` where `let` contains the letter shown in the table for
   # each row, `row1_text` is the first line of text directly beneath the
@@ -99,25 +107,28 @@ table_decision <- \(
   }
   if(is_catch_proj_model){
     letter_df = tribble(
-      ~let,  ~row1_text,                        ~row2_text,
-      "a",  "",                                "",
-      "b",  "",                                "",
-      "c",  "",                                "",
-      "d",  "",                                "",
-      "e",  "",                                "",
-      "f",  "",                                "",
-      "g",  "2025 TAC",                        "",
-      "h",  "",                                "",
-      "i",  "",                                "",
-      "j",  "Default HR",                      paste0("(",
-                                                      fspr_40_10_for_latex_table,
-                                                      ")"))
+      ~let,  ~row1_text,
+      "a",  "",
+      "b",  "",
+      "c",  "",
+      "d",  "",
+      "e",  "",
+      "f",  "",
+      "g",  "2025 TAC",
+      "h",  "",
+      "i",  "",
+      "j",  "Default HR")
+    if(num_yrs_to_show > 2){
+      for(nr in seq(num_yrs_to_show - 2)){
+        vec <- rep("", nrow(letter_df))
+        letter_df <- bind_cols(letter_df, vec)
+
+      }
+    }
   }
+
   if(is.null(nrow(letter_df)) || nrow(letter_df) == 0){
     stop("`letter_df` is not a data frame with at least one row")
-  }
-  if(ncol(letter_df) != 3){
-    stop("`letter_df` must have three columns")
   }
 
   if(!is.null(rows_to_show[1])){
@@ -136,10 +147,28 @@ table_decision <- \(
   num_letters <- nrow(letter_df)
   # Extract `letter_df` into a simple vector and enframe it so that it is
   # a single column data frame
-  letter_col <- letter_df |>
-    pmap(~{c(..1, ..2, ..3)}) |>
-    unlist() |>
-    enframe(name = NULL)
+
+  if(num_yrs_to_show == 2){
+    letter_col <- letter_df |>
+      pmap(~{c(..1, ..2)}) |>
+      unlist() |>
+      enframe(name = NULL)
+  }else if(num_yrs_to_show == 3){
+    letter_col <- letter_df |>
+      pmap(~{c(..1, ..2, ..3)}) |>
+      unlist() |>
+      enframe(name = NULL)
+  }else if(num_yrs_to_show == 4){
+    letter_col <- letter_df |>
+      pmap(~{c(..1, ..2, ..3, ..4)}) |>
+      unlist() |>
+      enframe(name = NULL)
+  }else if(num_yrs_to_show == 5){
+    letter_col <- letter_df |>
+      pmap(~{c(..1, ..2, ..3, ..4, ..5)}) |>
+      unlist() |>
+      enframe(name = NULL)
+  }
 
   fore_lst <- model$forecasts
   if(is.null(fore_lst[1]) || is.na(fore_lst[1])){
@@ -180,6 +209,22 @@ table_decision <- \(
     }else{
       out <- .x$fore_catch$catch
     }
+    if(length(out) < num_yrs_to_show){
+      stop("The number of forecast catch levels in the model is not high ",
+           "enough to support the value of `num_yrs_to_show` that you ",
+           "supplied. fore_catch: ", paste(.x$fore_catch$catch[-1],
+                                           collapse = " "), "\n",
+           "num_yrs_to_show: ", num_yrs_to_show)
+    }
+    if(length(out) < num_yrs_to_show){
+      last_out_val <- out[length(out)]
+      length(out) <- num_yrs_to_show
+      out[is.na(out)] <- last_out_val
+    }
+    if(length(length(out) > num_yrs_to_show)){
+      length(out) <- num_yrs_to_show
+    }
+    out
   }) |>
     unlist() |>
     enframe(name = NULL, value = "Catch (t)")
@@ -198,7 +243,15 @@ table_decision <- \(
 
   forecast_tab <- map(forecast, ~{
     if(type == "biomass"){
-      tmp <- .x$depl |>
+      depl <- .x$depl
+      if(ncol(depl) < num_yrs_to_show){
+        stop("You have chosen too many years to show (`num_yrs_to_show`). ",
+             "There are only ", ncol(depl), " forecast years and you chose ",
+             "to show ", num_yrs_to_show, ". See `table_decision('type = biomass')`")
+      }
+
+      depl <- depl[, seq(num_yrs_to_show + 1)]
+      tmp <- depl |>
         t() |>
         as_tibble(rownames = "yr") |>
         mutate(yr = paste0("Start of ", yr)) |>
@@ -208,7 +261,14 @@ table_decision <- \(
       first_biomass_yr <<- slice(tmp, 1)
       slice(tmp, -1)
     }else if(type == "spr"){
-      tmp <- .x$spr|>
+      spr <- .x$spr
+      if(ncol(spr) < num_yrs_to_show){
+        stop("You have chosen too many years to show (`num_yrs_to_show`). ",
+             "There are only ", ncol(spr), " forecast years and you chose ",
+             "to show ", num_yrs_to_show, ". See `table_decision(type = 'spr')`")
+      }
+      spr <- spr[, seq(num_yrs_to_show)]
+      tmp <- spr|>
         dplyr::filter(yr %in% forecast_yrs[-length(forecast_yrs)]) |>
         select(-c("25%", "75%"))
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
@@ -218,7 +278,7 @@ table_decision <- \(
     map_df(~{.x}) |>
     mutate_at(vars(-1), ~{f(.x, digits)})
 
-  # Continue building the table data frame by connecting the value columns to
+  # Contiforenue building the table data frame by connecting the value columns to
   # the previously-constructed data frame (with letters and catch forecast
   # columns)
   d <- bind_cols(d, forecast_tab)
@@ -234,7 +294,7 @@ table_decision <- \(
   }
   # Create a data frame column containing the forecast years (minus 1)
   # to prepare for addition to the table data frame
-  catch_yrs <- rep(forecast_yrs[-length(forecast_yrs)], num_letters) |>
+  catch_yrs <- rep(forecast_yrs[seq(num_yrs_to_show)], num_letters) |>
     enframe(name = NULL,
             value = "Catch year")
 
@@ -361,7 +421,7 @@ table_decision <- \(
     # every nth row has a line under it without the special case
     spec <- ifelse(type == "biomass", 1, 0)
     k <- k |>
-      row_spec(spec + i * length(forecast_yrs[-length(forecast_yrs)]),
+      row_spec(spec + i * length(forecast_yrs[seq(num_yrs_to_show)]),
                hline_after = TRUE)
   }
 
