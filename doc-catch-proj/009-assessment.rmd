@@ -105,6 +105,64 @@ table_landings_tac(
 
 # Forecast decision tables {#sec:forecast}
 
+For the 2025 stock assessment [@JTC2025], the spawning biomass was estimated at the start
+of 2025, and then projections were done assuming different catch scenarios that
+specified catches in 2025, 2026, and 2027. This
+gave estimated biomass quantities at the start of 2026, 2027, and 2028. The
+recruitment deviations were set to 0 for 2023 to 2027. This covers the two years
+(2023 and 2024) for which no survey data was used to fit the model, and the
+three projection years (2025, 2026, and 2027). 
+This was a change from previous stock assessments, in which deviations were
+random non-zero values that could allow very large (or very small) random
+recruitments to occur and propagate through the projection years as the
+cohorts matured. The change to zero recruitment deviations was deemed
+preferable for the 2025 assessment for several reasons, including that the
+"information on the size 
+of the 2023 year class from the 2024 fishery was considered suspect given the
+unique fishing conditions during the year" [@JTC2025]. 
+Retaining the non-zero assumption could have allowed
+ "potentially large recruitments that can inflate the forecast
+biomass yet are based on limited or no data and so may not materialise in
+practice" [@JTC2025]. 
+We keep zero recruitment deviations for the 2026 base model for 2023 onwards
+as we are using the same assumptions as for the 2025 base model, and we are not
+fitting to new data, so there is no new information to fit cohorts from 2023
+onwards. 
+
+The zero-recruitment assumption did cause the projected populations to decline for the 2025
+assessment [@JTC2025] even with 0~t catch in the projection years. This is because the assumption does not
+account for the distribution of recruitments being
+incredibly skewed, with occasional large
+recruitments that can pull the stock out of a decline, that has been seen
+historically, e.g. Figure~e of @JTC2025. The zero-recruitment
+assumption leads to assumed recruitments close to around 0.38$R_0$, see 
+Figure~e of @JTC2025, and does not allow for the occasional large recruitments 
+seen when using the assumption of non-zero-recruitment deviations as for, say,
+the distributions of the 2023 and
+2024 recuitments in Figure~f of the 2024 assessment [@JTC2024] . 
+
+For this assessment, we present projections for just one year, rather than three
+years as for previous assessment. So we assume
+various catch scenarios for 2026, and forecast the biomass at the start of 2027.
+This is for several reasons:
+
+1. As just outlined, the zero-recruitment-deviation assumption can cause the
+   stock to decline, giving a pessimistic forecast. Forecasting further years
+   ahead will exacerbate this. 
+1. We do not want to forecast too far ahead from the last survey used to fit the
+   model, which was the 2023 survey, especially with not fitting the 2025
+   fishery age data.
+1. The models in the 2024 and 2025 assessments both estimated a stock biomass
+   somewhat larger than the biomass index from the 2023 survey; Figure~18 of
+   @JTC2024 and Figure~17 of @JTC2025. Inclusion of the 2025 survey biomass
+   index would have helped to address this overfitting, and pull down the
+   estimated biomass if warranted. Without the 2025 survey biomass index, it seems
+   pragmatic to err on the side of caution and not project too far ahead from
+   2023 survey.
+
+In future assessments we will consider non-zero deviations again and return to
+more years of forecasts, as the model should be fit to more up-to-date data. 
+
 The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
 harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
