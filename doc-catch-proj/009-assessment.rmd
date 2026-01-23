@@ -281,13 +281,10 @@ plot_depl_fore_comparison(base_model,
                           is_catch_proj = TRUE)
 ```
 
-With zero catch for the next two years and median recruitment from 2023 onward, the biomass has a
+With zero catch for 2026 and median recruitment from 2023 onward, the biomass has a
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
 `r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)) and a
-`r zero_catch_prob_bio_down_2`% probability of decreasing from
-`r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:es-risk-year-2-tab)
-and Figure~\@ref(fig:es-risk-year-2-fig)).
+Figure~\@ref(fig:es-risk-year-1-fig)).
 <!--and a `r zero_catch_prob_bio_down_3`% probability of decreasing from-->
 <!--`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)-->
 <!--and Figure~\@ref(fig:es-risk-year-1-fig)).-->
