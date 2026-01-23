@@ -34,7 +34,7 @@ Over the last 10 years, `r max(ct$Year) - 9`--`r max(ct$Year)`
 `r ct_mean_10yrs`~t with U.S. and Canadian catches averaging
 `r ct_us_mean_10yrs`~t and `r ct_can_mean_10yrs`~t, respectively. Since 2017,
 the coast-wide catch has been declining annually through 2024, with catches 
-increasing in `r end_yr-1`to `r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
+increasing in `r end_yr-1` to `r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
 carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
 `r last_yr_can_attained`% in `r assess_yr - 1`.
