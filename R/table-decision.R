@@ -29,6 +29,13 @@
 #' @param is_catch_proj_model Logical. If `TRUE`, The first forecast year will
 #' be assumed to be constant and removed from the ct levels and the decision
 #' table
+#' @param squash_text A vector of text of the same length as `squash_rows`.
+#' If `is_catch_proj` is `TRUE`, this text will be squashed #' (concatenated)
+#' to the corresponding letters given by the `squash_rows` vector. This
+#' argument will be ignored if `is_catch_proj` is `FALSE`
+#' @param squash_rows A vector of letters found in the decision table rows.
+#' See `squash_text`. This argument will be ignored if `is_catch_proj` is
+#' `FALSE`
 #' @param ret_df Logical. If `TRUE`, return a data frame (tibble()) instead
 #' of the [kableExtra::kbl()].
 #' @param ... Arguments passed to [knitr::kable()]
@@ -51,13 +58,15 @@ table_decision <- \(
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
   is_catch_proj_model = FALSE,
+  squash_text = c(paste0(last_data_yr, " TAC"), "Default HR"),
+  squash_rows = c("g", "j"),
   ret_df = FALSE,
   ...){
 
   type <- match.arg(type)
 
-  if(num_yrs_to_show < 2){
-    stop("You must have at least 2 rows for each letter section in the ",
+  if(num_yrs_to_show < 1){
+    stop("You must have at least 1 row for each letter section in the ",
          "decision table. See argument `num_yrs_to_show` in `table_decision()`")
   }
   # `letter_df` A data frame with three columns called `let`, `row1_text`,
@@ -107,19 +116,19 @@ table_decision <- \(
   }
   if(is_catch_proj_model){
     letter_df = tribble(
-      ~let,  ~row1_text,
-      "a",  "",
-      "b",  "",
-      "c",  "",
-      "d",  "",
-      "e",  "",
-      "f",  "",
-      "g",  "2025 TAC",
-      "h",  "",
-      "i",  "",
-      "j",  "Default HR")
-    if(num_yrs_to_show > 2){
-      for(nr in seq(num_yrs_to_show - 2)){
+      ~let,
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j")
+    if(num_yrs_to_show > 1){
+      for(nr in seq(num_yrs_to_show - 1)){
         vec <- rep("", nrow(letter_df))
         letter_df <- bind_cols(letter_df, vec)
 
@@ -137,6 +146,16 @@ table_decision <- \(
       dplyr::filter(let %in% rows_to_show)
   }
 
+  if(num_yrs_to_show == 1){
+
+    dd <- bind_cols(enframe(squash_rows, name = NULL), enframe(squash_text, name = NULL))
+    names(dd) <- c("let", "text")
+
+    letter_df <- letter_df |> left_join(dd, by = c("let")) |>
+      mutate(text = ifelse(is.na(text), "", text)) |>
+      mutate(let = ifelse(text == "", let, paste0(let, " (", text, ")"))) |>
+      select(let)
+  }
   if(bold_letters){
     letter_df <- letter_df |>
       mutate(let = latex_bold(paste0(let, ":")))
@@ -147,8 +166,12 @@ table_decision <- \(
   num_letters <- nrow(letter_df)
   # Extract `letter_df` into a simple vector and enframe it so that it is
   # a single column data frame
-
-  if(num_yrs_to_show == 2){
+  if(num_yrs_to_show == 1){
+    letter_col <- letter_df |>
+      pmap(~{c(..1)}) |>
+      unlist() |>
+      enframe(name = NULL)
+  }else if(num_yrs_to_show == 2){
     letter_col <- letter_df |>
       pmap(~{c(..1, ..2)}) |>
       unlist() |>

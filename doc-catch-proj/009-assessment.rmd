@@ -149,7 +149,7 @@ table_decision(
   type = "biomass",
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
-  num_yrs_to_show = 2,
+  num_yrs_to_show = 1,
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-",
@@ -182,7 +182,7 @@ table_decision(
   is_catch_proj_model = TRUE,
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
-  num_yrs_to_show = 2,
+  num_yrs_to_show = 1,
   inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
@@ -296,57 +296,6 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 1, " default harvest policy catch for alternative ",
     end_yr, " catch options (catch options are explained in ",
-    "Table~\\@ref(tab:es-decisions-biomass-tab))."),
-  font_size = 10,
-  header_font_size = 10,
-  longtable = TRUE)
-```
-
-\newpage
-
-(ref:es-risk-year-2-cap) Graphical representation
-of the probabilities related to spawning biomass, relative fishing intensity,
-and the `r end_yr + 2` default harvest policy catch for alternative
-`r end_yr + 1` catch options (including associated `r end_yr` catch; catch
-options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
-Table~\@ref(tab:es-risk-year-2-tab). The symbols indicate points that were
-computed directly from model output and lines interpolate between the points.
-
-(ref:es-risk-year-2-alt) This figure shows that the probability that the
-stock declines in 2025 is 74 percent or greater for all catch levels
-including zero. The probability that the stock falls under B40 is below
-0.1 for catches up to approximately 380 thousand tonnes.
-
-```{r es-risk-year-2-fig, fig.cap = "(ref:es-risk-year-2-cap)", fig.height = 4.5, out.height = "4in"}
-
-plot_fore_compare(base_model,
-                  forecast_yrs = forecast_yrs,
-                  fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.25, 0.75),
-                  leg_font_size = 9,
-                  remove_x_val = c(264, 342, 651)) +
-  # Following make the legend smaller and legend items closer together
-  theme(legend.key.size = unit(0.25, "cm"),
-        legend.spacing.y = unit(0.01, "cm"),
-        legend.box.background = element_rect(colour = "black")) +
-  guides(color = guide_legend(byrow = TRUE))
-```
-
-
-```{r es-risk-year-2-tab, results = "asis", echo = FALSE}
-
-table_risk(
-  base_model,
-  forecast_yrs,
-  index = 2,
-  type = "probability",
-  is_catch_proj = TRUE,
-  digits = 2,
-  caption = paste0(
-    "Probabilities related to spawning biomass, relative fishing intensity, ",
-    "and the ", end_yr + 2, " default harvest policy catch for alternative ",
-    end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
-    "in Table~\\@ref(tab:es-risk-year-1-tab) (catch options are explained in ",
     "Table~\\@ref(tab:es-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,

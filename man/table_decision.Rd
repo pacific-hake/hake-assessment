@@ -21,6 +21,8 @@ table_decision(
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
   is_catch_proj_model = FALSE,
+  squash_text = c(paste0(last_data_yr, " TAC"), "Default HR"),
+  squash_rows = c("g", "j"),
   ret_df = FALSE,
   ...
 )
@@ -65,6 +67,15 @@ See \code{header_vert_spacing}}
 \item{is_catch_proj_model}{Logical. If \code{TRUE}, The first forecast year will
 be assumed to be constant and removed from the ct levels and the decision
 table}
+
+\item{squash_text}{A vector of text of the same length as \code{squash_rows}.
+If \code{is_catch_proj} is \code{TRUE}, this text will be squashed #' (concatenated)
+to the corresponding letters given by the \code{squash_rows} vector. This
+argument will be ignored if \code{is_catch_proj} is \code{FALSE}}
+
+\item{squash_rows}{A vector of letters found in the decision table rows.
+See \code{squash_text}. This argument will be ignored if \code{is_catch_proj} is
+\code{FALSE}}
 
 \item{ret_df}{Logical. If \code{TRUE}, return a data frame (tibble()) instead
 of the \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
