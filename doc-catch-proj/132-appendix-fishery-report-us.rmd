@@ -6,13 +6,13 @@
 
 **Prepared by the United States Advisory Panel on January 23, 2026 for inclusion in this assessment document.**
 
+**2025 U.S. Sector Allocations and Catch**
 
-**TO UPDATE YET**
 Based on information provided by U.S. Advisory Panel members and data from
 the Pacific Fisheries Information Network (PacFIN), total U.S. harvest in the
-2024 whiting fishery was **165,582~t** (see Table \@ref(tab:us-ap-catch-tab)),
-which is 40% of the U.S. allocation of 410,035~t. Compared to the 2023 season
-(240,189~t), total U.S. catch was down 31% in 2024.
+2025 whiting fishery was **239,206~t** (see Table \@ref(tab:us-ap-catch-tab)),
+which is about 81% of the U.S. allocation of 295,520~t. Compared to the 2024 season
+(165,582~t), total U.S. catch was down 45% in 2025.
 
 ```{r us-ap-catch-tab, results = "asis", echo = FALSE}
 
@@ -27,30 +27,30 @@ d <- tibble(c("Tribal",
               "Mothership (MS)",
               "Catcher-Processor (CP)",
               "Total"),
-            f(c(71756,
+            f(c(51716,
                 750,
-                141762,
-                81007,
-                114760,
-                410035)),
-            f(c(26756,
+                102083,
+                58333,
+                82638,
+                295520)),
+            f(c(10000,
                 750,
-                160662,
-                91807,
-                130060,
-                410035)),
-            c(f(1541),
+                119603,
+                68345,
+                96822,
+                295520)),
+            c(f(526),
               "--",
-              f(81205),
-              f(20927),
-              f(61909),
-              f(165582)),
-            c(f(5.8),
+              f(107185),
+              f(48938),
+              f(82557),
+              f(239206)),
+            c(f(5),
               "--",
-              f(51),
-              f(22.8),
-              f(48),
-              f(40.4)))
+              f(90),
+              f(72),
+              f(85),
+              f(81)))
 
 col_names <- c("U.S. Sector",
                "Initial\nAllocation",
@@ -78,10 +78,11 @@ kbl(d,
     escape = FALSE,
     linesep = "",
     booktabs = TRUE,
-    caption = paste0("2024 U.S. whiting allocations and catch (tonnes, ",
+    caption = paste0("2025 U.S. whiting allocations and catch (tonnes, ",
                      "t). Tribal catch is estimated (SS sector), and MS ",
                      "catch was provided by the MS cooperative. Dashes ",
-                     "represent unknown values."),
+                     "represent unknown values.Tribal reapportionment occurred twice,",
+                     "one September 16 and September 29, 2025."),
     longtable = TRUE) |> 
     row_spec(0, bold = TRUE) |>
     row_spec(nrow(d), bold = TRUE) |> 
@@ -93,43 +94,50 @@ kbl(d,
 Sources for Table \@ref(tab:us-ap-catch-tab) are from the [Federal register](https://www.govinfo.gov/content/pkg/FR-2024-10-22/pdf/2024-24361.pdf) and
 [PacFIN Whiting Report](https://reports.psmfc.org/pacfin/f?p=501:202::INITIAL:NO:::).
 
-The lack of a Spring fishery for all sectors is one of the primary factors contributing to the
-low overall catch for the U.S. whiting fishery in 2024. It seems the hake were slow to show up
-(similar to 2023), and aggregation of fish observed in the Spring were located very far south,
-and, in many cases not feasible to pursue (due to cost/economics or regulation). The spring fishery
-was considered a failure for the catcher-processor (CP) sector, and boats in all sectors saw little
-to no fish north of 42 degrees through most of the spring. The mothership (MS) and shoreside (SS)
-vessels were able to get a few scratchy trips in June, but the fishery didn’t start in earnest until
-July. Abnormally cold water temperatures were also reported in the Spring fishery, which did benefit
-fish quality compared to 2023.
+**Shoreside (SS)""
+Similar to 2024, the 2025 shoreside fishery started out slow (no fish caught in the
+first two weeks of May). Fishing steadily picked up as the season progressed and
+continued all the way until the end of November, although effort began to drop off
+in late October due to weather and some boats heading to shipyard. Summer fishing
+for the SS sector was reported to be very good, as boats saw large schools of approximately
+500g fish and were able to fill up quickly. In the fall SS fishery, (Sept. through Nov.),
+fish were caught from Coos Bay all the way up to Juan de Fuca. Fish size increased
+over the season and was reported by shoreside processors to average 510-550g across
+the year.
 
-Late summer into early fall (August – October) provided the best fishing of the season. The
-MS and SS fleets reported notably good, clean fishing in August and September. Fish aggregations
-moved northward from the CA/OR border north of Newport, OR. The fish were consistently 500-600 grams
-with good quality and recovery. By the end of September, catch began to slow, and fish size had
-dropped to the 300-400g range, on average. Most of the MS and SS effort was in mid to southern
-Oregon, with some catch in northern Oregon and Washington in October. Off northern OR and WA,
-fishing was spottier across the entire year. Some SS boats had success finding hake in the box
-off Northern Washington later in the year. Most fish caught of WA waters were larger fish, in
-the 700-900 gram range and larger.
+Total catch in the 2025 SS Fishery was 107,185~t, which was about 90% of the total SS
+allocation. Several SS catcher boats did run up against their 2025 individual allocation
+and were either forced to quit early in the season or lease additional hake quota to
+continue fishing. 
 
-The CP sector began participating in the Fall fishery in late August/early September, which is a
-typical timeframe. At no point in the fall season did the CP sector have a full complement of
-vessels participating at the same time. This is due to some vessels returning from the Alaska
-pollock fishery late, shipyard schedules, and poor fishing. Early in the fall season, strong
-aggregations of whiting were observed in California, however it did not appear that fish moved
-north across the OR/CA border. CP vessels generally encountered low CPUE in the Fall fishery
-and difficulty finding consistent aggregations of whiting resulting in significant efforts
-searching for whiting. Most CP harvest occurred in central and southern Oregon.
+**Mothership (MS)**
+The 2025 mothership fishery was much improved compared to previous years. The MS
+fishery began mid-June and ended October 23, 2025. Fish availability was better and
+generally consistent throughout the year. Over the course of the year, MS fishing
+activity was distributed primarily south of Newport, OR. Improved utilization by the
+MS sector in 2025 is largely due to the consistent availability of MS platforms
+on the fishing grounds throughout the fishing year, as the two MS platforms that
+participated in the 2025 fishery remained on the grounds throughout the summer. The
+MS catcher boats were able to turn several trips with good, clean fishing, good fish
+size (avgeraging about 417g), and great catch per unit effort (CPUE).
 
-Bycatch was less of a problem than in most years, largely due to reduced catch and effort overall.
-Many MS and SS catcher boats use real time cameras and did report seeing very large numbers of
-small/juvenile hake in their cameras – Some fishermen reported seeing more 1 and 2 year-olds
-than they’ve seen in more than a decade. Boats in the pink shrimp fishery also reported seeing
-large numbers of juvenile hake.
+Total catch in the 2025 MS fishery was 48,938~t, which was about 72% of the MS
+allocation. Several MS catcher boats did run up against their 2025 individual
+allocation and were either forced to quit early in the season or lease additional
+hake quota to continue fishing. 
 
-Only two (2) out of six (6) mothership platforms participated in the U.S. whiting fishery in 2024.
-The shoreside sector continued to see reduced processing capacity with the loss of the Newport
-surimi plants for the 2024 season.
+**Catcher Processor (CP)**
+
+Overall fishing conditions for the CP sector were improved compared to last year, with
+better fish availability north of the California/Oregon border. Nearly all fishing
+activity took place off the Oregon Coast, distributed from the Columbia River to the
+California border. The CP fishery began in mid-May, and all CPs completed fishing
+operations by early November.
+
+Total catch in the 2025 CP fishery was 82,557~t, which was about 85% of the CP allocation.
+The primary reason the CP sector did not catch 100% of its allocation is due to a loss
+of two CP vessels from one company over the past several years. Its important to note
+two of the three CP companies that participated in the 2025 CP fishery caught nearly
+all of their allocations.
 
 \clearpage
