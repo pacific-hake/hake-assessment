@@ -220,8 +220,6 @@ This was done for several reasons:
    long-term model evaluation because the median recruitment is too low to sustain
    the population in perpetuity. Forecasting further years
    ahead will exacerbate this and lead to unexpected results. 
-1. We do not want to forecast too far ahead from the last survey used to fit the
-   model, which was the 2023 survey.
 1. The models in the 2024 and 2025 assessments both estimated a stock biomass
    somewhat larger than the biomass index from the 2023 survey; Figure~18 of
    @JTC2024 and Figure~17 of @JTC2025. Inclusion of the 2025 survey biomass
