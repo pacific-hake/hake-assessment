@@ -1,0 +1,81 @@
+\newpage
+
+\rfoot{One-page summary}
+
+# One-page summary {-}
+
+- The stock assessment model for `r assess_yr` has the same
+population dynamics structure as the `r last_assess_yr` model,
+except for recruitment deviations in the terminal two years and projection years
+being fixed at zero.
+The model is fit to an acoustic survey index of biomass, annual commercial catch
+data, and age-composition data from the survey and commercial fisheries.
+Unlike last year's assessment, the model was not fit to the relative index of age-1 fish.
+
+- Data for `r end_yr-1` were included for each data set and minor changes to
+pre-`r end_yr-1` data were made as necessary. Similar to last year's assessment, a
+model-based approach was used for the input weight-at-age matrix and time-varying
+temperature-dependent maturity, both of which inform fecundity.
+
+- Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
+(t represents tonnes), 48% below the average over the most recent 10 years
+(`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
+out of a total allowable catch (TAC), adjusted for carryovers, of
+`r last_yr_tac` t. The U.S. caught `r last_yr_us_landings`~t
+(`r last_yr_us_attained`% of their quota) and Canada caught
+`r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
+
+- The median estimate of the `r end_yr` relative spawning biomass
+(female spawning biomass at the start of `r end_yr` divided by that at
+unfished equilibrium, B~0~) is `r curr_depl_median`% but it is highly
+uncertain (with 95% credible interval from `r curr_depl_lower`% to
+`r curr_depl_upper`%). After declining from 2018--2022, the median
+relative spawning biomass increased from 2022--2025, due to the
+estimated above average, but uncertain, size of the 2020 and 2021
+cohorts entering maturity.
+
+- The median estimate of female spawning biomass at the start
+of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
+interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes`~t).
+This is a slight increase from
+<!-- `r diff_bio_median_last_curr`% `r diff_bio_median_last_curr_text` -->
+this assessment's estimate for the `r end_yr-1` female spawning
+biomass of `r prev_bio_median_tonnes`~t (with 95% credible interval
+from `r prev_bio_lower_tonnes` to `r prev_bio_upper_tonnes`~t).
+
+- The estimated probability that female spawning biomass at the start of
+`r assess_yr` is below the `r b_40` (40% of `r b_0`) reference point is
+`r probs_curr_below_b40`%, and the probability that the relative fishing
+intensity exceeded 1 in `r end_yr - 1` is
+`r probs_curr_rel_fish_intens_above_1`%. The joint
+probability of both these occurring is `r joint_percent_prob_above_below`%.
+
+- Based on the default harvest rule, the estimated median catch limit for
+`r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with
+95% credible interval from `r ct_limit_quantiles["lower"]` to
+`r ct_limit_quantiles["upper"]`~t).
+
+- Projections were conducted across a wide-range of catch levels.
+Projections setting the `r forecast_yrs[1]` and
+`r forecast_yrs[2]` catches equal to the `r forecast_yrs[1] - 1`
+coast-wide TAC of `r last_yr_tac` t show the estimated median relative
+spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
+`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` and then
+to `r f(last_yr_tac_fore_3_biomass)`% in `r end_yr + 2`,
+with a `r last_yr_tac_risk_2_bforty`% chance
+of the female spawning biomass falling below `r b_40` in `r end_yr + 2`.
+<!-- There is an estimated `r last_yr_tac_risk_1_biomass_decline`% chance of the -->
+<!-- female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an -->
+<!-- `r last_yr_tac_risk_2_biomass_decline`% chance of it declining from -->
+<!-- `r end_yr + 1` to `r end_yr + 2`, and an -->
+<!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
+<!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
+<!-- `r last_yr_tac` t. -->
+With realized catches of 400,000 t in 2025 and 2026, it was estimated that the
+stock will reach approximately `r b_40` at the start of
+2027, given the current assumption of average recruitment from 2023 onward.
+
+- Despite estimates of a current stock status likely above `r b_40`, the recent lack
+of survey abundance and fishery catch in Canada suggests
+a population structure not conducive to achieving harvest quotas in
+northern fisheries over recent years.
