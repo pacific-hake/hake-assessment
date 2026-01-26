@@ -424,7 +424,7 @@ table_risk(
 
 \clearpage
 
-\rfoot{Response to `r end_yr - 1` Scientific Review Group (SRG) review}
+\rfoot{Response to `r end_yr - 1` SRG review}
 
 # Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
 
