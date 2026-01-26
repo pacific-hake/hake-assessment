@@ -32,7 +32,7 @@ using an already approved stock assessment.
 
 The `r last_data_yr` base model was a statistical catch-at-age population
 model fit in a Bayesian context using  Markov chain Monte
-Carlo sampling via the efficient No-U-Turn Sampler [@JTC2025]. The model assumes 
+Carlo sampling via the efficient No-U-Turn Sampler [@JTC2025]. The model assumed 
 that the `r sp` population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics. 
 The `r assess_yr` base model therefore has the same assumptions and is then run
@@ -40,11 +40,12 @@ forward to the
 start of `r assess_yr` using the known catch for `r last_data_yr`. It is
 again configured using Stock Synthesis [@MethotWetzel2013] version `r ss_version`. 
 
-Such a catch-only projection assessment for `r assess_yr` was chosen because the acoustic survey
-biomass estimate and age data were not available in time to be incorporated into a fully updated assessment,
+Such a catch-only projection assessment for `r assess_yr` was chosen because the
+biomass estimate and age data from the 2025 Joint U.S.-Canada Integrated West
+Coast Pelagics Survey
+were not available in time to be incorporated into a fully updated assessment,
 as a result of the extended U.S. federal government shutdown in `r last_data_yr`. Furthermore, it has yet to be
-determined how to incorporate the new 2025 Joint U.S.-Canada Integrated West
-Coast Pelagics Survey biomass estimate and data into the existing survey time series in a
+determined how to incorporate the new biomass estimate and data into the existing survey time series in a
 compatible way, because of changes in survey design. 
 Thus, the JTC decided that conducting the usual fully updated assessment
 (i.e. estimating all the parameters again) without complete survey information
@@ -54,6 +55,10 @@ consecutive years, whereas usually this only occurs for a single year
 (in-between the biannual survey). The absence of new survey information to inform
 the model would considerably increase the risk of inaccurate assessment
 results being used to inform management decisions.
+While quantities of interest could still have been calculated and presented,
+this could be potentially misleading because numerical estimates of uncertainty
+would ignore the 
+major structural uncertainty of having no recent survey biomass estimate.
 
 In this document we present data that are updated from the `r last_data_yr`
 assessment, figures and tables related to projections from the `r assess_yr`
