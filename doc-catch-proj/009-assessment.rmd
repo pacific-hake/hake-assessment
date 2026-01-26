@@ -227,7 +227,7 @@ This was done for several reasons:
    Without the 2025 survey biomass index, it was deemed pragmatic to not overextend
    the forecasts too far ahead from 2023 survey.
 
-In future assessments, the JTC will again consider non-zero deviations and return to
+In future assessments, the JTC will again consider reimplementing recruitment deviations and return to
 more years of forecasts, as the model should be fit to more up-to-date data (including
 the 2025 survey estimates). 
 
@@ -248,8 +248,8 @@ Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
 and governing parameters assumed during the forecast period include selectivity,
 weight-at-age and fecundity-at-age averaged over the five
-most recent years (`r assess_yr - 6`--`r assess_yr - 2`), and constant
-values for all other parameters.
+most recent years of data (`r assess_yr - 6`--`r assess_yr - 2`), and constant
+values for all other parameters; see @JTC2025.
 
 A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
 default harvest rate catch target. But, the projected median relative fishing
@@ -349,7 +349,7 @@ plot_depl_fore_comparison(base_model,
                           is_catch_proj = TRUE)
 ```
 
-With zero catch for 2026 and median recruitment from 2023 onward, the biomass has a
+With zero catch for 2026 and no recruitment devations from 2023 onward, the biomass has an
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
 `r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
@@ -369,7 +369,7 @@ As the above average 2014 and 2016
 cohorts continue to age, total biomass of these cohorts even without fishing
 mortality is expected to decrease as losses from mortality outweigh increases
 from growth. The estimated above-average 2021 cohort will continue to play a
-large role in determining female spawning biomass during the forecast years
+large role in determining female spawning biomass during the forecast year
 presented here.
 
 \clearpage
