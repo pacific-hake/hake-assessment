@@ -65,6 +65,74 @@ landings in recent years. The coast-wide catches in `r  last_data_yr` are near t
 long-term average catch (`r f(long_term_avge_ct)`~t), but, particularly in Canada,
 the catches have sharply declined over recent years. 
 
+\rfoot{Stock biomass and recruitment}
+
+# Stock biomass and recruitment {#sec:biomass-and-recruitment}
+
+Results from the base model
+indicate that since the 1960s, `r sp` female spawning biomass has ranged from
+well below to above unfished equilibrium (Figure~\@ref(fig:es-biomass-fig)); see
+@JTC2025 for historical details. 
+The median estimate of the `r end_yr` female spawning biomass is
+`r curr_bio_median` (with a 95% posterior credibility interval from
+`r curr_bio_lower` to `r curr_bio_upper`)~Mt. All 95% credibility intervals are calculated as the 2.5% and 97.5%
+quantiles of posterior distributions from Markov Chain Monte Carlo samples, to give equal-tailed intervals.
+
+(ref:es-biomass-cap) Median (solid line) of the posterior distribution for
+beginning of the year female spawning biomass ($B_t$ in year $t$; Mt) through
+`r end_yr` with 95% posterior credibility intervals (shaded area). The
+left-most circle with a 95% posterior credibility interval is the estimated
+unfished equilibrium biomass, `r b_0`.
+
+(ref:es-biomass-alt) This figure shows that the median spawning biomass increased
+from 2021 to 2025 and then declined in 2026.
+
+```{r es-biomass-fig, fig.cap = "(ref:es-biomass-cap)", fig.height = 4.5, out.height = "4in"}
+
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none")
+```
+
+The median estimate of the `r end_yr` relative spawning biomass (spawning
+biomass at the start of `r end_yr` divided by that at unfished equilibrium,
+`r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
+95% posterior credibility interval from `r curr_depl_lower`% to
+`r curr_depl_upper`%, partly due to remaining
+unknowns about the size of the
+potentially large 2021 cohort because it has still only been observed once by the acoustic survey.
+
+`r sp` have low to moderate recruitment (relative to the long-term average)
+with occasional large year classes
+(Figure~\@ref(fig:es-recruitment-fig)). The exact estimates of recruitment are
+unchanged from [@JTC2025] except for the addition of uninformed recruitment for
+`r assess_yr`, demonstrating that there are now four years of uninformed
+recruitment. The size of the 2021 cohort remains highly uncertain due to limited
+data (e.g., compare the uncertainty to that of of the 2016 cohort, a cohort that
+that has a comparable median). 
+
+(ref:es-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$) of the
+posterior distribution for recruitment (billions of age-0 fish) with 95%
+posterior credibility intervals (vertical lines). The median of the
+posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
+shown as the horizontal dashed line with the 95% posterior credibility
+interval shaded between the dotted lines.
+
+(ref:es-recruitment-alt) This figure shows that recruitment for each cohort.
+There are currently three above-average cohorts in the stock with 2021 being
+the fourth. The 2021 cohort is highly uncertain which can be seen in the
+size of the credible interval.
+
+```{r es-recruitment-fig, fig.cap = "(ref:es-recruitment-cap)", fig.height = 4.5, out.height = "4in"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none")
+```
+
 \rfoot{Management performance}
 
 # Management performance {#sec:management-performance}
