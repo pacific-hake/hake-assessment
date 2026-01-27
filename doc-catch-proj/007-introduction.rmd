@@ -26,8 +26,8 @@ are the same as given in @JTC2025.
 This type of stock assessment is often
 referred to as a catch-only projection. It is a widespread method used to
 provide updated management advice given updates to recent catch history while
-using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec:tables) and
-Appendix~\@ref(sec:figures) for reference. 
+using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec:app-tables) and
+Appendix~\@ref(sec:app-figures) for reference. 
 
 The `r last_data_yr` base model was a statistical catch-at-age population
 model fit in a Bayesian context using  Markov chain Monte
