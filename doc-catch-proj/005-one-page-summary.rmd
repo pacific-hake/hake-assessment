@@ -27,12 +27,11 @@
   data used in the `r assess_yr` stock assessment for calculations.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
-(t represents tonnes), 48% below the average over the most recent 10 years
-(`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
-out of a total allowable catch (TAC), adjusted for carryovers, of
-`r last_yr_tac` t. The U.S. caught `r last_yr_us_landings`~t
-(`r last_yr_us_attained`% of their quota) and Canada caught
-`r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
+(t represents tonnes), `r perc_diff_catch_last_10_yrs`% below the average over the
+most recent 10 years (`r ct_mean_10yrs`~t), out of a total allowable catch
+(TAC), adjusted for carryovers, of `r last_yr_tac` t. The U.S. caught
+`r last_yr_us_landings`~t (`r last_yr_us_attained`% of their quota) and Canada
+caught `r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
 
 - The median of the relative spawning biomass in `r end_yr`
 (female spawning biomass at the start of `r end_yr` divided by that at
