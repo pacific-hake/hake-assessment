@@ -208,8 +208,7 @@ with occasional large
 recruitments that can pull the stock out of a decline, that has been seen
 historically (Figure~\@ref(fig:es-recruitment-fig)). Instead, average recruitment (i.e., the
 median resulting from the bias-corrected mean of the lognormal distribution)
-leads to a constant recruitment level close to 0.38$R_0$, see 
-Figure~e of @JTC2025, and does not allow for the occasional large recruitments 
+leads to a constant recruitment level close to 0.38$R_0$ (Figure~\@ref(fig:es-recruitment-fig)), and does not allow for the occasional large recruitments 
 seen when applying the lognormal distribution of recruitment deviations [e.g.,
 see the broader distribution of potential 2023 and 2024 recuitments shown in Figure~f of the
 2024 assessment @JTC2024]. 
