@@ -227,7 +227,7 @@ This was done for two reasons:
    the forecasts too far ahead from 2023 survey.
 
 In future assessments, the JTC will again consider reimplementing recruitment deviations and return to
-more years of forecasts, as the model should be fit to more up-to-date data (including
+providing multiple forecast years, as the model should be fit to more up-to-date data (including
 the 2025 survey estimates). 
 
 The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
@@ -241,7 +241,7 @@ catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab
 and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
 projected outcome for each potential catch level and year (row) across the
 quantiles (columns) of the posterior distribution. Tables show results for
-one year of future catch levels based on subsequent estimates of stock
+one year of future catch levels based on subsequent projected stock
 status and fishing intensity.
 Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
