@@ -38,7 +38,7 @@ using the known fishery catch for `r last_data_yr`. The `r assess_yr` model was
 re-fit in MCMC to adapt projections and the stochastic nature of finite MCMC sampling across runs when
 chains are run in parallel produced similar, but not identical, parameter estimates between the
 `r last_data_yr` and `r assess_yr` models. However, all parameter estimates are effectively the same as given
-in @JTC2025 in terms of population estimates and the associated probabilities for alternative catch projections. 
+in @JTC2025 in terms of population estimates. 
 <!-- The re-fit MCMC runs produced population parameters, resulting population
 dynamics, and reference points used for management between the
 `r last_data_yr` and `r assess_yr` models. --> The `r assess_yr` model is again configured using
