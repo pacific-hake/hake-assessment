@@ -222,7 +222,8 @@ This was done for two reasons:
    the forecast period is not a feasible
    long-term model assumption because the median recruitment is too low to sustain
    the population in perpetuity. Forecasting further years
-   ahead will exacerbate this and lead to unexpected results. 
+   ahead will exacerbate this and lead to unrealistic results given past
+   levels of `r sp` recruitment. 
 1. The models in the 2024 and 2025 assessments both estimated a stock biomass
    somewhat larger than the biomass index from the 2023 survey; Figure~18 of
    @JTC2024 and Figure~17 of @JTC2025. Inclusion of the 2025 survey biomass
