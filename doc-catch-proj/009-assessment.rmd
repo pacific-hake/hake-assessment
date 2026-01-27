@@ -239,7 +239,7 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-Decision tables give the projected population status (relative spawning
+Decision tables give the projected population status (i.e. relative spawning
 biomass) and fishing intensity relative to the target under different
 catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
 and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
