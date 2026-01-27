@@ -240,34 +240,6 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-Decision tables give the projected population status (i.e. relative spawning
-biomass) and fishing intensity relative to the target under different
-catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
-and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
-projected outcome for each potential catch level and year (row) across the
-quantiles (columns) of the posterior distribution. Tables show results for
-one year of future catch levels based on subsequent projected stock
-status and fishing intensity.
-Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
-spawning biomass for several of the catch alternatives. Population dynamics
-and governing parameters assumed during the forecast period include selectivity,
-weight-at-age and fecundity-at-age averaged over the five
-most recent years of data (`r assess_yr - 6`--`r assess_yr - 2`), and constant
-values for all other parameters; see @JTC2025.
-
-A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
-default harvest rate catch target. But the projected median relative fishing
-intensity can be slightly different than the target because the `r fspr_40`
-default harvest-rate catch limit is calculated using baseline
-selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
-forecasted catches use selectivity averaged over the last five
-years. Recent changes in selectivity will thus be reflected in the
-determination of fishing relative to the default harvest policy. For example,
-fishing at the `r fspr_40` default harvest-rate catch limit
-(scenario `r letters[ct_levels_vals$ct_default_policy_ind]`: default HR)
-in `r assess_yr` results in a median relative fishing intensity of
-`r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
-
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
 let <- letters[seq_along(base_model$forecasts[[length(base_model$forecasts)]])]
@@ -300,7 +272,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-\clearpage
+<!-- \clearpage -->
 
 ```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
 
@@ -331,6 +303,20 @@ table_decision(
   longtable = TRUE)
 ```
 
+Decision tables give the projected population status (i.e. relative spawning
+biomass) and fishing intensity relative to the target under different
+catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
+and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
+projected outcome for each potential catch level and year (row) across the
+quantiles (columns) of the posterior distribution. Tables show results for
+one year of future catch levels based on subsequent projected stock
+status and fishing intensity.
+Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
+spawning biomass for several of the catch alternatives. Population dynamics
+and governing parameters assumed during the forecast period include selectivity,
+weight-at-age and fecundity-at-age averaged over the five
+most recent years of data (`r assess_yr - 6`--`r assess_yr - 2`), and constant
+values for all other parameters; see @JTC2025.
 
 (ref:es-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of relative spawning biomass to the start
@@ -351,6 +337,19 @@ plot_depl_fore_comparison(base_model,
                           forecast_yrs = forecast_yrs[1:2],
                           is_catch_proj = TRUE)
 ```
+
+A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
+default harvest rate catch target. But the projected median relative fishing
+intensity can be slightly different than the target because the `r fspr_40`
+default harvest-rate catch limit is calculated using baseline
+selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
+forecasted catches use selectivity averaged over the last five
+years. Recent changes in selectivity will thus be reflected in the
+determination of fishing relative to the default harvest policy. For example,
+fishing at the `r fspr_40` default harvest-rate catch limit
+(scenario `r letters[ct_levels_vals$ct_default_policy_ind]`: default HR)
+in `r assess_yr` results in a median relative fishing intensity of
+`r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
 
 With zero catch for 2026 and no recruitment deviations from 2023 onward, the biomass has an
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
