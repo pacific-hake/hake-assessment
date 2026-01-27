@@ -106,9 +106,9 @@ potentially large 2021 cohort because it has still only been observed once by th
 
 `r sp` have low to moderate recruitment (relative to the long-term average)
 with occasional large year classes
-(Figure~\@ref(fig:es-recruitment-fig)). The exact estimates of recruitment are
+(Figure~\@ref(fig:es-recruitment-fig)). Estimates of recruitment are
 unchanged from [@JTC2025] except for the addition of uninformed recruitment for
-`r assess_yr`, demonstrating that there are now four years of uninformed
+`r last_assess_yr`, demonstrating that there are now three years of uninformed
 recruitment. The size of the 2021 cohort remains highly uncertain due to limited
 data (e.g., compare the uncertainty to that of of the 2016 cohort, a cohort that
 that has a comparable median). 
@@ -176,11 +176,11 @@ table_landings_tac(
 
 For the 2025 stock assessment [@JTC2025], the spawning biomass was estimated at the start
 of 2025, and then projections were done assuming different catch scenarios that
-specified catches in 2025, 2026, and 2027. This
-gave estimated biomass quantities at the start of 2026, 2027, and 2028. The
-recruitment deviations were set to 0 for 2023 to 2027. This covers the two years
+specified catches in 2025 (now known) and 2026 (assumed alternatives). This
+gave estimated biomass quantities at the start of 2026. The
+recruitment deviations were set to 0 for 2023 to 2026. This covers the two years
 (2023 and 2024) for which no survey age data was used to fit the model, and the
-three projection years (2025, 2026, and 2027). 
+two projection years (2025 and 2026). 
 This was a change from previous stock assessments, in which deviations were
 drawn from a distribution that could allow very large (or very small)
 recruitments to occur and propagate through the projection years as the
@@ -195,8 +195,7 @@ biomass yet are based on limited or no data and so may not materialise in
 practice" [@JTC2025]. 
 We continue to apply no recruitment deviations for the 2026 base model for 2023 onwards
 as we are using the same assumptions as for the 2025 base model, and we are not
-fitting to new data, so there is no new information to fit cohorts from 2023
-onwards. 
+fitting to new data. 
 
 The assumption of not allowing for recruitment deviations in forecasts did cause the projected populations to decline for the 2025
 assessment [@JTC2025] even with 0~t catch in the projection years. This is because the assumption removes the lognormal (skewed) distribution of recruitments,
@@ -215,8 +214,8 @@ years as for previous assessments. Projections assume
 various catch scenarios for 2026 and then forecast the biomass to the start of 2027.
 This was done for two reasons:
 
-1. As just outlined, the assumption of  not using recruitment deviations during
-   the forecast  period is not a feasible
+1. As just outlined, the assumption of not using recruitment deviations during
+   the forecast period is not a feasible
    long-term model assumption because the median recruitment is too low to sustain
    the population in perpetuity. Forecasting further years
    ahead will exacerbate this and lead to unexpected results. 

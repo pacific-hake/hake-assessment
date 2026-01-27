@@ -21,14 +21,13 @@ Sound, and the Gulf of California, are not included in this analysis.
 The base model for this Joint Technical Committee (JTC) assessment is the base
 model from the `r last_data_yr` stock assessment [@JTC2025], projected forward
 to the start of `r assess_yr` using the fishery catches from `r last_data_yr`. 
-There is no updated fitting of the model to data; thus all parameter estimates
+There is no updated fitting of the model to new data; thus all parameter estimates
 are the same as given in @JTC2025. 
-No other `r last_data_yr` data were added to the assessment model,
-though available updated data are presented in Appendix~\@ref(sec:tables)
-and Appendix~\@ref(sec:figures) for reference. This type of stock assessment is often
+This type of stock assessment is often
 referred to as a catch-only projection. It is a widespread method used to
 provide updated management advice given updates to recent catch history while
-using an already approved stock assessment.
+using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec:tables) and
+Appendix~\@ref(sec:figures) for reference. 
 
 The `r last_data_yr` base model was a statistical catch-at-age population
 model fit in a Bayesian context using  Markov chain Monte
@@ -53,18 +52,17 @@ would not be appropriate. Such an assessment would be based solely on
 fishery-age composition data for two 
 consecutive years, whereas usually this only occurs for a single year
 (in-between the biannual survey). The absence of new survey information to inform
-the model would considerably increase the risk of inaccurate assessment
+the model could considerably increase the risk of inaccurate assessment
 results being used to inform management decisions.
 While quantities of interest could still have been calculated and presented,
 this could be potentially misleading because numerical estimates of uncertainty
 would ignore the 
 major structural uncertainty of having no recent survey biomass estimate.
 
-In this document we present data that are updated from the `r last_data_yr`
-assessment, figures and tables related to projections from the `r assess_yr`
-base model, a Glossary, U.S. and Canadian Advisory Panel reports summarizing the
+In this document we present catch data, figures and tables related to results
+from the `r assess_yr` base model projections, a Glossary, U.S. and Canadian Advisory Panel reports summarizing the
 `r last_data_yr` fishery, and an updated `r sp`-specific ecosystem summary. Since
 there is no new fitting to data, we refer readers to @JTC2025 for details
-regarding data that has not been updated, parameter estimates, model
+regarding other data summaries, parameter estimates, model
 diagnostics, sensitivity analyses, etc.~that have not changed from the 
 `r last_data_yr` assessment.
