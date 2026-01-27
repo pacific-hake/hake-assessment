@@ -92,9 +92,10 @@ plot_spr_illustration <- function(model,
              fill = color,
              alpha = 1) +
     xlab("") +
-    ylab("") +
+    ylab("Proportion") +
     ggtitle("Numbers per recruit") +
-    theme(plot.margin = margin(c(6, 0, 0, 0))) +
+    theme(plot.margin = margin(c(6, 0, 0, 0)),
+         axis.title.y = element_text(vjust = -0.25)) +
     scale_y_continuous(labels = ~{f(.x, 2)})
 
   p[[2]] <- ggplot(d) +
@@ -109,9 +110,10 @@ plot_spr_illustration <- function(model,
              fill = color,
              alpha = 1) +
     xlab("") +
-    ylab("") +
+    ylab("Mt") +
     ggtitle("Biomass per recruit") +
-    theme(plot.margin = margin(c(0, 0, 0, 0))) +
+    theme(plot.margin = margin(c(0, 0, 0, 0)),
+          axis.title.y = element_text(vjust = -0.25)) +
     scale_y_continuous(labels = ~{f(.x, 2)})
 
   p[[3]] <- ggplot(d) +
@@ -126,9 +128,10 @@ plot_spr_illustration <- function(model,
              fill = color,
              alpha = 1) +
     xlab("Age") +
-    ylab("") +
+    ylab("Mt") +
     ggtitle("Female spawning biomass per recruit") +
-    theme(plot.margin = margin(c(0, 0, 6, 0))) +
+    theme(plot.margin = margin(c(0, 0, 6, 0)),
+          axis.title.y = element_text(vjust = -0.25)) +
     theme(axis.title.x = element_text(vjust = 1)) +
     scale_y_continuous(labels = ~{f(.x, 2)})
 
