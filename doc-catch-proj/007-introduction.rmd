@@ -24,7 +24,7 @@ to the start of `r assess_yr` using the fishery catches from `r last_data_yr`.
 This type of stock assessment is often
 referred to as a catch-only projection. It is a widespread method used to
 provide updated management advice given updates to recent catch history while
-using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec::app-tables) and
+using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec:app-tables) and
 Appendix~\@ref(sec:app-figures) for reference. 
 
 The `r last_data_yr` base model was a statistical catch-at-age population
@@ -33,16 +33,15 @@ Carlo (MCMC) sampling via the efficient No-U-Turn Sampler [@JTC2025].
 The model assumed that the `r sp` population is a single coast-wide
 stock subject to one aggregated fleet with combined male and female
 population dynamics. The `r assess_yr` base model therefore has the
-same assumptions and is then run forward to the start of `r assess_yr`
+same data through `r last_data_yr-1`, model structure, and assumptions and is then run forward to the start of `r assess_yr`
 using the known fishery catch for `r last_data_yr`. The `r assess_yr` model was
-re-fit in MCMC to adapt projections, which resulted in nearly identical
-estimates of population parameters, resulting population
+re-fit in MCMC to adapt projections and the stochastic nature of finite MCMC sampling across runs when
+chains are run in parallel produced similar, but not identical, parameter estimates between the
+`r last_data_yr` and `r assess_yr` models. However, all parameter estimates are effectively the same as given
+in @JTC2025 in terms of population estimates and the associated probabilities for alternative catch projections. 
+<!-- The re-fit MCMC runs produced population parameters, resulting population
 dynamics, and reference points used for management between the
-`r last_data_yr` and `r assess_yr` models. Results were not exactly identical
-due to the stochastic nature of finite MCMC sampling across runs when
-chains are run in parallel.
-Thus, all parameter estimates are effectively the same as given
-in @JTC2025 in terms of population estimates and projections. The `r assess_yr` model is again configured using
+`r last_data_yr` and `r assess_yr` models. --> The `r assess_yr` model is again configured using
 Stock Synthesis [@MethotWetzel2013] version `r ss_version`.
 
 A catch-only projection assessment for `r assess_yr` was chosen because the
