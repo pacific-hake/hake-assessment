@@ -78,24 +78,6 @@ The median of the `r end_yr` female spawning biomass is
 `r curr_bio_lower` to `r curr_bio_upper`)~Mt. All 95% credibility intervals are calculated as the 2.5% and 97.5%
 quantiles of posterior distributions from Markov chain Monte Carlo samples, to give equal-tailed intervals.
 
-(ref:es-biomass-cap) Median (solid line) of the posterior distribution for
-beginning of the year female spawning biomass ($B_t$ in year $t$; Mt) through
-`r end_yr` with 95% posterior credibility intervals (shaded area). The
-left-most circle with a 95% posterior credibility interval is the estimated
-unfished equilibrium biomass, `r b_0`.
-
-(ref:es-biomass-alt) This figure shows that the median spawning biomass increased
-from 2021 to 2025 and then declined in 2026.
-
-```{r es-biomass-fig, fig.cap = "(ref:es-biomass-cap)", fig.height = 4.5, out.height = "4in"}
-
-plot_biomass(list(base_model),
-             list(base_model_name),
-             ylim = c(0, 5),
-             point_shape = 1,
-             leg_pos = "none")
-```
-
 The median of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
@@ -117,6 +99,24 @@ with occasional large year classes
 similar to those from @JTC2025. The size of the 2021 cohort remains highly uncertain due to limited
 data (e.g., compare the uncertainty to that of of the 2016 cohort, a cohort that
 that has a comparable median). 
+
+(ref:es-biomass-cap) Median (solid line) of the posterior distribution for
+beginning of the year female spawning biomass ($B_t$ in year $t$; Mt) through
+`r end_yr` with 95% posterior credibility intervals (shaded area). The
+left-most circle with a 95% posterior credibility interval is the estimated
+unfished equilibrium biomass, `r b_0`.
+
+(ref:es-biomass-alt) This figure shows that the median spawning biomass increased
+from 2021 to 2025 and then declined in 2026.
+
+```{r es-biomass-fig, fig.cap = "(ref:es-biomass-cap)", fig.height = 4.5, out.height = "4in"}
+
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none")
+```
 
 (ref:es-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$) of the
 posterior distribution for recruitment (billions of age-0 fish) with 95%
