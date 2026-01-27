@@ -447,7 +447,12 @@ While this year is a projection based assessment, the JTC provides the following
 
 2. **The SRG recommends continuing sensitivities for steepness, natural mortality, σR, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
 
-*Response -- The recommended set of sensitivity model runs were not applicable for the 2026 base model, which is based solely on a projection of the 2025 base model where the realized total catch in 2025 is specifically used. The standard set of sensitivity model runs will be incorporated into next year's stock assessment.*
+*Response -- The recommended set of sensitivity model runs were not applicable
+for the 2026 base model, which is based solely on a projection of the 2025 base
+model where the realized total catch in 2025 is specifically used. The standard
+set of sensitivity model runs was presented for the 2025 base model in the 2025
+assessment [@JTC2025] and 
+will be incorporated into next year's stock assessment.*
 
 3. **The SRG recommends that the JTC continue exploring alternative ways of estimating natural mortality to update the current approach in the model, and particularly consider options which have age-based natural mortality, and may be external to SS3.**
 
@@ -470,7 +475,13 @@ available within Stock Synthesis but is possible using models written in Templat
 *Other steps the JTC plans to take in the future include evaluating alternative data and model assumptions that arise for validity given proposed new model structures; evaluating variance and bias trade-offs associated with new parameterizations (e.g., doubling the number of time-varying selectivity parameters when doubling the number of fleets); comparing alternative spatially-implicit assessment approaches (e.g., time-varying selectivity versus area-varying selectivity, or both); and developing states of nature scenarios to test model structure robustness in an MSE framework.
 Additionally, model complexity in the spatial domain needs to be addressed relative to other structural assumptions in the assessment model. Other assumptions may be more influential or have confounding or complimentary impacts on model sensitivity and robustness. These may include data weighting, improving estimates of natural mortality via predator time series, multiple fleets instead of a single aggregated fleet, and using fleet-specific weight-at-age data instead of aggregated weight-at-age (the JTC has looked at this before, but it hasn’t been revisited in over a decade).*
 
-*Changes to the structure of the assessment model may not be the most immediate need for understanding changes in hake distribution. Some of the other (higher priority) SRG requests noted above will help with understanding fundamental mechanisms, which can help to formulate hypotheses to inform relevant model structures. These include spatial CPUE modeling, investigating hake distribution changes in bottom trawl surveys, correlating hake distribution changes with California Current Integrated Ecosystem Assessment.*
+*Changes to the structure of the assessment model may not be the most immediate
+need for understanding changes in hake distribution. Some of the other (higher
+priority) SRG requests noted above will help with understanding fundamental
+mechanisms, which can help to formulate hypotheses to inform relevant model
+structures. These include spatial CPUE modeling, investigating hake distribution
+changes in bottom trawl surveys, and correlating hake distribution changes with
+the California Current Integrated Ecosystem Assessment.*
 
 5. **The SRG recommends considering including the eDNA index of abundance for inclusion in the assessment as a second index of abundance for Pacific hake, also estimating additional variance for the index given the small nominal CV values.**
 
