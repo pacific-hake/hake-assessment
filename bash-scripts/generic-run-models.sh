@@ -55,7 +55,7 @@ repo_path=`echo $repo_path | tr -d '\n'`
 models_path="models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="02-version"
+version_path="01-version"
 
 ss_exe="ss3"
 num_chains=8
