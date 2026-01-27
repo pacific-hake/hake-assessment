@@ -38,6 +38,10 @@ The `r assess_yr` base model therefore has the same assumptions and is then run
 forward to the
 start of `r assess_yr` using the known catch for `r last_data_yr`. It is
 again configured using Stock Synthesis [@MethotWetzel2013] version `r ss_version`. 
+Slight differences in estimated quantities from the `r assess_yr - 1` assessment
+occur due to the stochastic nature of Markov chain Monte Carlo algorithms when
+run in parallel.
+
 
 Such a catch-only projection assessment for `r assess_yr` was chosen because the
 biomass estimate and age data from the 2025 Joint U.S.-Canada Integrated West
