@@ -4,7 +4,7 @@
 
 # One-page summary {-}
 
-- The stock assessment for `r assess_yr` uses the model and parameter estimates
+- The `r assess_yr` stock assessment for `r sp` uses the model and parameter estimates
   from the `r last_assess_yr` assessment, projected forward to the start of 
   `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`.  
 
@@ -31,7 +31,7 @@ out of a total allowable catch (TAC), adjusted for carryovers, of
 (`r last_yr_us_attained`% of their quota) and Canada caught
 `r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
 
-- The projected median of the `r end_yr` relative spawning biomass
+- The projected median of the relative spawning biomass in `r end_yr`
 (female spawning biomass at the start of `r end_yr` divided by that at
 unfished equilibrium, `r b_0`) is `r curr_depl_median`% but it is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
