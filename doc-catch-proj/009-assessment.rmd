@@ -365,9 +365,6 @@ the start of `r end_yr + 1` dropping below `r b_10` is
 `r prob_max_below_10_yr1`% and of dropping below `r b_40` is
 `r prob_max_below_40_yr1`% (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-With realized catches between 350,000 t and 500,000 t in 2026, it is projected that the
-stock will reach approximately `r b_40` at the start of
-2027, given the current assumption of median recruitment from 2023 onward.
 As the above average 2014 and 2016
 cohorts continue to age, total biomass of these cohorts even without fishing
 mortality is expected to decrease as losses from mortality outweigh increases
