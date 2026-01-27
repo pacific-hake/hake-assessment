@@ -104,6 +104,13 @@ biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 unknowns about the size of the
 potentially large 2021 cohort because it has still only been observed once by the acoustic survey.
 
+The probability that female spawning biomass at the start of
+`r assess_yr` is below the `r b_40` (40% of `r b_0`) reference point is
+`r probs_curr_below_b40`%, and the probability that relative fishing
+intensity exceeded 1 in `r end_yr - 1` is
+`r probs_curr_rel_fish_intens_above_1`%. The joint
+probability of both these occurring is `r joint_percent_prob_above_below`%.
+
 `r sp` have low to moderate recruitment (relative to the long-term average)
 with occasional large year classes
 (Figure~\@ref(fig:es-recruitment-fig)). Estimates of recruitment are
