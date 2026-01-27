@@ -16,8 +16,8 @@
   existing survey time series in a compatible way, because of changes in survey 
   design.   
 
-- The `r last_assess_yr` assessment model (with data through
-  `r last_assess_yr - 1`) was fit to an acoustic survey index of biomass,
+- The `r last_assess_yr` assessment model, with data through
+  2024, was fit to an acoustic survey index of biomass,
   annual commercial catch data, and age-composition data from the survey and
   commercial fisheries. A model-based approach was used for the input
   weight-at-age matrix and time-varying temperature-dependent maturity, both of
