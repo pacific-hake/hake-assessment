@@ -24,8 +24,8 @@ to the start of `r assess_yr` using the fishery catches from `r last_data_yr`.
 This type of stock assessment is often
 referred to as a catch-only projection. It is a widespread method used to
 provide updated management advice given updates to recent catch history while
-using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec:tables) and
-Appendix~\@ref(sec:figures) for reference. 
+using an already approved stock assessment. Available data at the time of this assessment are presented in Appendix~\@ref(sec::app-tables) and
+Appendix~\@ref(sec:app-figures) for reference. 
 
 The `r last_data_yr` base model was a statistical catch-at-age population
 model fit in a Bayesian context using  Markov chain Monte
@@ -34,7 +34,7 @@ The model assumed that the `r sp` population is a single coast-wide
 stock subject to one aggregated fleet with combined male and female
 population dynamics. The `r assess_yr` base model therefore has the
 same assumptions and is then run forward to the start of `r assess_yr`
-using the known catch for `r last_data_yr`. The `r assess_yr` model was
+using the known fishery catch for `r last_data_yr`. The `r assess_yr` model was
 re-fit in MCMC to adapt projections, which resulted in nearly identical
 estimates of population parameters, resulting population
 dynamics, and reference points used for management between the
@@ -42,16 +42,16 @@ dynamics, and reference points used for management between the
 due to the stochastic nature of finite MCMC sampling across runs when
 chains are run in parallel.
 Thus, all parameter estimates are effectively the same as given
-in @JTC2025. The `r assess_yr` model is again configured using
+in @JTC2025 in terms of population estimates and projections. The `r assess_yr` model is again configured using
 Stock Synthesis [@MethotWetzel2013] version `r ss_version`.
 
-Such a catch-only projection assessment for `r assess_yr` was chosen because the
+A catch-only projection assessment for `r assess_yr` was chosen because the
 biomass estimate and age data from the 2025 Joint U.S.-Canada Integrated West
 Coast Pelagics Survey
 were not available in time to be incorporated into a fully updated assessment,
 as a result of the extended U.S. federal government shutdown in `r last_data_yr`. Furthermore, it has yet to be
-determined how to incorporate the new biomass estimate and data into the existing survey time series in a
-compatible way, because of changes in survey design. 
+determined how to incorporate the new biomass estimate and age data into the existing survey time series in a
+compatible way, because of changes in survey design in 2025. 
 Thus, the JTC decided that conducting the usual fully updated assessment
 (i.e. estimating all the parameters again) without complete survey information
 would not be appropriate. Such an assessment would be based solely on
@@ -62,8 +62,7 @@ the model could considerably increase the risk of inaccurate assessment
 results being used to inform management decisions.
 While quantities of interest could still have been calculated and presented,
 this could be potentially misleading because numerical estimates of uncertainty
-would ignore the 
-major structural uncertainty of having no recent survey biomass estimate.
+would ignore the major structural uncertainty of having no recent survey biomass and age data.
 
 In this document we present catch data, figures and tables related to results
 from the `r assess_yr` base model projections, a Glossary, U.S. and Canadian
