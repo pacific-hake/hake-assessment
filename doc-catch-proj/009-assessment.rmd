@@ -232,7 +232,7 @@ This was done for two reasons:
 
 In future assessments, the JTC will again consider reimplementing recruitment deviations and return to
 providing multiple forecast years, as the model should be fit to more up-to-date data (including
-the 2025 survey estimates). 
+the 2025 survey biomass and age data). 
 
 The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
 harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
