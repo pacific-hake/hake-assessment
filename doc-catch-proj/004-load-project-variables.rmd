@@ -167,8 +167,6 @@ last_yr_landings <- ct_last1 |>
   pull(Total) |>
   f(0)
 
-perc_diff_catch_last_10_yrs <- f((1 - (ct_last1 |> pull(Total)) / mean(ct_last_10yrs$Total)) * 100)
-
 last_yr_tac <- ct_last1 |>
   pull(`Total TAC`) |>
   format(scientific = FALSE, big.mark = ",")
@@ -189,6 +187,9 @@ ct_last_10yrs <- ct |>
 ct_mean_10yrs <- f(mean(ct_last_10yrs$Total))
 ct_us_mean_10yrs <- f(mean(ct_last_10yrs$`U.S. Total`))
 ct_can_mean_10yrs <- f(mean(ct_last_10yrs$`Canada Total`))
+
+perc_diff_catch_last_10_yrs <- f((1 - (ct_last1 |> pull(Total)) / mean(ct_last_10yrs$Total)) * 100)
+
 # ... US Catch by fleet, last year --------------------------------------------
 last_yr_us_research_ct <- ct |>
   dplyr::filter(Year == last_data_yr) |>
