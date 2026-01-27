@@ -73,7 +73,7 @@ Results from the base model
 indicate that since the 1960s, `r sp` female spawning biomass has ranged from
 well below to above unfished equilibrium (Figure~\@ref(fig:es-biomass-fig)); see
 @JTC2025 for historical details. 
-The projected median of the `r end_yr` female spawning biomass is
+The median of the `r end_yr` female spawning biomass is
 `r curr_bio_median` (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper`)~Mt. All 95% credibility intervals are calculated as the 2.5% and 97.5%
 quantiles of posterior distributions from Markov chain Monte Carlo samples, to give equal-tailed intervals.
@@ -96,7 +96,7 @@ plot_biomass(list(base_model),
              leg_pos = "none")
 ```
 
-The projected median of the `r end_yr` relative spawning biomass (spawning
+The median of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
 95% posterior credibility interval from `r curr_depl_lower`% to
@@ -211,11 +211,11 @@ median resulting from the bias-corrected mean of the lognormal distribution)
 leads to a constant recruitment level close to 0.38$R_0$ (Figure~\@ref(fig:es-recruitment-fig)), and does not allow for the occasional large recruitments 
 seen when applying the lognormal distribution of recruitment deviations [e.g.,
 see the broader distribution of potential 2023 and 2024 recruitments shown in Figure~f of the
-2024 assessment @JTC2024]. 
+2024 assessment, @JTC2024]. 
 
 For this assessment, we present projections for just one year, rather than three
 years as for previous assessments. Projections assume
-various catch scenarios for 2026 and then forecast the biomass to the start of 2027.
+various catch scenarios for 2026 and then forecast the biomass at the start of 2027.
 This was done for two reasons:
 
 1. As just outlined, the assumption of not using recruitment deviations during
@@ -256,7 +256,7 @@ most recent years of data (`r assess_yr - 6`--`r assess_yr - 2`), and constant
 values for all other parameters; see @JTC2025.
 
 A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
-default harvest rate catch target. But, the projected median relative fishing
+default harvest rate catch target. But the projected median relative fishing
 intensity can be slightly different than the target because the `r fspr_40`
 default harvest-rate catch limit is calculated using baseline
 selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
@@ -283,8 +283,7 @@ table_decision(
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-",
-      last_let, ". Acronyms are defined in the ",
-      "glossary (Appendix~\\@ref(sec:app-glossary))."),
+      last_let, ". TAC: total allowable catch. HR: harvest rate."),
   bold_letters = TRUE,
   digits = 2,
   # Font values higher than 8 and 11 for table and header respectively
@@ -316,8 +315,8 @@ table_decision(
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
-      "Catch alternatives are defined by letters a-", last_let, ". Acronyms are defined in the glossary ",
-      "(Appendix~\\@ref(sec:app-glossary))."),
+      "Catch alternatives are defined by letters a-", last_let,
+      ". TAC: total allowable catch. HR: harvest rate."),
   bold_letters = TRUE,
   digits = 2,
   # Font values higher than 8 and 11 for table and header respectively
@@ -366,7 +365,7 @@ the start of `r end_yr + 1` dropping below `r b_10` is
 `r prob_max_below_10_yr1`% and of dropping below `r b_40` is
 `r prob_max_below_40_yr1`% (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-With realized catches between 350,000 t and 400,000 t in 2026, it is projected that the
+With realized catches between 350,000 t and 500,000 t in 2026, it is projected that the
 stock will reach approximately `r b_40` at the start of
 2027, given the current assumption of median recruitment from 2023 onward.
 As the above average 2014 and 2016

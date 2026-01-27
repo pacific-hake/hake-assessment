@@ -19,7 +19,7 @@ inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
 Sound, and the Gulf of California, are not included in this analysis.
 
 The `r assess_yr` base model structure and data for this Joint Technical Committee (JTC) assessment
-is the same as the `r last_data_yr` stock assessment [@JTC2025], projected forward
+are the same as the `r last_data_yr` stock assessment [@JTC2025], projected forward
 to the start of `r assess_yr` using the fishery catches from `r last_data_yr`.
 This type of stock assessment is often
 referred to as a catch-only projection. It is a widespread method used to
@@ -35,7 +35,7 @@ stock subject to one aggregated fleet with combined male and female
 population dynamics. <!-- The `r assess_yr` base model therefore has the
 same data through `r last_data_yr-1`, model structure, and assumptions and is then run forward to the start of `r assess_yr`
 using the known fishery catch for `r last_data_yr`.--> The `r assess_yr` model was
-re-fit in MCMC to adapt projections and the stochastic nature of finite MCMC sampling across runs when
+re-fit using MCMC sampling to conduct projections. The stochastic nature of finite MCMC sampling across runs when
 chains are run in parallel produced similar, but not identical, parameter estimates between the
 `r last_data_yr` and `r assess_yr` models. However, all parameter estimates are effectively the same as given
 in @JTC2025 in terms of population estimates. 
