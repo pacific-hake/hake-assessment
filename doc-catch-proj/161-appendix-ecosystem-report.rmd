@@ -243,7 +243,7 @@ upwards represents a positive expected influence on recruitment.
 (ref:app-ecosystem-summary-from-pacea-alt) This figure shows
 time series of hake recruitment plus five ecosystem indices.
 
-```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis"}
+```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis", fig.width = 6, out.width = "6in", fig.height = 8, out.height = "8in"}
 
 include_graphics(file.path(figures_dir,
                           "ecosystem_summary_from_pacea.png"),
@@ -260,7 +260,7 @@ with mean temperature during spawning and for simplicity we do not flip the axis
 (ref:app-ecosystem-summary-from-glorys-alt) This figure shows
 time series of hake recruitment plus six further ecosystem indices.
 
-```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis"}
+```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis", fig.width = 6, out.width = "6in", fig.height = 8, out.height = "8in"}
 
 include_graphics(file.path(figures_dir,
                           "ecosystem_summary_from_glorys.png"),
