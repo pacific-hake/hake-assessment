@@ -6,7 +6,9 @@
 
 - The `r assess_yr` stock assessment for `r sp` uses the model and parameter estimates
   from the `r last_assess_yr` assessment, projected forward to the start of 
-  `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`.  
+  `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`. Unlike
+  the usual `r sp` stock assessment, the model is not refit to the most recent
+  year (`r last_data_yr`) of data.
 
 - The biomass estimate and age data from the 2025 Joint 
   U.S.-Canada Integrated West Coast Pelagics Survey were not available in time to
@@ -17,11 +19,12 @@
   design.   
 
 - The `r last_assess_yr` assessment model, with data through
-  2024, was fit to an acoustic survey index of biomass,
+  2024, was previously fit to an acoustic survey index of biomass,
   annual commercial catch data, and age-composition data from the survey and
   commercial fisheries. A model-based approach was used for the input
   weight-at-age matrix and time-varying temperature-dependent maturity, both of
-  which informed fecundity. Fishery catch is the only updated `r last_assess_yr` data in the `r assess_yr` stock assessment.
+  which informed fecundity. Fishery catch is the only updated `r last_assess_yr`
+  data used in the `r assess_yr` stock assessment for calculations.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 (t represents tonnes), 48% below the average over the most recent 10 years
@@ -31,29 +34,29 @@ out of a total allowable catch (TAC), adjusted for carryovers, of
 (`r last_yr_us_attained`% of their quota) and Canada caught
 `r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
 
-- The projected median of the relative spawning biomass in `r end_yr`
+- The median of the relative spawning biomass in `r end_yr`
 (female spawning biomass at the start of `r end_yr` divided by that at
 unfished equilibrium, `r b_0`) is `r curr_depl_median`% but it is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
 `r curr_depl_upper`%). 
 
-- The projected median of female spawning biomass at the start
+- The median of female spawning biomass at the start
 of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
 interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes`~t).
 
-- The estimated probability that female spawning biomass at the start of
+- The probability that female spawning biomass at the start of
 `r assess_yr` is below the `r b_40` (40% of `r b_0`) reference point is
-`r probs_curr_below_b40`%, and the probability that the relative fishing
+`r probs_curr_below_b40`%, and the probability that relative fishing
 intensity exceeded 1 in `r end_yr - 1` is
 `r probs_curr_rel_fish_intens_above_1`%. The joint
 probability of both these occurring is `r joint_percent_prob_above_below`%.
 
-- Based on the default harvest rule, the estimated median catch limit for
+- Based on the default harvest rule, the median catch limit for
 `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with
 95% credible interval from `r ct_limit_quantiles["lower"]` to
 `r ct_limit_quantiles["upper"]`~t).
 
-- Projections were conducted across a wide-range of catch levels for a single year.
+- Projections were conducted across a wide range of catch levels for a single year.
 The projection setting the `r forecast_yrs[1]` catch equal to the 
 `r forecast_yrs[1] - 1` 
 coast-wide TAC of `r last_yr_tac` t shows the estimated median relative
@@ -73,7 +76,7 @@ stock has a 33% <!-- TODO HARDWIRED -->
 chance of falling below  `r b_40` at the start of
 2027, given the current assumption of average recruitment from 2023 onward.
 
-- Despite the projections of a current stock status likely above `r b_40`, the recent lack
+- Despite depiction of a current stock status likely above `r b_40`, the recent lack
 of survey abundance and fishery catch in Canada suggests
 a population structure not conducive to achieving harvest quotas in
 northern fisheries over recent years.
