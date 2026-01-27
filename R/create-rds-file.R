@@ -12,6 +12,8 @@
 #' for the [plot_survey_fit_mcmc()] plot to work.
 #' @param verbose Logical. If `TRUE`, write more output to the console
 #' @param overwrite Logical. If `TRUE`, overwrite the RDS file if it exists
+#' @param assess_yr The year of the assessment. Used to extract specific
+#' year-based columns from the MCMC output.
 #' @param ... Arguments to pass to [load_ss_files()]
 #'
 #' @return [base::invisible()]
@@ -20,6 +22,7 @@ create_rds_file <- function(model_path = NULL,
                             keep_index_fit_posts = TRUE,
                             verbose = TRUE,
                             overwrite = FALSE,
+                            assess_yr = get_assess_yr(),
                             ...){
 
   if(is.null(model_path)){
@@ -60,8 +63,7 @@ create_rds_file <- function(model_path = NULL,
   # Add values to be used in the document that require the MCMC data frame to
   # calculate, because the MCMC data frame will not be stored in the RDS file
   # due to its size
-  model$mcmcvals <- load_mcmc_vals(model,
-                                   model$dat$endyr + 1)
+  model$mcmcvals <- load_mcmc_vals(model, assess_yr)
 
   # Add prior and posterior extractions/calculations/formatting
   model$parameter_priors <- get_prior_data(model, ...)

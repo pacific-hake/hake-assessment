@@ -9,6 +9,7 @@ create_rds_file(
   keep_index_fit_posts = TRUE,
   verbose = TRUE,
   overwrite = FALSE,
+  assess_yr = get_assess_yr(),
   ...
 )
 }
@@ -23,6 +24,9 @@ for the \code{\link[=plot_survey_fit_mcmc]{plot_survey_fit_mcmc()}} plot to work
 \item{verbose}{Logical. If \code{TRUE}, write more output to the console}
 
 \item{overwrite}{Logical. If \code{TRUE}, overwrite the RDS file if it exists}
+
+\item{assess_yr}{The year of the assessment. Used to extract specific
+year-based columns from the MCMC output.}
 
 \item{...}{Arguments to pass to \code{\link[=load_ss_files]{load_ss_files()}}}
 }
