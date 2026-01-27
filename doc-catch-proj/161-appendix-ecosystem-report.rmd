@@ -213,13 +213,13 @@ In the analogous figures in the 2025 `r sp` stock assessment we showed
 recruitments for recent years (specifically 2023, 2024, and 2025). But in
 hindsight these should not be shown because they were not fit to data and so just
 represented median hake recruitment with no recruitment deviations. Given our
-current recruitment estimates are unchanged from the 2025 assessment, we omit
-them from the figures. This highlights that the stock assessment model has no
+current recruitment estimates are based on those from the 2025 assessment, we omit
+the recent years from the figures. This highlights that the stock assessment model has no
 information on recruitment in those years (whereas relevant ecosystem
 information is available) and motivates continued investigation
 into potential drivers of recruitment. 
 
-We have not conducted further analyses on these time series, but present them as
+We have not yet conducted further analyses on these time series, but present them as
 an updated attempt to compile varied ecosystem information into single figures that
 can
 stimulate thinking about ecosystem effects, and
@@ -319,7 +319,7 @@ Assessment model fits and structural uncertainty\\
   of the survey index of abundance
   \item Uncertain how changes in the distribution of fishing relate to migration
   patterns and stock abundance
-  \item For 2026 the was not refit to new data, but rather based on the
+  \item For 2026 the model was not refit to new data, but rather based on the
   2025 assessment model, so uncertainty is inherently increased 
   \end{itemize} \\
 \hline
@@ -347,7 +347,8 @@ outlined by the [California Current Integrated Ecosystem Assessment (CCIEA) team
 
 **Recruitment**
 
-Climate, ocean, and ecological indicators suggest that ocean productivity was
+Climate, ocean, and ecological indicators suggest that ocean productivity off
+California was
 near to above average in 2025. The ecosystem experienced a mild La Niña in
 winter and spring, strong and consistent upwelling from winter through summer,
 and cool coastal water temperatures throughout much of the year. A strong marine
@@ -375,7 +376,7 @@ Current Ecosystem [@MalickHunsickerEtAl2020] were not available at the time of w
 this summary, however these temperature-driven forecasts will be presented at
 the 2026 SRG meeting. Given what we know about the influence of temperature on
 hake distribution and the role of temperature as a proxy for prey availability
-[@MalickHunsickerEtAl2020, @Phillips2022],
+[@MalickHunsickerEtAl2020; @Phillips2022],
 we would have expected a normal
 extent of the northern migration of hake in the spring of 2025 as feeding
 conditions were favorable in the central and northern regions of the California
@@ -383,7 +384,7 @@ Current.
 
 **Predators and prey**
 
-`r sp` are common in many predator's diets (e.g., Bluefin Tuna, Swordfish,
+`r sp` are common in many predators' diets (e.g., Bluefin Tuna, Swordfish,
 sharks, marine mammals, Sablefish, Arrowtooth Flounder, and adult hake). Recent
 trends (i.e. over the last five years) in many of these populations of hake
 predators are stable or increasing, suggesting mild concern about increased
@@ -396,7 +397,7 @@ species has increased over this period as well (Leising et al., in prep).
 However, indices of prey abundance have been
 favorable over the past few years. Krill is a
 dominant diet item for juvenile and adult hake
-[@WippelEtAl2017, @Phillips2022, @BizzarroEtAl2023]. 
+[@WippelEtAl2017; @Phillips2022; @BizzarroEtAl2023]. 
 The CCIEA regional indicators show that krill has been abundant in
 the central CCE in recent years, and increased in waters off Oregon, Washington,
 and British Columbia in 2026 compared to lower abundances in those regions in
@@ -407,6 +408,6 @@ and British Columbia in 2026 compared to lower abundances in those regions in
 Hake are highly exposed with low sensitivity to climate change, with an overall
 rank of low [@McClureEtAl2023]. However, we note that the CVA work pre-dates
 recent studies on the relationships between hake distribution and recruitment
-and ocean conditions [@MalickHunsickerEtAl2020, @VestfalsEtAl2023].
+and ocean conditions [@MalickHunsickerEtAl2020; @VestfalsEtAl2023].
 
 \clearpage

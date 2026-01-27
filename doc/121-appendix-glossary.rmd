@@ -403,7 +403,8 @@ in the model, using the Markov chain Monte Carlo (MCMC) estimates of natural
 mortality, selectivity, and fishing mortality in the final year of the base
 model used in the `r base_model$endyr + 1` assessment. The light blue bars
 represent unfished values, the dark blue bars represent fished values.
-Biomass values are in millions of metric tonnes.
+The numbers per recruit are scaled to be 1 at age-0, and biomass values are in
+millions of metric tonnes. 
 
 (ref:glossary-spr-illustration-alt) Numbers per recruit decrease exponentially from
 zero. Biomass per recruit peaks at age-3 fish which is the age at which fishing

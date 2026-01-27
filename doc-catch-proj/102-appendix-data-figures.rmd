@@ -56,7 +56,7 @@ Freezer trawlers fished at a gear depth of approximately 100 to 300 meters and
 shoreside vessels at a depth of approximately 150 to 250 meters. Bottom depths
 for both fleets have become shallower with fishing being closer to the bottom.
 
-```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, out.height = "8in"}
+```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 5, out.height = "5in"}
 
 plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
