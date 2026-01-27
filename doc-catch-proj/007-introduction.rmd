@@ -18,7 +18,7 @@ old. Separate, and much smaller, populations of `r sp` occurring in the major
 inlets of the Northeast Pacific Ocean, including the Strait of Georgia, Puget
 Sound, and the Gulf of California, are not included in this analysis.
 
-The `r assess_yr` base model for this Joint Technical Committee (JTC) assessment
+The `r assess_yr` base model structure and data for this Joint Technical Committee (JTC) assessment
 is the same as the `r last_data_yr` stock assessment [@JTC2025], projected forward
 to the start of `r assess_yr` using the fishery catches from `r last_data_yr`.
 This type of stock assessment is often
