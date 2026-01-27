@@ -58,7 +58,7 @@ The projection setting the `r forecast_yrs[1]` catch equal to the
 `r forecast_yrs[1] - 1` 
 coast-wide TAC of `r last_yr_tac` t shows the estimated median relative
 spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
-`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1`,
+`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1`.
 <!-- with a `r last_yr_tac_risk_2_bforty`% chance -->
 <!-- of the female spawning biomass falling below `r b_40` in `r end_yr + 2`. -->
 <!-- There is an estimated `r last_yr_tac_risk_1_biomass_decline`% chance of the -->
