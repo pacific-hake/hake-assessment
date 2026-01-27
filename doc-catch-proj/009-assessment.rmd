@@ -73,7 +73,7 @@ Results from the base model
 indicate that since the 1960s, `r sp` female spawning biomass has ranged from
 well below to above unfished equilibrium (Figure~\@ref(fig:es-biomass-fig)); see
 @JTC2025 for historical details. 
-The median estimate of the `r end_yr` female spawning biomass is
+The projected median of the `r end_yr` female spawning biomass is
 `r curr_bio_median` (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper`)~Mt. All 95% credibility intervals are calculated as the 2.5% and 97.5%
 quantiles of posterior distributions from Markov Chain Monte Carlo samples, to give equal-tailed intervals.
@@ -96,7 +96,7 @@ plot_biomass(list(base_model),
              leg_pos = "none")
 ```
 
-The median estimate of the `r end_yr` relative spawning biomass (spawning
+The projected median of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
 95% posterior credibility interval from `r curr_depl_lower`% to

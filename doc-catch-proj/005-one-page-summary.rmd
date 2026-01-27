@@ -31,13 +31,13 @@ out of a total allowable catch (TAC), adjusted for carryovers, of
 (`r last_yr_us_attained`% of their quota) and Canada caught
 `r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
 
-- The median estimate of the `r end_yr` relative spawning biomass
+- The projected median of the `r end_yr` relative spawning biomass
 (female spawning biomass at the start of `r end_yr` divided by that at
 unfished equilibrium, `r b_0`) is `r curr_depl_median`% but it is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
 `r curr_depl_upper`%). 
 
-- The median estimate of female spawning biomass at the start
+- The projected median of female spawning biomass at the start
 of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
 interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes`~t).
 
@@ -73,7 +73,7 @@ stock has a 33% <!-- TODO HARDWIRED -->
 chance of falling below  `r b_40` at the start of
 2027, given the current assumption of average recruitment from 2023 onward.
 
-- Despite estimates of a current stock status likely above `r b_40`, the recent lack
+- Despite the projections of a current stock status likely above `r b_40`, the recent lack
 of survey abundance and fishery catch in Canada suggests
 a population structure not conducive to achieving harvest quotas in
 northern fisheries over recent years.
