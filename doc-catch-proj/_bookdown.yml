@@ -7,6 +7,7 @@ rmd_files: ["000-launcher.rmd",
             "004-load-project-variables.rmd",
             # Always leave the above (files 000-004) uncommented,
             # comment out sections below only.
+	    "005-one-page-summary.rmd",
             "007-introduction.rmd",
             "009-assessment.rmd",
             "011-acknowledgements.rmd",
