@@ -6,10 +6,9 @@
 
 - The stock assessment for `r assess_yr` uses the model and parameter estimates
   from the `r last_assess_yr` assessment, projected forward to the start of 
-  `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`. Unlike the
-  usual `r sp` stock assessment, there is no updated fitting of the model to data. 
+  `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`.  
 
-- This was done because the biomass estimate and age data from the 2025 Joint 
+- The biomass estimate and age data from the 2025 Joint 
   U.S.-Canada Integrated West Coast Pelagics Survey were not available in time to
   be incorporated into a fully updated assessment model, as a result of the extended
   U.S. federal government shutdown in `r last_data_yr`. Furthermore, it has yet
@@ -17,12 +16,12 @@
   existing survey time series in a compatible way, because of changes in survey 
   design.   
 
-- The `r last_assess_yr` model was fit to an acoustic survey index of biomass,
+- The `r last_assess_yr` assessment model (with data through
+  `r last_assess_yr - 1`) was fit to an acoustic survey index of biomass,
   annual commercial catch data, and age-composition data from the survey and
   commercial fisheries. A model-based approach was used for the input
   weight-at-age matrix and time-varying temperature-dependent maturity, both of
-  which informed fecundity. Available data for `r last_data_yr`, such as from
-  the commercial fishery, are presented here for information.
+  which informed fecundity. Fishery catch is the only updated `r last_assess_yr` data in the `r assess_yr` stock assessment.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 (t represents tonnes), 48% below the average over the most recent 10 years
@@ -71,7 +70,7 @@ spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
 <!-- `r last_yr_tac` t. -->
 With a realized catch of 250,000 t in `r assess_yr`, it was estimated that the
 stock has a 33% <!-- TODO HARDWIRED -->
-change of falling below  `r b_40` at the start of
+chance of falling below  `r b_40` at the start of
 2027, given the current assumption of average recruitment from 2023 onward.
 
 - Despite estimates of a current stock status likely above `r b_40`, the recent lack
