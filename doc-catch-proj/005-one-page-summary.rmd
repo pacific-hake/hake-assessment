@@ -4,7 +4,7 @@
 
 # One-page summary {-}
 
-- The `r assess_yr` stock assessment for `r sp` uses the model and parameter estimates
+- The `r assess_yr` stock assessment for `r sp` uses the model
   from the `r last_assess_yr` assessment, projected forward to the start of 
   `r assess_yr` using the coast-wide fishery catch from `r last_data_yr`. Unlike
   the usual `r sp` stock assessment, the model is not refit to the most recent
@@ -73,7 +73,7 @@ spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
 With a realized catch of 250,000 t in `r assess_yr`, it was estimated that the
 stock has a 33% <!-- TODO HARDWIRED -->
 chance of falling below  `r b_40` at the start of
-2027, given the current assumption of average recruitment from 2023 onward.
+2027, given the current assumption of median recruitment from 2023 onward.
 
 - Despite depiction of a current stock status likely above `r b_40`, the recent lack
 of survey abundance and fishery catch in Canada suggests
