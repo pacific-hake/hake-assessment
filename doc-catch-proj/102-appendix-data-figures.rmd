@@ -2,7 +2,7 @@
 
 \rfoot{Figures}
 
-# Data Figures {#sec:figures}
+# Data Figures {#sec:app-figures}
 
 This appendix contains empirical data figures only. There are no model output figures included. The `r end_yr` assessment is a simple projection model which includes only the total `r last_data_yr` catch as new data. The figures presented here contain historical data as well as the data for `r last_data_yr`, even though only catch was updated in the modelling for this year. All the `r last_data_yr` data presented here will be used in future assessment years' model runs.
 
