@@ -9,6 +9,8 @@
 #' @param first Load this many of the files. If a non-positive number, load
 #' them all. Used for debugging purposes to cut down the size of the
 #' lists used
+#' @param assess_yr The year of the assessment. Used to extract specific
+#' year-based columns from the MCMC output.
 #' @param ... Arguments passed to [extract_rep_table()]
 #'
 #' @return The extra MCMC list
@@ -17,6 +19,7 @@ load_extra_mcmc <- function(model,
                             progress_n = 500,
                             verbose = TRUE,
                             first = 0,
+                            assess_yr = get_assess_yr(),
                             ...){
 
   if(is.null(model$extra_mcmc_path) || is.na(model$extra_mcmc_path)){
@@ -80,7 +83,7 @@ load_extra_mcmc <- function(model,
   extra_mcmc$age_comps <- load_extra_mcmc_age_comps(
     compreps = compreps,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^Composition_Database",
@@ -95,7 +98,7 @@ load_extra_mcmc <- function(model,
   extra_mcmc$init_natage <- load_extra_mcmc_init_nage(
     reps = reps,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = paste0("^\\d+\\s*Early_InitAge_", max_age),
@@ -127,7 +130,7 @@ load_extra_mcmc <- function(model,
     reps = reps,
     cohorts = large_cohorts,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^Recr_Initial",
@@ -138,7 +141,7 @@ load_extra_mcmc <- function(model,
   biomass_lst <- load_extra_mcmc_biomass(
     reps = reps,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^TIME_SERIES",
@@ -154,7 +157,7 @@ load_extra_mcmc <- function(model,
   sel_fishery_lst <- load_extra_mcmc_sel(
     reps = reps,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^COMBINED_ALK",
@@ -184,7 +187,7 @@ load_extra_mcmc <- function(model,
 
   # Selectivity * Weight ------------------------------------------------------
   # AKA vulnerable biomass ----------------------------------------------------
-  selwt_pat <- paste0(model$endyr + 1, "_1_sel\\*wt")
+  selwt_pat <- paste0(assess_yr, "_1_sel\\*wt")
   selwt_lst <- load_extra_mcmc_selwt(
     reps = reps,
     verbose = verbose,
@@ -204,7 +207,7 @@ load_extra_mcmc <- function(model,
     reps = reps,
     verbose = verbose,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     txt = "numbers-at-age",
     beg_pat = "^NUMBERS_AT_AGE report",
     end_pat = "^BIOMASS_AT_AGE",
@@ -218,7 +221,7 @@ load_extra_mcmc <- function(model,
     reps = reps,
     verbose = verbose,
     start_yr = model$startyr,
-    end_yr = model$endyr + 1,
+    end_yr = assess_yr,
     txt = "biomass-at-age",
     beg_pat = "^BIOMASS_AT_AGE",
     end_pat = "^NUMBERS_AT_LENGTH",
@@ -274,11 +277,11 @@ load_extra_mcmc <- function(model,
   }
 
   natage <- natage_lst$atage |>
-    dplyr::filter(yr == model$endyr + 1) |>
+    dplyr::filter(yr == assess_yr) |>
     select(-c(yr, iter))
 
   sel <- sel_fishery_lst$sel |>
-    dplyr::filter(yr == model$endyr + 1) |>
+    dplyr::filter(yr == assess_yr) |>
     select(-c(yr))
 
   natsel <- natage * sel

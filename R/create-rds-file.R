@@ -73,6 +73,7 @@ create_rds_file <- function(model_path = NULL,
   # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,
                                       verbose = verbose,
+                                      assess_yr = assess_yr,
                                       ...)
 
   model$mcmcparams <- load_parameter_priors(model)
