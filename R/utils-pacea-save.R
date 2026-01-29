@@ -26,10 +26,10 @@ pacea_save <- function(model_lst = list(base_model),
   #  single model:
   if(length(model_lst) != 1){stop("model_lst can only have one model")}
 
-  # default is for Andy's machine - note directory is PACea not pacea.
+  # default is for Andy's machine
   if(is.null(dir_to_save)){
     dir_to_save <- paste0(here::here(),
-                          "/../PACea/data-raw/groundfish/hake-",
+                          "/../pacea/data-raw/groundfish/hake-",
                           assess_yr)
   }
 
