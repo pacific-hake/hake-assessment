@@ -12,7 +12,7 @@ Based on information provided by U.S. Advisory Panel members and data from
 the Pacific Fisheries Information Network (PacFIN), total U.S. harvest in the
 2025 whiting fishery was **239,206~t** (see Table \@ref(tab:us-ap-catch-tab)),
 which is about 81% of the U.S. allocation of 295,520~t. Compared to the 2024 season
-(165,582~t), total U.S. catch was down 45% in 2025.
+(165,582~t), total U.S. catch was up 45% in 2025.
 
 ```{r us-ap-catch-tab, results = "asis", echo = FALSE}
 
@@ -81,8 +81,8 @@ kbl(d,
     caption = paste0("2025 U.S. whiting allocations and catch (tonnes, ",
                      "t). Tribal catch is estimated (SS sector), and MS ",
                      "catch was provided by the MS cooperative. Dashes ",
-                     "represent unknown values.Tribal reapportionment occurred twice,",
-                     "one September 16 and September 29, 2025."),
+                     "represent unknown values. Tribal reapportionment occurred twice,",
+                     " on September 16 and September 29, 2025."),
     longtable = TRUE) |> 
     row_spec(0, bold = TRUE) |>
     row_spec(nrow(d), bold = TRUE) |> 
