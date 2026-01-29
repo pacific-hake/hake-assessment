@@ -1,0 +1,102 @@
+# Fits to data
+
+## Fit to the acoustic survey index of abundance
+```{r mcmc-survey-fit, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     y_lim = c(0, 6),
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.7,
+                     leg_sep = 0.7,
+                     leg_font_size = 10 / .pt)
+```
+
+## Fit to the age-1 relative index
+```{r mcmc-age1-fit, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "age1",
+                     n_posts = 1000,
+                     y_lim = c(0, 10),
+                     glow = TRUE,
+                     y_labs_by = 1,
+                     leg_ymax = 4.7,
+                     leg_sep = 0.7,
+                     leg_font_size = 10 / .pt) +
+  theme(plot.margin = margin(2, 0, 12, 12))
+```
+
+## Fit to acoustic survey age composition data
+:::::: {.columns}
+::: {.column width="40%"}
+* Essentially the same as last year's assessment
+* Overestimated:
+  * \textcolor{blue}{1999} cohort in most surveys
+  * \textcolor{yellow}{2010} cohort in 2017 survey
+* Underestimated:
+  * some young cohorts in 2003--2011
+  * \textcolor{black}{2014} cohort in 2017 survey
+  * \textcolor{yellow}{2021} cohort in 2023 survey
+:::
+
+::: {.column width="60%"}
+```{r survey-age-comp-fits, fig.height = 4, out.height = "80%"}
+plot_age_comp_fit(base_model,
+                  n_col = 4,
+                  type = "survey",
+                  x_breaks = seq(2, 15, 2),
+                  label_font_size = 4,
+                  label_loc = c(12, 0.7))
+```
+:::
+::::::
+
+## Fit to fishery age composition data
+:::::: {.columns}
+::: {.column width="40%"}
+* Essentially the same as last year's assessment
+* Large \textcolor{Purple}{1999}, \textcolor{Pink}{2010}, \textcolor{Purple}{2014},
+  and \textcolor{Orange}{2016} cohorts fit particularly well
+* Some over- and under-fitting in \textcolor{Pink}{1980} and \textcolor{Purple}{1984} cohorts
+* The \textcolor{Green}{2020} cohort is fit better than last year
+* Overall, fishery data in `r assess_yr - 1` is fit well and implies age-3 and -4 fish made up
+  a large contributon of the catch
+:::
+
+::: {.column width="60%"}
+```{r fishery-age-comp-fits, fig.height = 4, out.height = "75%"}
+plot_age_comp_fit(base_model,
+                  label_font_size = 3,
+                  type = "fishery",
+                  n_col = 4)
+```
+:::
+::::::
+
+## Pearson residual for fit to the age data
+:::::: {.columns}
+::: {.column width="50%"}
+\center Fishery \center
+```{r fishery-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
+plot_pearson_bubbles(base_model,
+                     type = "fishery",
+                     leg_pos = "top")
+```
+:::
+
+::: {.column width="50%"}
+\center Survey \center
+```{r survey-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
+plot_pearson_bubbles(base_model,
+                     type = "survey",
+                     alpha = 0.7)
+```
+:::
+::::::
+Dark bubbles: observed > expected
+
+White bubbles: observed < expected

@@ -1,0 +1,12 @@
+# Changes from `r last_assess_yr`
+## Changes from the `r last_assess_yr` assessment
+
+* Add `r last_assess_yr` catch and run a projection model using the `r last_assess_yr` assessment model
+
+## Bridging: Summary
+
+\bsmall
+
+* Use bsmall to make a smaller text list
+
+\esmall
