@@ -1,0 +1,88 @@
+# Projections
+
+## Projection methods
+
+* Projections from start of `r end_yr` to the start of `r end_yr + 3`
+
+* Projections estimate the biomass at start of those years
+  - Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used in
+    projections
+  - Mean of weight-at-age and maturity-at-age (and thus fecundity) from
+    `r end_yr - 5`--`r end_yr - 1` used in projections
+  - Recruitment from stock--recruitment relationship
+
+* Alternative future catch levels explored
+
+* In future assessments, we will be doing 2 year projections at the
+  instruction of the JMC
+
+## Default harvest policy for `r assess_yr`
+:::::: {.columns}
+::: {.column width="38%"}
+* Using the defined *F~SPR=40%~* harvest rate with a 40:10 adjustment, the
+  median projected `r end_yr` TAC is \textbf{`r ct_limit_quantiles["median"]` t}
+* 2.5% and 97.5% quantiles: `r ct_limit_quantiles["lower"]` and
+  `r ct_limit_quantiles["upper"]` t
+:::
+
+::: {.column width="62%"}
+```{r main-projected-catch-density, out.height = "80%"}
+
+plot_param_density(base_model,
+                   param_nm = paste0("ForeCatch_", assess_yr),
+                   y_lim = c(0, 0.0017),
+                   expand_vec = c(100, 100),
+                   show_y_labels = FALSE,
+                   x_lab = paste0("Projected ", assess_yr, " catch (kt) ",
+                                  "based on the default harvesy policy"))
+```
+:::
+::::::
+
+## Three-year projections
+:::::: {.columns}
+::: {.column width="38%"}
+- All catch options result in continuous decline of the stock through to
+  the start of `r end_yr + 3`
+
+- Fixing recruitment deviations from `r end_yr - 2` onward results
+  in lower uncertainty and no chance for large recruitments in the projected
+  years, which results in an underestimate of potential future recruitment
+:::
+
+::: {.column width="62%"}
+```{r main-forecast-depletion-comparison-plot, out.height = "80%"}
+
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
+# `fore_inds` below are the indices of those forecast values in that list.
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 7, 10),
+                          forecast_yrs = forecast_yrs[1:2],
+                          is_catch_proj = TRUE)
+```
+:::
+::::::
+
+## Projected age proportions for `r end_yr` fishery catch
+:::::: {.columns}
+::: {.column width="45%"}
+**Median proportions:**
+```{r fore-age-props, results = "asis"}
+
+table_fore_age_props(fore_catch_prop,
+                     fore_catch_prop_wt,
+                     ages_filt = 1:15,
+                     font_size = 8) |>
+    # Highlight two largest cohorts
+    row_spec(11:12,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+:::
+
+::: {.column width="55%"}
+```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
+plot_fore_age_comps(base_model, y_lim = c(0, 0.7))
+```
+:::
+::::::
