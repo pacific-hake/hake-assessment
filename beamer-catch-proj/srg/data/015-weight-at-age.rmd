@@ -1,0 +1,154 @@
+# Weight and fecundity-at-age data
+## Summary of weight at age
+
+* Fixed inputs to Stock Synthesis from GLMM thanks to Andrea Odell, Eric Ward, and Kristin Marshall.
+* Pre-1975 weight-at-age data are available from the U.S.~Shorebased fleet;
+  these data were included in the GLMM but pre-1975 values are age-specific
+  means across all years.
+* $weight \sim sex + s(age) + (1|year) + (1|cohort) + lognormal(0, \mu)$
+* No spatial effects because we cannot share sample location information
+  between JTC members and some samples do not have associated locations.
+* Forecasted weight is age-specific means from most recent five years.
+
+## Weight-at-age annual sample size
+```{r main-weight-at-age-numbers, fig.height = 4, out.height = "85%"}
+plot_heatmap_sample_size_weight_at_age(
+  base_model,
+  cell_font_size = 2,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
+```
+
+## Annual weight-at-age model estimates
+```{r wt-at-age, fig.height = 4, out.height = "85%"}
+
+plot_weight_at_age(wt_at_age,
+                   ages = 2:10,
+                   bold_ages = 5,
+                   cols = c("purple",
+                            "darkblue",
+                            "yellow",
+                            "darkgreen"),
+                   max.overlaps = 15)
+```
+
+## Weight-at-age GLMM
+### Results
+* Females weigh more, on average, than males.
+* Cohort effect is now equal to, rather than larger than, than year effect.
+
+```{r plot-weight-at-age-by-sex, fig.height = 2.75}
+wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
+# Make figure
+wtaa_preds |>
+  dplyr::filter(year %in% c(2016, 2018)) |>
+  ggplot2::ggplot(ggplot2::aes(
+    x = age,
+    y = est_weight,
+    group = interaction(sex, year),
+    colour = fyear,
+    pch = sex
+  )) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::xlab("age (years)") +
+  ggplot2::ylab("estimated mass (kg)")
+```
+
+## Summary of fecundity at age
+
+* Ovary sampling occurs in U.S.~at-sea sectors by at-sea observers, acoustic
+  survey, and U.S.~West Coast Groundfish Bottom Trawl Survey.
+* Survey-based ovary sampling is length stratified with target numbers for 2~cm
+length bins and biased towards summer samples.
+* 2024 ovaries have yet to be analyzed.
+* Canadian and Southern of Point Conception samples are not included.
+* Historical maturity at age is the age-specific mean from all years.
+* Forecasted maturity at age is the age-specific mean from most-recent five years.
+* Fecundity at age is maturity at age $*$ weight at age.
+* Indeterminate batch spawners with a protracted spawning season.
+* Spatial and temporal differences with younger age at 50% maturity south of
+  Point Conception (i.e., 1.45 vs. 2.56 years) and annual differences in age at
+  50% maturity north of Point Conception from 2.0--3.3.
+
+<!-- ### Definitions
+* Histological sampling: taking cross sectional samples of the gonads
+  immediately after being caught for later viewing under a microscope.
+* Macroscopic sampling: taking samples of the gonads to assess maturity status
+  without using a microscope.
+* Biological maturity: physiological evidence of progressing towards a mature
+  state.
+* Functional maturity: physical evidence of spawning.
+* Atresia: degeneration of ovarian follicles.
+* Senescence: deterioration with age.
+* Skipped spawning: ability to spawn but lack thereof.
+* Batch spawning: spawning multiple batches of oocytes during the individual
+  spawning period.
+* Batch fecundity: the number of eggs produced in a single spawning batch,
+  where annual fecundity is a function of both batch fecundity and the number
+  of spawnings per year. -->
+
+## Sample sizes of ovaries by year
+```{r ovary-table, results = "asis"}
+
+table_ovary_samples(
+  ovary_samples_df,
+  font_size = 7,
+  header_font_size = 6)
+```
+
+
+## Maturity at age by year
+```{r maturity-ogive-figure, fig.height = 4, out.height = "85%"}
+
+plot_maturity_ogives(eq_x_start_legend = 10,
+                     eq_y_start_legend = -0.1,
+                     eq_fore_alpha = 0.7,
+                     eq_fore_line_width = 1,
+                     leg_line_size_cm = 0.5,
+                     leg_font_size = 10)
+```
+
+## Fecundity-at-age GLMM
+
+* Led by Melissa Head, Eric Ward, and Kristin Marshall.
+* $P(mature) \sim ASHOP~vs.~Survey + s(day~of~year) + temperature + temperature^2 + GMRF() + GMRF(age) + GMRF(age^2)$
+* February average from GLORYS12v1 at 130.67~m, weighted by July 1 biomass.
+* Estimates of maturity were weighted by July 1 biomass.
+* Higher age at 50% maturity in ASHOP samples compared to survey samples.
+* Spatial patterns were similar across ages.
+* Higher age at 50% maturity in moderately warm compared to colder and hot years.
+
+<!-- spatiotemporal model with spatially varying coefficients
+for the quadratic function of age and year effects as a quadratic function of
+temperature at 130.67~m. -->
+
+## Fecundity at age by year
+```{r fecundity-figure, fig.height = 4, out.height = "85%"}
+
+plot_heatmap_weight_at_age(
+  base_model,
+  fleet = -2,
+  cell_font_size = 2,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  yrs = (start_yr_age_comps - 1):(base_model$endyr + 1),
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
+```
