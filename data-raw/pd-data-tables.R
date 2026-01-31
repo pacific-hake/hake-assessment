@@ -105,7 +105,10 @@ create_data_hake("ct",
 create_data_hake("catch_targets_df",
                  read_csv(file.path(load_dir,
                                     "catch-targets-biomass.csv"),
-                          col_types = cols(),
+                          col_types = cols(Year = col_integer(),
+                                           `Realized catch` = col_number(),
+                                           `Total TAC` = col_number(),
+                                           `Default HCR TAC` = col_number()),
                           show_col_types = FALSE))
 
 create_data_hake("further_tac_df",
