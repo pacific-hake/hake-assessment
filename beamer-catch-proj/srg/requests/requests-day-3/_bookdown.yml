@@ -1,0 +1,13 @@
+ # name of the pdf file that is created: hake.pdf
+book_filename: "JTC-requests"
+rmd_files: ["000-launcher.rmd",
+            "../../../../doc-catch-proj/001-load-packages.rmd",
+            "../../../../doc-catch-proj/002-load-globals.rmd",
+            "../../../../doc-catch-proj/003-load-models.rmd",
+            "../../../../doc-catch-proj/004-load-project-variables.rmd",
+            "010-request.rmd",
+            "020-request.rmd",
+            "../../../../doc/999-blank.rmd"]
+# `delete_merged_file`: If true, the hake.Rmd file which was created by
+# bookdown during the build will be kept after the hake.pdf file is created
+delete_merged_file: false
