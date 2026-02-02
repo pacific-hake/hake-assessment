@@ -2,19 +2,17 @@
 
 ## Projection methods
 
-* Projections from start of `r end_yr` to the start of `r end_yr + 3`
+* Single projection year, to the start of `r end_yr + 1`
 
-* Projections estimate the biomass at start of those years
-  - Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used in
+* The projections estimates the biomass at start of `r end_yr + 1`
+  - Mean of fishery selectivity from `r end_yr - 6`--`r end_yr - 2` used in
     projections
   - Mean of weight-at-age and maturity-at-age (and thus fecundity) from
-    `r end_yr - 5`--`r end_yr - 1` used in projections
+    `r end_yr - 6`--`r end_yr - 2` used in projections
   - Recruitment from stock--recruitment relationship
 
-* Alternative future catch levels explored
+* Alternative catch levels for `r end_yr` explored
 
-* In future assessments, we will be doing 2 year projections at the
-  instruction of the JMC
 
 ## Default harvest policy for `r assess_yr`
 :::::: {.columns}
@@ -42,12 +40,11 @@ plot_param_density(base_model,
 ## Three-year projections
 :::::: {.columns}
 ::: {.column width="38%"}
-- All catch options result in continuous decline of the stock through to
-  the start of `r end_yr + 3`
+- All catch options result in decline of the stock to the beginning of `r end_yr + 1`
 
 - Fixing recruitment deviations from `r end_yr - 2` onward results
-  in lower uncertainty and no chance for large recruitments in the projected
-  years, which results in an underestimate of potential future recruitment
+  in lower uncertainty and no chance for large recruitments in the projection
+  year, which will result in an underestimate of potential future recruitment
 :::
 
 ::: {.column width="62%"}
