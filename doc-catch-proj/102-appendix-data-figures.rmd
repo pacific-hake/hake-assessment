@@ -73,7 +73,7 @@ plot_depth_4_panel(can_ft_gear_depth_df,
 
 (ref:main-age-proportions-alt) The U.S. fleets observe higher age-proportions of younger fish compared to the Canadian fleets.
 
-```{r main-age-proportions-fig, fig.cap = "(ref:main-age-proportions-cap)", fig.width = 6, fig.height = 6, out.height = "6in"}
+```{r main-age-proportions-fig, fig.cap = "(ref:main-age-proportions-cap)", fig.asp = 0.8, out.height = "5in"}
 
 ages <- can_ss_age_df |>
   names() %>%
