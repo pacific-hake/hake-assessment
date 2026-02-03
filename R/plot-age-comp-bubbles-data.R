@@ -6,18 +6,22 @@
 #' as `age_data-lst`
 #' @param years A vector of two values re0-presenting the minimum and maximum
 #' year values to plot
-#' @param ax_title_font_size The font size for the axis titles and strip
-#' titles (sector names)
-#' @param ax_tick_font_size The foint size for the axis tick labels
-#' (years and ages)
-#' @param ax_label_color The color for the axis tick labels
+#' @param yrs_not_used_in_model A vector of years to draw a box around
+#' signifying they were not used in the current assessment model
+#' @param yrs_not_used_in_model_color If `yrs_not_used_in_model` is not `NULL`,
+#' use this color for the box
+#' @param yrs_not_used_in_model_width If `yrs_not_used_in_model` is not `NULL`,
+#' use this for the width of the box outline
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_age_comp_bubbles_data <- function(age_data_lst,
                                        nms_vec,
                                        years = c(year(now()) - 6,
-                                                 year(now()) - 1)){
+                                                 year(now()) - 1),
+                                       yrs_not_used_in_model = NULL,
+                                       yrs_not_used_in_model_color = "red",
+                                       yrs_not_used_in_model_width = 1){
 
   if(length(age_data_lst) != length(nms_vec)){
     warning("`age_data_lst` is not the same length as `nms_vec`. Using ",
@@ -75,6 +79,15 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
           legend.position = "none",
           strip.background = element_rect(fill = "transparent"),
           strip.text = element_text(size = axis_title_font_size))
+
+  if(!is.null(yrs_not_used_in_model)){
+    g <- g +
+      geom_mark_rect(aes(filter = year %in% yrs_not_used_in_model),
+                     color = yrs_not_used_in_model_color,
+                     fill = NA,
+                     expand = unit(2, "mm"),
+                     size = yrs_not_used_in_model_width)
+  }
 
   g
 }

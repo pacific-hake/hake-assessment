@@ -8,7 +8,10 @@ sector of the fishery}
 plot_age_comp_bubbles_data(
   age_data_lst,
   nms_vec,
-  years = c(year(now()) - 6, year(now()) - 1)
+  years = c(year(now()) - 6, year(now()) - 1),
+  yrs_not_used_in_model = NULL,
+  yrs_not_used_in_model_color = "red",
+  yrs_not_used_in_model_width = 1
 )
 }
 \arguments{
@@ -20,13 +23,14 @@ as \code{age_data-lst}}
 \item{years}{A vector of two values re0-presenting the minimum and maximum
 year values to plot}
 
-\item{ax_title_font_size}{The font size for the axis titles and strip
-titles (sector names)}
+\item{yrs_not_used_in_model}{A vector of years to draw a box around
+signifying they were not used in the current assessment model}
 
-\item{ax_tick_font_size}{The foint size for the axis tick labels
-(years and ages)}
+\item{yrs_not_used_in_model_color}{If \code{yrs_not_used_in_model} is not \code{NULL},
+use this color for the box}
 
-\item{ax_label_color}{The color for the axis tick labels}
+\item{yrs_not_used_in_model_width}{If \code{yrs_not_used_in_model} is not \code{NULL},
+use this for the width of the box outline}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
