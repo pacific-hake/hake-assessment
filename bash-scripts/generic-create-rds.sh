@@ -55,7 +55,8 @@ for model in ${models[@]}; do
                   verbose = $verbose, \
                   overwrite = $overwrite, \
                   keep_index_fit_posts = $keep_index_fit_posts, \
-                  first = $first)"; \
+                  first = $first,
+                  assess_yr = 2025)"; \
   printf "\nCreation of RDS file in directory\n$model\nfinished\n"; \
   ) &
 done
