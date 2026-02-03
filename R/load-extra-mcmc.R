@@ -134,7 +134,7 @@ load_extra_mcmc <- function(model,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^Recr_Initial",
-    end_pat = "^SPRratio_[0-9]{1,4}",
+    end_pat = paste0("^SPRratio_", model$startyr),
     ...)
 
   # Biomass --------------------------------------------------------------------
