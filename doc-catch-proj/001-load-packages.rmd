@@ -16,7 +16,7 @@ pacman::p_load(
   cli, coda, cowplot, crayon,
   data.tree, date, dplyr,
   future, furrr,
-  ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
+  ggh4x, ggforce, ggplot2, ggpubr, ggrepel, grDevices, grid,
   gridGraphics, gridExtra, gtools,
   here,
   # kableExtra - Using cgrandin/kableExtra fork because there is a bug in
