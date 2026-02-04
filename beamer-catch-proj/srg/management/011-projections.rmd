@@ -41,7 +41,7 @@ plot_param_density(base_model,
 :::::: {.columns}
 ::: {.column width="38%"}
 - All catch options result in decline of the stock to the beginning of `r end_yr + 1`
-
+\item[] <!-- Blank line between bullets -->
 - Fixing recruitment deviations from `r end_yr - 2` onward results
   in lower uncertainty and no chance for large recruitments in the projection
   year, which will result in an underestimate of potential future recruitment
@@ -55,12 +55,16 @@ plot_param_density(base_model,
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 7, 10),
                           forecast_yrs = forecast_yrs[1:2],
-                          is_catch_proj = TRUE)
+                          is_catch_proj = TRUE,
+                          leg_pos = c(0.15, 0.85))
 ```
 :::
 ::::::
 
 ## Projected age proportions for `r end_yr` fishery catch
+
+**\text{\small 2025 age data is not included in the model so age 2's seen in data are not represented}**
+
 :::::: {.columns}
 ::: {.column width="45%"}
 **Median proportions:**
