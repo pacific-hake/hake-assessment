@@ -45,7 +45,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
     stop("No files in the bookdown config file matched the files to be ",
          "copied. See the `gotest_beamer()` function")
   }
-  dest_fns <- file.path("doc", basename(src_fns))
+  dest_fns <- file.path(doc_path, basename(src_fns))
 
   # Add the beamer images (title picture and logos)
   # Read the image directory from the 000-launcher.rmd file
@@ -65,14 +65,14 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
          "presentations (location of logos). See gotest_beamer() function")
   }
   images_src_fns <- replace_dotted_paths(images_src_fns)
-  images_dest_fns <- file.path("doc/images", basename(images_src_fns))
+  images_dest_fns <- file.path(doc_path, "images", basename(images_src_fns))
   src_fns <- c(src_fns, images_src_fns)
   dest_fns <- c(dest_fns, images_dest_fns)
 
   # Add the main figures (prebuilt figures)
-  main_figs_src_dir <- here::here("doc", my_figures_dir)
+  main_figs_src_dir <- here::here(doc_path, my_figures_dir)
   main_figs_src_fns <- list.files(main_figs_src_dir, full.names = TRUE)
-  main_figs_dest_fns <- file.path("doc", my_figures_dir, basename(main_figs_src_fns))
+  main_figs_dest_fns <- file.path(doc_path, my_figures_dir, basename(main_figs_src_fns))
   src_fns <- c(src_fns, main_figs_src_fns)
   dest_fns <- c(dest_fns, main_figs_dest_fns)
 
