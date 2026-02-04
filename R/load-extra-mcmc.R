@@ -329,14 +329,13 @@ load_extra_mcmc <- function(model,
                                  beg_pat = "^PARAMETERS report",
                                  end_pat = "AgeSel_P1_Fishery")
 
-  if(is.na(x)){
+  if(is.na(x[1])){
     extra_mcmc$lnq_edna_lo <- NA
     extra_mcmc$lnq_edna_med <- NA
     extra_mcmc$lnq_edna_hi <- NA
     extra_mcmc$q_extrasd_edna_lo <- NA
     extra_mcmc$q_extrasd_edna_med <- NA
     extra_mcmc$q_extrasd_edna_hi <- NA
-
   } else {
     lnq_edna <-  map(x$lst, ~{grep("LnQ_base_eDNA_Survey",
                                    .x, value = TRUE)})
