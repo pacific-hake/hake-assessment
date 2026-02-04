@@ -82,3 +82,18 @@ if(is.na(test_models)[1]){
     })
   })
 }
+
+test_mdl_lst <- list(base_model,
+                     last_yr_base_model,
+                     #readRDS("/srv/hake/models/2026/01-version/05-test-models/00-areas-as-fleets/00-areas-as-fleets.rds"),
+                     #readRDS("/srv/hake/models/2026/01-version/05-test-models/01-areas-as-fleets-canselmax8/01-areas-as-fleets-canselmax8.rds"),
+                     readRDS("/srv/hake/models/2026/01-version/05-test-models/06-base-stochastic-forecast-recruitment/06-base-stochastic-forecast-recruitment.rds"),
+                     readRDS("/srv/hake/models/2026/01-version/05-test-models/10-base-stochastic-forecast-rec-fit-survey/10-base-stochastic-forecast-rec-fit-survey.rds"),
+                     readRDS("/srv/hake/models/2026/01-version/05-test-models/11-base-fit-survey/11-base-fit-survey/.rds"))
+
+# names shown on plot legends
+test_mdl_nms <- c("2026 Base model",
+                  "2025 Base model",
+                  "Stoch. Fore. Recr.",
+                  "Stoch. Fore. Recr. & Fit Survey",
+                  "Fit survey")
