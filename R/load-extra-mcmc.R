@@ -329,41 +329,51 @@ load_extra_mcmc <- function(model,
                                  beg_pat = "^PARAMETERS report",
                                  end_pat = "AgeSel_P1_Fishery")
 
-  lnq_edna <-  map(x$lst, ~{grep("LnQ_base_eDNA_Survey",
-                                 .x, value = TRUE)})
+  if(is.na(x)){
+    extra_mcmc$lnq_edna_lo <- NA
+    extra_mcmc$lnq_edna_med <- NA
+    extra_mcmc$lnq_edna_hi <- NA
+    extra_mcmc$q_extrasd_edna_lo <- NA
+    extra_mcmc$q_extrasd_edna_med <- NA
+    extra_mcmc$q_extrasd_edna_hi <- NA
 
-  q_extrasd_edna <-  map(x$lst, ~{grep("Q_extraSD_eDNA_Survey",
-                                       .x, value = TRUE)})
+  } else {
+    lnq_edna <-  map(x$lst, ~{grep("LnQ_base_eDNA_Survey",
+                                   .x, value = TRUE)})
+    q_extrasd_edna <-  map(x$lst, ~{grep("Q_extraSD_eDNA_Survey",
+                                         .x, value = TRUE)})
 
-  if(all(lengths(lnq_edna))){
-    lnq_edna <- suppressWarnings(extract_rep_table(reps_lst = lnq_edna,
-                                                   header = x$header,
-                                                   verbose = verbose,
-                                                   ...))
+    if(all(lengths(lnq_edna))){
+      lnq_edna <- suppressWarnings(extract_rep_table(reps_lst = lnq_edna,
+                                                     header = x$header,
+                                                     verbose = verbose,
+                                                     ...))
 
-    names(lnq_edna) <- tolower(names(lnq_edna))
+      names(lnq_edna) <- tolower(names(lnq_edna))
 
-    lnq_edna_quants <- lnq_edna$value |> quantile(probs = probs)
+      lnq_edna_quants <- lnq_edna$value |> quantile(probs = probs)
 
-    extra_mcmc$lnq_edna_lo <- lnq_edna_quants[1]
-    extra_mcmc$lnq_edna_med <- lnq_edna_quants[2]
-    extra_mcmc$lnq_edna_hi <- lnq_edna_quants[3]
+      extra_mcmc$lnq_edna_lo <- lnq_edna_quants[1]
+      extra_mcmc$lnq_edna_med <- lnq_edna_quants[2]
+      extra_mcmc$lnq_edna_hi <- lnq_edna_quants[3]
+    }
+
+    if(all(lengths(q_extrasd_edna))){
+      q_extrasd_edna <- suppressWarnings(extract_rep_table(reps_lst = q_extrasd_edna,
+                                                           header = x$header,
+                                                           verbose = verbose,
+                                                           ...))
+
+      names(q_extrasd_edna) <- tolower(names(q_extrasd_edna))
+
+      q_extrasd_edna_quants <- q_extrasd_edna$value |> quantile(probs = probs)
+
+      extra_mcmc$q_extrasd_edna_lo <- q_extrasd_edna_quants[1]
+      extra_mcmc$q_extrasd_edna_med <- q_extrasd_edna_quants[2]
+      extra_mcmc$q_extrasd_edna_hi <- q_extrasd_edna_quants[3]
+    }
   }
 
-  if(all(lengths(q_extrasd_edna))){
-    q_extrasd_edna <- suppressWarnings(extract_rep_table(reps_lst = q_extrasd_edna,
-                                                         header = x$header,
-                                                         verbose = verbose,
-                                                         ...))
-
-    names(q_extrasd_edna) <- tolower(names(q_extrasd_edna))
-
-    q_extrasd_edna_quants <- q_extrasd_edna$value |> quantile(probs = probs)
-
-    extra_mcmc$q_extrasd_edna_lo <- q_extrasd_edna_quants[1]
-    extra_mcmc$q_extrasd_edna_med <- q_extrasd_edna_quants[2]
-    extra_mcmc$q_extrasd_edna_hi <- q_extrasd_edna_quants[3]
-  }
 
   # Catchability --------------------------------------------------------------
   if(verbose){
