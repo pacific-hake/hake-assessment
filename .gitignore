@@ -2,6 +2,11 @@
 # Files
 hake.R
 hake.Rmd
+JTC-assessment.Rmd
+JTC-data.Rmd
+JTC-management.Rmd
+JTC-requests.Rmd
+JTC-responses.Rmd
 password.txt
 marmap_coord*
 ..Rcheck/
