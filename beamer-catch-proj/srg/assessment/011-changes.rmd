@@ -1,15 +1,11 @@
-# Changes from `r last_assess_yr`
-## Justification for `r assess_yr` base model structure
+# Changes from `r last_assess_yr` and Justification
+## `r assess_yr` base model structure
 
-* `r assess_yr` model is effectively equivalent to the  `r last-assess_yr` model (unchanged structure and results) to the start of 2025.
+* `r assess_yr` model is effectively equivalent to the  `r last_assess_yr` model (unchanged structure and results) to the start of 2025.
+* Model parameters are effectively the same for `r assess_yr` and `r last_assess_yr`
 * The same version of Stock Synthesis was used as last year.
 * `r assess_yr` model only updates the 2025 total coastwide catch data.
 * Often referred to as a catch-only projection style of assessment.
-* The JTC notes:
-- The option of adding another year of fisheries age data, without the 2025 survey data, could lead to potentially misleading results.
-- The option of using the `r last-assess_yr` model projections as the basis for 2026 status was only an approximation.
-- Thus, the catch-only projection option was deemed the most applicable for this year, because it bases 2026 management advice
-on the approved `r last-assess_yr` assessment and uses the exact 2025 total catch for a projection. 
 
 ## Comparison to `r last_assess_yr` (biomass)
 
@@ -59,26 +55,32 @@ plot_grid(plotlist = p,
 
 ```
 
+## Justification for `r assess_yr` base model structure
+* The JTC notes:
+  * The option of adding another year of fisheries age data, without the 2025 survey data, could lead to potentially misleading results.
+  * The option of using the `r last_assess_yr` model projections as the basis for 2026 status was only an approximation.
+  * Thus, the catch-only projection option was deemed the most applicable for this year, because it bases 2026 management advice
+on the approved `r last_assess_yr` assessment and uses the exact 2025 total catch for a projection. 
+
 ## `r assess_yr` base model structure
 
-* Model parameters are the same for `r assess_yr` and `r last-assess_yr`
 * The use of a fixed (median) recruitment assumption maintained from 2023 onwards
-- Results in three years of relatively low recruitment leading into biomass at the start of 2026
-- Four years of low recruitment leading into single year biomass forecasts for the start of 2027
+  * Results in three years of relatively low recruitment leading into biomass at the start of 2026
+*  Four years of low recruitment leading into single year biomass forecasts for the start of 2027
 * No standard set of sensitivities were completed for this year, refer to 2025 assessment
 * A few sensitivity runs were evaluated (separate presentation) to:
-- Explore the impact of the fixed recruitment assumption
-- Explore the tradeoffs between fishery age composition data and survey index data
+  * Explore the impact of the fixed recruitment assumption
+  * Explore the tradeoffs between fishery age composition data and survey index data
 
 ## `r assess_yr` base model projections
 * A single year was projected forward from the 2026 base model to get biomass at the start of 2027
 * This was done because:
-- The assumption of not using recruitment deviations during the
+  * The assumption of not using recruitment deviations during the
 recent and forecast periods is not a feasible long-term model assumption because the median
 recruitment is too low to sustain the population in perpetuity. Forecasting further
 years ahead will exacerbate this and lead to unrealistic results given past levels of
 Pacific Hake recruitment.
-- The models in the 2024 and 2025 assessments both estimated a stock biomass somewhat
+  * The models in the 2024 and 2025 assessments both estimated a stock biomass somewhat
 larger than the biomass index from the 2023 survey. Inclusion of the 2025 survey biomass
 index would have helped to determine the validity of this overfitting. Without the
 2025 survey biomass index, it was deemed pragmatic to not overextend the forecasts
