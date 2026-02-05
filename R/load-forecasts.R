@@ -23,7 +23,7 @@ load_forecasts <- function(model_path = NULL,
                            is_catch_proj_model = FALSE,
                            ...){
 
-  if(!check_forecasts(model_path, ...)){
+  if(!check_forecasts(model_path, forecast_yrs = forecast_yrs, ...)){
     stop("The forecasts do not appear to have been run, have been run ",
          "incorrectly, or only been run partially. Re-run using ",
          "`run_forecasts` before trying to attach forecasting")

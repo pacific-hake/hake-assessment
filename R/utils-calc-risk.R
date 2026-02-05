@@ -13,6 +13,7 @@
 #' @export
 calc_risk <- function(model,
                       ...){
+  message("calc_risk(): In function\n")
 
   # Make the catch level values a matrix where the columns represent the
   # cases in catch_names
@@ -70,7 +71,9 @@ calc_risk <- function(model,
              outputs[[catch_level_ind]],
              forecast_yrs[yr_ind],
              yr_ind)
-    }) |>
+    })
+
+    risk_lst[[yr_ind]] <- risk_lst[[yr_ind]] |>
       map_df(~{.x})
 
   }
