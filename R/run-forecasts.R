@@ -155,7 +155,8 @@ run_forecasts <- function(model = NULL,
                                Fleet = 1,
                                Catch_or_F = ct_level[[1]][1:catch_ind])
 
-      if(nrow(fore$ForeCatch) > 0){
+
+      if(!is.null(fore$ForeCatch)){
         names(fore$ForeCatch) <- names(fore_catch)
         fore_catch <- bind_rows(fore$ForeCatch[1, ], fore_catch)
       }

@@ -80,11 +80,14 @@ load_ct_levels <- function(model_path,
                             Nareas = 1,
                             nseas = 1,
                             verbose = FALSE)
-
+    if(is.null(fore$ForeCatch)){
+      return(NULL)
+    }
     fore$ForeCatch |>
       select(`catch_or_F`) |>
       pull()
   })
+
   ct_levels <- ct_levels_lst$ct_levels
 
   # Replace the NA values for the custom catch levels with the values read in

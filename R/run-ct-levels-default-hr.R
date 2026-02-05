@@ -49,14 +49,14 @@ run_ct_levels_default_hr <- function(model,
                             nseas = 1,
                             verbose = FALSE)
 
-    fore_catch <- data.frame(Year = forecast_yrs[1:i],
+    fore_catch <- data.frame(Year = forecast_yrs[i],
                              Seas = 1,
                              Fleet = 1,
-                             Catch_or_F = default_hr_catch[1:i])
+                             Catch_or_F = default_hr_catch[i])
 
-    if(nrow(fore$ForeCatch) > 0){
+    if(!is.null(fore$ForeCatch)){
       names(fore$ForeCatch) <- names(fore_catch)
-      fore_catch <- bind_rows(fore$ForeCatch[1, ], fore_catch)
+      fore_catch <- bind_rows(fore$ForeCatch, fore_catch)
     }
     fore$ForeCatch <- fore_catch
     fore$Ncatch <- nrow(fore$ForeCatch)
