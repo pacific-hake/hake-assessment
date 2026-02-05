@@ -23,9 +23,10 @@ The JTC is investigating patterns of hake in the U.S. West Coast Bottom Trawl Su
 in California waters where fishery data is limited.
 
 
+
 ## 2025 SRG Request 2
 
-**The SRG recommends continuing sensitivities for steepness, natural mortality, σR, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
+**The SRG recommends continuing sensitivities for steepness, natural mortality, sigma R, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
 
 Response: The recommended set of sensitivity model runs were not applicable
 for the 2026 base model, which is based solely on a projection of the 2025 base
@@ -33,22 +34,28 @@ model where the realized total catch in 2025 is specifically used. The standard
 set of sensitivity model runs was presented in the 2025
 assessment will be incorporated into next year's stock assessment.
 
+
+
 ## 2025 SRG Request 3
 
 **The SRG recommends that the JTC continue exploring alternative ways of estimating natural mortality to update the current approach in the model, and particularly consider options which have age-based natural mortality, and may be external to SS3.**
 
 Response: The JTC is continuing to exploring the time series estimates of age-specific $M$
-(baseline $M$ and deviations for ages 0--1, 2, 3, 4, and 5$^+$)
+(baseline $M$ and deviations for ages 0--1, 2, 3, 4, and 5 plus)
 from the CEATTLE model due strictly to cannibalism.
 
 An additional path forward is to use Dynamic Structural Equation Modeling (DSEM) to include indices for multiple predators and allow for two-way interactions between them and $M$. This capability is not, and will not be,
 available within Stock Synthesis but is possible using models written in Template Model Builder. A proof of concept has been implemented at the Alaska Fisheries Science Center and work is ongoing to implement this in the Fisheries Integrated Modeling System (FIMS).
+
+
 
 ## 2025 SRG Request 4
 
 **The SRG recommends examining alternative structural assumptions for the stock assessment. More complex structural assumptions may utilize the data more thoroughly, explain different trends across areas and/or fleets, and estimate stock status more accurately, but simpler models may be more appropriate for determination of the TAC. The MSE can be used to determine best performing assessment models for management. Priority avenues of examinations include multiple fleets (e.g., fleets-as-areas) and alternative parametric and time-varying (or time-invariant) selectivity patterns.**
 
 Response: The JTC has begun the preliminary work of splitting catch and age data starting in 1991 for each country to evaluate an alternative model structure that splits data by country from 1991 onward with all historical data (1966-1990) in a combined U.S./Canada fleet. The JTC will brief the SRG about preliminary work at the 2026 meeting.
+
+
 
 ## 2025 SRG Request 4 (ctd.)
 
@@ -62,6 +69,8 @@ Additionally, model complexity in the spatial domain needs to be addressed relat
 
 Response: The JTC will continue to consider the eDNA index in future full assessments. Water samples were collected during the 2025 survey for enumeration of eDNA, providing a fourth year in the eDNA index time series once laboratory processing and subsequent statistical analyses have been completed (expected by Spring 2026).
 
+
+
 ## 2025 SRG Request 6
 
 **The SRG recommends that the JTC continue investigating how to include the age-1 index in the stock assessment in this or future assessment frameworks, but notes that the selectivity/catchability of the gear is expected to change depending on the AWT or MFT gear used in the survey.**
@@ -72,7 +81,10 @@ Response: The JTC is following the progress of the net selectivity work being co
 
 **The SRG encourages the JTC to consider alternative methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).**
 
-Response: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.  Additionally, there is intersection between this research and alternative model fleet structure and the impact of alternative ways to determine input sample size within each fleet which the JTC will consider in ongoing research.
+Response: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. 
+
+## 2025 SRG Request 7 (ctd.)
+
+Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.  Additionally, there is intersection between this research and alternative model fleet structure and the impact of alternative ways to determine input sample size within each fleet which the JTC will consider in ongoing research. 
 
 Sensitivity analyses using alternative input sample sizes, following the Stewart and Hamel (2014) approach, will continue to be evaluated in subsequent assessments.
-
