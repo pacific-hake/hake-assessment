@@ -4,7 +4,7 @@
 * The `r assess_yr` model is effectively equivalent to the  `r last_assess_yr` model (unchanged structure and results) to the start of 2025.
 * Model parameters are effectively the same for `r assess_yr` and `r last_assess_yr`.
 * The same version of Stock Synthesis was used as last year.
-* theh `r assess_yr` model only includes updated 2025 total coastwide catch data.
+* The `r assess_yr` model only includes updated 2025 total coast-wide catch data.
 * Often referred to as a catch-only projection style of assessment.
 
 ## Comparison to `r last_assess_yr` (biomass)
@@ -54,6 +54,16 @@ plot_grid(plotlist = p,
         legend.text = element_text(size = 10))
 
 ```
+
+## Comparison to `r last_assess_yr` (survey index)
+```{r bridge-survey-1, fig.height = 4, out.height = "80%"}
+  plot_survey_index_fits(model_lst = list(base_model,last_yr_base_model),
+               model_names = c("Base Model","Last Year Base Model"),
+               survey_type="age2",
+                 xlim = c(1995,2025))
+                 
+```
+
 
 ## Justification for `r assess_yr` base model structure
 * The JTC notes:
