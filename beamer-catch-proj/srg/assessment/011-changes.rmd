@@ -55,16 +55,6 @@ plot_grid(plotlist = p,
 
 ```
 
-## Comparison to `r last_assess_yr` (survey index)
-```{r bridge-survey-1, fig.height = 4, out.height = "80%"}
-  plot_survey_index_fits(model_lst = list(base_model,last_yr_base_model),
-               model_names = c("Base Model","Last Year Base Model"),
-               survey_type="age2",
-                 xlim = c(1995,2025))
-                 
-```
-
-
 ## Justification for `r assess_yr` base model structure
 * The JTC notes:
   * The option of adding another year of fisheries age data, without the 2025 survey data, could lead to potentially misleading results.
