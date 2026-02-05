@@ -37,7 +37,7 @@ plot_param_density(base_model,
 :::
 ::::::
 
-## Three-year projections
+## Projection outcome
 :::::: {.columns}
 ::: {.column width="38%"}
 - All catch options result in decline of the stock to the beginning of `r end_yr + 1`

@@ -2,25 +2,18 @@
 
 ## Summary of management outcomes
 
-* Uncertainty is large, but stock currently has a `r probs_curr_below_b40`%
-  chance of being below `r b_40` and a `r probs_curr_rel_fish_intens_above_1`%
-  chance of relative fishing intensity being above 100% (slide 8)
-
 * Based on the default harvest rule, the estimated median catch limit
   for `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]` t
   (with 95% interval from `r ct_limit_quantiles["lower"]` to
-  `r ct_limit_quantiles["upper"]` t) (slide 11)
+  `r ct_limit_quantiles["upper"]` t) (slide 8)
+
+* Projections strongly influenced by size of the above-average 2021 and 2022
+  cohorts, but data suggests a large 2023 cohort as well which is not accounted
+  for in this model (slide 10)
 
 * There is `r prob_decl_yr1_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[1]` to `r forecast_yrs[2]` with zero catch
-  and >99% chance of decline for all other catch streams (slide 17)
-
-* There is `r prob_decl_yr2_zero_catch`% chance that spawning biomass will
-  decline from `r forecast_yrs[2]` to `r forecast_yrs[3]` with zero catch
-  and >99% chance of decline for all other catch streams (slide 19)
-
-* Projections strongly influenced by size of the above-average 2021 cohort,
-  which is still highly uncertain at this point
+  and >99% chance of decline for all other catch streams (slide 15)
 
 ## Uncertainty around 2021 cohort is large
 

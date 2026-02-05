@@ -53,7 +53,7 @@ table_risk(base_model,
            type = "probability",
            font_size = 8,
            header_font_size = 9) |> 
-    row_spec(5,
+    row_spec(4,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
