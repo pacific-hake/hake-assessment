@@ -29,28 +29,14 @@ plot_biomass(list(base_model),
              leg_pos = "none")
 ```
 
-## Spawning Biomass (million t)
-
-```{r spawn-bio-last-yr-vs-curr-yr, results = "asis"}
-table_yearly_model_compare(last_yr_base_model,
-                           base_model,
-                           last_yr = last_assess_yr,
-                           curr_yr = assess_yr,
-                           digits = 3,
-                           font_size = 10)
-```
-* The median estimate of *B*~`r assess_yr-1` has decreased slightly from last
-  year's assessment.
-
   ## Relative Spawning Biomass
 ```{r main-rel-biomass, fig.height = 4, out.height = "70%"}
 
-plot_rel_biomass(model_lst = list(base_model),
-                 model_names = list(base_model_name),
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
+                 leg_pos = "none")
 ```
 
 ## Fishing Intensity
@@ -63,20 +49,4 @@ plot_fishing_intensity(base_model)
 ```{r main-expl-frac, fig.height = 4, out.height = "80%"}
 
 plot_exploitation_fraction(base_model)
-```
-
-## Key quantities
-```{r table-parameter-ests, results = "asis"}
-table_param_est(
-  models = list(base_model, last_yr_base_model),
-  model_nms = c(base_model_name, last_yr_base_model_name),
-  section_bold = TRUE,
-  section_italics = TRUE,
-  section_underline = TRUE,
-  section_line_above = FALSE,
-  section_line_below = FALSE,
-  digits = 3,
-  font_size = 3,
-  header_font_size = 9,
-  show_loglike = FALSE)
 ```
