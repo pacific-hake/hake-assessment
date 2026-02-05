@@ -5,9 +5,8 @@
 * Decision table format
   - Quantiles from the posterior distribution for *Relative spawning biomass*
     (Table **3**) and *Fishing intensity* (Table **4**)
-  - Look of the tables has changed but the information is the same as last year
   - Single row for each catch stream for one year of projections
-
+\item[]
 * Catch alternatives
   - **a**: `r ct_levels[[1]][[2]]` (zero catch)
   - **b**--**i**: Constant catches of

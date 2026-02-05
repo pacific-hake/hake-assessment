@@ -19,6 +19,7 @@
 ::: {.column width="38%"}
 * Using the defined *F~SPR=40%~* harvest rate with a 40:10 adjustment, the
   median projected `r end_yr` TAC is \textbf{`r ct_limit_quantiles["median"]` t}
+\item[]
 * 2.5% and 97.5% quantiles: `r ct_limit_quantiles["lower"]` and
   `r ct_limit_quantiles["upper"]` t
 :::
