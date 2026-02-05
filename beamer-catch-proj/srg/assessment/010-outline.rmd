@@ -1,7 +1,6 @@
 # Outline
 
-* Model changes from `r last_assess_yr`
-* Some MCMC diagnostics
-* Fits to data
+* Justification for `r assess_yr` base model structure
+* Comparison to `r last_assess_yr`
 * Estimates of key quantities
 * Summary
