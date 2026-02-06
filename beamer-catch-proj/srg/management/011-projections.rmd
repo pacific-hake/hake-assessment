@@ -43,9 +43,11 @@ plot_param_density(base_model,
 ::: {.column width="38%"}
 - All catch options result in decline of the stock to the beginning of `r end_yr + 1`
 \item[] <!-- Blank line between bullets -->
-- Fixing recruitment deviations from `r end_yr - 2` onward results
-  in lower uncertainty and no chance for large recruitments in the projection
-  year, which will result in an underestimate of potential future recruitment
+- Fixing recruitment deviations from `r end_yr - 3` onward underrepresents
+  uncertainty
+\item[] <!-- Blank line between bullets -->
+- There is no chance for large recruitments from `r end_yr - 3` onwards,
+  which will result in an underestimate of potential future recruitment
 :::
 
 ::: {.column width="62%"}

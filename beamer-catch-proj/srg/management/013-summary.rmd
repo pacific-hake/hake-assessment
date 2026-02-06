@@ -8,12 +8,15 @@
   `r ct_limit_quantiles["upper"]` t) (slide 8)
 
 * Projections strongly influenced by size of the above-average 2021 and 2022
-  cohorts, but data suggests a large 2023 cohort as well which is not accounted
-  for in this model (slide 10)
+  cohorts
+
+* Fishery data indicates a good amount of catch from the 2023 cohort, though these data
+  are not accounted for in this model (slide 10)
 
 * There is `r prob_decl_yr1_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[1]` to `r forecast_yrs[2]` with zero catch
-  and >99% chance of decline for all other catch streams (slide 15)
+  and >99% chance of decline for all other catch streams (slide 15) under
+  the assumption of median recruitment from 2023 onwards
 
 ## Uncertainty around 2021 cohort is large
 
