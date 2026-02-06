@@ -13,7 +13,6 @@
 #' @export
 calc_risk <- function(model,
                       ...){
-  message("calc_risk(): In function\n")
 
   # Make the catch level values a matrix where the columns represent the
   # cases in catch_names
