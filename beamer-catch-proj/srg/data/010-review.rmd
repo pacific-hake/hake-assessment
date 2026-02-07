@@ -4,6 +4,7 @@
 
 * The `r assess_yr` model only includes updated 2025 total coast-wide catch data.
 * Will be discussed in Assessment presentation.
+* Available data are presented here for information.
 
 ## Year in review
 ```{r catch-change}
@@ -48,7 +49,7 @@ respectively.
   - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian freezer-trawler
 sector, and
   - Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.
-* 2025 acoustic survey biomass estimate was 652,000~t, but **not** used in assessment.
+* 2025 acoustic survey biomass estimate was 652,000~t, but **not** used in this assessment.
 
 
 ## Summary of data sources used

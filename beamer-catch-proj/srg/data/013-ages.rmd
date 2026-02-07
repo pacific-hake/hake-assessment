@@ -35,10 +35,5 @@ plot_age_comp_bubbles(base_model,
                       xlim = c(survey_start_yr, last_data_yr))
 ```
 
-## Survey and fishery age-composition comparison
-```{r age-comp-comparison-fishery-survey, fig.height = 4, out.height = "85%"}
 
-plot_age_comp_comparison_bubbles(base_model,
-                                 remove_yr_labels = 2012)
-```
 
