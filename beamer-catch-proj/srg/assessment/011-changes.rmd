@@ -64,7 +64,7 @@ on the approved `r last_assess_yr` assessment and uses the exact 2025 total catc
 
 ## `r assess_yr` base model structure
 
-* The use of a fixed (median) recruitment assumption maintained from 2023 onwards
+* The use of a fixed recruitment assumption maintained from 2023 onwards
   * Results in three years of relatively low recruitment leading into biomass at the start of 2026
   * Four years of low recruitment leading into single year biomass forecasts for the start of 2027
 * No standard set of sensitivities were completed for this year, refer to 2025 assessment
