@@ -1,4 +1,10 @@
 # Review
+
+## `r assess_yr` base model only uses updated catch data
+
+* The `r assess_yr` model only includes updated 2025 total coast-wide catch data.
+* Will be discussed in Assessment presentation.
+
 ## Year in review
 ```{r catch-change}
 
@@ -13,7 +19,8 @@ rank_catch_last_year <- rank(base_model$catch$Obs * -1) |>
   tail(1) |>
   ordinal()
 
-# If odd year, create survey text. If even, create "No survey this year" text
+# If odd year, create survey text. If even, create "No survey this year"
+# text. For 2026 doing a manual bullet point below.
 surv_text <- ifelse(last_data_yr %% 2,
                     paste0(last_survey_yr,
                            " acoustic survey biomass estimate was ",
@@ -41,36 +48,21 @@ respectively.
   - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian freezer-trawler
 sector, and
   - Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.
-* `r surv_text`
+* 2025 acoustic survey biomass estimate was 652,000~t, but **not** used in assessment.
+
 
 ## Summary of data sources used
-:::::: {.columns}
-::: {.column width="40%"}
 
-\bsmall
-
+<!-- For 2026 most of these are shifted to -2 -->
 * Annual catch (`r start_yr`--`r end_yr - 1`)
-* Age-1$^+$ compositions (1975--`r end_yr - 1`)
+* Age-1$^+$ compositions (1975--`r end_yr - 2`)
 * Acoustic survey (`r survey_start_yr`--`r survey_end_yr`)
   - Biomass index of age 2$^+$ (t)
   - Age-2$^+$ age compositions
-  - Relative index of age-1 fish (numbers)
+  - Recall the relative index of age-1 fish was **not** used in 2025 assessment
 * Ageing imprecision and biases
   - double reads
   - blind reads
-* Weight-at-age (1975--`r end_yr - 1`)
+* Weight-at-age (1975--`r end_yr - 2`)
 * Time-varying maturity ogives
-
-\esmall
-
-:::
-
-::: {.column width="60%"}
-```{r data-overview-map, out.height = "85%"}
-
-plot_data_summary(base_model,
-                  label_y_placement = c(1.8, 2.5, 2.0))
-```
-:::
-::::::
 
