@@ -1,20 +1,28 @@
 # Summary
 ## Summary -- Results
+
 * The 2026 base model is based on the 2025 assessment
 model using the 2025 total coast-wide catch as removals.
+
 * The median value of the `r end_yr` relative spawning biomass
   is `r curr_depl_median`% but is highly uncertain (with 95%
   interval from `r curr_depl_lower`% to `r curr_depl_upper`%).
+  
 * The median value of the `r end_yr` female spawning biomass
   is `r curr_bio_median` million t (`r curr_bio_lower` to `r curr_bio_upper` million t).
+  
 * Recruitment in 2020 and 2021 are still estimated to be above average; recruitment
 since 2023 is fixed at the median. 
 
 
 ## Summary -- Key Points
+
 * Coast-wide catch increased by 43% from last year and is close to the long-term average.
+
 * However, catch in Canada has steadily declined since 2018, to a very low 3,918~t in 2025.
+
 * The stock is estimated to decline from 2025 to 2026 with another year of fishing on
 the above average 2020 and 2021 cohorts and the assumption of constant median
 recruitment from 2023 onwards.
+
 * Alternative specifications for recent and forecast recruitment has a considerable impact on stock status (more in subsequent presentations).  
