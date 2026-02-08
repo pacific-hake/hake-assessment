@@ -22,13 +22,14 @@ p[[1]] <-
                leg_font_size = 5,
                x_labs_mod = 10,
                wrap_y_label = TRUE,
-               tick_prop = 2,
+               tick_prop = 1,
+               vjust_x_labels = -0.1,
                ylim = c(0, 5.5),
                leg_pos = c(0.5, 0.87))
 p[[2]] <-
   plot_rel_biomass(model_lst = list(base_model,last_yr_base_model),
                model_names = c("Base Model","Last Year Base Model"),
-                   xlim = c(1964, last_assess_yr),,
+                   xlim = c(1964, last_assess_yr),
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
