@@ -40,7 +40,9 @@ plot_management_catch_vs_tac(catch_targets_df,
 * March `r last_assess_yr`
   - Default Harvest Control Rule TAC was `r f(def_med_hr_tac)` t
   - Total TAC was `r last_yr_tac` t
+\item[]
 * When Default HCR suggests a large catch, Total TAC is often set less
+\item[]
 * In the last 10 years, realized catches were between
   `r rng_tac_catch_txt[1]`% and `r rng_tac_catch_txt[2]`% of the Total TAC
   (`r rng_tac_catch_yr_lo` and `r rng_tac_catch_yr_hi`)
@@ -56,4 +58,3 @@ plot_management_catch_vs_tac_1_to_1(catch_targets_df,
 ```
 :::
 ::::::
-
