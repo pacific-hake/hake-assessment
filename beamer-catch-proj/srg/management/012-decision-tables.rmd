@@ -22,7 +22,10 @@ table_decision(base_model,
                type = "biomass",
                #rows_to_show = c("a", "b", "e", "j"),
                font_size = 6,
-               header_font_size = 7)
+               header_font_size = 7) |> 
+    row_spec(5,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
 ```
 
 ## Probability table definitions

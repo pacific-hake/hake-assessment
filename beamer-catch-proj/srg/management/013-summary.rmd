@@ -10,8 +10,9 @@
 * Projections strongly influenced by size of the above-average 2021 and 2022
   cohorts
 
-* Fishery data indicates a good amount of catch from the 2023 cohort, though these data
-  are not accounted for in this model (slide 10)
+* Fishery data (data presentation slide 17) indicates a good amount of catch
+  from the 2023 cohort (age-2), though these data are not accounted for in
+  this model (slide 10)
 
 * There is `r prob_decl_yr1_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[1]` to `r forecast_yrs[2]` with zero catch
@@ -28,7 +29,7 @@ plot_recruitment(list(base_model),
   geom_rect(aes(xmin = 2020.5,
                 xmax = 2021.5,
                 ymin = 3,
-                ymax = 28),
+                ymax = 21),
             color = "red",
             fill = "transparent")
 ```
