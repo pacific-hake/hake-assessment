@@ -39,7 +39,7 @@ surv_text <- ifelse(last_data_yr %% 2,
 * `r last_assess_yr` TAC, adjusted for carryovers, was `r last_yr_tac` t.
 * Canadian and U.S. fisheries predominantly started in April and May,
 respectively.
-* `r rank_catch_last_year` highest coast-wide catch.
+<!-- * `r rank_catch_last_year` highest coast-wide catch. -->
 * `r pchangecatch` in catch from last year.
 * No Canadian joint-venture fishery.
 * Highest proportion at age by sector
