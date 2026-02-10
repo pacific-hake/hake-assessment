@@ -5,8 +5,8 @@
 
 plot_management_catch_vs_tac(catch_targets_df,
                              curr_assess_biomass = base_model$ct_default_policy[1],
-                             leg_pos = c(0.12, 0.87),
-                             leg_font_size = 8)
+                             leg_pos = c(0.18, 0.9),
+                             leg_font_size = 9)
 
 def_med_hr_tac <- catch_targets_df |>
   dplyr::filter(Year == last_assess_yr) |>
@@ -24,14 +24,6 @@ k1 <- which(tac_catch_diff_df$diff == rng_tac_catch[1])
 k2 <- which(tac_catch_diff_df$diff == rng_tac_catch[2])
 rng_tac_catch_yr_lo <- tac_catch_diff_df[k1, ] |> pull(Year)
 rng_tac_catch_yr_hi <- tac_catch_diff_df[k2, ] |> pull(Year)
-```
-
-## Past management: Total Allowable Catch
-```{r tac-vs-realized-catch-ts-table, results = "asis"}
-
-plot_management_catch_vs_tac(catch_targets_df,
-                             ret_tbl = TRUE,
-                             font_size = 6)
 ```
 
 ## Past management: Total Allowable Catch
@@ -58,3 +50,12 @@ plot_management_catch_vs_tac_1_to_1(catch_targets_df,
 ```
 :::
 ::::::
+
+## Past management: Total Allowable Catch
+```{r tac-vs-realized-catch-ts-table, results = "asis"}
+
+plot_management_catch_vs_tac(catch_targets_df,
+                             ret_tbl = TRUE,
+                             font_size = 6)
+```
+
