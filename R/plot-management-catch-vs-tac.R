@@ -45,8 +45,10 @@ plot_management_catch_vs_tac <- function(d,
     names(new_row) <- names(d)
     d <- bind_rows(d, new_row)
   }
+  d <- d |>
+    rename(`TAC implemented my management` = `Total TAC`)
 
-  group_ord <- c("Default HCR TAC", "Total TAC", "Realized catch")
+  group_ord <- c("Default HCR TAC", "TAC implemented my management", "Realized catch")
 
   d <- d |>
     pivot_longer(-Year) |>
