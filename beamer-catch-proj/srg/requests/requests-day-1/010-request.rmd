@@ -75,11 +75,11 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
 :::::: {.columns}
 ::: {.column width="45%"}
 \begin{center}\textbf{Catcher-Processor}\end{center}
-```{r us-atsea-sampling-summary, results = "asis"}
+```{r us-atsea-cp-sampling-summary, results = "asis"}
 d<- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Total"),
-           num_age = c(250, 135, 0, 0, 0, 170, ),
-           num_length = c(507, 269, 0, 0, 0, 541, ),
-            num_weight = c(507, 269, 0, 0, 0, 266, ))
+           num_age = c(250, 135, 0, 0, 0, 170, 555),
+           num_length = c(507, 269, 0, 0, 0, 541, 1317),
+            num_weight = c(507, 269, 0, 0, 0, 541, 1317))
 
 table_sampling_by_month(d,
                         font_size = 8,
@@ -89,11 +89,11 @@ table_sampling_by_month(d,
 
 ::: {.column width="45%"}
 \begin{center}\textbf{Mothership}\end{center}
-```{r us-sb-sampling-summary, results = "asis"}
+```{r us-at-sea-ms-sampling-summary, results = "asis"}
 d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Total"),
-            num_age = c(0, 134, 164, 177, 150, 38, 0),
-            num_length = c(0, 266, 311, 319, 276, 64, 0),
-            num_weight = c(0, 266, 311, 319, 276, 64, 0))
+            num_age = c(0, 134, 164, 177, 150, 38, 663),
+            num_length = c(0, 266, 311, 319, 276, 64, 1236),
+            num_weight = c(0, 266, 311, 319, 276, 64, 1236))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
