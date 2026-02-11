@@ -137,6 +137,27 @@ ggplot(length_age, aes(x = LENGTH, color = type)) +
   theme_bw() +
   xlab("Length (cm)") + ylab("Density")
 
+# look at the weight by age this year
+ggplot(nages |> dplyr::filter(Year == 2025, !is.na(AGE)), aes(x = as.factor(AGE), y = WEIGHT)) +
+  geom_jitter() +
+  xlab("Age") + ylab("Weight (kg)") + theme_bw() +
+  geom_hline(yintercept = 0.50, color = "red", size = 1) +
+  ggtitle("At-Sea: Weight-at-Age for Aged Fish")
+
+ggplot(nages |> dplyr::filter(Year == 2025, !is.na(AGE)), aes(x = LENGTH, y = WEIGHT)) +
+  geom_jitter() +
+  xlab("Length (cm)") + ylab("Weight (kg)") + theme_bw() +
+  ylim(c(0, 1.2)) +
+  geom_hline(yintercept = 0.50, color = "red", size = 1) +
+  ggtitle("At-Sea: Length-at-Age for Aged Fish")
+
+ggplot(nages |> dplyr::filter(Year == 2025), aes(x = LENGTH, y = WEIGHT)) +
+  geom_jitter() +
+  xlab("Length (cm)") + ylab("Weight (kg)") + theme_bw() +
+  geom_hline(yintercept = 0.50, color = "red", size = 1) +
+  ylim(c(0, 1.2)) +
+  ggtitle("At-Sea: Length-at-Age for All Fish")
+
 # Shoreside ================================================================
 
 # calculate the samples by month
