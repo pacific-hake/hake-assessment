@@ -3,16 +3,18 @@
 
 **Justification:** This will address a question from the public and inform the SRG on differences in catch throughout the season. It will also help to identify when the age-1 fish became prominent and may help to understand why certain percentages are in the data but may not be in the prediction or in what stakeholders perceived for the season.
 
-## Request 6 results (1/2)
+## Canada Age Proportions by Month
 
-```{r as-age-proportions-survey, results = "asis", out.width="60%", out.height="90%"}
+## US At-Sea Age Proportions by Month
+
+```{r as-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
 include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportions.png")
 ```
 
 
-## Request 6 results (2/2)
+## US Shoreside Age Proportions by Month
 
-```{r ss-age-proportions-survey, results = "asis", out.width="60%", out.height="90%"}
+```{r ss-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
 include_graphics("/srv/hake/other/samples/us/srg-request-6-ss-age-proportions.png")
 ```
 
