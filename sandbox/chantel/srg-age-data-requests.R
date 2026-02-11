@@ -14,9 +14,8 @@ at_sea_ages <- nages |>
     vessels = length(unique(PERMIT)),
     n = sum(!is.na(AGE))
   )
-as <- nages |>
-  dplyr::filter(Year == 2025, PERMIT == 2943, !is.na(AGE))
 
+# format the catch data
 at_sea_catch <- ncatch |>
   dplyr::mutate(
     Date = f_date(RETRIEVAL_DATE, format = "%Y-%m-%d"),
@@ -56,6 +55,7 @@ at_sea_catch <- ncatch |>
   ) |>
   dplyr::ungroup()
 
+# join the age and catch data to check vessel numbers by month
 vessel_n <- dplyr::filter(
   nages,
   Year %in% 2025,
@@ -74,6 +74,7 @@ vessel_n <- dplyr::filter(
   dplyr::group_by(vesseltype, Month) |>
   dplyr::summarise(vessles = length(unique(PERMIT)))
 
+# Total ages by month in the at-sea fishery by sector
 raw_ages <- dplyr::filter(
   nages,
   Year %in% 2025,
@@ -96,7 +97,7 @@ raw_ages <- dplyr::filter(
     n = dplyr::n()
   )
 
-
+# Calculate the age proportions by month
 at_sea_prop <- raw_ages |>
   dplyr::filter(Month != 11) |>
   group_by(vesseltype, Month) |>
@@ -108,26 +109,6 @@ at_sea_prop <- raw_ages |>
     prop = n / unique(total)
   ) |>
   dplyr::ungroup()
-
-ggplot(raw_ages, aes(x = as.factor(AGE), y = n)) +
-  geom_bar(stat = 'identity') +
-  facet_grid(c("Month", "vesseltype"))
-
-ggplot(at_sea_prop[which(at_sea_prop$vesseltype == "MS"), ], aes(x = AGE, y = prop)) +
-  geom_bar(stat = 'identity') +
-  facet_grid(Month~.) +
-  ylab("Proportion by Month") +
-  xlab("Age") +
-  ggtitle("Mothership Ages Collected in 2025") +
-  theme_bw()
-
-ggplot(at_sea_prop[which(at_sea_prop$vesseltype == "CP"), ], aes(x = AGE, y = prop)) +
-  geom_bar(stat = 'identity') +
-  facet_grid(Month~.) +
-  ylab("Proportion by Month") +
-  xlab("Age") +
-  ggtitle("Catcher-Processor Ages Collected in 2025") +
-  theme_bw()
 
 ggplot(at_sea_prop, aes(x = AGE, y = prop)) +
   geom_bar(stat = 'identity') +
@@ -145,6 +126,7 @@ ggsave(filename = here::here("sandbox", "chantel", "srg-request-6-at-sea-age-pro
        height = 7,
        width = 12)
 
+# quick look at the length vs. age sampling
 length_age <- nages |>
   dplyr::mutate(
     type = dplyr::case_when(is.na(AGE) ~ "length-only", .default = "length-age")
@@ -156,6 +138,8 @@ ggplot(length_age, aes(x = LENGTH, color = type)) +
   xlab("Length (cm)") + ylab("Density")
 
 # Shoreside ================================================================
+
+# calculate the samples by month
 shoreside <- page |>
   dplyr::filter(SAMPLE_YEAR == 2025) |>
   dplyr::group_by(SAMPLE_MONTH) |>
@@ -165,6 +149,7 @@ shoreside <- page |>
     n_weight = sum(!is.na(FISH_WEIGHT))
   )
 
+# age proportions by month
 ss_age_prop <- page |>
   dplyr::filter(SAMPLE_YEAR == 2025) |>
   dplyr::mutate(
@@ -203,15 +188,6 @@ ggsave(filename = here::here("sandbox", "chantel", "srg-request-6-ss-age-proport
        height = 7,
        width = 12)
 
-#============================================================================
+# Canada ======================================================================
 
-ggplot(as, aes(x = as.factor(AGE), y = WEIGHT)) +
-  geom_point()
 
-as_count <- as |>
-  dplyr::group_by(AGE) |>
-  dplyr::summarise(
-    count = dplyr::n()
-  )
-ggplot(as_count, aes(x = as.factor(AGE), y = count)) +
-  geom_bar(stat = 'identity')
