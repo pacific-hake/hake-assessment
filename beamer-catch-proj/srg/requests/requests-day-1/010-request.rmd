@@ -4,3 +4,72 @@
 **Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots**
 
 **Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
+
+## Request 1 results (1/2)
+
+```{r age-comp-comparison, results = "asis"}
+
+sample_df <- canada_load_sample_data() |> 
+  dplyr::filter(sex %in% c(1, 2))
+
+samples_fleet_lst <- canada_get_fleet_samples(sample_df)
+# Remove JV for this table
+samples_fleet_lst <- samples_fleet_lst[names(samples_fleet_lst) != "jv"]
+
+samples_summary_tbls_lst <- canada_extract_sampling_by_month(
+  samples_fleet_lst,
+  yr = last_data_yr)
+
+```
+
+:::::: {.columns}
+::: {.column width="45%"}
+\begin{center}\textbf{Freezer trawlers}\end{center}
+```{r canada-sample-summary-ft, results = "asis"}
+table_sampling_by_month(
+  samples_summary_tbls_lst$ft,
+  font_size = 8,
+  header_font_size = 9)
+```
+:::
+
+::: {.column width="45%"}
+\begin{center}\textbf{Shoreside}\end{center}
+```{r canada-sample-summary-ss, results = "asis"}
+table_sampling_by_month(
+  samples_summary_tbls_lst$ss,
+  font_size = 8,
+  header_font_size = 9)
+```
+:::
+::::::
+
+## Request 1 results (2/2)
+
+:::::: {.columns}
+::: {.column width="45%"}
+\begin{center}\textbf{At-Sea}\end{center}
+```{r us-atsea-sampling-summary, results = "asis"}
+d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_age = c(250, 269, 164, 177, 150, 208, 26, 1244),
+            num_length = c(507, 535, 311, 319, 276, 605, 26, 2579),
+            num_weight = c(507, 535, 311, 319, 276, 605, 26, 2579))
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9)
+```
+:::
+
+::: {.column width="45%"}
+\begin{center}\textbf{Shore-based}\end{center}
+```{r us-sb-sampling-summary, results = "asis"}
+d <- tibble(month = c("April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_age = c(2, 118, 229, 450, 370, 290, 170, 0, 1629),
+            num_length = c(6, 78, 360, 440, 440, 340, 388, 20, 2066),
+            num_weight = c(6, 78, 360, 440, 440, 340, 388, 20, 2066))
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9)
+```
+:::
+::::::
