@@ -16,7 +16,7 @@ samples_fleet_lst <- samples_fleet_lst[names(samples_fleet_lst) != "jv"]
 
 samples_summary_tbls_lst <- canada_extract_sampling_by_month(
   samples_fleet_lst,
-  yr = last_data_yr)
+  yr = last_data_yr + 1)
 
 ```
 
