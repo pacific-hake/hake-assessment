@@ -3,14 +3,11 @@
 
 **Justification:** This will address a question from the public and inform the SRG on differences in catch throughout the season. It will also help to identify when the age-1 fish became prominent and may help to understand why certain percentages are in the data but may not be in the prediction or in what stakeholders perceived for the season.
 
-## Canada Age Proportions by Month
-
 ## US At-Sea Age Proportions by Month
 
 ```{r as-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
 include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportions.png")
 ```
-
 
 ## US Shoreside Age Proportions by Month
 
@@ -18,3 +15,14 @@ include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportion
 include_graphics("/srv/hake/other/samples/us/srg-request-6-ss-age-proportions.png")
 ```
 
+## Canada Age Proportions by Month
+```{r canada-age-proportions, results = "asis", width = 8, out.height="80%"}
+
+sample_df <- canada_load_sample_data() |>
+  dplyr::filter(sex %in% c(1, 2))
+fleet_lst <- canada_get_fleet_samples(sample_df)
+# Remove JV for this table
+fleet_lst <- fleet_lst[names(fleet_lst) != "jv"]
+
+plot_age_by_month(fleet_lst)
+```
