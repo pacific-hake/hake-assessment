@@ -6,7 +6,7 @@
 ## Request 2 results (1/2)
 :::::: {.columns}
 ::: {.column width="45%"}
-**Median proportions:**
+**Median proportions (2026):**
 ```{r fore-age-props, results = "asis"}
 
 table_fore_age_props(fore_catch_prop,
