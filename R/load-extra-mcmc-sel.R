@@ -36,6 +36,23 @@ load_extra_mcmc_sel <- function(reps,
     ts <- ts |>
       dplyr::filter(yr >= start_yr)
   }
+  # Fill in missing years in the projection period
+  all_but_last_row <- head(ts, nrow(ts) - 1)
+  last_row <- tail(ts, 1)
+  num_missing_yrs <- last_row$yr - all_but_last_row[nrow(all_but_last_row), "yr"] - 1
+  num_missing_yrs <- as.numeric(num_missing_yrs)
+  if(num_missing_yrs > 1){
+    # Missing year(s) between the second to last row and the last row, fill them in
+    for(i in 1:num_missing_yrs){
+      new_row <- all_but_last_row[nrow(all_but_last_row),]
+      new_row[1, "yr"] <- new_row[1, "yr"] + 1
+      all_but_last_row <- all_but_last_row |>
+        bind_rows(new_row)
+    }
+    all_but_last_row <- all_but_last_row |>
+      bind_rows(last_row)
+    ts <- all_but_last_row
+  }
   if(!is.null(end_yr)){
     ts <- ts |>
       dplyr::filter(yr <= end_yr)
@@ -64,11 +81,18 @@ load_extra_mcmc_sel <- function(reps,
     }) |>
     ungroup()
 
+  # out$sel_end_yr <- ts |>
+  #   dplyr::filter(yr == ifelse(type == "survey",
+  #                              end_yr,
+  #                              end_yr - 1)) |>
+  #   select(-yr)
   out$sel_end_yr <- ts |>
-    dplyr::filter(yr == ifelse(type == "survey",
-                               end_yr,
-                               end_yr - 1)) |>
+    dplyr::filter(yr == end_yr) |>
     select(-yr)
 
-    out
+  if(nrow(out$sel_end_yr) == 1){
+    out$sel_end_yr <- out$sel_end_yr |> bind_rows(out$sel_end_yr)
+  }
+
+  out
 }

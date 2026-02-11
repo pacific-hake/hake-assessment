@@ -20,6 +20,7 @@ load_extra_mcmc <- function(model,
                             verbose = TRUE,
                             first = 0,
                             assess_yr = get_assess_yr(),
+                            is_catch_proj = FALSE,
                             ...){
 
   if(is.null(model$extra_mcmc_path) || is.na(model$extra_mcmc_path)){
@@ -187,7 +188,11 @@ load_extra_mcmc <- function(model,
 
   # Selectivity * Weight ------------------------------------------------------
   # AKA vulnerable biomass ----------------------------------------------------
-  selwt_pat <- paste0(assess_yr, "_1_sel\\*wt")
+  if(is_catch_proj){
+    selwt_pat <- paste0(assess_yr - 1, "_1_sel\\*wt")
+  } else {
+    selwt_pat <- paste0(assess_yr, "_1_sel\\*wt")
+  }
   selwt_lst <- load_extra_mcmc_selwt(
     reps = reps,
     verbose = verbose,
@@ -283,6 +288,9 @@ load_extra_mcmc <- function(model,
   sel <- sel_fishery_lst$sel |>
     dplyr::filter(yr == assess_yr) |>
     select(-c(yr))
+  if(nrow(sel) == 1){
+    sel <- sel |> bind_rows(sel)
+  }
 
   natsel <- natage * sel
   extra_mcmc$natsel_prop <- natsel %>%
@@ -311,6 +319,7 @@ load_extra_mcmc <- function(model,
         natage <- head(selwt, -diff)
       }
     }
+
     natselwt <- natage * selwt
     extra_mcmc$natselwt_prop <- natselwt %>%
       mutate(rsum = rowSums(.)) |>
