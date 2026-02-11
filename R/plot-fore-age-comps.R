@@ -14,6 +14,10 @@
 #' @param point_size The size of the median points
 #' @param glow_size The size of the white glow behind the points (must be
 #' larger than `point_size` to be seen)
+#' @param by_number_only If `TRUE`, return only the by number plot (single plot)
+#' instead of the grid of two plots which includes the by-weight plot
+#' @param is_catch_proj If `TRUE`, increment the year by one. Used only for
+#' catch projection models
 #'
 #' @return A [cowplot::plot_grid()] object
 #' @export
@@ -23,7 +27,10 @@ plot_fore_age_comps <- function(model,
                                 y_lim = c(0, 0.55),
                                 whisker_width = 0.5,
                                 point_size = 2,
-                                glow_size = 2.5){
+                                glow_size = 2.5,
+                                by_number_only = FALSE,
+                                is_catch_proj = FALSE,
+                                show_x_title = TRUE){
 
   natsel_prop <- model$extra_mcmc$natsel_prop
   natselwt_prop <- model$extra_mcmc$natselwt_prop
@@ -74,13 +81,28 @@ plot_fore_age_comps <- function(model,
     scale_y_continuous(expand = c(0, 0)) +
     coord_cartesian(xlim = x_lim,
                     ylim = y_lim,
-                    expand = TRUE) +
-    xlab("Age") +
-    ylab(paste0("Expected proportion in ",
-                model$endyr + 1,
-                " catch")) +
-    ggtitle("By number") +
+                    expand = TRUE)
+  if(show_x_title){
+    plist[[1]] <- plist[[1]] +
+      xlab("Age")
+  }else{
+    plist[[1]] <- plist[[1]] +
+      xlab("")
+  }
+  plist[[1]] <- plist[[1]] +
+    ylab(paste0("Exp. prop ",
+                model$endyr + ifelse(is_catch_proj, 2, 1),
+                " catch"))
+  if(!by_number_only){
+    plist[[1]] <- plist[[1]] +
+      ggtitle("By number")
+  }
+  plist[[1]] <- plist[[1]] +
     theme(plot.title = element_text(hjust = 0.5))
+
+  if(by_number_only){
+    return(plist[[1]])
+  }
 
   plist[[2]] <- ggplot(by_weight,
                        aes(x = age,
@@ -104,8 +126,15 @@ plot_fore_age_comps <- function(model,
     scale_y_continuous(expand = c(0, 0)) +
     coord_cartesian(xlim = x_lim,
                     ylim = y_lim,
-                    expand = TRUE) +
-    xlab("Age") +
+                    expand = TRUE)
+    if(show_x_title){
+      plist[[2]] <- plist[[2]] +
+        xlab("Age")
+    }else{
+      plist[[2]] <- plist[[2]] +
+        xlab("")
+    }
+  plist[[2]] <- plist[[2]] +
     ylab("") +
     ggtitle("By weight") +
     theme(plot.title = element_text(hjust = 0.5))
