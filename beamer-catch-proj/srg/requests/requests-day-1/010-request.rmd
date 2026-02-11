@@ -62,7 +62,7 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                       "These plots have different y-axis ranges\n",
                       "and are not directly comparable\n",
                       "with each other."),
-                    yrs = c(last_data_yr - 4, last_data_yr),
+                    yrs = c(2021, 2025),
                     leg_font_size = 8,
                     title_font_size = 10,
                     ax_text_x = 8,
@@ -87,7 +87,7 @@ table_sampling_by_month(d,
 :::
 
 ::: {.column width="45%"}
-\begin{center}\textbf{Shore-based}\end{center}
+\begin{center}\textbf{Shoreshide}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
 d <- tibble(month = c("April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
             num_age = c(2, 118, 229, 450, 370, 290, 170, 0, 1629),
