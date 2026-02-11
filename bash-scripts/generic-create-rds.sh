@@ -56,7 +56,8 @@ for model in ${models[@]}; do
                   overwrite = $overwrite, \
                   keep_index_fit_posts = $keep_index_fit_posts, \
                   first = $first,
-                  assess_yr = 2025)"; \
+                  assess_yr = $assess_yr,
+                  is_catch_proj = TRUE)"; \
   printf "\nCreation of RDS file in directory\n$model\nfinished\n"; \
   ) &
 done
