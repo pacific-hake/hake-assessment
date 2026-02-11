@@ -14,7 +14,7 @@ table_risk(base_model,
            type = "probability",
            font_size = 8,
            header_font_size = 9) |> 
-    row_spec(4,
+  row_spec(4,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
@@ -22,8 +22,29 @@ table_risk(base_model,
 ## Probabilities based on `r end_yr` catch (Stoch. Fore. Recr.)
 
 ```{r main-risk-forecast-year-1-table-req-sens1, results = "asis"}
+if(user == "berger"){
 
-sens1 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/06-base-stochastic-forecast-recruitment/06-base-stochastic-forecast-recruitment.rds")
+  if(!exists("sens1")){
+    sens1 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/06-base-stochastic-forecast-recruitment/06-base-stochastic-forecast-recruitment.rds")
+  }
+  if(!exists("sens2")){
+    sens2 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/10-base-stochastic-forecast-rec-fit-survey/10-base-stochastic-forecast-rec-fit-survey.rds")
+  }
+  if(!exists("sens3")){
+    sens3 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/11-base-fit-survey/11-base-fit-survey.rds")
+  }
+}else{
+  # Don't do this for Andy since he is on a local build
+  if(!exists("sens1")){
+    sens1 <- readRDS("/srv/hake/models/2026/01-version/05-test-models/06-base-stochastic-forecast-recruitment/06-base-stochastic-forecast-recruitment.rds")
+  }
+  if(!exists("sens2")){
+    sens2 <- readRDS("/srv/hake/models/2026/01-version/05-test-models/10-base-stochastic-forecast-rec-fit-survey/10-base-stochastic-forecast-rec-fit-survey.rds")
+  }
+  if(!exists("sens3")){
+    sens3 <- readRDS("/srv/hake/models/2026/01-version/05-test-models/11-base-fit-survey/11-base-fit-survey.rds")
+  }
+}
 
 table_risk(sens1,
            forecast_yrs,
@@ -41,8 +62,6 @@ table_risk(sens1,
 
 ```{r main-risk-forecast-year-1-table-req-sens2, results = "asis"}
 
-sens2 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/10-base-stochastic-forecast-rec-fit-survey/10-base-stochastic-forecast-rec-fit-survey.rds")
-
 table_risk(sens2,
            forecast_yrs,
            index = 1,
@@ -58,9 +77,6 @@ table_risk(sens2,
 ## Probabilities based on `r end_yr` catch (Fit Survey)
 
 ```{r main-risk-forecast-year-1-table-req-sens3, results = "asis"}
-
-sens3 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/11-base-fit-survey/11-base-fit-survey.rds")
-
 
 table_risk(sens3,
            forecast_yrs,
