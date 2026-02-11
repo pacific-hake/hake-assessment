@@ -46,7 +46,7 @@ table_sampling_by_month(
 
 ## Request 1 results (2/3)
 
-```{r catch-by-month-fig}
+```{r catch-by-month-fig, fig.height = 5, fig.asp = 0.5, out.height = "80%"}
 
 plot_catch_by_month(list(us_ss_catch_by_month_df,
                          can_ss_catch_by_month_df,
