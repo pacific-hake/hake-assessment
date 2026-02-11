@@ -5,7 +5,7 @@
 
 **Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
 
-## Request 1 results (1/2)
+## Request 1 results (1/3)
 
 ```{r age-comp-comparison, results = "asis"}
 
@@ -44,7 +44,33 @@ table_sampling_by_month(
 :::
 ::::::
 
-## Request 1 results (2/2)
+## Request 1 results (2/3)
+
+```{r catch-by-month-fig}
+
+plot_catch_by_month(list(us_ss_catch_by_month_df,
+                         can_ss_catch_by_month_df,
+                         us_cp_catch_by_month_df,
+                         can_ft_catch_by_month_df,
+                         us_ms_catch_by_month_df),
+                    list("U.S. Shoreside",
+                         "Canadian Shoreside",
+                         "U.S. Catcher-Processor",
+                         "Canadian Freezer-Trawlers",
+                         "U.S. Mothership"),
+                    type = "catch",
+                    disclaimer_text = paste0(
+                      "These plots have different y-axis ranges\n",
+                      "and are not directly comparable\n",
+                      "with each other."),
+                    yrs = c(last_data_yr - 4, last_data_yr),
+                    leg_font_size = 8,
+                    title_font_size = 10,
+                    ax_text_x = 8,
+                    ax_text_y = 8)
+```
+
+## Request 1 results (3/3)
 
 :::::: {.columns}
 ::: {.column width="45%"}
