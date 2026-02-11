@@ -87,7 +87,7 @@ table_sampling_by_month(d,
 :::
 
 ::: {.column width="45%"}
-\begin{center}\textbf{Shoreshide}\end{center}
+\begin{center}\textbf{Shoreside}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
 d <- tibble(month = c("April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
             num_age = c(2, 118, 229, 450, 370, 290, 170, 0, 1629),
