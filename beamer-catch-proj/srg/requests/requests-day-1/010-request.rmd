@@ -4,6 +4,7 @@
 **Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
 
 ## Request 1 results (1/3)
+\center \Large Canada
 
 ```{r age-comp-comparison, results = "asis"}
 
@@ -69,6 +70,7 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
 ```
 
 ## Request 1 results (3/3)
+\center \Large United States
 
 :::::: {.columns}
 ::: {.column width="45%"}
