@@ -1,36 +1,6 @@
 # Requests Day 1
 
 ## Request 1
-Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots
+**Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots**
 
-Justification: This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
-
-## Request 2
-Show the expected fishery age proportions for 2025 and 2026 fishery (this is fig 43 in 2025 assessment and slide 10 of management outcomes presentation). Possibly overlay this with 2025 fishery observations to compare the two. The JTC can decide how to present the observed 2025 fishery data.
-
-Justification: This request will identify the correct predictions of fishery proportions-at-age for 2025 and 2026, thus providing insights into what the model expects  for 2025 fisheries proportions-at-age. Comparing to the observations from 2025 will help to identify potential biases in the assessment, in particular related to the assumption of fixing recent recruitment to less than average recruitment.
-
-## Request 3
-Present the table of spawning biomass, age 2+ biomass and other quantities as in Table 23 from the 2025 assessment, and include this updated version in the 2026 assessment document.
-
-Justification: These quantities will help provide insight into the possible predicted size of the 2025 acoustic survey biomass.
-
-## Request 4
-Create and present the plot showing the amount of each cohort in the catch over time (age on the x-axis). This plot has been created in the past. Please include the 1999, 2010, 2014, 2016, 2017, 2020, and 2021 cohorts.
-
-Justification: This plot shows the rate of removals of a cohort over time and how it compares across cohorts, which is helpful to understand the importance of a cohort to the fishery.
-
-## Request 5
-Calculate and present probability tables (slide 15 of management outcomes) for each sensitivity run (at least the no additional standard error on the survey and the stochastic recruitment runs).
-
-Justification: This will provide an insight into the management outcomes for alternative model runs and identify the importance (through the size of the effect) to management outcomes.
-
-## Request 6
-Present the fish age throughout the 2025 season for each sector. Presenting age would remove confounding growth. Monthly would be preferred, but could be spring/summer/fall, or simply early and late, if necessary.
-
-Justification: This will address a question from the public and inform the SRG on differences in catch throughout the season. It will also help to identify when the age-1 fish became prominent and may help to understand why certain percentages are in the data but may not be in the prediction or in what stakeholders perceived for the season.
-
-## Request 7
-Extend the assessment model to incorporate data through 2025 and fit to fishery age compositions, acoustic survey biomass index, and acoustic survey age compositions. If this is not possible, or not preferable, please provide an explanation.
-
-Justification: This will provide insight into the likely outcomes from an assessment incorporating all of the 2025 data. 
+**Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
