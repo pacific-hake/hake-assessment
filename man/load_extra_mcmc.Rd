@@ -11,6 +11,7 @@ load_extra_mcmc(
   verbose = TRUE,
   first = 0,
   assess_yr = get_assess_yr(),
+  is_catch_proj = FALSE,
   ...
 )
 }

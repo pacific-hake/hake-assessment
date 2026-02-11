@@ -3,6 +3,80 @@
 
 **Justification:** This request will identify the correct predictions of fishery proportions-at-age for 2025 and 2026, thus providing insights into what the model expects  for 2025 fisheries proportions-at-age. Comparing to the observations from 2025 will help to identify potential biases in the assessment, in particular related to the assumption of fixing recent recruitment to less than average recruitment.
 
-## Request 2 results
-Results here
+## Request 2 results (1/2)
+:::::: {.columns}
+::: {.column width="45%"}
+**Median proportions:**
+```{r fore-age-props, results = "asis"}
+
+table_fore_age_props(fore_catch_prop,
+                     fore_catch_prop_wt,
+                     ages_filt = 1:15,
+                     font_size = 8) |>
+    # Highlight two largest cohorts
+    row_spec(10:11,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+:::
+
+::: {.column width="55%"}
+```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
+plot_fore_age_comps(base_model,
+                    y_lim = c(0, 0.7),
+                    is_catch_proj = TRUE)
+```
+:::
+::::::
+
+## Request 2 results (2/2)
+
+**\Large Additional request 2 results found in the attached file: request-2-day-1-2026.pdf**
+
+<!-- Copy thr following into a blank RMD in a doc folder and build (or run gotest() from with doc-catch-proj or doc folders and paste and build there) -->
+
+<!-- # Request 2 results -->
+
+<!-- Actual 2025 fishery age proportions compared with projected 2025 fishery age proportions from the 2025 assessment model and projected 2026 fishery age proportions from the 2026 assessment model. -->
+
+<!-- ```{r main-age-comp-forecast-single, fig.height = 5, fig.asp = 0.8, out.height = "6in"} -->
+
+<!-- # load fishery 2025 age props and plot -->
+<!-- d <- read_csv("fishery-age-props-2025.csv", col_types = cols()) -->
+<!-- x_lim <- c(1, 15) -->
+<!-- x_breaks <- seq(x_lim[1], x_lim[2], 2) -->
+<!-- y_lim = c(0, 0.55) -->
+
+<!-- plist <- NULL -->
+<!-- plist[[1]] <- ggplot(d, -->
+<!--                      aes(x = age, -->
+<!--                          y = prop)) + -->
+<!--   geom_bar(stat = "identity", -->
+<!--            fill = main_fill, -->
+<!--            alpha = main_alpha) + -->
+<!--   scale_x_continuous(breaks = x_breaks, -->
+<!--                      labels = x_breaks) + -->
+<!--   scale_y_continuous(expand = c(0, 0)) + -->
+<!--   coord_cartesian(xlim = x_lim, -->
+<!--                   ylim = y_lim, -->
+<!--                   expand = TRUE) + -->
+<!--   xlab("") + -->
+<!--   ylab("Prop. 2025 catch") + -->
+<!--   ggtitle("") + -->
+<!--   theme(plot.title = element_text(hjust = 0.5)) -->
+
+<!-- plist[[2]] <- plot_fore_age_comps(last_yr_base_model, -->
+<!--                                   y_lim = c(0, 0.7), -->
+<!--                                   by_number_only = TRUE, -->
+<!--                                   show_x_title = FALSE) -->
+
+<!-- plist[[3]] <- plot_fore_age_comps(base_model, -->
+<!--                                   y_lim = c(0, 0.7), -->
+<!--                                   by_number_only = TRUE, -->
+<!--                                   is_catch_proj = TRUE) -->
+
+
+<!--   plot_grid(plotlist = plist, nrow = 3, align = "v") -->
+
+<!-- ``` -->
 

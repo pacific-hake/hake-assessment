@@ -12,7 +12,7 @@ table_median_posteriors(
   end_yr = NULL,
   digits = 1,
   scale = 1000,
-  csv_dir = here::here("doc", out_csv_path),
+  csv_dir = here::here(doc_path, out_csv_path),
   font_size = 10,
   header_font_size = 10,
   header_vert_spacing = 12,

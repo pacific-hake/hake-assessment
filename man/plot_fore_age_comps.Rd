@@ -12,7 +12,10 @@ plot_fore_age_comps(
   y_lim = c(0, 0.55),
   whisker_width = 0.5,
   point_size = 2,
-  glow_size = 2.5
+  glow_size = 2.5,
+  by_number_only = FALSE,
+  is_catch_proj = FALSE,
+  show_x_title = TRUE
 )
 }
 \arguments{
@@ -33,6 +36,12 @@ values to plot}
 
 \item{glow_size}{The size of the white glow behind the points (must be
 larger than \code{point_size} to be seen)}
+
+\item{by_number_only}{If \code{TRUE}, return only the by number plot (single plot)
+instead of the grid of two plots which includes the by-weight plot}
+
+\item{is_catch_proj}{If \code{TRUE}, increment the year by one. Used only for
+catch projection models}
 
 \item{probs}{A vector of three quantiles for the lower CI,
 median, and upper CI. The second value must be 0.5}
