@@ -3,4 +3,75 @@
 
 **Justification:** This will provide an insight into the management outcomes for alternative model runs and identify the importance (through the size of the effect) to management outcomes.
 
+## Probabilities based on `r end_yr` catch (Base Model)
+
+```{r main-risk-forecast-year-1-table-req-base, results = "asis"}
+
+table_risk(base_model,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+## Probabilities based on `r end_yr` catch (Stoch. Fore. Recr.)
+
+```{r main-risk-forecast-year-1-table-req-sens1, results = "asis"}
+
+sens1 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/06-base-stochastic-forecast-recruitment/06-base-stochastic-forecast-recruitment.rds")
+
+table_risk(sens1,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+## Probabilities based on `r end_yr` catch (Stoch. Fore. Recr. & Fit Survey)
+
+```{r main-risk-forecast-year-1-table-req-sens2, results = "asis"}
+
+sens2 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/10-base-stochastic-forecast-rec-fit-survey/10-base-stochastic-forecast-rec-fit-survey.rds")
+
+table_risk(sens2,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+## Probabilities based on `r end_yr` catch (Fit Survey)
+
+```{r main-risk-forecast-year-1-table-req-sens3, results = "asis"}
+
+sens3 <- readRDS("~/Desktop/Hake models/models/2026/01-version/05-test-models/11-base-fit-survey/11-base-fit-survey.rds")
+
+
+table_risk(sens3,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
 

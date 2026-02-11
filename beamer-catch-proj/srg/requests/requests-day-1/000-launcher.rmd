@@ -63,6 +63,7 @@ header-includes:
 # (knitr-figs) must be here for the initial build step.
 # See post_process_beamer_add_extra_headers_etc()
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
+   - \usepackage{bm}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
