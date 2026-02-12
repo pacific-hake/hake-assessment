@@ -3,8 +3,33 @@
 
 **Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
 
-## Request 1 results (1/4)
-\center \Large Canada
+## Request 1 Results: Catch by Month
+
+```{r catch-by-month-fig, fig.height = 5, fig.asp = 0.5, out.height = "80%"}
+
+plot_catch_by_month(list(us_ss_catch_by_month_df,
+                         can_ss_catch_by_month_df,
+                         us_cp_catch_by_month_df,
+                         can_ft_catch_by_month_df,
+                         us_ms_catch_by_month_df),
+                    list("U.S. Shoreside",
+                         "Canadian Shoreside",
+                         "U.S. Catcher-Processor",
+                         "Canadian Freezer-Trawlers",
+                         "U.S. Mothership"),
+                    type = "catch",
+                    disclaimer_text = paste0(
+                      "These plots have different y-axis ranges\n",
+                      "and are not directly comparable\n",
+                      "with each other."),
+                    yrs = c(2025, 2025),
+                    leg_font_size = 8,
+                    title_font_size = 10,
+                    ax_text_x = 8,
+                    ax_text_y = 8)
+```
+
+## Request 1 Results: Canadian Samples by Month
 
 ```{r age-comp-comparison, results = "asis"}
 
@@ -43,34 +68,9 @@ table_sampling_by_month(
 :::
 ::::::
 
-## Request 1 results (2/4)
 
-```{r catch-by-month-fig, fig.height = 5, fig.asp = 0.5, out.height = "80%"}
 
-plot_catch_by_month(list(us_ss_catch_by_month_df,
-                         can_ss_catch_by_month_df,
-                         us_cp_catch_by_month_df,
-                         can_ft_catch_by_month_df,
-                         us_ms_catch_by_month_df),
-                    list("U.S. Shoreside",
-                         "Canadian Shoreside",
-                         "U.S. Catcher-Processor",
-                         "Canadian Freezer-Trawlers",
-                         "U.S. Mothership"),
-                    type = "catch",
-                    disclaimer_text = paste0(
-                      "These plots have different y-axis ranges\n",
-                      "and are not directly comparable\n",
-                      "with each other."),
-                    yrs = c(2025, 2025),
-                    leg_font_size = 8,
-                    title_font_size = 10,
-                    ax_text_x = 8,
-                    ax_text_y = 8)
-```
-
-## Request 1 results (3/4)
-\center \Large United States 
+## Request 1 Results: U.S. At-Sea Samples by Month
 
 :::::: {.columns}
 ::: {.column width="45%"}
@@ -101,8 +101,7 @@ table_sampling_by_month(d,
 :::
 ::::::
 
-## Request 1 results (4/4)
-\center \Large United States
+## Request 1 Results: U.S. Shoreside Samples by Month
 
 \begin{center}\textbf{Shoreside}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}

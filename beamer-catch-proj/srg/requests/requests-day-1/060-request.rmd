@@ -3,19 +3,7 @@
 
 **Justification:** This will address a question from the public and inform the SRG on differences in catch throughout the season. It will also help to identify when the age-1 fish became prominent and may help to understand why certain percentages are in the data but may not be in the prediction or in what stakeholders perceived for the season.
 
-## US At-Sea Age Proportions by Month
-
-```{r as-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
-include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportions.png")
-```
-
-## US Shoreside Age Proportions by Month
-
-```{r ss-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
-include_graphics("/srv/hake/other/samples/us/srg-request-6-ss-age-proportions.png")
-```
-
-## Canada Age Proportions by Month
+## Request 6 Results: Canada Age Proportions by Month
 ```{r canada-age-proportions, results = "asis", width = 8, out.height="80%"}
 
 sample_df <- canada_load_sample_data() |>
@@ -26,3 +14,17 @@ fleet_lst <- fleet_lst[names(fleet_lst) != "jv"]
 
 plot_age_by_month(fleet_lst)
 ```
+
+## Request 6 Results: US At-Sea Age Proportions by Month
+
+```{r as-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
+include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportions.png")
+```
+
+## Request 6 Results: US Shoreside Age Proportions by Month
+
+```{r ss-age-proportions-survey, results = "asis", out.width="90%", out.height="90%"}
+include_graphics("/srv/hake/other/samples/us/srg-request-6-ss-age-proportions.png")
+```
+
+
