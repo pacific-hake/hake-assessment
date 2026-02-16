@@ -288,8 +288,11 @@ load_extra_mcmc <- function(model,
   sel <- sel_fishery_lst$sel |>
     dplyr::filter(yr == assess_yr) |>
     select(-c(yr))
-  if(nrow(sel) == 1){
-    sel <- sel |> bind_rows(sel)
+  if(nrow(sel)){
+    sel1 <- sel
+    for(i in seq_len(nrow(natage) - 1)){
+      sel <- sel |> bind_rows(sel1)
+    }
   }
 
   natsel <- natage * sel
