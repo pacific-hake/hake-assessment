@@ -25,10 +25,11 @@ m)
 table_risk(base_model,
            forecast_yrs,
            index = 1,
+           is_catch_proj = TRUE,
            type = "probability",
            font_size = 8,
            header_font_size = 9) |> 
-  row_spec(6,
+    row_spec(4,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
@@ -40,67 +41,9 @@ table_risk(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.15, 0.28),
-                  leg_font_size = 5,
-                  remove_x_val = 325) +
-  # Following make the legend smaller and legend items closer together
-  theme(legend.key.size = unit(0.25, "cm"),
-        legend.spacing.y = unit(0.01, "cm"),
-        legend.box.background = element_rect(colour = "black")) +
-  guides(color = guide_legend(byrow = TRUE))
-```
-
-## Probabilities based on `r end_yr` and `r end_yr + 1` catch
-
-```{r jmc-main-risk-forecast-year-2-tab, results = 'asis'}
-
-table_risk(base_model,
-           forecast_yrs,
-           index = 2,
-           type = "probability",
-           font_size = 8,
-           header_font_size = 9)
-```
-
-## Probabilities based on `r end_yr` and `r end_yr + 1` catch
-
-```{r jmc-forecast-risk-comparison-plot-year-2, out.height = "80%"}
-
-plot_fore_compare(base_model,
-                  forecast_yrs = forecast_yrs,
-                  fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.28, 0.44),
-                  leg_font_size = 5,
-                  remove_x_val = c(315, 342, 740)) +
-  # Following make the legend smaller and legend items closer together
-  theme(legend.key.size = unit(0.25, "cm"),
-        legend.spacing.y = unit(0.01, "cm"),
-        legend.box.background = element_rect(colour = "black")) +
-  guides(color = guide_legend(byrow = TRUE))
-```
-
-## Probabilities based on `r end_yr`, `r end_yr + 1`, and `r end_yr + 2` catch
-
-```{r jmc-main-risk-forecast-year-3-tab, results = 'asis'}
-
-table_risk(base_model,
-           forecast_yrs,
-           index = 3,
-           type = "probability",
-           font_size = 8,
-           header_font_size = 9)
-```
-
-## Probabilities based on `r end_yr`, `r end_yr + 1`, and `r end_yr + 2` catch
-
-```{r jmc-forecast-risk-comparison-plot-year-3, out.height = "80%"}
-
-plot_fore_compare(base_model,
-                  forecast_yrs = forecast_yrs,
-                  fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.28, 0.44),
-                  leg_font_size = 7,
-                  remove_x_val = 621) +
+                  leg_pos = c(0.25, 0.6),
+                  leg_font_size = 9) +
+                  #remove_x_val = c(270)) +
   # Following make the legend smaller and legend items closer together
   theme(legend.key.size = unit(0.25, "cm"),
         legend.spacing.y = unit(0.01, "cm"),

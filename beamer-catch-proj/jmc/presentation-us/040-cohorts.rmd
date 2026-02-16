@@ -1,15 +1,5 @@
 # Cohorts
 
-## Retrospective -- squid plot
-```{r jmc-squid, fig.height = 4, out.height = "85%"}
-
-plot_squid(base_model,
-           show_ci = TRUE,
-           ci_yrs = 2012:2015) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12))
-```
-
 ## Estimates of above average cohorts
 
 ```{r jmc-above-avg-cohorts, results = "asis"}

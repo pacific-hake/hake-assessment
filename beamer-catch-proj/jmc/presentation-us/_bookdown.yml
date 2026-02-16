@@ -1,10 +1,10 @@
  # name of the pdf file that is created: hake.pdf
 book_filename: "JTC-stock-assessment-JMC-US"
 rmd_files: ["000-launcher.rmd",
-            "../../../doc/001-load-packages.rmd",
-            "../../../doc/002-load-globals.rmd",
-            "../../../doc/003-load-models.rmd",
-            "../../../doc/004-load-project-variables.rmd",
+            "../../../doc-catch-proj/001-load-packages.rmd",
+            "../../../doc-catch-proj/002-load-globals.rmd",
+            "../../../doc-catch-proj/003-load-models.rmd",
+            "../../../doc-catch-proj/004-load-project-variables.rmd",
             "010-overview.rmd",
             "020-catches.rmd",
             "030-model-estimates.rmd",

@@ -1,86 +1,43 @@
 # Decision tables
 
 ## Decision tables
-
 * Decision table format (as improved last year)
   - Quantiles from the posterior distribution for relative spawning biomass
     and fishing intensity
 * Catch alternatives
-  - a: `r ct_levels[[1]][[2]]` (zero catch)
-  - b, c, d, g, i, k: Constant catches of `r ct_levels[[2]][[2]]`, 
-    `r ct_levels[[3]][[2]]`, `r ct_levels[[4]][[2]]`, `r ct_levels[[7]][[2]]`,
-       `r ct_levels[[9]][[2]]`, and `r ct_levels[[11]][[2]]`.
-  - f: Constant catch of `r ct_levels[[6]][[2]]`
-  - l: Constant catch of `r ct_levels[[12]][[2]]`
-  - e, h, j: Annual reductions of 10% from: `r f(ct_levels[[5]][[1]][1])` t,
-    `r f(ct_levels[[8]][[1]][1])` t, and `r f(ct_levels[[10]][[1]][1])` t.
-  - m: Fishing Intensity = 100% in each year conditioned on fixed catch in
-    previous year
-  - n: Median default Harvest Rule in each year conditioned on fixed catch
-    in previous year
-  - o: Fishing intensity giving 50% prob.~that the median `r assess_yr`
-    catch equals median `r assess_yr + 1` catch
+  - **a**: `r ct_levels[[1]][[2]]` (zero catch)
+  - **b**--**i**: Constant catches of
+    `r str_comma_sep(map_chr(ct_levels[2:9], ~{.x[[2]]}))`.
+  - **j**: Constant catch equal to the `r ct_levels[[10]][[2]]`
 * Constant catch of 525,000 t added per request at SRG (see Appendix I)
 
-## Relative spawning biomass, zero catch
+## Relative spawning biomass
 ```{r jmc-decisions-biomass-zero-table, results = "asis"}
 
 table_decision(base_model,
+               is_catch_proj_model = TRUE,
+               num_yrs_to_show = 1,
                type = "biomass",
-               rows_to_show = c("a"),
+               #rows_to_show = c("a", "b", "e", "j"),
                font_size = 6,
-               header_font_size = 7)
-```
-
-## Relative spawning biomass, constant catch
-```{r jmc-decisions-biomass-constant-table, results = "asis"}
-
-table_decision(base_model,
-               type = "biomass",
-               rows_to_show = c("b", "c", "d", "g", "i", "k"),
-               font_size = 5,
-               header_font_size = 6)
-```
-
-## Relative spawning biomass, `r last_assess_yr` catch and TAC
-
-```{r jmc-decisions-biomass-last-year-catch-tac-table, results = "asis"}
-
-table_decision(base_model,
-               type = "biomass",
-               rows_to_show = c("f", "l"),
-               font_size = 6,
-               header_font_size = 7,
-               left_col_cm = 1.5) |> 
-  # For a list of colors you can use here see:
-  # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
-  row_spec(2:4,
+               header_font_size = 7) |> 
+    row_spec(5,
            bold = table_highlight_bold,
            background = table_highlight_color)
+
 ```
 
-## Relative spawning biomass, annual 10% reduction
-
-```{r jmc-decisions-biomass-10-percent-reduction-tac-table, results = "asis"}
-
-table_decision(base_model,
-               type = "biomass",
-               rows_to_show = c("e", "h", "j"),
-               font_size = 6,
-               header_font_size = 7, left_col_cm = 1.5)
-```
-
-## Fishing intensity (selected streams)
+## Fishing intensity
 ```{r jmc-decisions-fishin-intensity-selected-table, results = "asis"}
 
 table_decision(base_model,
+               is_catch_proj_model = TRUE,
+               num_yrs_to_show = 1,
                type = "spr",
-               rows_to_show = c("a", "b", "f", "h", "l"),
-               font_size = 5,
-               header_font_size = 6) |> 
-  # For a list of colors you can use here see:
-  # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
-  row_spec(7:9,
+               #rows_to_show = c("a", "b", "e", "j"),
+               font_size = 6,
+               header_font_size = 7) |> 
+    row_spec(5,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
