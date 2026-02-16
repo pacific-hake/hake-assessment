@@ -1,0 +1,73 @@
+# Overview
+
+## Overview of stock assessment -- catches
+
+* TAC (adjusted for carryovers) for `r end_yr-1` was `r last_yr_tac` t
+* Coastwide catch in `r end_yr-1` was `r last_yr_landings` t  -- lowest since 1985
+* Attainment in the U.S. was `r last_yr_us_attained`% of its quota
+  (`r paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_us_attained_diff))`% from last year)
+* Attainment in Canada was `r last_yr_can_attained`% of its quota
+  (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
+* Both attainments are record lows
+
+## Overview of stock assessment -- methods
+* Usual updates:
+  - Update Stock Synthesis software
+  - Small data updates for years prior to `r last_assess_yr`
+  - Add new data for `r last_assess_yr`
+  - No survey in `r last_assess_yr`
+<!-- * Update survey biomass estimate and age data in 2 stages:
+  - Small updates to years prior to `r last_assess_yr`
+  - Add new `r last_assess_yr` survey index point -->
+<!-- * Update and add new `r last_assess_yr` weight-at-age data -->
+* Weight-at-age values come from a model with age, sex, year, and cohort
+    as inputs
+* Maturity-at-age values come from a spatio-temporal model with age,
+  day of year, and ocean temperature as inputs
+
+\pause
+
+* Model changes:
+  - Assume average recruitment from `r assess_yr - 2` onward instead of allowing
+    possibly very large or very small values
+  - Remove the age-1 index time series -- concluded to have too strong an
+    influence on recruitment, overwhelming other data
+
+## Overview of stock assessment -- main conclusions
+
+* General reduction in absolute biomass compared to last year's assessment
+* The median estimate of `r end_yr` relative spawning biomass is
+  `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
+   to `r curr_depl_upper`%)
+* The 2020 and 2021 cohorts make up a large fraction of coastwide catches
+  - 2014 and 2016 cohorts estimated to be above average
+  - 2015, 2018, and 2019 cohorts estimated to be below average
+  - 2020 cohort estimated to be slightly above average
+  - 2021 cohort potentially large (with high uncertainty)
+  - 2022 cohort estimated to be very small (based on two years of fishery data)
+\pause
+* Default harvest rule estimated median catch limit for `r min(forecast_yrs)`
+  is `r ct_limit_quantiles["median"]` t (with 95% interval from
+  `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
+* New `r last_data_yr` age data from fishery are fit well by the
+  model
+  
+## Key observations
+
+Stock assessment model
+
+* Catch has declined considerably over last few years
+* Recent age composition data indicates increasing biomass
+* Recent acoustic survey data indicates decreasing biomass
+* Combined, population trend relatively stable over last few years
+* Stock status is above `r b_40`, with 89% probability 
+
+Outside the assessment model
+
+* Some evidence of hake distribution moving southward over time
+* Delayed upwelling in 2024 a possible link to delayed migration
+* Indications of good recruitment (larval and juvenile) in 2024
+* Indications of increasing amounts of hake prey (and potentially predators)
+* Economics of fishing not sustainable in areas

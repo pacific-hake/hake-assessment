@@ -1,0 +1,126 @@
+# Summary
+
+## Summary (1/4)
+
+* Based on the default harvest rule, the estimated median catch limit for
+  `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with 95%
+   interval from `r ct_limit_quantiles["lower"]` to
+   `r ct_limit_quantiles["upper"]`~t).
+
+* Projections strongly influenced by size of above-average 2020 and 2021
+  cohorts, with 2021 being potentially large but also *highly* uncertain, and
+  the assumption of median (average) recruitment from 2023 onward.
+
+* Spawning biomass has a 100% chance of decreasing from `r assess_yr` to
+  `r assess_yr + 1` for any catch. Declines in spawning biomass from catch
+  will outpace increases from growth given recent 5-year average
+  selectivity and population age structure.
+
+* Achieving a constant catch of 300,000~t (close to 10-year average catch)
+  gives a 23% chance of falling below `r b_40` in 1 year, 39% in 2 years, and
+  59% in 3 years.
+  
+* While the assumption of average recruitment in any one year can be considered
+  risk neutral, the accumulation of several years of assumed average recruitment
+  (as in this assessment) underestimates future recruitment (and thus spawning biomass).
+
+## Summary (2/4)
+
+* Spawning biomass has increased from 2022--2025 after a steady decline
+  from 2018--2022.
+
+* High proportion of age-4 and age-5 fish predicted in 2025 fishery
+  (72% by numbers, 70% by weight).
+
+* Older fish predicted in 2025 fishery primarily from 2014 and 2016 cohort
+  (4 and 6% by numbers, 6 and 8% by weight).
+
+* The 2021 year class currently estimated to be above average.
+
+* Uncertainty is large, but stock currently has `r probs_curr_below_b40`%
+  chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
+  chance of relative fishing intensity being above 100%.
+
+* `r joint_percent_prob_above_below`% joint
+  probability of being both above the target relative fishing intensity in
+  `r end_yr - 1` and below the `r b_40` relative spawning biomass level at the
+  start of `r end_yr`.
+
+## Summary (3/4)
+
+* Despite estimates of a current stock status likely above `r b_40`, the recent lack
+  of survey abundance and fishery catch in Canada suggests
+  a population structure not conducive to achieving harvest quotas in
+  northern fisheries over recent years.
+
+* A better understanding of the factors affecting hake distribution and fishery performance
+  were highlighted by the SRG as the top priority research recommendation.
+  
+## Summary (4/4) -- Risk Table
+
+\begin{table}[tbp]
+\centering
+\fontsize{6}{8}\selectfont
+\begin{tabular}[t]{p{4cm}p{4cm}p{4cm}}
+\toprule
+Ecosystem and environmental conditions & Assessment data inputs &
+Assessment model fits and structural uncertainty\\
+\midrule
+\begin{itemize}
+  \itemindent = -8pt
+  \item Recruitment: 2021-2024 recruitment
+  indicators neutral to favorable
+  \item Prey: favorable (krill, juvenile hake)
+  \item Predators: unfavorable (increasing)
+  \item CVA rank: low
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Very reliable catch reporting
+  \item Generally well-sampled fishery-dependent
+  and \protect{-independent} age compositions
+  \item Informative age-2+ fishery-independent
+  survey biomass index every other year
+  \item Informative age-1 recruitment index every
+  other year
+  \item Includes externally estimated time-varying
+  weight-at-age (growth) and time-varying and
+  temperature-dependent maturity (fecundity) as
+  data inputs
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Fully Bayesian stock assessment,
+  integrating over multiple sources of
+  parametric uncertainty
+  \item High recruitment variability and no
+  information on recent recruitment in
+  assessment model from 2023 onwards, given
+  no survey in 2024
+  \item Key demographics estimated using
+  priors (natural mortality and steepness)
+  \item Clear identity of large cohorts after
+  at least age-3
+  \item Model fits well to age compositions,
+  though occasionally at the expense of the
+  survey index of abundance
+  \item Uncertain how changes in the
+  distribution of fishing relate to migration
+  patterns and stock abundance
+  \end{itemize} \\
+\hline
+Level~2 (medium agreement, robust evidence) & Level~1 & Level 2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+<!-- ## Assessment timeline -->
+
+<!-- ```{r jmc-timing, fig.height = 4, out.height = "85%"} -->
+
+<!-- plot_assessment_timeline() -->
+
+<!-- ``` -->

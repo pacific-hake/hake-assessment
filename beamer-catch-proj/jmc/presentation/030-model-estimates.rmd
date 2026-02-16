@@ -1,0 +1,97 @@
+# Model estimates
+
+## Recruitment (numbers of fish)
+
+```{r main-recruitment-fig, fig.height = 4, out.height = "85%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+## Recruitment estimates from `r assess_yr - 1` assessment
+
+```{r main-recruitment-fig-last-year, fig.height = 4, out.height = "85%"}
+
+plot_recruitment(list(last_yr_base_model),
+                 list(last_yr_base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+
+## Spawning Biomass
+
+```{r jmc-biomass-fig, fig.height = 4, out.height = "85%"}
+
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Relative Spawning Biomass
+
+```{r jmc-relative-biomass-fig, fig.height = 4, out.height = "85%"}
+
+plot_rel_biomass(model_lst = list(base_model),
+                 model_names = list(base_model_name),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Fishing intensity and exploitation rate
+:::::: {.columns}
+::: {.column width="50%"}
+<!-- \center Relative fishing intensity \center -->
+```{r jmc-fishing-intensity-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
+
+plot_fishing_intensity(base_model,
+                       line_width = 0.5,
+                       point_size = 1.5,
+                       point_stroke = 1,
+                       fspr40_text_x = 1970) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+:::
+
+::: {.column width="50%"}
+<!-- \center Exploitation rate \center -->
+```{r jmc-exploitation-fraction-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
+
+plot_exploitation_fraction(base_model,
+                           line_width = 0.5,
+                           point_size = 1.5,
+                           point_stroke = 1) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+:::
+::::::

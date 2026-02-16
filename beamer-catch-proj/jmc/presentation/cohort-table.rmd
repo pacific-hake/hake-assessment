@@ -1,0 +1,75 @@
+---
+title: "Cohort table (Table 22) with biomass split by country"
+author: ""
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+
+```
+
+```{r main-cohort-effects-country-tab, results = "asis", echo = FALSE}
+
+base_model <- readRDS("/srv/hake/models/2025/02-version/01-base-models/01-base/01-base.rds")
+end_yr <- 2025
+
+devtools::load_all("~/github/pacific-hake/hake-assessment/")
+source("~/github/pacific-hake/hake-assessment/beamer/jmc/presentation/table-cohorts-by-country.R")
+
+# Get ratios of biomass
+prop_biomass_df <- table_survey_by_country(survey_by_country_df, ret_df = T) |>
+  select(year, canada.prop, us.prop) |>
+  rename(Year = year) |>
+  mutate(canada.prop = as.numeric(canada.prop)) |>
+  mutate(us.prop = as.numeric(us.prop))
+
+# Get biomass at age combined
+biomass_at_age_df <- table_at_age(
+  base_model,
+  type = "baa",
+  end_yr = end_yr,
+  ret_df = TRUE) |>
+  mutate(Year = as.numeric(Year))
+
+j <- biomass_at_age_df |>
+  right_join(prop_biomass_df, by = "Year")
+
+can_baa <- j |>
+  mutate(across(!Year & !canada.prop & !us.prop, ~{.x * canada.prop})) |>
+  select(-canada.prop, -us.prop)
+
+us_baa <- j |>
+  mutate(across(!Year & !canada.prop & !us.prop, ~{.x * us.prop})) |>
+  select(-canada.prop, -us.prop)
+
+table_cohort_by_country(
+  base_model,
+  cohorts = c(1999, 2010, 2014, 2016, 2020, 2021),
+  cohort_bold = TRUE,
+  cohort_italics = TRUE,
+  cohort_underline = TRUE,
+  cohort_line_above = TRUE,
+  cohort_line_below = FALSE,
+  reverse_cohorts = TRUE,
+  caption = paste0("Select values for Cohorts-at-age, for large cohorts. ",
+                   "The biomass by country was calculated by taking the ",
+                   "survey biomass proportions by country from Table 13 and the biomass-",
+                   "at-age from Table 18 and multiplying. Blank values represent ",
+                   "years for which there was no survey. Dashes are shown for age 0 and 1 values ",
+                   "for Canada ans US biomasses because the survey biomass index ",
+                   "representsa age 2+ only. ",
+                   "The Canada and US biomasses, when added together equal the ",
+                   "Start biomass. ",
+                   "\\textbf{Note that a single proportion for each year is being ",
+                   "used for all ages in the given year. A future improvement would ",
+                   "be using survey biomass-at-age data to generate this table}"),
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE,
+  can_baa_df = can_baa,
+  us_baa_df = us_baa)
+```

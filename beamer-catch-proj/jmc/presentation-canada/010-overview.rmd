@@ -1,0 +1,42 @@
+# Overview
+
+## Overview of stock assessment (1/2)
+* Update Stock Synthesis software
+* Update fishery catch and age composition data:
+  - Years prior to `r last_assess_yr`
+  - Add new data for `r last_assess_yr`
+* Update survey biomass estimate and age data:
+  - Years prior to `r last_assess_yr`
+  - Add new `r last_assess_yr` survey index point
+* Update and add new `r last_assess_yr` weight-at-age data
+  - Weight-at-age data now come from a model with year, cohort and age
+    as inputs
+* Maturity-at-age data now come from a spatio-temporal model with year, age,
+  and ocean temperature as inputs
+* Update the age-1 index time series
+  - Add new `r last_assess_yr` index point
+* All model runs in the assessment are MCMC
+
+## Overview of stock assessment (2/2)
+
+* The median estimate of `r end_yr` relative spawning biomass is
+  `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
+   to `r curr_depl_upper`%)
+* The 2020 and 2021 cohorts make up a large fraction of coastwide catches
+  - 2014 and 2016 cohorts estimated to be above average
+  - 2015, 2018, and 2019 cohorts estimated to be below average
+  - 2020 cohort estimated to be slightly above average
+  - 2021 cohort potentially large (with high uncertainty)
+* Default harvest rule estimated median catch limit for `r min(forecast_yrs)`
+  is `r ct_limit_quantiles["median"]` t (with 95% interval from
+  `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
+* New `r last_data_yr` age data from fishery and survey are fit well by the
+  model
+* Coastwide catch in `r end_yr-1` was `r last_yr_landings` t, out of a TAC
+  (adjusted for carryovers) of `r last_yr_tac` t
+* Attainment in the U.S. was `r last_yr_us_attained`% of its quota
+  (`r paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_us_attained_diff))`% from last year); in
+  Canada it was `r last_yr_can_attained`%
+  (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
