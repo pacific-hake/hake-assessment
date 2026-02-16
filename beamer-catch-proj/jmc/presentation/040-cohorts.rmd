@@ -33,13 +33,3 @@ cohorts <- sort(c(large_cohorts))
 last_few_yrs <- c(last_assess_yr, assess_yr)
 table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
 ```
-
-## Retrospective -- squid plot
-```{r jmc-squid, fig.height = 4, out.height = "85%"}
-
-plot_squid(base_model,
-           show_ci = TRUE,
-           ci_yrs = c(2014, 2015, 2020, 2021)) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12))
-```

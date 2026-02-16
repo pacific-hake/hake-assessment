@@ -6,11 +6,11 @@ project_variables:
   science_name: "Merluccius productus"
   simple_name: "hake"
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
-  assess_yr: 2025
-  last_assess_yr: 2024
-  last_data_yr: 2024
-  forecast_yrs: 2025:2028
-  model_version: "02"
+  assess_yr: 2026
+  last_assess_yr: 2025
+  last_data_yr: 2025
+  forecast_yrs: 2026:2029
+  model_version: "01"
   last_yr_model_version: "02"
   # For a list of colors you can use here see:
   # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
@@ -40,6 +40,8 @@ author: Pacific Hake Joint Technical Committee
 date: "JMC/AP March meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
   hake_beamer:
+    latex_engine: lualatex
+    # Keep the tex file around for debugging purposes
     theme: Singapore
     slide_level: 2
     toc: false
@@ -63,6 +65,7 @@ header-includes:
 # (knitr-figs) must be here for the initial build step.
 # See post_process_beamer_add_extra_headers_etc()
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
+  - \usepackage{bm}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
