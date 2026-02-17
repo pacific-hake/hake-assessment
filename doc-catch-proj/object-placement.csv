@@ -71,4 +71,6 @@ table,srg-us-atsea-cp-sampling-summary-tab,,H
 table,srg-us-at-sea-ms-sampling-summary-tab,,H
 table,srg-us-sb-sampling-summary-tab,,H
 table,srg-fore-age-props-tab,,H
+figure,srg-age-comp-forecast-comparison-fig,,H
+figure,srg-cumulative-catch-cohorts-fig,,H
 

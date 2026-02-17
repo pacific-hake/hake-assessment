@@ -233,11 +233,32 @@ table_median_posteriors(
 ### Request 4
 
 **SRG request:**
+Create and present the plot showing the amount of each cohort in the catch over time (age on the x-axis). This plot has been created in the past. Please include the 1999, 2010, 2014, 2016, 2017, 2020, and 2021 cohorts.
 
 **Justification:**
+This plot shows the rate of removals of a cohort over time and how it compares across cohorts, which is helpful to understand the importance of a cohort to the fishery.
 
 #### Request 4 results: 
 
+Estimated total catch from each cohort
+
+* 1999 cohort (ages 1--`r last_data_yr - 1999`): `r f(max(cohort_cum_sum_1999))` t
+* 2010 cohort (ages 1--`r last_data_yr - 2010`): `r f(max(cohort_cum_sum_2010))` t
+* 2014 cohort (ages 1--`r last_data_yr - 2014`): `r f(max(cohort_cum_sum_2014))` t
+* 2016 cohort (ages 1--`r last_data_yr - 2016`): `r f(max(cohort_cum_sum_2016))` t
+* 2017 cohort (ages 1--`r last_data_yr - 2017`): `r f(max(cohort_cum_sum_2017))` t
+* 2020 cohort (ages 1--`r last_data_yr - 2020`): `r f(max(cohort_cum_sum_2020))` t
+* 2021 cohort (ages 1--`r last_data_yr - 2021`): `r f(max(cohort_cum_sum_2021))` t
+
+(ref:srg-cumulative-catch-cohorts-cap) Cumulative catch of key cohorts as requested by the SRG.
+
+(ref:srg-cumulative-catch-cohorts-alt) This figure shows the trajectories of catch on key cohorts 
+
+```{r srg-cumulative-catch-cohorts-fig, fig.cap = "(ref:srg-cumulative-catch-cohorts-cap)", fig.height = 4, fig.asp = 0.8, out.height = "4in"}
+
+plot_cumulative_catch_cohorts(base_model,
+                              leg_pos = c(0.1, 0.8))
+```
 
 ### Request 5
 
