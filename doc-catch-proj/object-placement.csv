@@ -64,28 +64,10 @@ figure,main-biomass-fig,,H
 figure,main-relative-biomass-fig,,H
 figure,main-age-comp-forecast-fig,,H
 
-# MCMC appendix
-figure,app-mcmc-diag-m-r0-fig,,H
-
-# Maturity appendix
-table,app-maturity-analysis-sampling-platform-tab,,ht
-table,app-maturity-analysis-aic-tab,,ht
-table,app-maturity-analysis-estimates-tab,,ht
-table,app-maturity-analysis-biomass-tab,,H
-
 # SRG appendix
-table,srg-weight-at-age-sample-size-can,,H
-figure,srg-main-mat-at-age-fig,,H
-figure,srg-plot-sur-fit-base-v-lambda-ssb-fig,,H
-figure,srg-plot-age1-fit-base-v-lambda-ssb-fig,,H
-figure,srg-plot-base-v-lambda-ssb-fig,,H
-figure,srg-plot-rel-base-v-lambda-ssb-fig,,H
-figure,srg-plot-rec-base-v-lambda-ssb-fig,,H
-figure,srg-plot-recabs-base-v-lambda-ssb-fig,,H
-figure,srg-can-prop-survey-biomass-fig,,H
-figure,srg-can-prop-survey-biomass-fig,,H
-table,srg-can-catch-at-age-tab,,H
-table,srg-us-catch-at-age-tab,,H
-figure,srg-main-mat-at-age-heatmap-fig,,H
-figure,srg-new-base-biomass-fig,,H
-figure,srg-plot-new-base-rel-biomass-fig,,H
+table,srg-canada-sample-summary-ft-tab,,H
+table,srg-canada-sample-summary-ss-tab,,H
+table,srg-us-atsea-cp-sampling-summary-tab,,H
+table,srg-us-at-sea-ms-sampling-summary-tab,,H
+table,srg-us-sb-sampling-summary-tab,,H
+

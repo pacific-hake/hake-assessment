@@ -1,0 +1,117 @@
+\newpage
+
+\rfoot{SRG requests}
+
+# SRG requests
+
+## Day 1
+
+### Request 1 Results: Catch by Month
+
+**Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots**
+
+**Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
+
+```{r srg-catch-by-month-fig, fig.height = 5, fig.asp = 0.8, out.height = "6in"}
+
+plot_catch_by_month(list(us_ss_catch_by_month_df,
+                         can_ss_catch_by_month_df,
+                         us_cp_catch_by_month_df,
+                         can_ft_catch_by_month_df,
+                         us_ms_catch_by_month_df),
+                    list("U.S. Shoreside",
+                         "Canadian Shoreside",
+                         "U.S. Catcher-Processor",
+                         "Canadian Freezer-Trawlers",
+                         "U.S. Mothership"),
+                    type = "catch",
+                    disclaimer_text = paste0(
+                      "These plots have different y-axis ranges\n",
+                      "and are not directly comparable\n",
+                      "with each other."),
+                    yrs = c(2025, 2025),
+                    leg_font_size = 8,
+                    title_font_size = 10,
+                    ax_text_x = 8,
+                    ax_text_y = 8)
+```
+
+#### Request 1 Results: Sector/Fleet-based Samples by Month
+
+```{r srg-age-comp-comparison, results = "asis"}
+
+sample_df <- canada_load_sample_data() |> 
+  dplyr::filter(sex %in% c(1, 2))
+
+samples_fleet_lst <- canada_get_fleet_samples(sample_df)
+# Remove JV for this table
+samples_fleet_lst <- samples_fleet_lst[names(samples_fleet_lst) != "jv"]
+
+samples_summary_tbls_lst <- canada_extract_sampling_by_month(
+  samples_fleet_lst,
+  yr = last_data_yr)
+```
+
+**Canadian Fleets**
+```{r srg-canada-sample-summary-ft-tab, results = "asis"}
+
+cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Freezer trawler sector.")
+table_sampling_by_month(samples_summary_tbls_lst$ft,
+                        font_size = 8,
+                        header_font_size = 9,
+                        caption = cap)
+```
+
+```{r srg-canada-sample-summary-ss-tab, results = "asis"}
+
+cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Shoreside sector.")
+table_sampling_by_month(samples_summary_tbls_lst$ss,
+                        font_size = 8,
+                        header_font_size = 9,
+                        caption = cap)
+```
+
+**U.S. Sectors**
+
+```{r srg-us-atsea-cp-sampling-summary-tab, results = "asis"}
+
+d<- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Total"),
+           num_age = c(250, 135, 0, 0, 0, 170, 555),
+           num_length = c(507, 269, 0, 0, 0, 541, 1317),
+           num_weight = c(507, 269, 0, 0, 0, 541, 1317))
+
+cap <- paste0("U.S. sampling by month for ", last_data_yr, " in the catcher-processor at-sea sector.")
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9,
+                        caption = cap)
+```
+
+```{r srg-us-at-sea-ms-sampling-summary-tab, results = "asis"}
+
+d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Total"),
+            num_age = c(0, 134, 164, 177, 150, 38, 663),
+            num_length = c(0, 266, 311, 319, 276, 64, 1236),
+            num_weight = c(0, 266, 311, 319, 276, 64, 1236))
+
+cap <- paste0("U.S. sampling by month for ", last_data_yr, " in the mothership at-sea sector.")
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9,
+                        caption = cap)
+```
+
+
+```{r srg-us-sb-sampling-summary-tab, results = "asis"}
+
+d <- tibble(month = c("April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_age = c(2, 118, 229, 450, 370, 290, 170, 0, 1629),
+            num_length = c(6, 78, 360, 440, 440, 340, 388, 20, 2066),
+            num_weight = c(6, 78, 360, 440, 440, 340, 388, 20, 2066))
+
+cap <- paste0("U.S. sampling by month for ", last_data_yr, " in the shore-based sector.")
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9,
+                        caption = cap)
+```
