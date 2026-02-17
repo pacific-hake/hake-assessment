@@ -17,7 +17,7 @@ Recall: base model uses fixed median recruitment levels for 2023 onwards
 
 ## Recruitment -- Fixed at median from 2023 onwards
 
-```{r rec-abs, fig.height = 4, out.height = "80%"}
+```{r rec-abs-sens1, fig.height = 4, out.height = "80%"}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
@@ -28,3 +28,11 @@ plot_recruitment(list(base_model),
 
 ## Recruitment -- Stochastic from 2023 onwards
 
+```{r rec-abs-sens2, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
