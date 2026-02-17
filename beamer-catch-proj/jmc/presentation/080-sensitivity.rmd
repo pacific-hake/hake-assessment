@@ -28,11 +28,3 @@ plot_recruitment(list(base_model),
 
 ## Recruitment -- Stochastic from 2023 onwards
 
-```{r rec-abs1, fig.height = 4, out.height = "80%"}
-
-plot_recruitment(list(base_model),
-                 list(base_model_name),
-                 inc_means = TRUE,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
