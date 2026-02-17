@@ -66,6 +66,17 @@ last_yr_base_model_name <- paste0(last_assess_yr, " Base model")
 base_model <- models$base_models_dirs[[1]][[1]]
 base_model_name <- attr(base_model, "desc")
 
+sens_models <- models$sens_models_dirs
+if(is.na(sens_models)[1]){
+  sens_models_names <- NA
+}else{
+  sens_models_names <- map(sens_models, ~{
+    map_chr(.x, ~{
+      attr(.x, "desc")
+    })
+  })
+}
+
 request_models <- models$request_models_dirs
 if(is.na(request_models)[1]){
   request_models_names <- NA
