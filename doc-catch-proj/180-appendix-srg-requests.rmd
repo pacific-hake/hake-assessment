@@ -196,3 +196,37 @@ plist[[3]] <- plot_fore_age_comps(base_model,
 plot_grid(plotlist = plist, nrow = 3, align = "v")
 
 ```
+
+### Request 3
+
+**SRG request:**
+Present the table of spawning biomass, age 2+ biomass and other quantities as in Table 23 from the 2025 assessment, and include this updated version in the 2026 assessment document.
+
+**Justification:**
+These quantities will help provide insight into the possible predicted size of the 2025 acoustic survey biomass.
+
+#### Request 3 results: 
+
+```{r srg-base-median-posterior-tab, results = "asis", echo = FALSE}
+
+table_median_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = paste0(
+    "Time series of median posterior population estimates from the base ",
+    "model. Relative spawning biomass is spawning biomass relative to the ",
+    "unfished equilibrium (", b_0_for_latex_table, "). Total biomass includes
+    females and males of ages 0 and above. Age-2$+$ biomass includes females ",
+    "and males ages 2 and above. Exploitation fraction is total catch ",
+    "divided by total age-2$+$ biomass. Relative fishing intensity is ",
+    rel_fishing_intensity_for_latex_table, " such that values below 100\\% ",
+    "represent fishing below ", f_40_for_latex_table, ". In the last row, ",
+    "dashes (--) indicate quantities requiring ", end_yr, " catch which has ",
+    "not taken place yet."),
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
