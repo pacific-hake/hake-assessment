@@ -9,7 +9,8 @@ table_fore_age_props(
   props_bynum,
   props_bywt,
   ages_filt = c(2:8, 10, 14),
-  font_size = 8
+  font_size = 8,
+  ...
 )
 }
 \arguments{

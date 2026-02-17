@@ -6,13 +6,19 @@
 
 ## Day 1
 
-### Request 1 Results: Catch by Month
+### Request 1:
 
-**Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots**
+**SRG request**:
+Summarize the number of aged fish by month for each sector in the US and Canada (if possible). Compare these to the monthly catch plots.
 
-**Justification:** This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
+**Justification:**
+This will help to determine if the age data are representative of the fishery catches. If the number of ages are consistent with the catch, then the ages are likely to be representative.
 
-```{r srg-catch-by-month-fig, fig.height = 5, fig.asp = 0.8, out.height = "6in"}
+(ref:srg-catch-by-month-cap) Catch by month in `r last_data_yr` for all sectors of the U.S. and fleets of Canada.
+
+(ref:srg-catch-by-month-alt) The figure shows that 
+
+```{r srg-catch-by-month-fig, fig.cap = "(ref:srg-catch-by-month-cap)", fig.height = 5, fig.asp = 0.8, out.height = "6in"}
 
 plot_catch_by_month(list(us_ss_catch_by_month_df,
                          can_ss_catch_by_month_df,
@@ -114,4 +120,79 @@ table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9,
                         caption = cap)
+```
+
+### Request 2
+
+**SRG request:**
+Show the expected fishery age proportions for 2025 and 2026 fishery (this is fig 43 in 2025 assessment and slide 10 of management outcomes presentation). Possibly overlay this with 2025 fishery observations to compare the two. The JTC can decide how to present the observed 2025 fishery data.
+
+**Justification:**
+This request will identify the correct predictions of fishery proportions-at-age for 2025 and 2026, thus providing insights into what the model expects  for 2025 fisheries proportions-at-age. Comparing to the observations from 2025 will help to identify potential biases in the assessment, in particular related to the assumption of fixing recent recruitment to less than average recruitment.
+
+#### Request 2 results: 
+
+```{r srg-fore-age-props-tab, results = "asis"}
+
+cap <- paste0("Vulnerable projected age compositions for ", assess_yr, ".")
+table_fore_age_props(fore_catch_prop,
+                     fore_catch_prop_wt,
+                     ages_filt = 1:15,
+                     font_size = 8,
+                     caption = cap)
+```
+
+(ref:srg-main-age-comp-forecast-cap) Vulnerable projected age compositions for `r assess_yr`. The left panel shows the proportions by number; the right panel shows the proportions by weight. Selectivity for `r assess_yr` was not available in the model output so `r last_data_yr` was used instead.
+
+(ref:srg-main-age-comp-forecast-alt) This figure shows that age 5 and 6 fish will be dominant in the stock in `r assess_yr`
+
+```{r srg-age-comp-forecast-fig, fig.cap = "(ref:srg-main-age-comp-forecast-cap)", fig.height = 4, fig.asp = 0.8, out.height = "4in"}
+
+plot_fore_age_comps(base_model,
+                    y_lim = c(0, 0.7),
+                    is_catch_proj = TRUE)
+```
+
+(ref:srg-age-comp-forecast-comparison-cap) Proportions of `r last_data_yr` catch-at-age, expected proportions of catch-at-age from the `r last_data_yr` assessment model, and expected proportions of catch-at-age from the `r assess_yr` assessment model.
+
+(ref:srg-age-comp-forecast-comparison-alt) This figure shows that the expected proportions of catch-at-age follow what is seen in the `r last_data_yr` data except for the large cohort of age 2's. The `r last_data_yr` data was not included in the model
+
+```{r srg-age-comp-forecast-comparison-fig, fig.cap = "(ref:srg-age-comp-forecast-comparison-cap)", fig.height = 5, fig.asp = 0.8, out.height = "6in"}
+
+# load fishery 2025 age props and plot
+d <- read_csv(here("beamer-catch-proj/srg/requests/requests-day-1/fishery-age-props-2025.csv"), col_types = cols())
+x_lim <- c(1, 15)
+x_breaks <- seq(x_lim[1], x_lim[2], 2)
+y_lim = c(0, 0.55)
+
+plist <- NULL
+plist[[1]] <- ggplot(d,
+                     aes(x = age,
+                         y = prop)) +
+  geom_bar(stat = "identity",
+           fill = main_fill,
+           alpha = main_alpha) +
+  scale_x_continuous(breaks = x_breaks,
+                     labels = x_breaks) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_cartesian(xlim = x_lim,
+                  ylim = y_lim,
+                  expand = TRUE) +
+  xlab("") +
+  ylab("Prop. 2025 catch") +
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+plist[[2]] <- plot_fore_age_comps(last_yr_base_model,
+                                  y_lim = c(0, 0.7),
+                                  by_number_only = TRUE,
+                                  show_x_title = FALSE)
+
+plist[[3]] <- plot_fore_age_comps(base_model,
+                                  y_lim = c(0, 0.7),
+                                  by_number_only = TRUE,
+                                  is_catch_proj = TRUE)
+
+plot_grid(plotlist = plist, nrow = 3, align = "v")
+
 ```

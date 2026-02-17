@@ -5,6 +5,7 @@
 \title{Plot the Canadian age by month and fleet}
 \usage{
 plot_age_by_month(
+  fleet_lst,
   x_lim = c(1, 15),
   x_breaks = seq(x_lim[1], x_lim[2], 2),
   y_lim = c(0, 0.55),

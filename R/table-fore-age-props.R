@@ -13,7 +13,8 @@
 table_fore_age_props <- function(props_bynum,
                                  props_bywt,
                                  ages_filt = c(2:8, 10, 14),
-                                 font_size = 8){
+                                 font_size = 8,
+                                 ...){
 
   ages <- names(props_bynum)
   d_bynum <- props_bynum |>
@@ -55,7 +56,8 @@ table_fore_age_props <- function(props_bynum,
            align = c("l", "r", "r", "r"),
            linesep = "",
            #col.names = col_names,
-           escape = FALSE) |>
+           escape = FALSE,
+           ...) |>
     row_spec(0, bold = TRUE) |>
     kable_styling(font_size = font_size)
 
