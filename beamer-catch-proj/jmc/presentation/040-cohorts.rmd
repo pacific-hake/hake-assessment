@@ -12,6 +12,7 @@ Estimated total catch from each cohort
 * 2010 cohort (ages 1--`r last_data_yr - 2010`): `r f(max(cohort_cum_sum_2010))` t
 * 2014 cohort (ages 1--`r last_data_yr - 2014`): `r f(max(cohort_cum_sum_2014))` t
 * 2016 cohort (ages 1--`r last_data_yr - 2016`): `r f(max(cohort_cum_sum_2016))` t
+* 2017 cohort (ages 1--`r last_data_yr - 2017`): `r f(max(cohort_cum_sum_2017))` t
 * 2020 cohort (ages 1--`r last_data_yr - 2020`): `r f(max(cohort_cum_sum_2020))` t
 * 2021 cohort (ages 1--`r last_data_yr - 2021`): `r f(max(cohort_cum_sum_2021))` t
 :::

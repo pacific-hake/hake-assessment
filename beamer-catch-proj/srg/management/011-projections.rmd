@@ -70,7 +70,7 @@ plot_depl_fore_comparison(base_model,
 
 :::::: {.columns}
 ::: {.column width="45%"}
-**Median proportions:**
+**Median proportions (2026):**
 ```{r fore-age-props, results = "asis"}
 
 table_fore_age_props(fore_catch_prop,
@@ -78,7 +78,7 @@ table_fore_age_props(fore_catch_prop,
                      ages_filt = 1:15,
                      font_size = 8) |>
     # Highlight two largest cohorts
-    row_spec(11:12,
+    row_spec(10:11,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
@@ -86,7 +86,9 @@ table_fore_age_props(fore_catch_prop,
 
 ::: {.column width="55%"}
 ```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
-plot_fore_age_comps(base_model, y_lim = c(0, 0.7))
+plot_fore_age_comps(base_model,
+                    y_lim = c(0, 0.7),
+                    is_catch_proj = TRUE)
 ```
 :::
 ::::::

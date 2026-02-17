@@ -1,0 +1,38 @@
+# Sensitivities
+
+## Key Structural Uncertainties for `r assess_yr`
+
+Recall: base model uses fixed median recruitment levels for 2023 onwards
+  with extra standard deviation added to the survey index time series.
+
+* Sensitivity 1 -- Stochastic recruitment (not fixed) since 2023 and into the forecast period.
+
+* Sensitivity 2 -- Turn off added uncertainty when fitting the survey time
+  series (force improved fit to survey) and keep fixed median recruitment since 2023
+  and into forecast period.
+
+* Sensitivity 3 -- Turn off added uncertainty when fitting the survey time series
+  (force improved fit to survey) and add stochastic recruitment since 2023 and into
+  forecast period.
+
+## Recruitment -- Fixed at median from 2023 onwards
+
+```{r rec-abs, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+
+## Recruitment -- Stochastic from 2023 onwards
+
+```{r rec-abs, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```

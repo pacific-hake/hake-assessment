@@ -8,3 +8,29 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
             leg_key_size = 0.5,
             leg_ratio = c(0.5,2))
 ```
+
+## Catch by month and sector
+
+```{r catch-by-month-fig}
+
+plot_catch_by_month(list(us_ss_catch_by_month_df,
+                         can_ss_catch_by_month_df,
+                         us_cp_catch_by_month_df,
+                         can_ft_catch_by_month_df,
+                         us_ms_catch_by_month_df),
+                    list("U.S. Shoreside",
+                         "Canadian Shoreside",
+                         "U.S. Catcher-Processor",
+                         "Canadian Freezer-Trawlers",
+                         "U.S. Mothership"),
+                    type = "catch",
+                    disclaimer_text = paste0(
+                      "These plots have different y-axis ranges\n",
+                      "and are not directly comparable\n",
+                      "with each other."),
+                    yrs = c(last_data_yr - 4, last_data_yr),
+                    leg_font_size = 8,
+                    title_font_size = 10,
+                    ax_text_x = 8,
+                    ax_text_y = 8)
+```
