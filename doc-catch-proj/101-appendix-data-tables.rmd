@@ -4,7 +4,7 @@
 
 # Data Tables {#sec:app-tables}
 
-This appendix contains empirical data tables only. There are no model output tables included. The `r end_yr` assessment is a simple projection model which includes only the total `r last_data_yr` catch as new data. The tables presented here contain historical data as well as the data for `r last_data_yr`, even though only catch was updated in the modelling for this year. All the `r last_data_yr` data presented here will be used in future assessment years' model runs.
+This appendix contains empirical data tables only (though also see Appendix~\@ref(sec:app-srg-requests)). There are no model output tables included. The `r end_yr` assessment is a simple projection model which includes only the total `r last_data_yr` catch as new data. The tables presented here contain historical data as well as the data for `r last_data_yr`, even though only catch was updated in the modelling for this year. All the `r last_data_yr` data presented here will be used in future assessment years' model runs.
 
 ```{r main-catches-us-tab, results = "asis", echo = FALSE}
 table_catch(
@@ -65,7 +65,9 @@ table_sampling_history(
   caption = paste0(
     "Annual summary of U.S. and Canadian fishery sampling included in this ",
     "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr,
-    ". The majority of values are reported as number of hauls but U.S. ",
+    ", though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "The majority of values are reported as number of hauls but U.S. ",
     "shoreside and Canadian Shoreside fleets are reported as the number ",
     "of trips. A dash (--) indicates there was no sampled catch. The ",
     "number of fish with otoliths sampled per haul has varied over time but ",
@@ -83,7 +85,10 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
-    "Catcher-Processor fleet. Proportions are calculated from numbers of ",
+    "Catcher-Processor fleet",
+    ", though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "Proportions are calculated from numbers of ",
     "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
@@ -101,7 +106,10 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
-    "Mothership fleet. Proportions are calculated from numbers of ",
+    "Mothership fleet,",
+    " though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "Proportions are calculated from numbers of ",
     "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
@@ -117,7 +125,10 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
-    "shoreside fleet. Proportions are calculated from numbers of ",
+    "shoreside fleet,",
+    " though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "Proportions are calculated from numbers of ",
     "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
@@ -133,7 +144,10 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the Canadian ",
-    "Shoreside fleet. Proportions are calculated from numbers of individuals ",
+    "Shoreside fleet,",
+    " though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "Proportions are calculated from numbers of individuals ",
     "in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
@@ -149,7 +163,10 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the Canadian ",
-    "Freezer trawler fleet. Proportions are calculated from numbers of ",
+    "Freezer trawler fleet, ",
+    " though data for ", assess_yr - 1,
+    " are not yet included in the assessment model. ",
+    "Proportions are calculated from numbers of ",
     "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
