@@ -397,3 +397,43 @@ Therefore, it is not appropriate to run new base case models for management advi
 * There is insufficient time to properly process all of the survey-dependent data products used in a full stock assessment (including maturity-at-age, weight-at-age, and appropriately catch-weighted fishery age compositions).
 
 * There is insufficient time to conduct the suite of sensitivities and all other diagnostic model evaluations required for a full stock assessment.
+
+## Day 3
+
+### Request 1:
+
+**SRG request**:
+Present two new time series tables of spawning biomass, age 2+ biomass and other quantities as in Table 23 from the 2025 assessment. The first should be base case with stochastic recruitment and the second table is base model with no additional variance on the survey.
+
+**Justification:**
+No official justification given.
+
+#### Request Results:
+
+```{r srg-sens1-median-posterior-2026-tab, results = "asis", echo = FALSE}
+
+table_median_posteriors(
+  sens_models[[1]][[2]],
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = "Time series of median posterior population estimates from the model with stochastic
+recruitment in the projection year.",
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
+```{r srg-sens3-median-posterior-2026-tab, results = "asis", echo = FALSE}
+
+table_median_posteriors(
+  sens_models[[1]][[4]],
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = "Time series of median posterior population estimates from the model with no additional
+variance on the survey.",
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
