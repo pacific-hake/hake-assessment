@@ -263,10 +263,66 @@ plot_cumulative_catch_cohorts(base_model,
 ### Request 5
 
 **SRG request:**
+Calculate and present probability tables (slide 15 of management outcomes) for each sensitivity run (at least the no additional standard error on the survey and the stochastic recruitment runs).
 
 **Justification:**
+This will provide an insight into the management outcomes for alternative model runs and identify the importance (through the size of the effect) to management outcomes.
 
 #### Request 5 results: 
+
+```{r srg-risk-base-tab, results = "asis"}
+
+cap <- paste0("Probabilities based on ", end_yr, " catch (Base Model).")
+table_risk(base_model,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9,
+           caption = cap)
+```
+
+```{r srg-risk-sens1-tab, results = "asis"}
+
+cap <- paste0("Probabilities based on ", end_yr, " catch (Stochastic forecast recruitment).")
+table_risk(sens_models[[1]][[2]],
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9,
+           caption = cap)
+```
+
+```{r srg-risk-sens2-tab, results = "asis"}
+
+cap <- paste0("Probabilities based on ",
+              end_yr,
+              " catch (Stochastic forecast recruitment and Fit Survey).")
+table_risk(sens_models[[1]][[3]],
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9,
+           caption = cap)
+```
+
+```{r srg-risk-sens3-tab, results = "asis"}
+
+cap <- paste0("Probabilities based on ", end_yr, " catch (Fit Survey).")
+table_risk(sens_models[[1]][[4]],
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9,
+           caption = cap)
+```
 
 
 ### Request 6
