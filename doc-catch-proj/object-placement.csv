@@ -73,4 +73,12 @@ table,srg-us-sb-sampling-summary-tab,,H
 table,srg-fore-age-props-tab,,H
 figure,srg-age-comp-forecast-comparison-fig,,H
 figure,srg-cumulative-catch-cohorts-fig,,H
+table,srg-main-risk-base-tab,,H
+table,srg-main-risk-sens1-tab,,H
+table,srg-main-risk-sens2-tab,,H
+table,srg-main-risk-sens3-tab,,H
+table,srg-risk-base-tab,,H
+table,srg-risk-sens1-tab,,H
+table,srg-risk-sens2-tab,,H
+table,srg-risk-sens3-tab,,H
 
