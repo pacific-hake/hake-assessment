@@ -61,7 +61,7 @@ samples_summary_tbls_lst <- canada_extract_sampling_by_month(
 **Canadian Fleets**
 ```{r srg-canada-sample-summary-ft-tab, results = "asis"}
 
-cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Freezer trawler sector.")
+cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Freezer trawler fleet")
 table_sampling_by_month(samples_summary_tbls_lst$ft,
                         font_size = 8,
                         header_font_size = 9,
@@ -70,7 +70,7 @@ table_sampling_by_month(samples_summary_tbls_lst$ft,
 
 ```{r srg-canada-sample-summary-ss-tab, results = "asis"}
 
-cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Shoreside sector.")
+cap <- paste0("Canadian sampling by month for ", last_data_yr, " in the Shoreside fleet.")
 table_sampling_by_month(samples_summary_tbls_lst$ss,
                         font_size = 8,
                         header_font_size = 9,
