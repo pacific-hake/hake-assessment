@@ -141,8 +141,8 @@ table_risk(sens_models[[1]][[4]],
 * Base Model
   - Relative SSB is 0.58 and default HCR is 559,334 t.
 
-* High State of Nature
-  - Stochastic recruitment -- Relative SSB is 0.99 and default HCR is 793,411 t.
+* High State of Nature -- Stochastic recruitment
+  - Relative SSB is 0.99 and default HCR is 793,411 t.
 
-* Low State of Nature
-  - Fit Survey -- Relative SSB is 0.45 and default HCR is 480,205 t.
+* Low State of Nature -- Fit Survey
+  - Relative SSB is 0.45 and default HCR is 480,205 t.

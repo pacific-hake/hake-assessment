@@ -1,16 +1,5 @@
 # Model estimates
 
-<!---
-## Recruitment Deviations
-```{r rec-dev, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(base_model),
-             list(base_model_name),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
---->
-
 ## Absolute Recruitment
 ```{r rec-abs, fig.height = 4, out.height = "80%"}
 
