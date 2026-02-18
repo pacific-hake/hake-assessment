@@ -112,8 +112,8 @@ table_sampling_by_month(d,
 
 d <- tibble(month = c("April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
             num_age = c(2, 118, 229, 450, 370, 290, 170, 0, 1629),
-            num_length = c(6, 78, 360, 440, 440, 340, 388, 20, 2066),
-            num_weight = c(6, 78, 360, 440, 440, 340, 388, 20, 2066))
+            num_length = c(6, 258, 480, 680, 680, 640, 508, 60, 3323),
+            num_weight = c(6, 167, 420, 560, 560, 490, 448, 40, 2708))
 
 cap <- paste0("U.S. sampling by month for ", last_data_yr, " in the shore-based sector.")
 table_sampling_by_month(d,
