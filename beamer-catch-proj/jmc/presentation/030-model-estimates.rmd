@@ -1,5 +1,6 @@
 # Model estimates
 
+<!---
 ## Recruitment Deviations
 ```{r rec-dev, fig.height = 4, out.height = "80%"}
 
@@ -8,6 +9,7 @@ plot_recdevs(list(base_model),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
+--->
 
 ## Absolute Recruitment
 ```{r rec-abs, fig.height = 4, out.height = "80%"}
@@ -39,14 +41,40 @@ plot_rel_biomass(list(base_model),
                  leg_pos = "none")
 ```
 
-## Fishing Intensity
-```{r main-fish-inten, fig.height = 4, out.height = "70%"}
+## Fishing intensity and exploitation rate
+:::::: {.columns}
+::: {.column width="50%"}
+<!-- \center Relative fishing intensity \center -->
+```{r jmc-fishing-intensity-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
 
-plot_fishing_intensity(base_model)
+plot_fishing_intensity(base_model,
+                       line_width = 0.5,
+                       point_size = 1.5,
+                       point_stroke = 1,
+                       fspr40_text_x = 1970) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
 ```
 
-## Exploitation Fraction (ages 2+)
-```{r main-expl-frac, fig.height = 4, out.height = "80%"}
+:::
 
-plot_exploitation_fraction(base_model)
+::: {.column width="50%"}
+<!-- \center Exploitation rate \center -->
+```{r jmc-exploitation-fraction-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
+
+plot_exploitation_fraction(base_model,
+                           line_width = 0.5,
+                           point_size = 1.5,
+                           point_stroke = 1) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
 ```
+
+:::
+::::::

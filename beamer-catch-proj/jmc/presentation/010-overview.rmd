@@ -1,81 +1,27 @@
-# Overview
-
-## Summary -- catches
-
-* TAC (adjusted for carryovers) for `r end_yr-1` was `r last_yr_tac` t
-* Coastwide catch in `r end_yr-1` was `r last_yr_landings` t  -- near the
-time series average catch
-* Attainment in the U.S. was `r last_yr_us_attained`% of its quota
-  (`r paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))`
-  `r abs(as.numeric(last_2yr_us_attained_diff))`% from last year)
-* Attainment in Canada was `r last_yr_can_attained`% of its quota
-  (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
-  `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
+# Introduction
 
 ## `r assess_yr` base model structure
 
 * The `r assess_yr` model is effectively equivalent to the  `r last_assess_yr` model (unchanged structure and results) to the start of 2025.
+
 * Model parameters are effectively the same for `r assess_yr` and `r last_assess_yr`.
+
 * The same version of Stock Synthesis was used as last year.
+
 * The `r assess_yr` model only includes updated 2025 total coast-wide catch data.
+
 * Often referred to as a catch-only projection style of assessment.
 
 ## Justification for `r assess_yr` base model structure
-* The option of adding another year of fisheries age data, without the 2025 survey data, could lead to potentially misleading results.
+
+A catch-only projection is appropriate for the 2026 stock assessment for several reasons:
+
+* The 2025 IWCPS acoustic survey biomass and age-composition estimates were finalized only days before the assessment deadline due to a 7-week delay (U.S. lapse in federal appropriations). Consequently, these data did not had the necessary review by the JTC. The 2025 IWCPS survey had meaningful survey design changes. Incorporating these data without proper review by the SRG may result in assumptions that result in biased results.
 \item[]
-* The option of using the `r last_assess_yr` model projections as the basis for 2026 status could only be an approximation at best.
+* Data from both the fishery and acoustic survey are complementary and provide a more informative representation of the population. Including the 2025 fishery age compositions without including the 2025 survey biomass estimate (and age compositions) risks introducing biases. In recent years, a tension has been observed between fishery age composition data (suggesting high recruitment from shifts to large proportions of young fish) and the acoustic survey biomass index (suggesting decreasing overall biomass). 
 \item[]
-* Thus, the catch-only projection option was deemed the most applicable for this year, because it bases 2026 management advice
-on the approved `r last_assess_yr` assessment and uses the exact 2025 total catch for a projection.
+* The next full stock assessment should include the full complement of properly scrutinized data informing both cohort strengths and absolute biomass.
 
-## `r assess_yr` base model recruitment assumptions
-
-* The use of a fixed recruitment assumption maintained from 2023 onwards
-
-  * Results in three years of relatively low recruitment leading into biomass at the start of 2026
-  * Four years of low recruitment leading into single year biomass forecasts for the start of 2027
-
-* No standard set of sensitivities were completed for this year, refer to 2025 assessment
-
-* A few alternative sensitivity runs were evaluated (separate presentation) to:
-
-  * Explore the impact of the fixed recruitment assumption
-  * Explore the tradeoffs between fishery age composition data and survey index data
-
-## `r assess_yr` base model projections
-* A single year was projected forward from the 2026 base model to get biomass at the start of 2027
-
-* This was done because:
-
-  * The assumption of not using recruitment deviations during the
-recent and forecast periods is not a feasible long-term model assumption because the median
-recruitment is too low to sustain the population in perpetuity. Forecasting further
-years ahead will exacerbate this and lead to unrealistic results given past levels of
-Pacific Hake recruitment.
-  * The models in the 2024 and 2025 assessments both estimated a stock biomass somewhat
-larger than the biomass index from the 2023 survey. Inclusion of the 2025 survey biomass
-index would have helped to determine the validity of this overfitting. Without the
-2025 survey biomass index, it was deemed pragmatic to not overextend the forecasts
-too far ahead from 2023 survey.
-
-## Main conclusions
-
-* Reduction in spawning biomass from `r last_assess_yr` to `r assess_yr`
-* The median estimate of `r end_yr` relative spawning biomass is
-  `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
-   to `r curr_depl_upper`%)
-* The 2023, 2021, and 2020 cohorts make up a large fraction of coastwide catches
-  - 2014 and 2016 cohorts estimated to be above average
-  - 2015, 2018, and 2019 cohorts estimated to be below average
-  - 2020 cohort estimated to be slightly above average
-  - 2021 cohort near the size of the 2014 cohort
-  - 2022 cohort estimated to be very small
-  - 2023 onwards assumed to be median cohort sizes (relatively low)
-\pause
-* Default harvest rule estimated median catch limit for `r min(forecast_yrs)`
-  is `r ct_limit_quantiles["median"]` t (with 95% interval from
-  `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
-  
 ## Key observations
 
 Stock assessment model
@@ -93,3 +39,4 @@ Outside the assessment model
 * Indication of high overall hake biomass from fishery age compositions
 * Combined, unknown until next full assessment
 * Economics of fishing not sustainable in areas
+* Ecosystem and environmental conditions -- neutral

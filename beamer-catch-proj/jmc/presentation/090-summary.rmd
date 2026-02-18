@@ -26,11 +26,12 @@
 * Spawning biomass has decreased from 2025--2026 after being relatively stable
   from 2023--2025.
 
+* The median estimate of `r end_yr` relative spawning biomass is
+  `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
+   to `r curr_depl_upper`%)
+
 * High proportion of age-5 and age-6 fish predicted in 2026 fishery. Age-3 fish
   likely to also be high next year given 2025 fishery and survey proportion data.
-
-* Older fish predicted in 2025 fishery primarily from 2016 and 2014 cohort
-  (4 and 3% by numbers, 6 and 5% by weight).
 
 * The 2021 year class currently estimated to be above average.
 

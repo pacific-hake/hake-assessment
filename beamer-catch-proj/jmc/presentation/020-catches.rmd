@@ -34,3 +34,14 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                     ax_text_x = 8,
                     ax_text_y = 8)
 ```
+## Summary -- Catches
+
+* TAC (adjusted for carryovers) for `r end_yr-1` was `r last_yr_tac` t
+* Coastwide catch in `r end_yr-1` was `r last_yr_landings` t  -- near the
+time series average catch
+* Attainment in the U.S. was `r last_yr_us_attained`% of its quota
+  (`r paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_us_attained_diff))`% from last year)
+* Attainment in Canada was `r last_yr_can_attained`% of its quota
+  (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
+  `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)

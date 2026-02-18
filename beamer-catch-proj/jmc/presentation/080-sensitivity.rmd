@@ -5,17 +5,13 @@
 Recall: base model uses fixed median recruitment levels for 2023 onwards
   with extra standard deviation added to the survey index time series.
 
-* Sensitivity 1 -- Stochastic recruitment (not fixed) since 2023 and into the forecast period.
+* Sensitivity 1 (high state of nature) -- Stochastic recruitment (not fixed)
+  since 2023 and into the forecast period.
 
-* Sensitivity 2 -- Turn off added uncertainty when fitting the survey time
-  series (force improved fit to survey) and keep fixed median recruitment since 2023
-  and into forecast period.
+* Sensitivity 2 (low state of nature) -- Turn off added uncertainty when fitting
+  the survey time series (force improved fit to survey).
 
-* Sensitivity 3 -- Turn off added uncertainty when fitting the survey time series
-  (force improved fit to survey) and add stochastic recruitment since 2023 and into
-  forecast period.
-
-## Recruitment -- Fixed at median from 2023 onwards
+## Recruitment -- Fixed at median from 2023 onwards (base)
 
 ```{r rec-abs-sens1, fig.height = 4, out.height = "80%"}
 
@@ -142,8 +138,11 @@ table_risk(sens_models[[1]][[4]],
 
 ## Summary -- Compare Models (2026)
 
-* Base Model -- Relative SSB is 0.58 and default HCR is 559,334 t.
+* Base Model
+  - Relative SSB is 0.58 and default HCR is 559,334 t.
 
-* Stochastic recruitment -- Relative SSB is 0.99 and default HCR is 793,411 t.
+* High State of Nature
+  - Stochastic recruitment -- Relative SSB is 0.99 and default HCR is 793,411 t.
 
-* Fit Survey -- Relative SSB is 0.45 and default HCR is 480,205 t.
+* Low State of Nature
+  - Fit Survey -- Relative SSB is 0.45 and default HCR is 480,205 t.

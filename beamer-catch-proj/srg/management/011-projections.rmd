@@ -2,7 +2,11 @@
 
 ## Projection methods
 
-* Single projection year, to the start of `r end_yr + 1`
+* Single projection year to the start of `r end_yr + 1`, with alternative
+  catch levels for `r end_yr` explored.
+
+* A single projection was done because it was deemed pragmatic to not
+  overextend the forecasts too far ahead without using all the most recent data.
 
 * The projections estimates the biomass at start of `r end_yr + 1`
   - Mean of fishery selectivity from `r end_yr - 6`--`r end_yr - 2` used in
@@ -10,9 +14,6 @@
   - Mean of weight-at-age and maturity-at-age (and thus fecundity) from
     `r end_yr - 6`--`r end_yr - 2` used in projections
   - Recruitment from stock--recruitment relationship
-
-* Alternative catch levels for `r end_yr` explored
-
 
 ## Default harvest policy for `r assess_yr`
 :::::: {.columns}
