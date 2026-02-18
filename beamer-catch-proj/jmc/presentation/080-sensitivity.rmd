@@ -30,9 +30,120 @@ plot_recruitment(list(base_model),
 
 ```{r rec-abs-sens2, fig.height = 4, out.height = "80%"}
 
-plot_recruitment(list(base_model),
-                 list(base_model_name),
+plot_recruitment(list(sens_models[[1]][[2]]),
+                 list(sens_models_desc),
                  inc_means = TRUE,
                  leg_pos = "none") |>
   suppressWarnings()
 ```
+
+## Spawning Biomass -- Compare Models
+
+```{r com-ssb-sens1, fig.height = 4, out.height = "80%"}
+
+plot_biomass(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[4]]),
+                 list(base_model_name,"Stoch. Recr.","Fit Survey"),
+                 ylim = c(0,5),
+                 point_shape = 1,
+                 leg_pos = c(0.65,0.9),
+                 xlim = c(1964,2026) |>
+  suppressWarnings()
+```
+
+## Relative Spawning Biomass -- Compare Models
+
+```{r com-dep-sens1, fig.height = 4, out.height = "80%"}
+
+plot_rel_biomass(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[4]]),
+                 list(base_model_name,"Stoch. Recr.","Fit Survey"),
+                 ylim = c(0,2.5),
+                 point_shape = 1,
+                 leg_pos = c(0.65,0.9),
+                 xlim = c(1966,2026) |>
+  suppressWarnings()
+```
+
+## Recruitment -- Compare Models
+
+```{r com-rec-sens1, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[4]]),
+                 list(base_model_name,"Stoch. Recr.","Fit Survey"),
+                 inc_means = TRUE,
+                 leg_pos = c(0.65,0.9) |>
+  suppressWarnings()
+```
+
+## Fit to Survey -- Compare Models
+
+```{r com-sur-sens1, fig.height = 4, out.height = "80%"}
+
+plot_survey_index_fits(
+         model = base_model,
+         model_lst = list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[4]]),
+         model_names = list(base_model_name,"Stoch. Recr.","Fit Survey"),
+         survey_type = "age2",
+         rev_colors = TRUE,
+         tick_prop = 2,
+         vjust_x_labels = -2,
+         leg_pos = c(0.75,0.9),
+         xlim = c(1995, end_yr)) |>
+  suppressWarnings()
+```
+
+## Probabilities based on `r end_yr` catch (Base Model)
+
+```{r main-risk-forecast-year-1-table-req-base, results = "asis"}
+
+table_risk(base_model,
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+  row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+## Probabilities based on `r end_yr` catch (Stoch. Recr.)
+
+```{r main-risk-forecast-year-1-table-req-sens1, results = "asis"}
+
+table_risk(sens_models[[1]][[2]],
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+## Probabilities based on `r end_yr` catch (Fit Survey)
+
+```{r main-risk-forecast-year-1-table-req-sens3, results = "asis"}
+
+table_risk(sens_models[[1]][[4]],
+           forecast_yrs,
+           index = 1,
+           is_catch_proj = TRUE,
+           type = "probability",
+           font_size = 8,
+           header_font_size = 9) |> 
+    row_spec(4,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
+
+
+## Summary -- Compare Models (2026)
+
+* Base Model -- Relative SSB is 0.58 and default HCR is 559,334 t.
+
+* Stochastic recruitment -- Relative SSB is 0.99 and default HCR is 793,411 t.
+
+* Fit Survey -- Relative SSB is 0.45 and default HCR is 480,205 t.
