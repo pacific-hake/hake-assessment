@@ -324,20 +324,76 @@ table_risk(sens_models[[1]][[4]],
            caption = cap)
 ```
 
-
 ### Request 6
 
 **SRG request:**
+Present the fish age throughout the 2025 season for each sector. Presenting age would remove confounding growth. Monthly would be preferred, but could be spring/summer/fall, or simply early and late, if necessary.
 
 **Justification:**
+This will address a question from the public and inform the SRG on differences in catch throughout the season. It will also help to identify when the age-1 fish became prominent and may help to understand why certain percentages are in the data but may not be in the prediction or in what stakeholders perceived for the season.
 
 #### Request 6 results: 
+
+(ref:srg-canada-age-proportions-cap) Canadian proportion-at-age by month and fleet for `r last_data_yr`.
+
+(ref:srg-canada-age-proportions-alt) This figure shows the canadian catch by month for `r last_data_yr`
+
+```{r srg-canada-age-proportions-fig, fig.cap = "(ref:srg-canada-age-proportions-cap)", results = "asis", fig.out = 3, fig.asp = 0.8, out.height = "3in"}
+
+sample_df <- canada_load_sample_data() |>
+  dplyr::filter(sex %in% c(1, 2))
+fleet_lst <- canada_get_fleet_samples(sample_df)
+# Remove JV for this table
+fleet_lst <- fleet_lst[names(fleet_lst) != "jv"]
+
+plot_age_by_month(fleet_lst)
+```
+
+(ref:srg-us-atsea-age-proportions-cap) U.S. at-sea proportion-at-age by month and fleet for `r last_data_yr`.
+
+(ref:srg-us-atsea-age-proportions-alt) This figure shows the U S at sea catch by month for `r last_data_yr`
+
+```{r srg-us-atsea-age-proportions-fig, fig.cap = "(ref:srg-us-atsea-age-proportions-cap)", results = "asis", fig.out = 4, fig.asp = 0.8, out.height = "4in"}
+
+include_graphics("/srv/hake/other/samples/us/srg-request-6-at-sea-age-proportions.png")
+```
+
+(ref:srg-us-shoreside-age-proportions-cap) U.S. shoreside proportion-at-age by month and fleet for `r last_data_yr`.
+
+(ref:srg-us-shoreside-age-proportions-alt) This figure shows the U S shoreside catch by month for `r last_data_yr`
+
+```{r srg-us-shoreside-age-proportions-fig, fig.cap = "(ref:srg-us-shoreside-age-proportions-cap)", results = "asis", fig.out = 4, fig.asp = 0.8, out.height = "4in"}
+
+include_graphics("/srv/hake/other/samples/us/srg-request-6-ss-age-proportions.png")
+```
 
 
 ### Request 7
 
 **SRG request:**
+Extend the assessment model to incorporate data through 2025 and fit to fishery age compositions, acoustic survey biomass index, and acoustic survey age compositions. If this is not possible, or not preferable, please provide an explanation.
 
 **Justification:**
+This will provide insight into the likely outcomes from an assessment incorporating all of the 2025 data.
 
-#### Request 7 results: 
+#### Request 7 results:
+
+The JTC supplied the following reasons for not extending the assessment model to incorporate data through `r last_data_yr`.
+
+A catch-only projection is appropriate for the 2026 stock assessment for several reasons that complement the Introduction of the draft assessment document.
+
+* The 2025 IWCPS acoustic survey biomass and age-composition estimates were finalized only days before the assessment deadline (i.e., shortly before the SRG meeting) due to a 7-week delay caused by an external time constraint (U.S. federal government shutdown). Consequently, these data have not had the necessary review by the JTC. The 2025 IWCPS survey had meaningful survey design changes. Incorporating these data without proper review by the SRG may result in assumptions that result in biased results. 
+
+* Data from both the fishery and acoustic survey are complementary to provide a more informative representation of the population. Including the 2025 fishery age compositions without including the 2025 survey biomass estimate (and age compositions) risks introducing biases. In recent years, a tension has been observed between fishery age composition data (suggesting high recruitment from shifts to large proportions of young fish) and the acoustic survey biomass index (suggesting decreasing overall biomass). 
+
+* The next full stock assessment should include the full complement of properly scrutinized data informing both cohort strengths and absolute biomass.
+
+Therefore, it is not appropriate to run new base case models for management advice during the SRG that include 2025 age composition and 2025 IWCPS biomass estimates for several reasons:
+
+* There is insufficient time to properly review changes in new survey and trawl net designs (including selectivity and other nuances specific to the 2025 IWCPS) and then also evaluate how results from that review should be incorporated into the stock assessment.
+
+* There is insufficient time for proper implementation of review suggestions that often require comparing alternative approaches and identifying robust options.  
+
+* There is insufficient time to properly process all of the survey-dependent data products used in a full stock assessment (including maturity-at-age, weight-at-age, and appropriately catch-weighted fishery age compositions).
+
+* There is insufficient time to conduct the suite of sensitivities and all other diagnostic model evaluations required for a full stock assessment.

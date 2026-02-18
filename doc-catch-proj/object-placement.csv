@@ -81,4 +81,6 @@ table,srg-risk-base-tab,,H
 table,srg-risk-sens1-tab,,H
 table,srg-risk-sens2-tab,,H
 table,srg-risk-sens3-tab,,H
-
+figure,srg-canada-age-proportions-fig,,H
+figure,srg-us-atsea-age-proportions-fig,,H
+figure,srg-us-shoreside-age-proportions-fig,,H
