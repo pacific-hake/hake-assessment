@@ -45,7 +45,7 @@ plot_biomass(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[
                  list(base_model_name,"Stoch. Recr.","Fit Survey"),
                  ylim = c(0,5),
                  point_shape = 1,
-                 leg_pos = c(0.65,0.9),
+                 leg_pos = c(0.65,0.8),
                  xlim = c(1964,2026)) |>
   suppressWarnings()
 ```
@@ -58,7 +58,7 @@ plot_rel_biomass(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1
                  list(base_model_name,"Stoch. Recr.","Fit Survey"),
                  ylim = c(0,2.5),
                  point_shape = 1,
-                 leg_pos = c(0.65,0.9),
+                 leg_pos = c(0.65,0.8),
                  xlim = c(1966,2026)) |>
   suppressWarnings()
 ```
@@ -70,7 +70,7 @@ plot_rel_biomass(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1
 plot_recruitment(list(sens_models[[1]][[1]],sens_models[[1]][[2]],sens_models[[1]][[4]]),
                  list(base_model_name,"Stoch. Recr.","Fit Survey"),
                  inc_means = TRUE,
-                 leg_pos = c(0.65,0.9)) |>
+                 leg_pos = c(0.65,0.85)) |>
   suppressWarnings()
 ```
 
@@ -86,7 +86,7 @@ plot_survey_index_fits(
          rev_colors = TRUE,
          tick_prop = 2,
          vjust_x_labels = -2,
-         leg_pos = c(0.75,0.9),
+         leg_pos = c(0.85,0.85),
          xlim = c(1995, end_yr)) |>
   suppressWarnings()
 ```
