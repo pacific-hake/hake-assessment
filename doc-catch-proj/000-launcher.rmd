@@ -93,7 +93,7 @@ output:
    # These `toc_` variables change the appearance of the table of contents
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
    # Note this also determines subsubsection numbering in the document sections
-   toc_depth: 3
+   toc_depth: 2
    toc_section_indent_inch: 0
    toc_section_num_width_inch: 0.2
    toc_subsection_indent_inch: 0.3
