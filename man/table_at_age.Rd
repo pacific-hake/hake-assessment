@@ -18,6 +18,7 @@ table_at_age(
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
   ret_df = FALSE,
+  show_table = TRUE,
   ...
 )
 }
@@ -46,6 +47,10 @@ See \code{header_vert_spacing}}
 
 \item{ret_df}{Logical. If \code{TRUE}, return a data frame of the table, If
 \code{FALSE}, return a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} object}
+
+\item{show_table}{If \code{FALSE}, do not show the table. This is typically used
+for the situation where you want the csv file written out but not show the
+table in the document}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 

@@ -24,6 +24,9 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
+#' @param show_table If `FALSE`, do not show the table. This is typically used
+#' for the situation where you want the csv file written out but not show the
+#' table in the document
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return An [knitr::kable()] object
@@ -37,11 +40,12 @@ table_cohort <- function(model,
                          cohort_line_below = TRUE,
                          reverse_cohorts = FALSE,
                          digits = 1,
-                         csv_dir = here::here("doc", out_csv_path),
+                         csv_dir = here::here(doc_path, out_csv_path),
                          font_size = 10,
                          header_font_size = 10,
                          header_vert_spacing = 12,
                          header_vert_scale = 1.2,
+                         show_table = TRUE,
                          ...){
 
   stopifnot(is.numeric(cohorts))
@@ -188,6 +192,9 @@ table_cohort <- function(model,
   write_csv(csv_d,
             file.path(csv_dir, "cohort-effects.csv"))
 
+  if(!show_table){
+    return(invisible())
+  }
   # Back to table construction for the document
   col_names <- c("Age",
                  "Start\nBiomass\n(kt)",

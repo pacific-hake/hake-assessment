@@ -12,17 +12,18 @@ rmd_files: ["000-launcher.rmd",
             "009-assessment.rmd",
             "011-acknowledgements.rmd",
             "012-references.rmd",
+            "020-dummy-create-out-csv-files.rmd",
             ## File 100 is required to make all that follow it appendices.
             "100-start-appendices.rmd",
             "101-appendix-data-tables.rmd",
             "102-appendix-data-figures.rmd",
-            "111-appendix-srg-requests.rmd",
             "../doc/121-appendix-glossary.rmd",
             "132-appendix-fishery-report-us.rmd",
             "133-appendix-fishery-report-canada.rmd",
-            #"141-appendix-estimated-parameters.rmd",
-            #"151-appendix-eDNA-index.rmd",
+            "141-appendix-estimated-parameters.rmd",
+            "151-appendix-eDNA-index.rmd",
             "161-appendix-ecosystem-report.rmd",
+            "180-appendix-srg-requests.rmd",
             "999-blank.rmd"]
 # `delete_merged_file`: If false, the `hake.Rmd` file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created

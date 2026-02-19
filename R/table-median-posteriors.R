@@ -15,6 +15,9 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
+#' @param show_table If `FALSE`, do not show the table. This is typically used
+#' for the situation where you want the csv file written out but not show the
+#' table in the document
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return An [knitr::kable()] object
@@ -29,6 +32,7 @@ table_median_posteriors <- function(model,
                                     header_font_size = 10,
                                     header_vert_spacing = 12,
                                     header_vert_scale = 1.2,
+                                    show_table = TRUE,
                                     ...){
   if(!is.null(csv_dir)){
     if(!dir.exists(csv_dir)){
@@ -91,6 +95,10 @@ table_median_posteriors <- function(model,
   csv_d[nrow(csv_d), ncol(csv_d)] <- ""
   csv_d[nrow(csv_d), ncol(csv_d) - 1] <- ""
   write_csv(csv_d, file.path(csv_dir, "median-population-estimates.csv"))
+
+  if(!show_table){
+    return(invisible())
+  }
 
   col_names <- c("Year",
                  "Female\nspawning\nbiomass\n(kt)",

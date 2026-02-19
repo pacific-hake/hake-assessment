@@ -15,11 +15,12 @@ table_cohort(
   cohort_line_below = TRUE,
   reverse_cohorts = FALSE,
   digits = 1,
-  csv_dir = here::here("doc", out_csv_path),
+  csv_dir = here::here(doc_path, out_csv_path),
   font_size = 10,
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  show_table = TRUE,
   ...
 )
 }
@@ -57,6 +58,10 @@ the headers will have the same font size as the table cell data}
 
 \item{header_vert_scale}{Scale factor to create the vertical spacing value.
 See \code{header_vert_spacing}}
+
+\item{show_table}{If \code{FALSE}, do not show the table. This is typically used
+for the situation where you want the csv file written out but not show the
+table in the document}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 
