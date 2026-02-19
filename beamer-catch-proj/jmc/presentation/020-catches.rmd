@@ -1,7 +1,7 @@
 # Catches
 
 ## Catches
-```{r main-catches-fig, fig.width = 7, out.height = "85%"}
+```{r main-catches-fig, fig.height = 3, fig.asp = 0.7, out.height = "85%"}
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr),
             leg_font_size = 8,
