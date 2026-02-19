@@ -303,7 +303,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-Decision tables give the projected population status (i.e. relative spawning
+Decision tables give the projected population status (i.e., relative spawning
 biomass) and fishing intensity relative to the target under different
 catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
 and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the

@@ -52,7 +52,7 @@ as a result of the extended U.S. federal government shutdown in `r last_data_yr`
 determined how to incorporate the new biomass estimate and age data into the existing survey time series in a
 compatible way, because of changes in survey design in 2025. 
 Thus, the JTC decided that conducting the usual fully updated assessment
-(i.e. adding fishery catch and age data for `r last_data_yr` and estimating all parameters) without complete survey information
+(i.e., adding fishery catch and age data for `r last_data_yr` and estimating all parameters) without complete survey information
 would not be appropriate. Such an assessment would be based solely on
 fishery-age composition data for two 
 consecutive years, whereas usually this only occurs for a single year
