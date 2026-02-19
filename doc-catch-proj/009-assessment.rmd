@@ -438,7 +438,7 @@ While this year is a projection based assessment, the JTC provides the following
 
 *The JTC is also continuing work evaluating patterns of Pacific Hake in the U.S. West Coast Bottom Trawl Survey in California waters where fishery data are limited. The JTC will also continue work investigating spatial fishing effort, catch, and revenue over time using data summary tools (e.g., [Pacific Fishing Effort Mapping Project](https://geo.psmfc.org/portal/apps/storymaps/stories/7bc1a025e2fd43e49efb011cd15e1d4e)).*
 
-2. **The SRG recommends continuing sensitivities for steepness, natural mortality, σR, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
+2. **The SRG recommends continuing sensitivities for steepness, natural mortality, $\sigma_R$, including the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.**
 
 *Response -- The recommended set of sensitivity model runs were not applicable
 for the 2026 base model, which is based solely on a projection of the 2025 base
