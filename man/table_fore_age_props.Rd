@@ -23,6 +23,8 @@ names must be the ages}
 \item{ages_filt}{A vector of the ages to show in the table}
 
 \item{font_size}{The font size for the text in the table}
+
+\item{...}{Arguments to be passed to \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
 }
 \value{
 A \code{\link[kableExtra:kbl]{kableExtra::kbl()}} table

@@ -16,7 +16,7 @@ This will help to determine if the age data are representative of the fishery ca
 
 (ref:srg-catch-by-month-cap) Catch by month in `r last_data_yr` for all sectors of the U.S. and fleets of Canada.
 
-(ref:srg-catch-by-month-alt) The figure shows that 
+(ref:srg-catch-by-month-alt) The figure shows the catch by month for all sectors
 
 ```{r srg-catch-by-month-fig, fig.cap = "(ref:srg-catch-by-month-cap)", fig.height = 5, fig.asp = 0.8, out.height = "6in"}
 
@@ -142,11 +142,11 @@ table_fore_age_props(fore_catch_prop,
                      caption = cap)
 ```
 
-(ref:srg-main-age-comp-forecast-cap) Vulnerable projected age compositions for `r assess_yr`. The left panel shows the proportions by number; the right panel shows the proportions by weight. Selectivity for `r assess_yr` was not available in the model output so `r last_data_yr` was used instead.
+(ref:srg-age-comp-forecast-cap) Vulnerable projected age compositions for `r assess_yr`. The left panel shows the proportions by number; the right panel shows the proportions by weight. Selectivity for `r assess_yr` was not available in the model output so `r last_data_yr` was used instead.
 
-(ref:srg-main-age-comp-forecast-alt) This figure shows that age 5 and 6 fish will be dominant in the stock in `r assess_yr`
+(ref:srg-age-comp-forecast-alt) This figure shows that age 5 and 6 fish will be dominant in the stock in `r assess_yr`
 
-```{r srg-age-comp-forecast-fig, fig.cap = "(ref:srg-main-age-comp-forecast-cap)", fig.height = 4, fig.asp = 0.8, out.height = "4in"}
+```{r srg-age-comp-forecast-fig, fig.cap = "(ref:srg-age-comp-forecast-cap)", fig.height = 4, fig.asp = 0.8, out.height = "4in"}
 
 plot_fore_age_comps(base_model,
                     y_lim = c(0, 0.7),

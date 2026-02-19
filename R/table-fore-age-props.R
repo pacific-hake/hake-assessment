@@ -7,6 +7,7 @@
 #' names must be the ages
 #' @param ages_filt A vector of the ages to show in the table
 #' @param font_size The font size for the text in the table
+#' @param ... Arguments to be passed to [kableExtra::kbl()]
 #'
 #' @return A [kableExtra::kbl()] table
 #' @export

@@ -144,7 +144,7 @@ extract_alt_text <- function(inp_str){
     x <- gsub("^`r", "", .x)
     x <- gsub("`$", "", x)
     x <- gsub(" +", "", x)
-    eval(parse(text = x))
+    eval(parse(text = x)) |> as.character()
   })
   # Here we have chunks and chunks_non_r. We needd to find out which comes fist,
   chunk_len <- max(length(chunks), length(chunks_non_r))
