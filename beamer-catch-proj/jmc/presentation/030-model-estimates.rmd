@@ -43,7 +43,7 @@ plot_fishing_intensity(base_model,
                        fspr40_text_x = 1970) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+        axis.text.x = element_text(size = 8, angle = -35, vjust = 1.5, hjust = -0.2),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
@@ -60,7 +60,7 @@ plot_exploitation_fraction(base_model,
                            point_stroke = 1) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+        axis.text.x = element_text(size = 8, angle = -35, vjust = 1.5, hjust = -0.2),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
