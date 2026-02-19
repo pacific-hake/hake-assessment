@@ -1,0 +1,71 @@
+```{r dummy-median-posterior-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_median_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  show_table = FALSE)
+```
+
+```{r dummy-est-numbers-at-age-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_at_age(
+  base_model,
+  type = "naa",
+  end_yr = end_yr,
+  show_table = FALSE)
+```
+
+```{r dummy-est-biomass-at-age-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_at_age(
+  base_model,
+  type = "baa",
+  end_yr = end_yr,
+  show_table = FALSE)
+```
+
+```{r dummy-est-exp-rate-at-age-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_at_age(
+  base_model,
+  type = "eraa",
+  end_yr = end_yr,
+  digits = 2,
+  show_table = FALSE)
+```
+
+```{r dummy-est-catch-at-age-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_at_age(
+  base_model,
+  type = "caan",
+  end_yr = end_yr,
+  show_table = FALSE)
+```
+
+```{r dummy-est-catch-at-age-biomass-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_at_age(
+  base_model,
+  type = "caab",
+  end_yr = end_yr,
+  
+  show_table = FALSE)
+```
+
+```{r dummy-cohort-effects-tab, results = "asis", echo = FALSE}
+# Create the out-csv file
+table_cohort(
+  base_model,
+  cohorts = c(1999, 2010, 2014, 2016, 2020, 2021),
+  cohort_bold = TRUE,
+  cohort_italics = TRUE,
+  cohort_underline = TRUE,
+  cohort_line_above = TRUE,
+  cohort_line_below = FALSE,
+  reverse_cohorts = TRUE,
+  show_table = FALSE)
+```
+

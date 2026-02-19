@@ -20,8 +20,6 @@ rmd_files: ["000-launcher.rmd",
             "../doc/121-appendix-glossary.rmd",
             "132-appendix-fishery-report-us.rmd",
             "133-appendix-fishery-report-canada.rmd",
-            "141-appendix-estimated-parameters.rmd",
-            "151-appendix-eDNA-index.rmd",
             "161-appendix-ecosystem-report.rmd",
             "180-appendix-srg-requests.rmd",
             "999-blank.rmd"]
