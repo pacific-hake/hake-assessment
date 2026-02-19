@@ -71,7 +71,7 @@ spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
 <!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
 <!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
 <!-- `r last_yr_tac` t. -->
-If a catch of 250,000 t were realized in `r assess_yr`, it was estimated that
+If a catch of 250,000 t is realized in `r assess_yr`, it was estimated that
 the stock has a 33% <!-- TODO HARDWIRED -->
 chance of falling below  `r b_40` at the start of
 2027, given the current assumption of median recruitment from 2023 onward.
