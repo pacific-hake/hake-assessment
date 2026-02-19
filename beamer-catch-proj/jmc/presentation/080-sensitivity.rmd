@@ -80,8 +80,8 @@ plot_survey_index_fits(
          model_names = list(base_model_name,"Stoch. Recr.","Fit Survey"),
          survey_type = "age2",
          rev_colors = TRUE,
-         tick_prop = 2,
-         vjust_x_labels = -2,
+         tick_prop = 1.5,
+         vjust_x_labels = -2.5,
          leg_pos = c(0.85,0.85),
          xlim = c(1995, end_yr)) |>
   suppressWarnings()
@@ -140,9 +140,9 @@ table_risk(sens_models[[1]][[4]],
 
 * Base Model
   - Relative SSB is 0.58 and default HCR is 559,334 t.
-
+\item[]
 * High State of Nature -- Stochastic recruitment
   - Relative SSB is 0.99 and default HCR is 793,411 t.
-
+\item[]
 * Low State of Nature -- Fit Survey
   - Relative SSB is 0.45 and default HCR is 480,205 t.
