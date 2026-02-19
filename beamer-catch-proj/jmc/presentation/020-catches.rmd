@@ -11,7 +11,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
 
 ## Catch by month and sector
 
-```{r catch-by-month-fig}
+```{r catch-by-month-fig, fig.height = 3, fig.asp = 0.7, out.height = "85%"}
 
 plot_catch_by_month(list(us_ss_catch_by_month_df,
                          can_ss_catch_by_month_df,
