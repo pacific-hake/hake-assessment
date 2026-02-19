@@ -22,9 +22,10 @@
   2024, was previously fit to an acoustic survey index of biomass,
   annual commercial catch data, and age-composition data from the survey and
   commercial fisheries. A model-based approach was used for the input
-  weight-at-age matrix and time-varying temperature-dependent maturity, both of
-  which informed fecundity. Fishery catch is the only updated `r last_assess_yr`
-  data used in the `r assess_yr` stock assessment for calculations.
+  weight-at-age matrix and time-varying temperature-dependent maturity matrix,
+  both of which informed fecundity. Fishery catch is the only updated
+  `r last_assess_yr` data used in the `r assess_yr` stock assessment for
+  calculations.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 (t represents tonnes), `r perc_diff_catch_last_10_yrs`% below the average over the
@@ -70,8 +71,8 @@ spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
 <!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
 <!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
 <!-- `r last_yr_tac` t. -->
-With a realized catch of 250,000 t in `r assess_yr`, it was estimated that the
-stock has a 33% <!-- TODO HARDWIRED -->
+If a catch of 250,000 t were realized in `r assess_yr`, it was estimated that
+the stock has a 33% <!-- TODO HARDWIRED -->
 chance of falling below  `r b_40` at the start of
 2027, given the current assumption of median recruitment from 2023 onward.
 
