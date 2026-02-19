@@ -58,7 +58,7 @@
 
 \begin{table}[tbp]
 \centering
-\fontsize{6}{8}\selectfont
+\fontsize{6}{6.5}\selectfont
 \begin{tabular}[t]{p{4cm}p{4cm}p{4cm}}
 \toprule
 Ecosystem and environmental conditions & Assessment data inputs &
