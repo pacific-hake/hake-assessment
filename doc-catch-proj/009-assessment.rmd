@@ -455,7 +455,7 @@ absolute numbers of dead fish due to the predator, an index of predator effort, 
 *A potential, better path forward is to use Dynamic Structural Equation Modeling (DSEM) to include indices for multiple predators and allow for two-way interactions between them and $M$. This capability is not, and will not be,
 available within Stock Synthesis but is possible using models written in Template Model Builder. A proof of concept has been implemented at the Alaska Fisheries Science Center and work is ongoing to implement this in the Fisheries Integrated Modeling System (FIMS).*
 
-*In 2025, the JTC presented sensitivities to using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4, 5, and 6$^+$, where the $M$ at-age estimates are strictly natural mortality due to cannibalism.* 
+*In 2025, the JTC presented sensitivities to using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of estimates of baseline $M$ and estimates of $M$ at age for ages 1, 2, 3, 4, and 5, where the $M$ at-age estimates are strictly natural mortality due to cannibalism.* 
 
 *The JTC plans to continue to evaluate how to account for age-based and potentially time-varying mortality in future assessments.*
 
