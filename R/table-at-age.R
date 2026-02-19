@@ -19,6 +19,9 @@
 #' See `header_vert_spacing`
 #' @param ret_df Logical. If `TRUE`, return a data frame of the table, If
 #' `FALSE`, return a [kableExtra::kbl()] object
+#' @param show_table If `FALSE`, do not show the table. This is typically used
+#' for the situation where you want the csv file written out but not show the
+#' table in the document
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return An [knitr::kable()] object
@@ -28,12 +31,13 @@ table_at_age <- function(model,
                          end_yr = NA,
                          type = c("naa", "eraa", "caan", "caab", "baa"),
                          digits = 0,
-                         csv_dir = here::here("doc", out_csv_path),
+                         csv_dir = here::here(doc_path, out_csv_path),
                          font_size = 10,
                          header_font_size = 10,
                          header_vert_spacing = 12,
                          header_vert_scale = 1.2,
                          ret_df = FALSE,
+                         show_table = TRUE,
                          ...){
 
   type <- match.arg(type)
@@ -84,6 +88,10 @@ table_at_age <- function(model,
     return(d)
   }
   write_csv(d, fn)
+
+  if(!show_table){
+    return(invisible())
+  }
 
   d <- d |>
     mutate_at(vars(-Year), ~{f(.x, digits)})
