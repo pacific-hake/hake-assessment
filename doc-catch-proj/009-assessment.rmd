@@ -463,9 +463,9 @@ available within Stock Synthesis but is possible using models written in Templat
 
 *Response -- The JTC plans to continue work to evaluate the multitude of changes in the assessment process itself (e.g., data availability, assumptions, etc.) that would be needed to develop alternative model structures. This includes the development of a research plan, including complimentary or standalone analyses, alternative model structures to explore, and simulation analyses to evaluate and compare alternative models (e.g., using one or more tools, such as MSE).*
 
-*The JTC has begun the preliminary work of splitting catch and age data starting in 1991 for each country to evaluate an alternative model structure that splits data by country from 1991 onward with all historical data (1966-1990) in a combined U.S./Canada fleet. The JTC will brief the SRG about preliminary work at the 2026 meeting.*
+*The JTC has begun the preliminary work of splitting catch and age data starting in 1991 for each country to evaluate an alternative model structure that splits data by country from 1991 onward with all historical data (1966--1990) in a combined U.S./Canada fleet. The JTC will brief the SRG about preliminary work at the 2026 meeting.*
 
-*Other steps the JTC plans to take in the future include evaluating alternative data and model assumptions that arise for validity given proposed new model structures; evaluating variance and bias trade-offs associated with new parameterizations (e.g., doubling the number of time-varying selectivity parameters when doubling the number of fleets); comparing alternative spatially-implicit assessment approaches (e.g., time-varying selectivity versus area-varying selectivity, or both); and developing states of nature scenarios to test model structure robustness in an MSE framework.
+*Other steps the JTC plans to take in the future include evaluating alternative data and model assumptions that arise for validity given proposed new model structures; evaluating variance and bias trade-offs associated with new parameterizations (e.g., doubling the number of time-varying selectivity parameters when modelling recent fishery data by country); comparing alternative spatially-implicit assessment approaches (e.g., time-varying selectivity versus area-varying selectivity, or both); and developing states of nature scenarios to test model structure robustness in an MSE framework.
 Additionally, model complexity in the spatial domain needs to be addressed relative to other structural assumptions in the assessment model. Other assumptions may be more influential or have confounding or complimentary impacts on model sensitivity and robustness. These may include data weighting, improving estimates of natural mortality via predator time series, multiple fleets instead of a single aggregated fleet, and using fleet-specific weight-at-age data instead of aggregated weight-at-age (the JTC has looked at this before, but it hasn’t been revisited in over a decade).*
 
 *Changes to the structure of the assessment model may not be the most immediate
@@ -473,8 +473,8 @@ need for understanding changes in hake distribution. Some of the other (higher
 priority) SRG requests noted above will help with understanding fundamental
 mechanisms, which can help to formulate hypotheses to inform relevant model
 structures. These include spatial CPUE modeling, investigating hake distribution
-changes in bottom trawl surveys, and correlating hake distribution changes with
-the California Current Integrated Ecosystem Assessment.*
+changes in bottom trawl surveys, and correlating changes in hake distribution
+with the California Current Integrated Ecosystem Assessment.*
 
 5. **The SRG recommends considering including the eDNA index of abundance for inclusion in the assessment as a second index of abundance for Pacific Hake, also estimating additional variance for the index given the small nominal CV values.**
 
@@ -482,11 +482,11 @@ the California Current Integrated Ecosystem Assessment.*
 
 6. **The SRG recommends that the JTC continue investigating how to include the age-1 index in the stock assessment in this or future assessment frameworks, but notes that the selectivity/catchability of the gear is expected to change depending on the AWT or MFT gear used in the survey.**
 
-*Response -- The JTC is following the progress of the net selectivity work being conducted by the IWCPS team, which will be a critical component to better understand changes in the sampling of age-1 hake and the potential options for including any age-1 index in future stock assessments.*
+*Response -- The JTC is following the progress of the net-selectivity work being conducted by the IWCPS team, which will be a critical component to better understand changes in the sampling of age-1 hake and the potential options for including any age-1 index in future stock assessments.*
 
 7. **The SRG encourages the JTC to consider alternative methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).**
 
-*Response -- The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.  Additionally, there is intersection between this research and alternative model fleet structure and the impact of alternative ways to determine input sample size within each fleet which the JTC will consider in ongoing research.*
+*Response -- The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shoreside), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleet-wide input sample size.  Additionally, there is intersection between this research and alternative model structures regarding the number of fleets and the impact of alternative ways to determine input sample size within each fleet which the JTC will consider in ongoing research.*
 
 *Sensitivity analyses using alternative input sample sizes, following the Stewart and Hamel (2014) approach, will continue to be evaluated in subsequent assessments.*
 
