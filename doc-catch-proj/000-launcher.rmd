@@ -293,7 +293,7 @@ Kiva L. Oken^3^ \
 
 This document should be cited as follows:
 
-Edwards, A.M., A.M. Berger, C.J. Grandin, C.R. Wetzel, Johnson, K.F., and K.L. Oken.
+Edwards, A.M., A.M. Berger, C.J. Grandin, C.R. Wetzel, K.F. Johnson, and K.L. Oken.
 `r rmarkdown::metadata$project_variables$assess_yr`. Status of the
 `r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
