@@ -1,7 +1,0 @@
-# Catches
-
-## Catches
-```{r main-catches-fig, fig.width = 7, out.height = "85%"}
-
-plot_catches(ct, xlim = c(start_yr, last_data_yr))
-```
