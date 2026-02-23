@@ -29,7 +29,7 @@ plot_maturity_ogives(
 }
 \arguments{
 \item{doy}{Day of year. This must be present in the
-\code{hake::maturity_estimates_df} data frame unde the column \code{doy}.}
+\code{hake::maturity_estimates_df} data frame under the column \code{doy}.}
 
 \item{show_inset}{Logical. If \code{TRUE}, show the inset panel}
 

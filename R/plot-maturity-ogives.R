@@ -9,7 +9,7 @@
 #' `eq_y_start_legend` to do so.
 #'
 #' @param doy Day of year. This must be present in the
-#' `hake::maturity_estimates_df` data frame unde the column `doy`.
+#' `hake::maturity_estimates_df` data frame under the column `doy`.
 #' @param show_inset Logical. If `TRUE`, show the inset panel
 #' @param from The limits of the inset on the main plot to extract.
 #' See [ggmagnify::geom_magnify()]
