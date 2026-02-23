@@ -9,7 +9,10 @@ plot_cumulative_catch_cohorts(
   model,
   cohorts = c(1999, 2010, 2014, 2016, 2017, 2020, 2021),
   leg_pos = c(0.7, 0.4),
-  leg_ncol = 1
+  leg_ncol = 1,
+  show_inset = TRUE,
+  from = c(xmin = 0, xmax = 4, ymin = 0, ymax = 0.5),
+  to = c(xmin = 10, xmax = 20, ymin = 0, ymax = 1.5)
 )
 }
 \arguments{
@@ -21,6 +24,14 @@ plot_cumulative_catch_cohorts(
 \code{NA}, or "none", the legend will not be shown}
 
 \item{leg_ncol}{The number of columns to show in the legend}
+
+\item{show_inset}{Logical. If \code{TRUE}, show the inset panel}
+
+\item{from}{The limits of the inset on the main plot to extract.
+See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
+
+\item{to}{The limits on the main panel of the location to place the
+inset. See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

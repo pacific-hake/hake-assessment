@@ -6,6 +6,11 @@
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or "none", the legend will not be shown
 #' @param leg_ncol The number of columns to show in the legend
+#' @param show_inset Logical. If `TRUE`, show the inset panel
+#' @param from The limits of the inset on the main plot to extract.
+#' See [ggmagnify::geom_magnify()]
+#' @param to The limits on the main panel of the location to place the
+#' inset. See [ggmagnify::geom_magnify()]
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -18,7 +23,16 @@ plot_cumulative_catch_cohorts <- function(model,
                                                       2020,
                                                       2021),
                                           leg_pos = c(0.7, 0.4),
-                                          leg_ncol = 1){
+                                          leg_ncol = 1,
+                                          show_inset = FALSE,
+                                          from = c(xmin = 0,
+                                                   xmax = 4,
+                                                   ymin = 0,
+                                                   ymax = 0.35),
+                                          to = c(xmin = 10,
+                                                 xmax = 20,
+                                                 ymin = 0,
+                                                 ymax = 1.5)){
 
   d <- map_dfr(cohorts, \(cohort){
     cs <- cumsum(cohort_catch(model, cohort))
@@ -51,6 +65,20 @@ plot_cumulative_catch_cohorts <- function(model,
     g <- g +
       theme(legend.position = leg_pos) +
       guides(color = guide_legend(ncol = leg_ncol))
+  }
+
+  if(show_inset){
+    g <- g +
+      geom_magnify(from = from,
+                   to = to,
+                   shadow = TRUE,
+                   colour = "black",
+                   linewidth = 0.5,
+                   proj.linetype = 3,
+                   shadow.args = list(colour = "black",
+                                      sigma = 10,
+                                      x_offset = 2,
+                                      y_offset = 5))
   }
 
   g
