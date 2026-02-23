@@ -18,13 +18,3 @@ plot_cumulative_catch_cohorts(base_model,
 * 2017 cohort (ages 1--`r last_data_yr - 2017`): `r f(max(cohort_cum_sum_2017))` t
 * 2020 cohort (ages 1--`r last_data_yr - 2020`): `r f(max(cohort_cum_sum_2020))` t
 * 2021 cohort (ages 1--`r last_data_yr - 2021`): `r f(max(cohort_cum_sum_2021))` t
-
-
-## Estimates of above-average cohorts
-
-```{r above-average-cohorts-table, results = "asis"}
-
-cohorts <- sort(c(large_cohorts))
-last_few_yrs <- c(last_assess_yr, assess_yr)
-table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
-```
