@@ -1,0 +1,132 @@
+---
+title: "Combining all the posteriors for recruitment"
+author: "Andrew Edwards"
+output: pdf_document
+fontsize: 12pt
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "",
+  cache = TRUE,
+  cache_path = "hake-combine-recruitments-cache/",
+  fig.path = "hake-combine-recruitments-figs-cache/",
+  fig.width = 7,
+  fig.height = 6
+)
+
+knitr::dep_prev()
+```
+
+```{r, build, echo = FALSE, eval = FALSE}
+# To build either run this line or click knit button in RStudio:
+rmarkdown::render("hake-combine-recruitments.Rmd")
+```
+
+```{r, packages, echo = FALSE, cache = FALSE}
+# load_all()  # for pacea, maybe don't need though
+# Or:
+# remotes::install_github("pbs-assess/pacea")
+# library(pacea)
+library(dplyr)
+library(hdiAnalysis)
+# library(pbsEDM)
+# library(pacea)    # make sure to update
+# library(gridExtra)
+# library(ggplot2)
+
+# From Chris's hake
+f <- function(x, digits = 0){
+
+  if(is.null(x)){
+    return(x)
+  }
+
+  format(round(x,
+               digits),
+         big.mark = ",",
+         nsmall = digits)
+}
+
+```
+
+Curious to see how close the combined posteriors of all estimated recruitments
+are to the assumed prior. One idea would be to make a new prior for recruitment
+based on this, and feed it back into the model, and keep repeating until the
+aggregated prior settles down. See the paper by Lele et al. from 2004ish which
+inspires this idea.
+
+```{r, load}
+assess_yr <- 2026
+
+# Already saved for the HDI calculation using hake::mcmc_save(), so just use that.
+hake_mcmc <- readRDS(file =
+                         "../../../../hdiAnalysis/data-raw/hake-2026/hake_mcmc.rds")
+
+summary(hake_mcmc)
+
+# From hdiAnalysis/data-raw/hake.R
+hake_recruitment_mcmc_2026 <- dplyr::select(hake_mcmc,
+                                       "R_Virgin",
+                                       "R_1966":"R_2024")
+
+names(hake_recruitment_mcmc_2026) <- gsub(pattern = "R_",
+                                     replacement = "",
+                                     x = names(hake_recruitment_mcmc_2026))
+
+hake_recruitment_mcmc_2026 <- as_tibble(hake_recruitment_mcmc_2026/1e6)    # Convert from thousands
+
+summary(hake_recruitment_mcmc_2026)
+
+# Remove years we don't want to look at, have to tweak each year
+stopifnot(assess_yr == 2026)
+hake_recruitment_to_combine <- dplyr::select(hake_recruitment_mcmc_2026,
+                                             -c("Virgin", `2023`, `2024`)) 
+
+hake_recruitment_to_combine
+
+hake_mcmc_vec <- as.vector(as.matrix(hake_recruitment_to_combine))
+
+hist(hake_mcmc_vec, breaks = 50)
+
+ints <- hdiAnalysis::create_intervals(hake_mcmc_vec)
+```
+
+Do a plot
+```{r, plot}
+plot(ints,
+     type = "eti",
+     xlim = c(0,20))
+```
+
+`hake_recruitment_mcmc` from hdiAnalysis is from 2024 assessment, so had
+recruitment deviations turned on, so final year will essentially be the
+prior. Technically prior is on deviations around stock-recruit curve, but the
+actual biomass value seems not too important.
+
+```{r, rec2}
+prior_approx <- hake_recruitment_mcmc$`2024`
+prior_approx_ints <- hdiAnalysis::create_intervals(prior_approx)
+plot(prior_approx_ints,
+     type = "eti",
+     xlim = c(0, 20))
+```
+
+Do both:
+```{r, rec3}
+par(mfrow = c(2, 1))
+
+plot(ints,
+     type = "eti",
+     xlim = c(0,20),
+     xlab = "Recruitment (billions of fish)")
+#     main = "Realised aggregated recruitment posteriors")
+
+plot(prior_approx_ints,
+     type = "eti",
+     xlim = c(0, 20),
+     xlab = "Recruitment (billions of fish)")
+#     main = "Assumed prior of 2024 recruitment from 2024 assessment")
+```
