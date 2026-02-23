@@ -10,8 +10,8 @@ plot_cumulative_catch_cohorts(
   cohorts = c(1999, 2010, 2014, 2016, 2017, 2020, 2021),
   leg_pos = c(0.7, 0.4),
   leg_ncol = 1,
-  show_inset = TRUE,
-  from = c(xmin = 0, xmax = 4, ymin = 0, ymax = 0.5),
+  show_inset = FALSE,
+  from = c(xmin = 0, xmax = 4, ymin = 0, ymax = 0.35),
   to = c(xmin = 10, xmax = 20, ymin = 0, ymax = 1.5)
 )
 }
