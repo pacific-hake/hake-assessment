@@ -1,0 +1,27 @@
+# Past management
+
+## Past management: Total Allowable Catch
+
+```{r tac-vs-realized-catch-ts, fig.height = 8, fig.asp = 0.8, out.height = "7in"}
+
+p <- NULL
+
+p[[1]] <- plot_management_catch_vs_tac(model = base_model,
+                                       d = catch_targets_df,
+                                       inc_biomass_ests = TRUE,
+                                       point_size = 1.5,
+                                       line_width = 0.5,
+                                       leg_pos = c(0.18, 0.85),
+                                       leg_font_size = 9)
+
+p[[2]] <- plot_management_catch_vs_tac_diffs(model = base_model,
+                                             d = catch_targets_df,
+                                             inc_biomass_ests = TRUE,
+                                             point_size = 1.5,
+                                             line_width = 0.5,
+                                             leg_pos = NA,
+                                             leg_font_size = 9)
+
+plot_grid(plotlist = p, align = "v", nrow = 2)
+```
+

@@ -13,8 +13,6 @@
 #' @param leg_font_size The legend font size
 #' @param point_size The point size
 #' @param y_breaks A vector of values to show on the y-axis
-#' @param ret_tbl Logical. If `TRUE`, return a [kableExtra::kbl()] containing
-#' the outputs instead of the data frame
 #' @param x_labs_mod Show a year label every Nth tick, This is N. Default 2
 #' @param ... Arguments passed to [setup_data_frame_for_past_management_plots()]
 #' Includes the catch/tac data frame, model, and arguments to include biomass
@@ -22,30 +20,28 @@
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_management_catch_vs_tac <- \(inc_biomass_ests = FALSE,
-                                  line_type = "solid",
-                                  line_width = 1,
-                                  line_alpha = 0.5,
-                                  leg_pos = c(0.65, 0.83),
-                                  leg_ncol = 1,
-                                  leg_font_size = 12,
-                                  point_size = 3,
-                                  font_size = 10,
-                                  right_cols_cm = 1.8,
-                                  y_breaks = seq(0, ifelse(inc_biomass_ests,
-                                                           4e3,
-                                                           1e3),
-                                                 500),
-                                  ret_tbl = FALSE,
-                                  x_labs_mod = 2,
-                                  ...){
+plot_management_catch_vs_tac_diffs <- \(inc_biomass_ests = FALSE,
+                                        line_type = "solid",
+                                        line_width = 1,
+                                        line_alpha = 0.5,
+                                        leg_pos = c(0.65, 0.83),
+                                        leg_ncol = 1,
+                                        leg_font_size = 12,
+                                        point_size = 3,
+                                        font_size = 10,
+                                        right_cols_cm = 1.8,
+                                        y_breaks = seq(-1, 1, 0.1),
+                                        x_labs_mod = 2,
+                                        ...){
 
   d <- setup_data_frame_for_past_management_plots(inc_biomass_ests = inc_biomass_ests,
-                                                  diffs = FALSE,
+                                                  diffs = TRUE,
                                                   ...)
-  if(ret_tbl){
-    return(d)
-  }
+
+  y_min <- min(d$value)
+  y_min <- floor(y_min * 10) / 10
+  y_max <- max(d$value)
+  y_max <- ceiling(y_max * 10) / 10
 
   x_min <- d$Year |> min()
   x_max <- d$Year |> max()
@@ -57,14 +53,18 @@ plot_management_catch_vs_tac <- \(inc_biomass_ests = FALSE,
                      y = value,
                      color = name,
                      shape = name)) +
+    # Add a solid horizontal line at 0 for clarity on where 0 is
+    geom_hline(yintercept = 0,
+               linewidth = 0.3,
+               linetype = "solid") +
+    geom_hline(yintercept = y_breaks,
+               linewidth = 0.1,
+               linetype = "dashed") +
     geom_point(size = point_size) +
     geom_line(aes(group = name, color = name),
               linetype = line_type,
               linewidth = line_width,
               alpha = line_alpha) +
-    geom_hline(yintercept = y_breaks,
-               linewidth = 0.1,
-               linetype = "dashed") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           # Following make the legend smaller and legend items closer together
@@ -73,19 +73,13 @@ plot_management_catch_vs_tac <- \(inc_biomass_ests = FALSE,
           legend.spacing.y = unit(0.01, "cm")) +
     guides(color = guide_legend(byrow = TRUE)) +
     scale_y_continuous(labels = comma,
-                       limits = c(0, NA),
+                       limits = c(y_min, y_max),
                        breaks = y_breaks,
-                       expand = expansion(mult = c(0, 0.05))) +
-    scale_x_continuous(breaks = x_breaks,
-                       labels = x_labels)
-  if(inc_biomass_ests){
-    g <- g +
-      labs(y = "Catch, TAC, or Biomass (kt)")
-  }else{
-    g <- g +
-      labs(y = "Catch or TAC (kt)")
-  }
-
+                       expand = expansion(mult = c(0, 0))) +
+    scale_x_continuous(labels = x_labels,
+                       limits = c(x_min, x_max),
+                       breaks = x_breaks) +
+    labs(y = "Prop. changed from previous year")
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
