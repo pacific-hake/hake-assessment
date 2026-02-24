@@ -10,6 +10,8 @@ setup_data_frame_for_past_management_plots(
   model,
   d,
   inc_biomass_ests = FALSE,
+  inc_survey = FALSE,
+  survey_index_df = NA,
   diffs = FALSE,
   yrs = NA,
   ret_tbl = FALSE,
@@ -24,6 +26,13 @@ setup_data_frame_for_past_management_plots(
 
 \item{inc_biomass_ests}{If \code{TRUE}, include a line representing the estimated
 biomass (medians)}
+
+\item{inc_survey}{If \code{TRUE}, include the survey biomass estimates as
+provided by the survey team (not fits from the model)}
+
+\item{survey_index_df}{A data frame with the columns \code{year} and \code{total}
+containing the estimated biomass values for the survey years in the \code{total}
+column`}
 
 \item{diffs}{If \code{TRUE}, show proportion change from year to year, normalized
 by the maximum value in \code{yrs}}

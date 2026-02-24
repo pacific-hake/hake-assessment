@@ -3,7 +3,9 @@
 #'
 #' @param inc_biomass_ests If `TRUE`, include a line representing the estimated
 #' biomass (medians)
-#' @param line_type Which linetype to use for connecting the
+#' @param inc_survey If `TRUE`, include the survey biomass estimates as
+#' provided by the survey team (not fits from the model)
+#' @param line_type Which line type to use for connecting the
 #' values with vertical lines
 #' @param line_width Width of the connecting lines
 #' @param line_alpha Which alpha level (0-1) to use for connecting
@@ -21,6 +23,7 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_management_catch_vs_tac_diffs <- \(inc_biomass_ests = FALSE,
+                                        inc_survey = FALSE,
                                         line_type = "solid",
                                         line_width = 1,
                                         line_alpha = 0.5,
@@ -35,6 +38,7 @@ plot_management_catch_vs_tac_diffs <- \(inc_biomass_ests = FALSE,
                                         ...){
 
   d <- setup_data_frame_for_past_management_plots(inc_biomass_ests = inc_biomass_ests,
+                                                  inc_survey = inc_survey,
                                                   diffs = TRUE,
                                                   ...)
 

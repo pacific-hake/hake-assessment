@@ -13,6 +13,11 @@
 #' column in `d` will be used
 #' @param inc_biomass_ests If `TRUE`, include a line representing the estimated
 #' biomass (medians)
+#' @param inc_survey If `TRUE`, include the survey biomass estimates as
+#' provided by the survey team (not fits from the model)
+#' @param survey_index_df A data frame with the columns `year` and `total`
+#' containing the estimated biomass values for the survey years in the `total`
+#' column`
 #' @param diffs If `TRUE`, show proportion change from year to year, normalized
 #' by the maximum value in `yrs`
 #' @param ret_tbl Logical. If `TRUE`, return a [kableExtra::kbl()] containing
@@ -28,6 +33,8 @@
 setup_data_frame_for_past_management_plots <- \(model,
                                                 d,
                                                 inc_biomass_ests = FALSE,
+                                                inc_survey = FALSE,
+                                                survey_index_df = NA,
                                                 diffs = FALSE,
                                                 yrs = NA,
                                                 ret_tbl = FALSE,
@@ -56,11 +63,13 @@ setup_data_frame_for_past_management_plots <- \(model,
     stop("Not all `yrs` are in the data. The data contains the following years:\n",
          paste(sort(unique(d$Year)), collapse = " "), "\n")
   }
-  if(!is.na(yrs[1])){
+
+  if(is.na(yrs[1])){
+    yrs <- d$Year |> unique() |> sort()
+  }else{
     d <- d |>
       dplyr::filter(Year %in% yrs)
   }
-  yrs <- d$Year |> unique() |> sort()
 
   group_ord <- c("Default HCR TAC", "TAC implemented by management", "Realized catch")
 
@@ -102,6 +111,28 @@ setup_data_frame_for_past_management_plots <- \(model,
   # Remove TAC implemented by management and realized catch for current year
   # as it hasn't happened yet (they are NAs)
   d <- d |> dplyr::filter(!is.na(value))
+
+  if(inc_survey){
+
+    if(is.null(nrow(survey_index_df)) || nrow(survey_index_df) < 0){
+      stop("You provided `inc_survey` but did not supply a correct data frame ",
+           "for `survey_index_df`")
+    }
+    if(!"year" %in% names(survey_index_df)){
+      stop("The `survey_index_df` data frame must contain a column named `year`")
+    }
+    if(!"total" %in% names(survey_index_df)){
+      stop("The `survey_index_df` data frame must contain a column named `total`")
+    }
+    j <- survey_index_df |>
+      rename(Year = year, value = total) |>
+      mutate(name = "Survey index") |>
+      dplyr::filter(Year %in% yrs) |>
+      select(Year, name, value)
+
+    d <- d |>
+      bind_rows(j)
+  }
 
   if(diffs){
 

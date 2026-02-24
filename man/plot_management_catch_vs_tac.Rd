@@ -7,6 +7,7 @@ estimated TAC, and realized catch}
 \usage{
 plot_management_catch_vs_tac(
   inc_biomass_ests = FALSE,
+  inc_survey = FALSE,
   line_type = "solid",
   line_width = 1,
   line_alpha = 0.5,
@@ -16,7 +17,7 @@ plot_management_catch_vs_tac(
   point_size = 3,
   font_size = 10,
   right_cols_cm = 1.8,
-  y_breaks = seq(0, 1000, 100),
+  y_breaks = seq(0, ifelse(inc_biomass_ests, 4000, 1000), 500),
   ret_tbl = FALSE,
   x_labs_mod = 2,
   ...
@@ -25,6 +26,9 @@ plot_management_catch_vs_tac(
 \arguments{
 \item{inc_biomass_ests}{If \code{TRUE}, include a line representing the estimated
 biomass (medians)}
+
+\item{inc_survey}{If \code{TRUE}, include the survey biomass estimates as
+provided by the survey team (not fits from the model)}
 
 \item{line_type}{Which linetype to use for connecting the
 values with vertical lines}
