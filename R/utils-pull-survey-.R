@@ -168,15 +168,19 @@ pull_research_survey_file_names <- function(
 ) {
   # Search for HakeRes which is the hake research survey or for 1992 Hake Sum
   # MF_WER because the 1992 data are yet to be included in the survey years
-  fs::dir_ls(dir, regexp = "HakeRes") |>
-   purrr::map(.f = fs::dir_ls, type = "dir", regexp = "Data_") |>
-   discard(.p = \(x) length(x) == 0) |>
-   purrr::map(
-     .f = fs::dir_ls,
-     regexp = "biodata_specimen_[AWSUIG]{2}[A-Z]+\\.|biodata_specimen\\.",
-     recurse = TRUE
-   ) |>
-   discard(.p = \(x) length(x) == 0)
+  all <- fs::dir_ls(dir, regexp = "HakeRes") |>
+    purrr::map(.f = fs::dir_ls, type = "dir", regexp = "Data_SH") |>
+    discard(.p = \(x) length(x) == 0) |>
+    purrr::map(
+      .f = fs::dir_ls,
+      regexp = "biodata_specimen_[AWSUIG]{2}[A-Z]+\\.|biodata_specimen\\.",
+      recurse = TRUE
+    ) |>
+    discard(.p = \(x) length(x) == 0)
+  # The 2024 files are removed because there are formatting issues that I
+  # need to sort out with Alicia.
+  all[[5]] <- NULL
+  all
 }
 
 read_research_year_bio_file <- function(file_name) {
@@ -184,15 +188,20 @@ read_research_year_bio_file <- function(file_name) {
   haul_file <- fs::dir_ls(dir_of_file, regexp = "haul")
   # If haul file does not exist, then find year and guess month
   if (length(haul_file) == 1) {
-  haul_data <- readxl::read_excel(haul_file) |>
-    dplyr::rename(DateTime = dplyr::starts_with("EQ")) |>
-    dplyr::select(Haul, DateTime1) |>
-    tidyr::fill(DateTime1, .direction = "updown")
+    raw_haul_data <- readxl::read_excel(haul_file)
+    find <- colnames(raw_haul_data) == "haul"
+    if (sum(find) > 0) {
+      colnames(raw_haul_data)[find] <- "Haul"
+    }
+    haul_data <- raw_haul_data |>
+      dplyr::rename(DateTime = dplyr::starts_with("EQ")) |>
+      dplyr::select(Haul, DateTime1) |>
+      tidyr::fill(DateTime1, .direction = "updown")
   } else {
     year <- gsub(".+([[1-2][0-9]{3}).+", "\\1", dir_of_file)
     month <- "07"
     temp <- readxl::read_excel(file_name)
-    haul_data <- dplyr::select(temp, HAUL) |>
+    # The bio files have changed and the haul column is not linked to dates
       dplyr::distinct() |>
       dplyr::rename_with(.fn = stringr::str_to_title) |>
       dplyr::mutate(
