@@ -84,8 +84,8 @@ calc_proportions <- function(data, maxcol = 15) {
 #'   the directory `Data Processing/Historic Biodata` beneath `dir`.
 #' @export
 pull_survey_weight_at_age <- function(
-  dir = "\\\\nwcfile\\fram\\Survey.Acoustics",
-  summary_file_name = "1977-2023_Survey_Biodata.xlsx"
+  dir = "\\\\nwcfile\\FRAM\\Survey.Acoustics",
+  summary_file_name = "1995-2025_Survey_Biodata.xlsx"
 ) {
   summary_file <- fs::path(
     dir,
