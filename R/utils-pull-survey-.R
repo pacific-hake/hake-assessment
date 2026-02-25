@@ -94,6 +94,7 @@ pull_survey_weight_at_age <- function(
     summary_file_name
   )
 
+  # There are no haul files found in these folders, only the bio specimen files
   research_data <- purrr::map_df(
     pull_research_survey_file_names(dir),
     .f = read_research_year_bio_file
@@ -150,21 +151,31 @@ pull_survey_weight_at_age <- function(
       Sex = sex
     ) |>
     dplyr::select(
-      Source, Weight_kg, Sex, Age_yrs, Length_cm, Month, Year
+      Source,
+      Weight_kg,
+      Sex,
+      Age_yrs,
+      Length_cm,
+      Month,
+      Year
     )
 
   out <- dplyr::bind_rows(
     all,
     research_data
   ) |>
-  dplyr::arrange(
-    Source, Year, Month, Sex, Age_yrs
-  )
+    dplyr::arrange(
+      Source,
+      Year,
+      Month,
+      Sex,
+      Age_yrs
+    )
   return(out)
 }
 
 pull_research_survey_file_names <- function(
-  dir = "\\\\nwcfile\\fram\\Survey.Acoustics"
+  dir = "\\\\nwcfile\\FRAM\\Survey.Acoustics"
 ) {
   # Search for HakeRes which is the hake research survey or for 1992 Hake Sum
   # MF_WER because the 1992 data are yet to be included in the survey years
@@ -202,6 +213,7 @@ read_research_year_bio_file <- function(file_name) {
     month <- "07"
     temp <- readxl::read_excel(file_name)
     # The bio files have changed and the haul column is not linked to dates
+    haul_data <- dplyr::select(temp, haul) |>
       dplyr::distinct() |>
       dplyr::rename_with(.fn = stringr::str_to_title) |>
       dplyr::mutate(
@@ -224,7 +236,8 @@ read_research_year_bio_file <- function(file_name) {
   } else {
     which_are_na <- which(haul_data[["DateTime1"]] == 0)
     haul_data[["DateTime1"]][which_are_na] <- haul_data[["DateTime1"]][
-      setdiff(seq(NROW(haul_data)), which_are_na)[1]]
+      setdiff(seq(NROW(haul_data)), which_are_na)[1]
+    ]
     haul_data[["DateTime1"]] <- as.Date(
       as.numeric(haul_data[["DateTime1"]]),
       origin = "1899-12-30"
@@ -256,7 +269,13 @@ read_research_year_bio_file <- function(file_name) {
       Year = as.numeric(format(DateTime1, "%Y"))
     ) |>
     dplyr::select(
-      Source, Weight_kg, Sex, Age_yrs, Length_cm, Month, Year
+      Source,
+      Weight_kg,
+      Sex,
+      Age_yrs,
+      Length_cm,
+      Month,
+      Year
     ) |>
     dplyr::filter(!is.na(Weight_kg)) |>
     dplyr::filter(!is.na(Age_yrs))
@@ -265,8 +284,8 @@ read_research_year_bio_file <- function(file_name) {
 
 ship_to_source <- function(x) {
   dplyr::case_when(
-      x %in% c(499, 584, 2026) ~ "Canada Acoustic",
-      x %in% c(19, 21, 160, 499) ~ "U.S. Acoustic",
-      TRUE ~ "U.S. Acoustic"
-    )
+    x %in% c(499, 584, 2026) ~ "Canada Acoustic",
+    x %in% c(19, 21, 160, 499) ~ "U.S. Acoustic",
+    TRUE ~ "U.S. Acoustic"
+  )
 }
