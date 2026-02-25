@@ -102,12 +102,12 @@ pull_survey_weight_at_age <- function(
   # Must read in haul data to get the date
   hauls <- readxl::read_excel(
     summary_file,
-    sheet = "Haul"
+    sheet = "biodata_haul"
   ) |>
-    dplyr::select(SURVEY, HAUL, EQ_DATE_TIME) |>
+    dplyr::select(survey, haul, eq_date_time) |>
     dplyr::distinct() |>
     dplyr::mutate(
-      Date = as.Date(EQ_DATE_TIME, tryFormats = "%m/%d/%Y"),
+      Date = as.Date(eq_date_time, tryFormats = "%m/%d/%Y"),
       Year = format(Date, "%Y"),
       Month = as.numeric(format(Date, "%m"))
     )
@@ -117,37 +117,37 @@ pull_survey_weight_at_age <- function(
   # and all weights get transcribed to 0 or 1. :(
   all <- readxl::read_excel(
     summary_file,
-    sheet = "Specimen",
+    sheet = "biodata_specimen",
     col_types = c(rep("numeric", 15), rep("text", 3), "guess")
   ) |>
     dplyr::filter(
       # 22500 is hake
-      SPECIES_CODE == 22500,
-      !is.na(WEIGHT),
-      !is.na(AGE)
+      species_code == 22500,
+      !is.na(weight),
+      !is.na(age)
     ) |>
     dplyr::left_join(
       y = hauls,
-      by = c("SURVEY", "HAUL")
+      by = c("survey", "haul")
     ) |>
     dplyr::mutate(
-      Year = as.numeric(substr(SURVEY, 1, 4)),
-      Source = ship_to_source(SHIP),
-      SEX = dplyr::case_when(
-        tolower(SEX) == "f" ~ "F",
-        tolower(SEX) == "m" ~ "M",
-        tolower(SEX) == "x" ~ "U",
-        SEX == 1 ~ "F",
-        SEX == 2 ~ "M",
-        SEX == 3 ~ "U",
+      Year = as.numeric(substr(survey, 1, 4)),
+      Source = ship_to_source(ship),
+      sex = dplyr::case_when(
+        tolower(sex) == "f" ~ "F",
+        tolower(sex) == "m" ~ "M",
+        tolower(sex) == "x" ~ "U",
+        sex == 1 ~ "F",
+        sex == 2 ~ "M",
+        sex == 3 ~ "U",
         TRUE ~ "U"
       )
     ) |>
     dplyr::rename(
-      Weight_kg = WEIGHT,
-      Length_cm = LENGTH,
-      Age_yrs = AGE,
-      Sex = SEX
+      Weight_kg = weight,
+      Length_cm = length,
+      Age_yrs = age,
+      Sex = sex
     ) |>
     dplyr::select(
       Source, Weight_kg, Sex, Age_yrs, Length_cm, Month, Year
