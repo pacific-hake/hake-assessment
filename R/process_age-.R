@@ -30,8 +30,8 @@ process_age_sea <- function(
     hakedata_wd(),
     glue::glue("us-{c('cp', 'ms')}-age-proportions.csv")
   ),
-  write = TRUE) {
-
+  write = TRUE
+) {
   # Output raw ages
   raw_ages <- dplyr::filter(
     atsea.ages,
@@ -70,6 +70,21 @@ process_age_sea <- function(
         .y = name,
         .f = \(x, y) utils::write.csv(x, y, row.names = FALSE, quote = FALSE)
       )
+    )
+
+  samples <- atsea.ages |>
+    dplyr::filter(Year %in% hake::get_data_yr()) |>
+    dplyr::group_by(Year, Month) |>
+    dplyr::summarise(
+      num_age = sum(!is.na(AGE)),
+      num_length = sum(!is.na(LENGTH)),
+      num_weight = sum(!is.na(WEIGHT))
+    ) |>
+    dplyr::rename(month = Month) |>
+    utils::write.csv(
+      file = fs::path(hakedata_wd(), "us-atsea-sample-summary.csv"),
+      row.names = FALSE,
+      quote = FALSE
     )
 
   processed <- purrr::map(
@@ -117,16 +132,34 @@ process_age_sea <- function(
 #' @author Kelli F. Johnson
 #' @return todo: document the return
 #'
-process_age_shore <- function(page = get_local("page.Rdat"),
-                              ages = 1:15) {
+process_age_shore <- function(page = get_local("page.Rdat"), ages = 1:15) {
   page.worked <- page[!is.na(page$AGE), ]
   page.worked$SEX <- factor(page.worked$SEX)
-  dat <- SetUpHakeBDS.fn(page.worked,
+
+  dat <- SetUpHakeBDS.fn(
+    page.worked,
     verbose = FALSE,
-    max.mmLength = 1000, dataTypes = c("C"),
-    sampleMethods = c("R"), sampleTypes = c(NA, "", "C", "M"),
+    max.mmLength = 1000,
+    dataTypes = c("C"),
+    sampleMethods = c("R"),
+    sampleTypes = c(NA, "", "C", "M"),
     states = c("CA", "OR", "WA", "PW")
   )
+
+  samples <- page.worked |>
+    dplyr::filter(SAMPLE_YEAR %in% hake::get_data_yr()) |>
+    dplyr::group_by(SAMPLE_YEAR, SAMPLE_MONTH) |>
+    dplyr::summarise(
+      num_age = sum(!is.na(AGE)),
+      num_length = sum(!is.na(FISH_LENGTH)),
+      num_weight = sum(!is.na(FISH_WEIGHT))
+    ) |>
+    dplyr::rename(Year = SAMPLE_YEAR, month = SAMPLE_MONTH) |>
+    utils::write.csv(
+      file = fs::path(hakedata_wd(), "us-ss-sample-summary.csv"),
+      row.names = FALSE,
+      quote = FALSE
+    )
 
   raw_ages <- page.worked |>
     dplyr::group_by(SAMPLE_YEAR, AGE) |>
@@ -165,23 +198,30 @@ process_age_shore <- function(page = get_local("page.Rdat"),
   )
   nFish <- table(dat$SAMPLE_YEAR, useNA = "ifany")
 
-   # so that it doesn't need to expand up states and won't need a catch file
+  # so that it doesn't need to expand up states and won't need a catch file
   dat$state <- "PW"
   # Relationship assumes FISH_WEIGHT is in grams and FISH_LENGTH is cm
   out.lm <- lm(log(FISH_WEIGHT) ~ log(FISH_LENGTH / 10), data = dat)
   # Must keep the next line as is, don't try to make it shorter!
   lw <- data.frame(OR = c(exp(out.lm$coefficients[1]), out.lm$coefficients[2]))
 
-  LFs <- commLFs.fn(dat, lw,
-    gear = NULL, state = "PW",
+  LFs <- commLFs.fn(
+    dat,
+    lw,
+    gear = NULL,
+    state = "PW",
     catchFile = NULL,
-    maxExpansion = 1e9, verbose = FALSE,
-    loessSpan = 0.3, ageComp = TRUE
+    maxExpansion = 1e9,
+    verbose = FALSE,
+    loessSpan = 0.3,
+    ageComp = TRUE
   )
 
   tmp <- LFs$all$PW
-  afs <- matrix(NA,
-    ncol = length(ages) + 3, nrow = length(tmp),
+  afs <- matrix(
+    NA,
+    ncol = length(ages) + 3,
+    nrow = length(tmp),
     dimnames = list(NULL, c("year", "num_fish", "num_samples", paste0(ages)))
   )
   for (i in 1:length(tmp)) {
@@ -235,21 +275,33 @@ SetUpHakeBDS.fn <- function(
   #           There are MPT samples in summer when no CP's were fishing
   ###############################################################################
 
-
   BDS$length.cm <- BDS$FISH_LENGTH / 10 # lengths in cm
 
   BDS$gear <- NA
   BDS$gear[BDS$GRID %in% c("SST", "SHT", "PWT", "DST", "DSG")] <- NA # "ShrimpTrawl"
-  BDS$gear[BDS$GRID %in% c("RLT", "GFT", "GFS", "GFL", "FTS", "FFT", "BTT", "BMT", "56")] <- "BottomTrawl"
+  BDS$gear[
+    BDS$GRID %in%
+      c("RLT", "GFT", "GFS", "GFL", "FTS", "FFT", "BTT", "BMT", "56")
+  ] <- "BottomTrawl"
   BDS$gear[BDS$GRID %in% c("OTW", "MDT", "54", "MPT")] <- "MidwaterTrawl"
   BDS$gear[BDS$GRID %in% c("PRT", "DNT")] <- NA # "MiscTrawl"
   BDS$gear[BDS$GRID %in% c("BTR", "CLP", "CPT", "FPT", "OPT", "PRW")] <- NA # "Pot"
-  BDS$gear[BDS$GRID %in% c("HKL", "JIG", "LGL", "OHL", "POL", "TRL", "VHL")] <- "HnL"
+  BDS$gear[
+    BDS$GRID %in% c("HKL", "JIG", "LGL", "OHL", "POL", "TRL", "VHL")
+  ] <- "HnL"
   BDS$gear[BDS$GRID %in% c("DPN", "DGN", "GLN", "ONT", "SEN", "STN")] <- "Net"
   BDS$gear[BDS$GRID %in% c("DVG", "USP", "UNK", "XXX")] <- NA # "Other"   #MPT is CP midwater
 
   if (verbose) {
-    cat("There are", sum(is.na(BDS$gear)), "rows out of", nrow(BDS), "where gear is not classified as", unique(BDS$gear), ".\n\n")
+    cat(
+      "There are",
+      sum(is.na(BDS$gear)),
+      "rows out of",
+      nrow(BDS),
+      "where gear is not classified as",
+      unique(BDS$gear),
+      ".\n\n"
+    )
     flush.console()
   }
 
@@ -258,7 +310,6 @@ SetUpHakeBDS.fn <- function(
   BDS$state[BDS$SOURCE_AGID == "O"] <- "OR"
   BDS$state[BDS$SOURCE_AGID == "W"] <- "WA"
   BDS$state[BDS$SAMPLE_AGENCY == "PW"] <- "PW"
-
 
   # drop columns that have all NA's
   ind <- apply(BDS, 2, function(x) {
@@ -277,12 +328,22 @@ SetUpHakeBDS.fn <- function(
   totKeep <- sum(keep)
   keep <- keep & (BDS$state %in% states)
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue not a specified state:", states, "\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue not a specified state:",
+      states,
+      "\n"
+    )
   }
   totKeep <- sum(keep)
   keep <- keep & (!is.na(BDS$gear))
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue not a specified gear:", unique(BDS$gear), "\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue not a specified gear:",
+      unique(BDS$gear),
+      "\n"
+    )
   }
   totKeep <- sum(keep)
   keep <- keep & !is.na(BDS$FISH_LENGTH) # omit missing observations of length
@@ -297,12 +358,22 @@ SetUpHakeBDS.fn <- function(
   totKeep <- sum(keep)
   keep <- keep & BDS$FISH_LENGTH <= max.mmLength # omit fish greater than maxLength
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue of Fish Length >", max.mmLength, "mm\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue of Fish Length >",
+      max.mmLength,
+      "mm\n"
+    )
   }
   totKeep <- sum(keep)
   keep <- keep & BDS$DATA_TYPE %in% dataTypes # types of data such as commercial or survey
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue dataTypes were not of type", dataTypes, "\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue dataTypes were not of type",
+      dataTypes,
+      "\n"
+    )
   }
   totKeep <- sum(keep)
 
@@ -310,12 +381,22 @@ SetUpHakeBDS.fn <- function(
 
   keep <- keep & BDS$SAMPLE_METHOD %in% sampleMethods # sampling method such as random, stratified, special,...
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue sampleMethods were not of type", sampleMethods, "\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue sampleMethods were not of type",
+      sampleMethods,
+      "\n"
+    )
   }
   totKeep <- sum(keep)
   keep <- keep & BDS$SAMPLE_TYPE %in% sampleTypes # sampling type such as market, research, special
   if (verbose) {
-    cat(totKeep - sum(keep), "rows omitted becasue sampleTypes were not of type", sampleTypes, "\n")
+    cat(
+      totKeep - sum(keep),
+      "rows omitted becasue sampleTypes were not of type",
+      sampleTypes,
+      "\n"
+    )
   }
   totKeep <- sum(keep)
   if (verbose) {
@@ -344,23 +425,27 @@ SetUpHakeBDS.fn <- function(
   for (iii in unique(BDS$SAMPLE_NO)) {
     tmp <- BDS[BDS$SAMPLE_NO == iii, ]
     if (is.na(sum(tmp$MALES_WGT))) {
-      BDS[BDS$SAMPLE_NO == iii, "MALES_WGT"] <- sum(tmp$FISH_WEIGHT[tmp$SEX == "M"])
+      BDS[BDS$SAMPLE_NO == iii, "MALES_WGT"] <- sum(tmp$FISH_WEIGHT[
+        tmp$SEX == "M"
+      ])
     }
     if (is.na(sum(tmp$MALES_NUM))) {
       BDS[BDS$SAMPLE_NO == iii, "MALES_NUM"] <- sum(tmp$SEX == "M")
     }
     if (is.na(sum(tmp$FEMALES_WGT))) {
-      BDS[BDS$SAMPLE_NO == iii, "FEMALES_WGT"] <- sum(tmp$FISH_WEIGHT[tmp$SEX == "F"])
+      BDS[BDS$SAMPLE_NO == iii, "FEMALES_WGT"] <- sum(tmp$FISH_WEIGHT[
+        tmp$SEX == "F"
+      ])
     }
     if (is.na(sum(tmp$FEMALES_NUM))) {
       BDS[BDS$SAMPLE_NO == iii, "FEMALES_NUM"] <- sum(tmp$SEX == "F")
     }
     if (is.na(sum(tmp$CLUSTER_WGT))) {
       # FISH_WEIGHT is in g and CLUSTER_WGT is in lb
-      BDS[BDS$SAMPLE_NO == iii, "CLUSTER_WGT"] <- sum(tmp$FISH_WEIGHT) * 0.00220462
+      BDS[BDS$SAMPLE_NO == iii, "CLUSTER_WGT"] <- sum(tmp$FISH_WEIGHT) *
+        0.00220462
     }
   }
-
 
   if (verbose) {
     cat("\nThe final dimensions of the filtered dataframe are:\n")
@@ -375,20 +460,22 @@ SetUpHakeBDS.fn <- function(
 }
 
 # Copied functions from PacFIN
-commLFs.fn <- function(bds,
-                       lw,
-                       gear = "TWL",
-                       state = NULL,
-                       catchFile = NULL,
-                       maxExpansion = 300,
-                       verbose = TRUE,
-                       normalize = TRUE,
-                       # TODO: Get rid of doSexRatio
-                       doSexRatio = TRUE,
-                       sexRatioUnsexed = NA,
-                       maxSizeUnsexed = NA,
-                       loessSpan = 0.3,
-                       ageComp = FALSE) {
+commLFs.fn <- function(
+  bds,
+  lw,
+  gear = "TWL",
+  state = NULL,
+  catchFile = NULL,
+  maxExpansion = 300,
+  verbose = TRUE,
+  normalize = TRUE,
+  # TODO: Get rid of doSexRatio
+  doSexRatio = TRUE,
+  sexRatioUnsexed = NA,
+  maxSizeUnsexed = NA,
+  loessSpan = 0.3,
+  ageComp = FALSE
+) {
   #####################################################################################
   # lw is a data.frame of length-weight params with columns as parameters for different sexes (and unsexed) and rows as WA, OR, CA (1, 2, 3)
   #      # create a predicted fish weight based on state and length
@@ -415,26 +502,39 @@ commLFs.fn <- function(bds,
   # these will be summed to give the sample weight, however
   # don't need to use this because expand cluster weight to total weight because they are cluster sampling a mixture of species
   bds$predwt <- NA
-  bds$predwt[bds$state %in% "WA"] <- lw$WA[1] * ((bds$FISH_LENGTH[bds$state %in% "WA"] / 10)^lw$WA[2])
-  bds$predwt[bds$state %in% "OR"] <- lw$OR[1] * ((bds$FISH_LENGTH[bds$state %in% "OR"] / 10)^lw$OR[2])
-  bds$predwt[bds$state %in% "PW"] <- lw$OR[1] * ((bds$FISH_LENGTH[bds$state %in% "PW"] / 10)^lw$OR[2])
-  bds$predwt[bds$state %in% "CA"] <- lw$CA[1] * ((bds$FISH_LENGTH[bds$state %in% "CA"] / 10)^lw$CA[2])
+  bds$predwt[bds$state %in% "WA"] <- lw$WA[1] *
+    ((bds$FISH_LENGTH[bds$state %in% "WA"] / 10)^lw$WA[2])
+  bds$predwt[bds$state %in% "OR"] <- lw$OR[1] *
+    ((bds$FISH_LENGTH[bds$state %in% "OR"] / 10)^lw$OR[2])
+  bds$predwt[bds$state %in% "PW"] <- lw$OR[1] *
+    ((bds$FISH_LENGTH[bds$state %in% "PW"] / 10)^lw$OR[2])
+  bds$predwt[bds$state %in% "CA"] <- lw$CA[1] *
+    ((bds$FISH_LENGTH[bds$state %in% "CA"] / 10)^lw$CA[2])
 
-  plot(FISH_WEIGHT ~ FISH_LENGTH,
+  plot(
+    FISH_WEIGHT ~ FISH_LENGTH,
     data = bds,
-    ylab = "Weight (g)", xlab = "Length (mm)"
+    ylab = "Weight (g)",
+    xlab = "Length (mm)"
   )
   points(predwt ~ FISH_LENGTH, data = bds, col = "red")
   mtext(side = 3, line = -1, "Predicted weights in red")
 
   bds$predWtSum <- ave(bds$predwt, bds$SAMPLE_NO, FUN = sum)
   if (any(is.na(bds$predWtSum))) {
-    stop("There are some predicted weights that are NA. This means that there are NA's in lengths, the parameters, or somewhere else.")
+    stop(
+      "There are some predicted weights that are NA. This means that there are NA's in lengths, the parameters, or somewhere else."
+    )
   }
-  bds[, "all_cluster_sum"] <- ave(ifelse(
-    duplicated(paste(bds$SAMPLE_NO, bds$CLUSTER_NO)),
-    0, bds$CLUSTER_WGT
-  ), bds$SAMPLE_NO, FUN = sum)
+  bds[, "all_cluster_sum"] <- ave(
+    ifelse(
+      duplicated(paste(bds$SAMPLE_NO, bds$CLUSTER_NO)),
+      0,
+      bds$CLUSTER_WGT
+    ),
+    bds$SAMPLE_NO,
+    FUN = sum
+  )
 
   # WA does not have a sample weight
   # I will calcualte sample weight from individual fish weights (filled in using setUp function) or l-w parameters
@@ -454,7 +554,6 @@ commLFs.fn <- function(bds,
   ind <- (bds$SOURCE_AGID %in% c("W")) & is.na(bds$usetot_wgt)
   bds$usetot_wgt[ind] <- bds$sampleWgt[ind]
 
-
   # OR uses expanded weight, lbs
   ind <- !is.na(bds$EXP_WT) & bds$SOURCE_AGID == "O"
   bds$usetot_wgt[ind] <- bds$EXP_WT[ind]
@@ -467,7 +566,6 @@ commLFs.fn <- function(bds,
   bds$sampleWgt[ind] <- bds$CLUSTER_WGT[ind]
   ind <- ind & is.na(bds$sampleWgt)
   bds$sampleWgt[ind] <- bds$predWtSum[ind]
-
 
   # CA uses total weight, lbs and all_cluster_wgt because multiple clusters
   # all cluster wt is the weight of the sample, which might not be all one species.
@@ -492,7 +590,6 @@ commLFs.fn <- function(bds,
   # using predWt here with total landing is no different than other states, even though expansion may be larger than it should
   # bds$usetot_wgt[ind & is.na(bds$usetot_wgt)] <- bds$all_cluster_sum[ind & is.na(bds$usetot_wgt)]*0.999*0.45359237
 
-
   # possibly use median from the right agency where total landed weight missing (if weights are missing)
   # fill in missing landings weights with predicted weights (could do medians or something also, before expansion) I will set expansion to 0.999 because
   # only 2 samples from OR and 63 from CA (mostly early years) has missing values (WA likely has a lot of missing species weights, but I used predWt)
@@ -514,23 +611,42 @@ commLFs.fn <- function(bds,
   samps <- bds[!duplicated(bds$SAMPLE_NO), ]
   row.names(samps) <- samps$SAMPLE_NO
   if (NROW(samps[is.na(samps$usetot_wgt), ]) > 0) {
-    stop("There are missing weights and you need to change the code to fill them in.")
+    stop(
+      "There are missing weights and you need to change the code to fill them in."
+    )
   }
 
   if (verbose) {
     if (sum(bds$expand < 0.999)) {
-      cat("There are", sum(bds$expand < 0.999), "expansion factors less than 0.999.\n")
+      cat(
+        "There are",
+        sum(bds$expand < 0.999),
+        "expansion factors less than 0.999.\n"
+      )
     }
     if (sum(bds$expand > maxExpansion) > 0) {
       cat(
-        "There are", sum(bds$expand > maxExpansion),
-        "expansion factors greater than", maxExpansion, "\n"
+        "There are",
+        sum(bds$expand > maxExpansion),
+        "expansion factors greater than",
+        maxExpansion,
+        "\n"
       )
     }
     par(mfrow = c(2, 1))
     ##### expansion factors by state
-    boxplot(split(bds$expand, bds$state), xlab = "State", ylab = "expansion to landing factor", outline = FALSE)
-    boxplot(split(bds$expand, bds$state), xlab = "State", ylab = "expansion to landing factor", ylim = c(0, maxExpansion))
+    boxplot(
+      split(bds$expand, bds$state),
+      xlab = "State",
+      ylab = "expansion to landing factor",
+      outline = FALSE
+    )
+    boxplot(
+      split(bds$expand, bds$state),
+      xlab = "State",
+      ylab = "expansion to landing factor",
+      ylim = c(0, maxExpansion)
+    )
     windows(height = 5, width = 6.5)
     plot(cumsum(table(round(samps$expand, 0), useNA = "ifany")) / nrow(samps))
   }
@@ -540,7 +656,11 @@ commLFs.fn <- function(bds,
 
   ##### expansion factors by state
   windows()
-  boxplot(split(bds$expand, bds$state), xlab = "State", ylab = "expansion to landing factor")
+  boxplot(
+    split(bds$expand, bds$state),
+    xlab = "State",
+    ylab = "expansion to landing factor"
+  )
 
   # USE sex ratio to assign unsexed fish to M or F
   if (doSexRatio) {
@@ -558,20 +678,45 @@ commLFs.fn <- function(bds,
     lens <- as.numeric(names(propF))
     if (verbose) {
       windows(height = 5, width = 6.5)
-      plot(lens, propF, type = "l", col = "red", xlab = "Length (cm)", ylab = "Fraction female", ylim = c(0, 1), main = "Sex Ratio")
-      symbols(lens, propF, circles = nobs, inches = 0.1, fg = "red", bg = rgb(1, 0, 0, alpha = 0.5), add = T)
+      plot(
+        lens,
+        propF,
+        type = "l",
+        col = "red",
+        xlab = "Length (cm)",
+        ylab = "Fraction female",
+        ylim = c(0, 1),
+        main = "Sex Ratio"
+      )
+      symbols(
+        lens,
+        propF,
+        circles = nobs,
+        inches = 0.1,
+        fg = "red",
+        bg = rgb(1, 0, 0, alpha = 0.5),
+        add = T
+      )
     }
     propF[lens <= 28] <- 0.5
     propF[lens > 55] <- 1
     nobs[lens <= 28] <- max(nobs)
     lo <- loess(propF ~ lens, weights = nobs, span = loessSpan) # determined by eye
-    sexRatio <- predict(lo, newdata = data.frame(lens = min(bds$length.cm):max(bds$length.cm)))
+    sexRatio <- predict(
+      lo,
+      newdata = data.frame(lens = min(bds$length.cm):max(bds$length.cm))
+    )
     names(sexRatio) <- as.numeric(min(bds$length.cm):max(bds$length.cm))
     sexRatio[sexRatio > 1] <- 1
     if (verbose) {
       lines(lens, propF, col = "darkgreen")
       lines(as.numeric(names(sexRatio)), sexRatio, col = "blue")
-      legend("topleft", c("Data", "Data w/ Assumed", "LOESS"), col = c("red", "darkgreen", "blue"), lty = 1)
+      legend(
+        "topleft",
+        c("Data", "Data w/ Assumed", "LOESS"),
+        col = c("red", "darkgreen", "blue"),
+        lty = 1
+      )
     }
     bds$sexRatio <- sexRatio[match(bds$length.cm, as.numeric(names(sexRatio)))]
     bds$FREQ <- as.numeric(bds$FREQ)
@@ -619,9 +764,7 @@ commLFs.fn <- function(bds,
   samps <- bds[!duplicated(bds$SAMPLE_NO), ]
   row.names(samps) <- samps$SAMPLE_NO
 
-
   # THINK ABOUT COMBINING SAMPLES WITHIN PORTS OR SIMILAR TO GET LRGER NUMBER OF FISH PER SAMPLE (LOTS OF 1'S)
-
 
   # the effective number of fish in each length is the expansion factor (b/c only one per length)
   # except if fish are put in from sex ratio. Then it is expand*FREQ
@@ -630,37 +773,71 @@ commLFs.fn <- function(bds,
   if (nrow(tmp) > 0) {
     maleLenComps <- aggregate(
       tmp$expand * tmp$FREQ,
-      list(state = tmp$state, year = tmp$SAMPLE_YEAR, sex = tmp$SEX, length = tmp$length.cm),
+      list(
+        state = tmp$state,
+        year = tmp$SAMPLE_YEAR,
+        sex = tmp$SEX,
+        length = tmp$length.cm
+      ),
       sum
     )
   } else {
-    maleLenComps <- data.frame(state = NA, year = NA, sex = NA, length = NA, x = NA)
+    maleLenComps <- data.frame(
+      state = NA,
+      year = NA,
+      sex = NA,
+      length = NA,
+      x = NA
+    )
   }
 
   tmp <- bdsSexRatio[bdsSexRatio$SEX == "F", ]
   if (nrow(tmp) > 0) {
     femaleLenComps <- aggregate(
       tmp$expand * tmp$FREQ,
-      list(state = tmp$state, year = tmp$SAMPLE_YEAR, sex = tmp$SEX, length = tmp$length.cm),
+      list(
+        state = tmp$state,
+        year = tmp$SAMPLE_YEAR,
+        sex = tmp$SEX,
+        length = tmp$length.cm
+      ),
       sum
     )
   } else {
-    maleLenComps <- data.frame(state = NA, year = NA, sex = NA, length = NA, x = NA)
+    maleLenComps <- data.frame(
+      state = NA,
+      year = NA,
+      sex = NA,
+      length = NA,
+      x = NA
+    )
   }
 
   tmp <- bds[bds$SEX == "U", ] # FREQ should be all be 1
   if (nrow(tmp) > 0) {
     unsexedLenComps <- aggregate(
       tmp$expand,
-      list(state = tmp$state, year = tmp$SAMPLE_YEAR, sex = tmp$SEX, length = tmp$length.cm),
+      list(
+        state = tmp$state,
+        year = tmp$SAMPLE_YEAR,
+        sex = tmp$SEX,
+        length = tmp$length.cm
+      ),
       sum
     )
   } else {
-    unsexedLenComps <- data.frame(state = NA, year = NA, sex = NA, length = NA, x = NA)
+    unsexedLenComps <- data.frame(
+      state = NA,
+      year = NA,
+      sex = NA,
+      length = NA,
+      x = NA
+    )
   }
 
   tmp <- bds
-  if (nrow(tmp) > 0) { # use only the originally since M and F added on for sex ratio stuff
+  if (nrow(tmp) > 0) {
+    # use only the originally since M and F added on for sex ratio stuff
     allSexLenComps <- aggregate(
       tmp$expand,
       list(state = tmp$state, year = tmp$SAMPLE_YEAR, length = tmp$length.cm),
@@ -668,7 +845,13 @@ commLFs.fn <- function(bds,
     )
     allSexLenComps$sex <- "FMU"
   } else {
-    allSexLenComps <- data.frame(state = NA, year = NA, sex = NA, length = NA, x = NA)
+    allSexLenComps <- data.frame(
+      state = NA,
+      year = NA,
+      sex = NA,
+      length = NA,
+      x = NA
+    )
   }
 
   tmpF <- femaleLenComps
@@ -679,8 +862,14 @@ commLFs.fn <- function(bds,
 
   # summary of the number of fish of each sex sampled
   maleLens <- table(bds$SAMPLE_YEAR[bds$SEX == "M"], bds$state[bds$SEX == "M"])
-  femaleLens <- table(bds$SAMPLE_YEAR[bds$SEX == "F"], bds$state[bds$SEX == "F"])
-  unsexedLens <- table(bds$SAMPLE_YEAR[bds$SEX == "U"], bds$state[bds$SEX == "U"])
+  femaleLens <- table(
+    bds$SAMPLE_YEAR[bds$SEX == "F"],
+    bds$state[bds$SEX == "F"]
+  )
+  unsexedLens <- table(
+    bds$SAMPLE_YEAR[bds$SEX == "U"],
+    bds$state[bds$SEX == "U"]
+  )
   allSexLens <- table(bds$SAMPLE_YEAR, bds$state)
 
   # calculate number of samples by year and state
@@ -710,7 +899,8 @@ commLFs.fn <- function(bds,
     split(x, x$year)
   })
 
-  if (is.null(state)) { # only expand up to state if all states are included
+  if (is.null(state)) {
+    # only expand up to state if all states are included
     # You want to expand by the TotalCatch/TotalWtSampledFrom
     # But the catch is in the particular species, whereas the samples come from possibly a mix of species
     # So, instead, of calculating an expansion factor, renormailize the LF and multiply by the catch
@@ -720,14 +910,30 @@ commLFs.fn <- function(bds,
     # read in total catches by year, area, season for final expansion
     Catch <- read.csv(catchFile, header = T)
     tmp <- unlist(Catch[, -1])
-    Catch <- data.frame(year = Catch[, 1], state = substring(names(tmp), 1, 2), catch = tmp)
+    Catch <- data.frame(
+      year = Catch[, 1],
+      state = substring(names(tmp), 1, 2),
+      catch = tmp
+    )
 
     normalizeLF.fn <- function(xx, catch) {
       lapply(xx, function(x) {
         prop <- x$x / sum(x$x)
-        prop <- catch[catch$state == x$state[1] & catch$year == x$year[1], "catch"] * prop
-        ret <- data.frame(state = x$state, year = x$year, length = x$length, sex = x$sex, lf = prop)
-        if (ageComp) names(ret)[3] <- "age"
+        prop <- catch[
+          catch$state == x$state[1] & catch$year == x$year[1],
+          "catch"
+        ] *
+          prop
+        ret <- data.frame(
+          state = x$state,
+          year = x$year,
+          length = x$length,
+          sex = x$sex,
+          lf = prop
+        )
+        if (ageComp) {
+          names(ret)[3] <- "age"
+        }
         return(ret)
       })
     }
@@ -739,17 +945,28 @@ commLFs.fn <- function(bds,
     allSexLenComps <- lapply(allSexLenComps, normalizeLF.fn, catch = Catch)
     bothSexLenComps <- lapply(bothSexLenComps, normalizeLF.fn, catch = Catch)
 
-    cat("Comps weighted by state specific catches.\nThey can simply be added together for a coastwide comp\n")
+    cat(
+      "Comps weighted by state specific catches.\nThey can simply be added together for a coastwide comp\n"
+    )
   }
 
-  if (!is.null(state)) { # only expand up to state if all states are included, but format all lists here for a single state
+  if (!is.null(state)) {
+    # only expand up to state if all states are included, but format all lists here for a single state
     if (normalize) {
       normalizeLF.fn <- function(xx) {
         lapply(xx, function(x) {
           prop <- x$x / sum(x$x)
           # prop <- x$x/sum(x$x, na.rm = TRUE)
-          ret <- data.frame(state = x$state, year = x$year, sex = x$sex, length = x$length, lf = prop)
-          if (ageComp) names(ret)[4] <- "age"
+          ret <- data.frame(
+            state = x$state,
+            year = x$year,
+            sex = x$sex,
+            length = x$length,
+            lf = prop
+          )
+          if (ageComp) {
+            names(ret)[4] <- "age"
+          }
           return(ret)
         })
       }
@@ -759,8 +976,16 @@ commLFs.fn <- function(bds,
       normalizeLF.fn <- function(xx) {
         lapply(xx, function(x) {
           prop <- x$x
-          ret <- data.frame(state = x$state, year = x$year, sex = x$sex, length = x$length, lf = prop)
-          if (ageComp) names(ret)[4] <- "age"
+          ret <- data.frame(
+            state = x$state,
+            year = x$year,
+            sex = x$sex,
+            length = x$length,
+            lf = prop
+          )
+          if (ageComp) {
+            names(ret)[4] <- "age"
+          }
           return(ret)
         })
       }
@@ -772,7 +997,14 @@ commLFs.fn <- function(bds,
     bothSexLenComps <- lapply(bothSexLenComps, normalizeLF.fn)
   }
 
-  return(list(female = femaleLenComps, male = maleLenComps, both = bothSexLenComps, unsexed = unsexedLenComps, all = allSexLenComps, bds = bds[, ]))
+  return(list(
+    female = femaleLenComps,
+    male = maleLenComps,
+    both = bothSexLenComps,
+    unsexed = unsexedLenComps,
+    all = allSexLenComps,
+    bds = bds[,]
+  ))
 }
 
 ############################################################################
@@ -804,12 +1036,14 @@ commLFs.fn <- function(bds,
 #    out.filename  Results file.
 #    rpt.filename  Report file.
 #' @import stats
-process_atsea_year <- function(dat,
-                               ncatch,
-                               minAge = 1,
-                               maxAge = 15,
-                               vesselType = c(1, 2),
-                               in.pctl = 0.95) {
+process_atsea_year <- function(
+  dat,
+  ncatch,
+  minAge = 1,
+  maxAge = 15,
+  vesselType = c(1, 2),
+  in.pctl = 0.95
+) {
   stopifnot(length(unique(ncatch[["SPECIES"]])) == 1)
   # Create some variables
   # Create trip, haul identifiers; use HAUL_JOIN b/c CRUISE is not unique to a
