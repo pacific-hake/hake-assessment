@@ -9,20 +9,22 @@ plot_hcr(
   year,
   lrp = 0.1,
   urp = 0.4,
+  plot_relative = TRUE,
   background_alpha = 0.1,
   show_labels = TRUE,
   point_size = 0.25,
+  y_lim = c(0, 2),
   arrowhead_crit_x = 0.05,
   arrowhead_crit_y = 0.1,
   arrowhead_caut_x = 0.3,
   arrowhead_caut_y = 0.5,
-  arrowhead_healthy_x = 0.7,
-  arrowhead_healthy_y = 0.8,
-  label_crit_x = 1.5,
+  arrowhead_healthy_x = 0.5,
+  arrowhead_healthy_y = 0.7,
+  label_crit_x = 0.5,
   label_crit_y = 0.1,
-  label_caut_x = 1.3,
+  label_caut_x = 0.45,
   label_caut_y = 0.1,
-  label_healthy_x = 0.8,
+  label_healthy_x = 0.25,
   label_healthy_y = 0.1,
   arrow_obj = arrow(length = unit(0.5, "cm"), angle = 20, type = "closed")
 )
@@ -35,6 +37,10 @@ plot_hcr(
 \item{lrp}{Limit Reference Point}
 
 \item{urp}{upper reference point, also called USR or Upper Stock Reference}
+
+\item{plot_relative}{If \code{TRUE}, make a hockey-stick plot showing the HCR
+effect with relative fishing intensity values. If \code{FALSE}, create a scatter
+plot of the points colored by zone}
 
 \item{background_alpha}{The opacity of the colored areas representing the
 zones}
