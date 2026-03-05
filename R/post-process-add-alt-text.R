@@ -114,9 +114,9 @@ post_process_add_alt_text <- function(x,
   pat_fns <- ".*?([0-9a-zA-Z_-]+)\\}\\s*$"
   file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file])
 
-  file_based_labels <- map_chr(file_fns_labels, ~{
+  file_based_labels <- map(unique(file_fns_labels), ~{
     extract_label_from_figure_filename(.x)
-  })
+  }) |> unlist()
 
   alt_text_knitr <- map_chr(knitr_labels, ~{
     extract_alt_text(.x)
