@@ -18,7 +18,7 @@
 #' @param adapt_delta The target acceptance rate. See [adnuts::sample_admb()]
 #' @param run_extra_mcmc If `TRUE`, run SS extra mcmc option which outputs
 #' files into the `sso` subdirectory. If `FALSE`, those files will not be
-#' created and the `posteriors.sso` and `dervied_posteriors.sso` files
+#' created and the `posteriors.sso` and `derived_posteriors.sso` files
 #' will be in the running directory
 #' @param fn_exe The name of the executable which was built using ADMB
 #' @param overwrite Logical. If `TRUE` and in an interactive session,
@@ -67,8 +67,6 @@ run_adnuts <- function(path,
     }
   }
 
-  set.seed(seed)
-  seeds <- sample(1:1e4, size = num_chains)
   mcmc_path <- file.path(path, "mcmc")
   if(dir.exists(mcmc_path)){
     ovrw <- 1
@@ -237,7 +235,7 @@ run_adnuts <- function(path,
                               path = mcmc_path,
                               algorithm = "nuts",
                               num_samples = 500,
-                              seeds = seeds,
+                              seed = seed,
                               num_chains = num_chains,
                               warmup = 100,
                               control = list(metric = "mle",
@@ -263,7 +261,7 @@ run_adnuts <- function(path,
                               algorithm = "nuts",
                               num_samples = num_iters,
                               init = inits,
-                              seeds = seeds,
+                              seed = seed,
                               num_chains = num_chains,
                               warmup = num_warmup_samples,
                               mceval = TRUE,

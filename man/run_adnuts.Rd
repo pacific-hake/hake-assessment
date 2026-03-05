@@ -36,7 +36,7 @@ run_adnuts(
 
 \item{run_extra_mcmc}{If \code{TRUE}, run SS extra mcmc option which outputs
 files into the \code{sso} subdirectory. If \code{FALSE}, those files will not be
-created and the \code{posteriors.sso} and \code{dervied_posteriors.sso} files
+created and the \code{posteriors.sso} and \code{derived_posteriors.sso} files
 will be in the running directory}
 
 \item{hess_step}{Logical. If \code{TRUE}, use the \code{hess_step} algorithm`}
