@@ -91,6 +91,14 @@ load_extra_mcmc <- function(model,
     end_pat = "End_comp_data",
     ...)
 
+  # Likelihoods ----------------------------------------------------------------
+  extra_mcmc$likelihoods <- load_extra_mcmc_likelihoods(reps = reps,
+                                                        progress_n = progress_n,
+                                                        verbose = verbose,
+                                                        beg_pat = "^Component logL\\*Lambda Lambda$",
+                                                        end_pat = "^#_info_for_Laplace_calculations",
+                                                        ...)
+
   # Initial numbers-at-age -----------------------------------------------------
   ages <- model$natage |> names() |> as.numeric() |> suppressWarnings()
   ages <- ages[!is.na(ages)]
