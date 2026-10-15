@@ -26,7 +26,8 @@
 usa_get_passwords <- function(password_file) {
   user <- Sys.info()["user"]
   database <- c("NORPAC", "PacFIN")
-  name <- switch(user,
+  name <- switch(
+    user,
     "Kelli.Johnson" = {
       c("NORPAC" = "JOHNSONK", "PacFIN" = "kjohnson")[database]
     },
@@ -38,6 +39,9 @@ usa_get_passwords <- function(password_file) {
     },
     "Chantel.Wetzel" = {
       c("NORPAC" = "CWETZE", "PacFIN" = "cwetzel")[database]
+    },
+    "Kiva.Oken" = {
+      c("NORPAC" = "KOKEN", "PacFIN" = "koken")[database]
     }
   )
   stopifnot(!is.null(name))
@@ -51,11 +55,13 @@ usa_get_passwords <- function(password_file) {
     passwords <- rep(NA, length(database))
     for (ii in seq_along(database)) {
       passwords[ii] <- readline(
-        prompt = glue::glue("
+        prompt = glue::glue(
+          "
           Enter password for {database[ii]} database without quotes and \\
           hit Enter.
 
-          ")
+          "
+        )
       )
     }
   } else {
