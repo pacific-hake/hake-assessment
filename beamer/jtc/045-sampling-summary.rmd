@@ -41,36 +41,11 @@ table_sampling_by_month(
 
 ## Monthly sampling summary for U.S. in `r last_data_yr`
 
-```{r calc-numread, echo = FALSE, eval = FALSE}
-load("page.Rdat")
-load("atsea.ages.Rdat")
-```
-
-```{r us-sample-summary-atsea, results = "asis", eval = FALSE}
-# TODO: use this code rather than the pre-made tables below
-table_sampling_by_month(
-  us_extract_sampling_by_month(c("AGE", "LENGTH", "WEIGHT"), nages),
-  font_size = 8,
-  header_font_size = 9)
-```
-
-
-```{r us-sample-summary-sb, results = "asis", eval = FALSE}
-# TODO: use this code rather than the pre-made tables below
-table_sampling_by_month(
-  us_sb_age_df, #us_extract_sampling_by_month(c("AGE", "FISH_LENGTH", "FISH_WEIGHT"), page),
-  font_size = 8,
-  header_font_size = 9)
-```
-
 :::::: {.columns}
 ::: {.column width="45%"}
 \begin{center}\textbf{At-Sea}\end{center}
 ```{r us-atsea-sampling-summary, results = "asis"}
-d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_age = c(0, 0, 0, 0, 0, 0, 0, 0),
-            num_length = c(507, 535, 311, 319, 276, 605, 26, 2579),
-            num_weight = c(507, 535, 311, 319, 276, 605, 26, 2579))
+d <- tibble(read.csv("data_tables", "us-atsea-sample-summary.csv"))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
@@ -80,10 +55,7 @@ table_sampling_by_month(d,
 ::: {.column width="45%"}
 \begin{center}\textbf{Shore-based}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
-d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_age = c(58, 200, 360, 280, 200, 140, 0, 1238),
-            num_length = c(78, 360, 440, 440, 340, 388, 20, 2066),
-            num_weight = c(78, 360, 440, 440, 340, 388, 20, 2066))
+d <- tibble(read.csv("data_tables", "us-ss-sample-summary.csv"))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
