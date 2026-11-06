@@ -45,8 +45,8 @@ table_sampling_by_month(
 ::: {.column width="45%"}
 \begin{center}\textbf{At-Sea}\end{center}
 ```{r us-atsea-sampling-summary, results = "asis"}
-d <- tibble(read.csv("data_tables", "us-atsea-sample-summary.csv"))
-table_sampling_by_month(d,
+d <- tibble(read.csv(here::here("data-tables", "us-atsea-sample-summary.csv")))
+table_sampling_by_month(d = d |> dplyr::select(-Year),
                         font_size = 8,
                         header_font_size = 9)
 ```
@@ -55,8 +55,8 @@ table_sampling_by_month(d,
 ::: {.column width="45%"}
 \begin{center}\textbf{Shore-based}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
-d <- tibble(read.csv("data_tables", "us-ss-sample-summary.csv"))
-table_sampling_by_month(d,
+d <- tibble(read.csv(here::here("data-tables", "us-ss-sample-summary.csv")))
+table_sampling_by_month(d = d |> dplyr::select(-Year),
                         font_size = 8,
                         header_font_size = 9)
 ```
