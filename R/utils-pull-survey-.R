@@ -4,8 +4,8 @@
 #'
 #' Calculate age proportions for the acoustic age-2+ survey based on
 #' the estimated **abundance** at age extrapolated to the KS stratifications.
-#' This information is produced by the acoustic team and stored on the
-#' network in the `kriged_len_age_abundance_table` file.
+#' This information is produced by the acoustic team and stored on google
+#' drive in the `kriged_len_age_abundance_table` file.
 #' The original code to generate these proportions was provided by
 #' Allan Hicks and can be found on GitHub
 #' <https://github.com/iantaylor-NOAA/hake-data/blob/master/Rcode/AcousticData2.R>.
@@ -19,7 +19,7 @@
 #' @param round An integer specifying how many digits should be printed.
 #'   The default is to print the options for `digits` stored in your R session.
 #' @param dir The directory that stores the age-composition data that have been
-#'   extrapolated.
+#'   extrapolated. Default is `"G:/Shared drives/NMFS NWC FRAM FEAT and JTC/assessment age proportions"`.
 #' @export
 #' @examples
 #' proportions <- pull_survey_age_proportions(
@@ -30,10 +30,10 @@
 pull_survey_age_proportions <- function(
   year = hake::get_data_yr(),
   round = options()$digits,
-  dir = "//nwcfile/fram/Survey.Acoustics/Survey Time Series Analysis/Historical Summary (for Kriging)/Outputs/Historical Outputs (KS Stratification with aged data)/with extrapolation/"
+  dir = "G:/Shared drives/NMFS NWC FRAM FEAT and JTC/assessment age proportions"
 ) {
-  # Read file from the network
-  the_file <- glue::glue("{dir}{year}/kriged_len_age_abundance_table.xlsx")
+  # Read file from the shared google drive
+  the_file <- glue::glue("{dir}/{year}/kriged_len_age_abundance_table.xlsx")
   if (!fs::file_exists(the_file)) {
     cli::cli_alert_warning(c(
       "The file {the_file} does not exist, it is probably a non-survey year."
@@ -79,18 +79,16 @@ calc_proportions <- function(data, maxcol = 15) {
 #' This function takes a while because it uses [fs::dir_ls()] to find the
 #' appropriate file names when looking for the research-year data.
 #' @param dir The directory of interest for the NWFSC Network Acoustic Survey
-#'   data. The default is `"\\\\nwcfile\\fram\\Survey.Acoustics"`.
+#'   data. The default is `"G:/Shared drives/NMFS NWC FRAM FEAT and JTC/survey biological data"`.
 #' @param summary_file_name A string with the extension of xlsx that lives in
 #'   the directory `Data Processing/Historic Biodata` beneath `dir`.
 #' @export
 pull_survey_weight_at_age <- function(
-  dir = "\\\\nwcfile\\FRAM\\Survey.Acoustics",
+  dir = "G:/Shared drives/NMFS NWC FRAM FEAT and JTC/survey biological data",
   summary_file_name = "1995-2025_Survey_Biodata.xlsx"
 ) {
   summary_file <- fs::path(
     dir,
-    "Data Processing",
-    "Historic Biodata",
     summary_file_name
   )
 
@@ -101,11 +99,11 @@ pull_survey_weight_at_age <- function(
   )
 
   # Must read in haul data to get the date
+  # the warnings do not impact the columns that are selected
   hauls <- readxl::read_excel(
     summary_file,
-    sheet = "biodata_haul"
-  ) |>
-    dplyr::select(survey, haul, eq_date_time) |>
+    sheet = "biodata_haul") |>
+    dplyr::select(ship, survey, haul, eq_date_time) |>
     dplyr::distinct() |>
     dplyr::mutate(
       Date = as.Date(eq_date_time, tryFormats = "%m/%d/%Y"),
@@ -116,10 +114,11 @@ pull_survey_weight_at_age <- function(
   # You have to specify the col_types because the first few rows of the data do
   # not have weights and are blank so read_excel thinks that they are logical
   # and all weights get transcribed to 0 or 1. :(
+  # The warning about C13 is the "maturity table" column and is not used.
   all <- readxl::read_excel(
     summary_file,
     sheet = "biodata_specimen",
-    col_types = c(rep("numeric", 15), rep("text", 3), "guess")
+    col_types = c(rep("numeric", 9), "text", rep("numeric", 5), rep("text", 4))
   ) |>
     dplyr::filter(
       # 22500 is hake
@@ -129,7 +128,7 @@ pull_survey_weight_at_age <- function(
     ) |>
     dplyr::left_join(
       y = hauls,
-      by = c("survey", "haul")
+      by = c("survey", "haul", "ship")
     ) |>
     dplyr::mutate(
       Year = as.numeric(substr(survey, 1, 4)),
