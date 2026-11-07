@@ -7,8 +7,7 @@
 pull_survey_age_proportions(
   year = hake::get_data_yr(),
   round = options()$digits,
-  dir =
-    "//nwcfile/fram/Survey.Acoustics/Survey Time Series Analysis/Historical Summary (for Kriging)/Outputs/Historical Outputs (KS Stratification with aged data)/with extrapolation/"
+  dir = "G:/Shared drives/NMFS NWC FRAM FEAT and JTC/assessment age proportions"
 )
 }
 \arguments{
@@ -19,13 +18,13 @@ The default uses \code{\link[=get_data_yr]{get_data_yr()}} to get the current ye
 The default is to print the options for \code{digits} stored in your R session.}
 
 \item{dir}{The directory that stores the age-composition data that have been
-extrapolated.}
+extrapolated. Default is \code{"G:/Shared drives/NMFS NWC FRAM FEAT and JTC/assessment age proportions"}.}
 }
 \description{
 Calculate age proportions for the acoustic age-2+ survey based on
 the estimated \strong{abundance} at age extrapolated to the KS stratifications.
-This information is produced by the acoustic team and stored on the
-network in the \code{kriged_len_age_abundance_table} file.
+This information is produced by the acoustic team and stored on google
+drive in the \code{kriged_len_age_abundance_table} file.
 The original code to generate these proportions was provided by
 Allan Hicks and can be found on GitHub
 \url{https://github.com/iantaylor-NOAA/hake-data/blob/master/Rcode/AcousticData2.R}.
