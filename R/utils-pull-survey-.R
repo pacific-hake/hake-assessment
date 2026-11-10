@@ -102,7 +102,8 @@ pull_survey_weight_at_age <- function(
   # the warnings do not impact the columns that are selected
   hauls <- readxl::read_excel(
     summary_file,
-    sheet = "biodata_haul") |>
+    sheet = "biodata_haul"
+  ) |>
     dplyr::select(ship, survey, haul, eq_date_time) |>
     dplyr::distinct() |>
     dplyr::mutate(
@@ -174,51 +175,29 @@ pull_survey_weight_at_age <- function(
 }
 
 pull_research_survey_file_names <- function(
-  dir = "\\\\nwcfile\\FRAM\\Survey.Acoustics"
+  dir = "https://drive.google.com/drive/folders/1PIT1N3EYAcPsDRIyK80B2D_L5xwogMx8"
 ) {
-  # Search for HakeRes which is the hake research survey or for 1992 Hake Sum
-  # MF_WER because the 1992 data are yet to be included in the survey years
-  all <- fs::dir_ls(dir, regexp = "HakeRes") |>
-    purrr::map(.f = fs::dir_ls, type = "dir", regexp = "Data_SH") |>
-    discard(.p = \(x) length(x) == 0) |>
-    purrr::map(
-      .f = fs::dir_ls,
-      regexp = "biodata_specimen_[AWSUIG]{2}[A-Z]+\\.|biodata_specimen\\.",
-      recurse = TRUE
-    ) |>
-    discard(.p = \(x) length(x) == 0)
-  # The 2024 files are removed because there are formatting issues that I
-  # need to sort out with Alicia.
-  all[[5]] <- NULL
+  # The googlesheets4 package is unable to use a fixed directory (e.g., G:/) so
+  # I am using this work around with googledrive to find research data that
+  # are saved in gsheets
+  target_folder <- googledrive::drive_get(googledrive::as_id(dir))
+  all <- googledrive::drive_ls(target_folder, pattern = "length_age")
   all
 }
 
 read_research_year_bio_file <- function(file_name) {
-  dir_of_file <- dirname(file_name)
-  haul_file <- fs::dir_ls(dir_of_file, regexp = "haul")
-  # If haul file does not exist, then find year and guess month
-  if (length(haul_file) == 1) {
-    raw_haul_data <- readxl::read_excel(haul_file)
-    find <- colnames(raw_haul_data) == "haul"
-    if (sum(find) > 0) {
-      colnames(raw_haul_data)[find] <- "Haul"
-    }
-    haul_data <- raw_haul_data |>
-      dplyr::rename(DateTime = dplyr::starts_with("EQ")) |>
-      dplyr::select(Haul, DateTime1) |>
-      tidyr::fill(DateTime1, .direction = "updown")
-  } else {
-    year <- gsub(".+([[1-2][0-9]{3}).+", "\\1", dir_of_file)
-    month <- "07"
-    temp <- readxl::read_excel(file_name)
-    # The bio files have changed and the haul column is not linked to dates
-    haul_data <- dplyr::select(temp, haul) |>
-      dplyr::distinct() |>
-      dplyr::rename_with(.fn = stringr::str_to_title) |>
-      dplyr::mutate(
-        DateTime1 = glue::glue("{month}/01/{year}")
-      )
-  }
+  raw_haul_data <- googlesheets4::read_sheet(
+    ss = file_name,
+    sheet = "haul_locations"
+  )
+  haul_data <- raw_haul_data |>
+    dplyr::rename(
+      Haul = haul,
+      DateTime = dplyr::starts_with("eq")
+    ) |>
+    dplyr::select(Haul, DateTime1) |>
+    tidyr::fill(DateTime1, .direction = "updown")
+
   if (any(grepl("/", haul_data[["DateTime1"]]))) {
     format_date <- ifelse(
       grepl(
@@ -242,7 +221,9 @@ read_research_year_bio_file <- function(file_name) {
       origin = "1899-12-30"
     )
   }
-  bio_data <- readxl::read_excel(file_name) |>
+
+  raw_bio_data <- googlesheets4::read_sheet(ss = file_name, sheet = "spec_data")
+  bio_data <- raw_bio_data |>
     dplyr::rename_with(.fn = stringr::str_to_title) |>
     dplyr::left_join(
       y = haul_data,
@@ -257,9 +238,9 @@ read_research_year_bio_file <- function(file_name) {
       Age_yrs = Age,
       Length_cm = Length,
       Sex = dplyr::case_when(
-        tolower(Sex) == "f" ~ "F",
-        tolower(Sex) == "m" ~ "M",
-        tolower(Sex) == "x" ~ "U",
+        tolower(Sex) %in% c("f", "female") ~ "F",
+        tolower(Sex) %in% c("m", "male") ~ "M",
+        tolower(Sex) %in% c("x", "u", "unsexed") ~ "U",
         Sex == 1 ~ "F",
         Sex == 2 ~ "M",
         Sex == 3 ~ "U",

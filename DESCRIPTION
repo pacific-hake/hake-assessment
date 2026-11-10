@@ -45,6 +45,8 @@ Imports:
   ggplot2,
   ggrepel,
   glue,
+  googledrive,
+  googlesheets4,
   grDevices,
   grid,
   gridExtra,
