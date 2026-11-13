@@ -92,6 +92,12 @@ pull_survey_weight_at_age <- function(
     summary_file_name
   )
 
+  historical_data <- read.csv(here::here(
+    "data-tables",
+    "survey-weight-at-age.csv"
+  )) |>
+    dplyr::filter(Year < 1995)
+
   research_data <- pull_research_survey_file_names() |>
     dplyr::pull(id) |>
     purrr::map(read_research_year_bio_file) |>
@@ -160,6 +166,7 @@ pull_survey_weight_at_age <- function(
     )
 
   out <- dplyr::bind_rows(
+    historical_data,
     all,
     research_data
   ) |>
