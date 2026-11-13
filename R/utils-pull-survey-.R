@@ -92,11 +92,10 @@ pull_survey_weight_at_age <- function(
     summary_file_name
   )
 
-  # There are no haul files found in these folders, only the bio specimen files
-  research_data <- purrr::map_df(
-    pull_research_survey_file_names(dir),
-    .f = read_research_year_bio_file
-  )
+  research_data <- pull_research_survey_file_names() |>
+    dplyr::pull(id) |>
+    purrr::map(read_research_year_bio_file) |>
+    purrr::list_rbind()
 
   # Must read in haul data to get the date
   # the warnings do not impact the columns that are selected
@@ -181,7 +180,11 @@ pull_research_survey_file_names <- function(
   # I am using this work around with googledrive to find research data that
   # are saved in gsheets
   target_folder <- googledrive::drive_get(googledrive::as_id(dir))
-  all <- googledrive::drive_ls(target_folder, pattern = "length_age")
+  all <- googledrive::drive_ls(
+    target_folder,
+    pattern = "length_age",
+    type = "spreadsheet"
+  )
   all
 }
 
@@ -193,7 +196,7 @@ read_research_year_bio_file <- function(file_name) {
   haul_data <- raw_haul_data |>
     dplyr::rename(
       Haul = haul,
-      DateTime = dplyr::starts_with("eq")
+      DateTime1 = eq_date_time
     ) |>
     dplyr::select(Haul, DateTime1) |>
     tidyr::fill(DateTime1, .direction = "updown")
@@ -216,13 +219,28 @@ read_research_year_bio_file <- function(file_name) {
     haul_data[["DateTime1"]][which_are_na] <- haul_data[["DateTime1"]][
       setdiff(seq(NROW(haul_data)), which_are_na)[1]
     ]
-    haul_data[["DateTime1"]] <- as.Date(
-      as.numeric(haul_data[["DateTime1"]]),
-      origin = "1899-12-30"
+    #haul_data[["DateTime1"]] <- as.Date(
+    #  as.numeric(haul_data[["DateTime1"]]),
+    #  origin = "1899-12-30"
+    #)
+  }
+
+  sheet_names <- googlesheets4::sheet_names(file_name)
+  find_sheet <- sheet_names[
+    sheet_names %in% c("spec_data", "AWT_spec_data", "MFT_spec_data")
+  ]
+  if (length(find_sheet) == 2) {
+    raw_bio_data <- dplyr::bind_rows(
+      googlesheets4::read_sheet(ss = file_name, sheet = "AWT_spec_data"),
+      googlesheets4::read_sheet(ss = file_name, sheet = "MFT_spec_data")
+    )
+  } else {
+    raw_bio_data <- googlesheets4::read_sheet(
+      ss = file_name,
+      sheet = "spec_data"
     )
   }
 
-  raw_bio_data <- googlesheets4::read_sheet(ss = file_name, sheet = "spec_data")
   bio_data <- raw_bio_data |>
     dplyr::rename_with(.fn = stringr::str_to_title) |>
     dplyr::left_join(
@@ -259,6 +277,7 @@ read_research_year_bio_file <- function(file_name) {
     ) |>
     dplyr::filter(!is.na(Weight_kg)) |>
     dplyr::filter(!is.na(Age_yrs))
+  return(bio_data)
 }
 
 
