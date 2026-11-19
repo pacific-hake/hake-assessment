@@ -12,14 +12,17 @@ library(sdmTMB)
 load_all()
 
 # These objects must be altered EVERY YEAR
+# Updated by CRW on 11/29/26 - for 2025 survey age proportions
+# Since this will be run on the server - you can not use the 
+# pull_survey_age_proportions() function which accesses NOAA G Drive
 survey_age_comps <- c(
-  0, 50.5802, 24.6599, 1.0311, 1.1722, 2.9196, 8.0851, 0.8808, 5.3789,
-  0.7693, 0.5831, 0.6698, 2.2987, 0.4084, 0.5628
-)
+  0.0000000. 47.5702049. 12.3624873. 21.6116723.  6.4011133.  0.9098433.  0.9623635.  1.1757230.  
+  3.1122670, 0.3026791.  3.4793028.  0.5142529.  0.3155505.  0.0764487.  1.2060914)
 survey_age_comps_n <- 64
 
 # These objects might need to be altered at the start
-current_yr <- 2025
+current_yr <- 2027
+survey_data_yr <- 2025
 model_dir_srv <- "/srv/hake/models"
 model_dir_version <- "01-version"
 model_dir_base <- fs::path("01-base-models", "01-base")
@@ -317,36 +320,40 @@ r4ss::copy_SS_inputs(
   verbose = FALSE,
   recursive = TRUE
 )
-# inputs <- r4ss::SS_read(
-#   dir = fs::path(bridge_dir, "30-add-survey-2"),
-#   ss_new = FALSE,
-#   verbose = FALSE
-# )
-# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-#   fleet = -2,
-#   year = current_yr - 2,
-#   data = c(1, 1),
-#   archive = inputs[["dat"]][["CPUE"]]
-# )
-# # TODO: replace the entire time series and add -fleet for the missing year rows
-# #       this will need to be done for the age-1 survey as well
-# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-#   year = current_yr - 1,
-#   data = survey_by_country_df |>
-#     dplyr::filter(year == current_yr - 1) |>
-#     dplyr::mutate(
-#       total = total * 1000,
-#       total.cv = total.cv / 100
-#     ) |>
-#     dplyr::select(total, total.cv) |>
-#     as.vector(),
-#   archive = inputs[["dat"]][["CPUE"]]
-# )
-# r4ss::SS_write(
-#   inputs,
-#   dir = fs::path(bridge_dir, "30-add-survey-2"),
-#   overwrite = TRUE
-# )
+inputs <- r4ss::SS_read(
+  dir = fs::path(bridge_dir, "30-add-survey-2"),
+  ss_new = FALSE,
+  verbose = FALSE
+)
+inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+  fleet = -2,
+  # Modified by CRW on 11/19/26
+  year = current_yr - 1,
+  #year = current_yr - 2,
+  data = c(1, 1),
+  archive = inputs[["dat"]][["CPUE"]]
+)
+# TODO: replace the entire time series and add -fleet for the missing year rows
+#       this will need to be done for the age-1 survey as well
+inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+  year = current_yr - 1,
+  data = survey_by_country_df |>
+    # Modified by CRW on 11/19/26
+    dplyr::filter(year == survey_data_yr) |>
+    #dplyr::filter(year == current_yr - 1) |>
+    dplyr::mutate(
+      total = total * 1000,
+      total.cv = total.cv / 100
+    ) |>
+    dplyr::select(total, total.cv) |>
+    as.vector(),
+  archive = inputs[["dat"]][["CPUE"]]
+)
+r4ss::SS_write(
+  inputs,
+  dir = fs::path(bridge_dir, "30-add-survey-2"),
+  overwrite = TRUE
+)
 ```
 
 ```{r add-survey-age-comps, eval = FALSE}
@@ -363,20 +370,22 @@ inputs <- r4ss::SS_read(
   ss_new = FALSE,
   verbose = FALSE
 )
-# inputs[["dat"]][["agecomp"]] <- rbind(
-#   inputs[["dat"]][["agecomp"]],
-#   c(
-#     current_yr - 1, 7, 2, 0, 0, 51, -1, -1, survey_age_comps_n,
-#     survey_age_comps
-#   )
-# ) |>
-#   dplyr::arrange(-fleet, year)
-# inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
-# r4ss::SS_write(
-#   inputs,
-#   dir = fs::path(bridge_dir, "31-add-survey-age-comps"),
-#   overwrite = TRUE
-# )
+inputs[["dat"]][["agecomp"]] <- rbind(
+  inputs[["dat"]][["agecomp"]],
+  c(
+    # Modified by CRW 11/19/26
+    survey_data_yr, 7, 2, 0, 0, 51, -1, -1, survey_age_comps_n,
+    #current_yr - 1, 7, 2, 0, 0, 51, -1, -1, survey_age_comps_n,
+    survey_age_comps
+  )
+) |>
+  dplyr::arrange(-fleet, year)
+inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
+r4ss::SS_write(
+  inputs,
+  dir = fs::path(bridge_dir, "31-add-survey-age-comps"),
+  overwrite = TRUE
+)
 ```
 
 ```{r survey-1, eval = FALSE}
@@ -460,9 +469,27 @@ r4ss::SS_write(
 )
 ```
 
-```{r base, eval = FALSE}
+
+```{r split-survey-comp, eval = FALSE}
 r4ss::copy_SS_inputs(
   dir.old = fs::path(bridge_dir, "50-add-fishery-ages"),
+  dir.new = fs::path(bridge_dir, "60-split-survey"),
+  overwrite = TRUE,
+  use_ss_new = FALSE,
+  verbose = FALSE,
+  recursive = TRUE
+)
+
+# Need to add steps to split the survey into two fleets:
+# 1995-2015 fleet 2
+# 2017-20125 fleet 3
+
+```
+
+
+```{r base, eval = FALSE}
+r4ss::copy_SS_inputs(
+  dir.old = fs::path(bridge_dir, "60-split-survey"),
   dir.new = fs::path(dirname(bridge_dir), model_dir_base),
   overwrite = TRUE,
   use_ss_new = FALSE,
