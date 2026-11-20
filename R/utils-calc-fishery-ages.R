@@ -15,17 +15,17 @@
 #' A data frame is returned that is appropriate for using in a Stock Synthesis
 #' data file for the age-composition section.
 calc_fishery_ages <- function(weight_at_age) {
-
+  # convert the weight-at-age values from the model in a long table
   wtatage_repo <- weight_at_age |>
     dplyr::filter(fleet == 1) |>
     dplyr::select(year, dplyr::matches("^[0-9]+$")) |>
     tidyr::pivot_longer(names_to = "age", values_to = "weight", cols = -year)
 
+  # ct is a table of catch by sector, TAC, and proportions for all model years
+  # create a long table of catch by sector and year
   catch_repo <- ct |>
     dplyr::select(
-      -dplyr::matches("tot|TAC|attain|_catch|_prop",
-        ignore.case = TRUE
-      )
+      -dplyr::matches("tot|TAC|attain|_catch|_prop", ignore.case = TRUE)
     ) |>
     dplyr::rename(year = Year) |>
     tidyr::pivot_longer(
@@ -34,6 +34,8 @@ calc_fishery_ages <- function(weight_at_age) {
       cols = -year
     )
 
+  # bind together all age data sources which include year, number of fish,
+  # number of samples, and proportion by age 1-15 and label by sector
   age_repo <- dplyr::bind_rows(
     "Canada Freezer-trawler" = can_ft_age_df,
     "Canada Joint-venture" = can_jv_age_df,
@@ -44,6 +46,14 @@ calc_fishery_ages <- function(weight_at_age) {
     .id = "sector"
   )
 
+  # 1. Join the catch and age data by sector and convert to a long data table
+  # 2. Join the catch and age data with the weight-at-age estimates by age and year
+  # 3. Calculate expansion factor (prop) by year and sector by:
+  # (catch by sector, year * the proportion of age comps by age, sector, year) /
+  # (sum across all ages(proportion-at-age * weight-at-age))
+  # 4. Sum the "prop" across sectors by year and age
+  # 5. Convert to proportions (sums to 100)
+  # 6. Format composition data for SS3
   final <- dplyr::left_join(
     age_repo,
     catch_repo,
@@ -58,6 +68,10 @@ calc_fishery_ages <- function(weight_at_age) {
     dplyr::left_join(wtatage_repo, by = c("age", "year")) |>
     dplyr::group_by(year, sector) |>
     dplyr::mutate(
+      numerator = (catch * numbers),
+      denominator = sum(numbers * weight),
+      # catch is the sector catch, numbers is the proportion by age, and
+      # weight is the weight-at-age
       prop = (catch * numbers) / sum(numbers * weight)
     ) |>
     dplyr::group_by(year, age) |>
