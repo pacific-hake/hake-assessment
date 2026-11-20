@@ -47,7 +47,7 @@
 #' @importFrom minpack.lm nlsLM
 #' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
-#' @importFrom readr cols read_csv read_table2 write_csv
+#' @importFrom readr cols read_csv write_csv
 #' @importFrom rlang `%||%` as_label enquos set_names sym
 #' @importFrom rgl rglwidget
 #' @importFrom scales comma ordinal rescale
