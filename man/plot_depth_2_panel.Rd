@@ -20,7 +20,7 @@ plot_depth_2_panel(fishing_depth_df, bottom_depth_df, label_size = 14, ...)
 \item{...}{Arguments passed to \code{\link[=plot_depth]{plot_depth()}}}
 }
 \value{
-A \code{\link[gridExtra:arrangeGrob]{gridExtra::grid.arrange()}} object
+A \code{\link[gridExtra:grid.arrange]{gridExtra::grid.arrange()}} object
 }
 \description{
 Create a 2-panel plot with fishing depth on the left and bottom depth on

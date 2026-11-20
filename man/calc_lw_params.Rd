@@ -7,7 +7,7 @@
 calc_lw_params(d, grouping_cols = "year", lw_tol = 0.1, lw_maxiter = 1000)
 }
 \arguments{
-\item{d}{A data frame as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
+\item{d}{A data frame as returned by \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}}
 
 \item{grouping_cols}{A vector of character strings matching the names
 of the columns you want to group for. i.e. \code{"year"} or \code{c("year", "month")}}

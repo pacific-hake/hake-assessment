@@ -3,7 +3,7 @@
 \name{add_utm_columns}
 \alias{add_utm_columns}
 \alias{get_crs}
-\title{Add UTM coordinates to a data frame (Copied from \link[gfplot:gfplot]{gfplot::gfplot} package)}
+\title{Add UTM coordinates to a data frame (Copied from \link[gfplot:gfplot]{gfplot} package)}
 \usage{
 add_utm_columns(
   d,

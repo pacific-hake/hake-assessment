@@ -350,7 +350,7 @@ will be longer and have a label. The first and last will be shown
 regardless of what this number is}
 
 \item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument
-in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
+in \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}}
 
 \item{tick_prop}{A value that the length of the major tick marks are
 multiplied by. This proportion must be set by trial and error. Make sure
@@ -479,7 +479,7 @@ under B10)}
 \item{dodge_val}{The amount to separate lines between unique models
 multiple model plots}
 
-\item{...}{Arguments passed to \code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}}
+\item{...}{Arguments passed to \code{\link[ggplot2:geom_pointrange]{ggplot2::geom_pointrange()}}}
 
 \item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot.
 Used for recruitment plot only}

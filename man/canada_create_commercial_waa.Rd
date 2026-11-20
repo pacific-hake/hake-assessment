@@ -12,7 +12,7 @@ canada_create_commercial_waa(
 )
 }
 \arguments{
-\item{d}{A list as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
+\item{d}{A list as returned by \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}}
 
 \item{weight_scale}{A value to divide the weights by}
 

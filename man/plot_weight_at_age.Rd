@@ -33,7 +33,7 @@ data frame will be plotted}
 these ages will be thicker and the labels for them will be bold as well}
 
 \item{cols}{A vector of colors to base the color ramp on. See
-\code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}}
+\code{\link[ggplot2:scale_color_gradientn]{ggplot2::scale_color_gradientn()}}}
 
 \item{x_lim}{The min and max limits as a vector for the x-axis}
 
@@ -60,7 +60,7 @@ lines}
 \item{age_label_side}{Where to place the age labels next to the lines.
 One of "none", "both", "left", or "right"}
 
-\item{...}{Arguments passed to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}}
+\item{...}{Arguments passed to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}}
 
 \item{y_lab_by}{The amount between each y-axis label}
 }

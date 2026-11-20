@@ -32,8 +32,8 @@ are in the cumulative file but a better version was provided by Chris Grandin
 in 2022 as a csv file.
 }
 \seealso{
-Other weight-at-age: 
-\code{\link{weight_at_age_outlier}()}
+Other weight-at-age:
+\code{\link[=weight_at_age_outlier]{weight_at_age_outlier()}}
 }
 \author{
 Ian G. Taylor

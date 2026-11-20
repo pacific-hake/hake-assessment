@@ -9,10 +9,10 @@ hake_pdf(...)
 }
 \arguments{
 \item{...}{Variables from the YAML code (in `000-launcher.rmd``)
-passed to \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}} and \code{\link[=post_process]{post_process()}}}
+passed to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}} and \code{\link[=post_process]{post_process()}}}
 }
 \value{
-The output from \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}}
+The output from \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}}
 }
 \description{
 Custom function to allow the post processing steps to be run before

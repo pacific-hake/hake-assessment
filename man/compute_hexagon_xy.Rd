@@ -7,10 +7,10 @@
 compute_hexagon_xy(d, bin_width)
 }
 \arguments{
-\item{d}{Data from \code{\link[gfdata:get_data]{gfdata::get_cpue_spatial()}},
-\code{\link[gfdata:get_data]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_data]{gfdata::get_catch_spatial()}}}
+\item{d}{Data from \code{\link[gfdata:get_cpue_spatial]{gfdata::get_cpue_spatial()}},
+\code{\link[gfdata:get_cpue_spatial_ll]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_catch_spatial]{gfdata::get_catch_spatial()}}}
 
-\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_2d]{ggplot2::stat_summary_hex()}}}
+\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_hex]{ggplot2::stat_summary_hex()}}}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}} containing the columns 'hex_id', 'cpue$value,

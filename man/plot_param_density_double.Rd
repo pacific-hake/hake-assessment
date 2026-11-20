@@ -56,7 +56,7 @@ calculation}
 \item{x_lim}{A vector of two values. The x-axis minimum and maximum values}
 
 \item{expand_vec}{A vector to pass to the \code{expand} argument of the
-\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}} function. Default is \code{c(0, 0)}}
+\code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}} function. Default is \code{c(0, 0)}}
 
 \item{fill_color1}{The color used to fill under the density curve for model 1}
 

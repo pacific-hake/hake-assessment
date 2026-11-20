@@ -41,7 +41,7 @@ until you cannot see the white rectangle anymore.}
 \item{x_breaks}{The year value tick marks to show for the x axis}
 
 \item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument
-in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
+in \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}}
 
 \item{x_labs_mod}{Value for major X-axis tick marks. Every Nth tick
 will be longer and have a label. The first and last will be shown

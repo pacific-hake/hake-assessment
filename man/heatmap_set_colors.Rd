@@ -20,7 +20,7 @@ heatmap_set_colors(
 \value{
 A vector of the colors ramped by the function. The vector will
 be the number of ages minus 1 found in the \code{wa} data frame. The color
-ramp is provided by \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}
+ramp is provided by \code{\link[grDevices:colorRampPalette]{grDevices::colorRampPalette()}}
 }
 \description{
 Ramp colors given to the length of the number of ages in the data frame \code{w}

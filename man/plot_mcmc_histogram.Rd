@@ -47,8 +47,6 @@ is used for character columns (discrete data). If \code{FALSE}, return a
 \item{lvls}{A vector of levels that should appear in the data if
 \code{barplot} is \code{TRUE}. If \code{NULL}, the data will be plotted as-is}
 
-\item{scale_effn}{}
-
 \item{show_ro}{Logical. If \code{TRUE}, make a label with arrow showing which
 bin the R0 parameter is in}
 

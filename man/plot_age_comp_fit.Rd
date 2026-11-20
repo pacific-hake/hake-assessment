@@ -32,9 +32,9 @@ plot_age_comp_fit(
 
 \item{n_col}{The number of columns for the facets (years)}
 
-\item{x_breaks}{The x-axis breaks passed to \code{\link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete()}}}
+\item{x_breaks}{The x-axis breaks passed to \code{\link[ggplot2:scale_x_discrete]{ggplot2::scale_x_discrete()}}}
 
-\item{y_breaks}{The y-axis breaks passed to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}}}
+\item{y_breaks}{The y-axis breaks passed to \code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}}}
 
 \item{axis_title_font_size}{The font size for the axis titles}
 

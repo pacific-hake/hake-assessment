@@ -37,7 +37,7 @@ maximum years to plot panels for}
 \item{point_size}{The point size}
 
 \item{point_fatten}{The fatness of the point. Needed when using
-\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}}
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}}
 
 \item{border_width}{Thickness of the border line. If \code{NULL} no border will
 be shown}

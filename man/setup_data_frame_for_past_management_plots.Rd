@@ -21,7 +21,7 @@ setup_data_frame_for_past_management_plots(
 )
 }
 \arguments{
-\item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
+\item{d}{The data as read in using \code{\link[readr:read_csv]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
 \item{inc_biomass_ests}{If \code{TRUE}, include a line representing the estimated

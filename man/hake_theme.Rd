@@ -33,7 +33,7 @@ project. One of "plain", "bold", or "italics"}
 \item{ax_tick_length_cm}{The length of all the tick mark lines in the
 project}
 
-\item{margin_def}{A call to the function \code{\link[ggplot2:element]{ggplot2::margin()}}. The format
+\item{margin_def}{A call to the function \code{\link[ggplot2:margin]{ggplot2::margin()}}. The format
 must be like this: margin(12, 12, 12, 12) where the order of the arguments
 is for each side top, right, bottom, left. Defaults to zero margin on all
 sides}

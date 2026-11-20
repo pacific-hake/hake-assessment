@@ -29,8 +29,6 @@ See \code{header_vert_spacing}}
 \item{right_cols_cm}{The number of centimeters wide to make all of the
 rightmost columns (all the value columns)}
 
-\item{...}{}
-
 \item{vert_spacing}{The vertical spacing between newlines for this font.
 If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
 }

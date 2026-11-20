@@ -18,7 +18,7 @@ canada_create_age_proportions_csv(
 )
 }
 \arguments{
-\item{d}{A data frame as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
+\item{d}{A data frame as returned by \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}}
 
 \item{type}{The fleet type to create the file for. This is needed so
 the function knows what the filename should be for each fleet}

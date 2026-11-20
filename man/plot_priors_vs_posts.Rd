@@ -40,7 +40,7 @@ parameter names at the top of each plot)}
 \item{...}{Parameters to be passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}. For example,
 \code{labeller = label_parsed_space}, which is available in this package, will
 remove the spaces from the strings and implement
-\code{\link[ggplot2:labellers]{ggplot2::label_parsed()}}. And, \code{ncol} and \code{nrow} can be used to direct
+\code{\link[ggplot2:label_parsed]{ggplot2::label_parsed()}}. And, \code{ncol} and \code{nrow} can be used to direct
 the output or you can let {ggplot2} figure it out.}
 }
 \value{

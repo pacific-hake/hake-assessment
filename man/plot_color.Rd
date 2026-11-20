@@ -9,7 +9,7 @@ plot_color(num_colors = 10, palette = "Set1")
 \arguments{
 \item{num_colors}{The number of colors to return}
 
-\item{palette}{A palette found in \link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal.info}}
+\item{palette}{A palette found in \link[RColorBrewer:brewer.pal.info]{RColorBrewer::brewer.pal.info}}
 }
 \value{
 A vector of HEX colours

@@ -17,7 +17,7 @@ plot_management_catch_vs_tac_1_to_1(
 )
 }
 \arguments{
-\item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
+\item{d}{The data as read in using \code{\link[readr:read_csv]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
 \item{yr_font_size}{The font size for the year labels}

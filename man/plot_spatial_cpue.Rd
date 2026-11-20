@@ -22,8 +22,8 @@ plot_spatial_cpue(
 )
 }
 \arguments{
-\item{d}{Data from \code{\link[gfdata:get_data]{gfdata::get_cpue_spatial()}},
-\code{\link[gfdata:get_data]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_data]{gfdata::get_catch_spatial()}}}
+\item{d}{Data from \code{\link[gfdata:get_cpue_spatial]{gfdata::get_cpue_spatial()}},
+\code{\link[gfdata:get_cpue_spatial_ll]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_catch_spatial]{gfdata::get_catch_spatial()}}}
 
 \item{crs_ll}{Coordinate Reference System (CRS) number for a
 latitude/longitude-based projection. This could be NAD83 or WGS84 or
@@ -44,7 +44,7 @@ limits of the x-axis in degrees of longitude}
 \item{y_lim}{The length-2 vector representing the minimum and maximum
 limits of the y-axis in degrees of latitude}
 
-\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_2d]{ggplot2::stat_summary_hex()}}}
+\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_hex]{ggplot2::stat_summary_hex()}}}
 
 \item{n_minimum_vessels}{The minimum number of vessels that must be present
 in a hexagon for the hexagon to be shown}

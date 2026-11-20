@@ -24,7 +24,7 @@ it exists}
 
 \item{unsorted_only}{Only include unsorted samples. For hake in Canada,
 this needs to be \code{FALSE} or some years will show no ages at all.
-See \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}} for additional information}
+See \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}} for additional information}
 
 \item{species_code}{The DFO Groundfish database species code;
 default: 225 (hake)}

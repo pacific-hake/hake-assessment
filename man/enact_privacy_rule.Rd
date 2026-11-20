@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils-enact-privacy-rule.R
 \name{enact_privacy_rule}
 \alias{enact_privacy_rule}
-\title{Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot::gfplot}
+\title{Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot}
 package}
 \usage{
 enact_privacy_rule(dat, bin_width, n_minimum_vessels, x_lim, y_lim)
 }
 \arguments{
-\item{dat}{Data from \code{\link[gfdata:get_data]{gfdata::get_cpue_spatial()}},
-\code{\link[gfdata:get_data]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_data]{gfdata::get_catch_spatial()}}}
+\item{dat}{Data from \code{\link[gfdata:get_cpue_spatial]{gfdata::get_cpue_spatial()}},
+\code{\link[gfdata:get_cpue_spatial_ll]{gfdata::get_cpue_spatial_ll()}}, or \code{\link[gfdata:get_catch_spatial]{gfdata::get_catch_spatial()}}}
 
-\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_2d]{ggplot2::stat_summary_hex()}}}
+\item{bin_width}{Bin width as defined in \code{\link[ggplot2:stat_summary_hex]{ggplot2::stat_summary_hex()}}}
 
 \item{n_minimum_vessels}{The minimum number of vessels that must be present
 in a hexagon for the hexagon to be shown}
@@ -29,7 +29,7 @@ events removed due to privacy limitations, and 3) The total number of
 fishing events in \code{dat}
 }
 \description{
-Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot::gfplot}
+Apply the confidentiality rule to spatial data. Copied from the \link[gfplot:gfplot]{gfplot}
 package
 }
 \details{

@@ -9,7 +9,7 @@ Joint venture)}
 get_age_proportions_by_fleet(d, raw_proportions = F)
 }
 \arguments{
-\item{d}{A data frame as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
+\item{d}{A data frame as returned by \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}}
 
 \item{raw_proportions}{Logical. If \code{TRUE}, return raw, unweighted age
 proportions. If \code{FALSE}, return the age proportions weighted by sample

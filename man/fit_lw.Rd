@@ -14,7 +14,7 @@ fit_lw(d, tol = 0.1, maxiter = 1000)
 \item{maxiter}{Model maximum iterations. See \code{\link[minpack.lm:nls.lm.control]{minpack.lm::nls.lm.control()}}}
 }
 \value{
-The \code{\link[stats:coef]{stats::coefficients()}} for the model fit
+The \code{\link[stats:coefficients]{stats::coefficients()}} for the model fit
 }
 \description{
 Fit a length-weight model

@@ -4,7 +4,7 @@
 \name{can_sample_data_rds_fn}
 \alias{can_sample_data_rds_fn}
 \title{The filename for the RDS file containing hake sample data as extracted
-using \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
+using \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}}
 \format{
 A character string
 }
@@ -13,6 +13,6 @@ can_sample_data_rds_fn
 }
 \description{
 The filename for the RDS file containing hake sample data as extracted
-using \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}
+using \code{\link[gfdata:get_commercial_samples]{gfdata::get_commercial_samples()}}
 }
 \keyword{datasets}

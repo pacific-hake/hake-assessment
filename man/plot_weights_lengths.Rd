@@ -20,7 +20,7 @@ plot_weights_lengths(
 )
 }
 \arguments{
-\item{df}{A data frame as returned by \code{\link[gfplot:tidy_comps]{gfplot::tidy_lengths_raw()}}}
+\item{df}{A data frame as returned by \code{\link[gfplot:tidy_lengths_raw]{gfplot::tidy_lengths_raw()}}}
 
 \item{type}{Either "length" or "weight"}
 

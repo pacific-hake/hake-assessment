@@ -45,8 +45,6 @@ in 'npc'}
 \item{point_size}{The size of the location points}
 
 \item{point_color}{The color of the location points}
-
-\item{...}{}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

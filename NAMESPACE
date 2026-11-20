@@ -330,140 +330,195 @@ import(r4ss, except = c(profile))
 import(rnaturalearth)
 import(rnaturalearthhires)
 import(stats)
-importFrom(RColorBrewer,brewer.pal)
-importFrom(RColorBrewer,brewer.pal.info)
-importFrom(cli,cli_abort)
-importFrom(cli,cli_inform)
-importFrom(cli,cli_warn)
-importFrom(cli,symbol)
-importFrom(clipr,clipr_available)
-importFrom(clipr,dr_clipr)
-importFrom(clipr,write_clip)
-importFrom(cowplot,get_legend)
-importFrom(cowplot,plot_grid)
+importFrom(RColorBrewer,
+  brewer.pal,
+  brewer.pal.info
+)
+importFrom(cli,
+  cli_abort,
+  cli_inform,
+  cli_warn,
+  symbol
+)
+importFrom(clipr,
+  clipr_available,
+  dr_clipr,
+  write_clip
+)
+importFrom(cowplot,
+  get_legend,
+  plot_grid
+)
 importFrom(crayon,green)
 importFrom(data.table,fread)
-importFrom(fs,dir_ls)
-importFrom(fs,file_chmod)
-importFrom(fs,path)
-importFrom(furrr,furrr_options)
-importFrom(furrr,future_imap)
-importFrom(furrr,future_map)
-importFrom(furrr,future_walk)
-importFrom(furrr,future_walk2)
-importFrom(future,availableCores)
-importFrom(future,plan)
-importFrom(gfdata,get_commercial_samples)
-importFrom(gfdata,run_sql)
+importFrom(fs,
+  dir_ls,
+  file_chmod,
+  path
+)
+importFrom(furrr,
+  furrr_options,
+  future_imap,
+  future_map,
+  future_walk,
+  future_walk2
+)
+importFrom(future,
+  availableCores,
+  plan
+)
+importFrom(gfdata,
+  get_commercial_samples,
+  run_sql
+)
 importFrom(gfplot,tidy_lengths_raw)
 importFrom(ggmagnify,geom_magnify)
 importFrom(ggnewscale,new_scale_fill)
 importFrom(glue,glue)
-importFrom(grDevices,colorRampPalette)
-importFrom(grDevices,gray)
-importFrom(grDevices,rgb)
-importFrom(graphics,arrows)
-importFrom(graphics,grid)
-importFrom(graphics,hist)
-importFrom(graphics,layout)
-importFrom(graphics,legend)
-importFrom(graphics,lines)
-importFrom(graphics,matplot)
-importFrom(graphics,mtext)
-importFrom(graphics,par)
-importFrom(graphics,points)
-importFrom(graphics,polygon)
-importFrom(graphics,rect)
-importFrom(graphics,segments)
-importFrom(graphics,strwidth)
-importFrom(graphics,symbols)
-importFrom(graphics,text)
-importFrom(graphics,title)
-importFrom(grid,convertX)
-importFrom(grid,gpar)
-importFrom(grid,grid.draw)
-importFrom(grid,grid.newpage)
-importFrom(grid,rectGrob)
-importFrom(grid,textGrob)
-importFrom(grid,unit)
-importFrom(gridExtra,arrangeGrob)
-importFrom(gridExtra,grid.arrange)
-importFrom(gtable,gtable_add_grob)
-importFrom(gtable,gtable_add_rows)
+importFrom(grDevices,
+  colorRampPalette,
+  gray,
+  rgb
+)
+importFrom(graphics,
+  arrows,
+  grid,
+  hist,
+  layout,
+  legend,
+  lines,
+  matplot,
+  mtext,
+  par,
+  points,
+  polygon,
+  rect,
+  segments,
+  strwidth,
+  symbols,
+  text,
+  title
+)
+importFrom(grid,
+  convertX,
+  gpar,
+  grid.draw,
+  grid.newpage,
+  rectGrob,
+  textGrob,
+  unit
+)
+importFrom(gridExtra,
+  arrangeGrob,
+  grid.arrange
+)
+importFrom(gtable,
+  gtable_add_grob,
+  gtable_add_rows
+)
 importFrom(gtools,running)
-importFrom(here,here)
-importFrom(here,i_am)
-importFrom(kableExtra,add_header_above)
-importFrom(kableExtra,column_spec)
-importFrom(kableExtra,kable_styling)
-importFrom(kableExtra,kbl)
-importFrom(kableExtra,landscape)
-importFrom(kableExtra,linebreak)
-importFrom(kableExtra,pack_rows)
-importFrom(kableExtra,row_spec)
-importFrom(lubridate,day)
-importFrom(lubridate,hour)
-importFrom(lubridate,minute)
-importFrom(lubridate,month)
-importFrom(lubridate,now)
-importFrom(lubridate,second)
-importFrom(lubridate,seconds_to_period)
-importFrom(lubridate,year)
+importFrom(here,
+  here,
+  i_am
+)
+importFrom(kableExtra,
+  add_header_above,
+  column_spec,
+  kable_styling,
+  kbl,
+  landscape,
+  linebreak,
+  pack_rows,
+  row_spec
+)
+importFrom(lubridate,
+  day,
+  hour,
+  minute,
+  month,
+  now,
+  second,
+  seconds_to_period,
+  year
+)
 importFrom(magrittr,"%>%")
-importFrom(marmap,fortify.bathy)
-importFrom(marmap,getNOAA.bathy)
+importFrom(marmap,
+  fortify.bathy,
+  getNOAA.bathy
+)
 importFrom(minpack.lm,nlsLM)
 importFrom(parallelly,supportsMulticore)
-importFrom(readr,cols)
-importFrom(readr,read_csv)
-importFrom(readr,read_table2)
-importFrom(readr,write_csv)
+importFrom(readr,
+  cols,
+  read_csv,
+  write_csv
+)
 importFrom(rgl,rglwidget)
-importFrom(rlang,`%||%`)
-importFrom(rlang,as_label)
-importFrom(rlang,enquos)
-importFrom(rlang,set_names)
-importFrom(rlang,sym)
-importFrom(scales,comma)
-importFrom(scales,ordinal)
-importFrom(scales,rescale)
-importFrom(sf,"st_crs<-")
-importFrom(sf,st_as_sf)
-importFrom(sf,st_cast)
-importFrom(sf,st_combine)
-importFrom(sf,st_coordinates)
-importFrom(sf,st_crop)
-importFrom(sf,st_crs)
-importFrom(sf,st_transform)
-importFrom(stringr,str_count)
-importFrom(stringr,str_flatten)
-importFrom(stringr,str_flatten_comma)
-importFrom(stringr,str_split)
-importFrom(stringr,str_sub)
-importFrom(tibble,as_tibble)
-importFrom(tibble,as_tibble_row)
-importFrom(tibble,enframe)
-importFrom(tidyr,complete)
-importFrom(tidyr,pivot_longer)
-importFrom(tidyr,pivot_wider)
-importFrom(tidyr,unnest)
-importFrom(tidyselect,all_of)
-importFrom(tidyselect,any_of)
-importFrom(tidyselect,matches)
-importFrom(tidyselect,one_of)
-importFrom(tidyselect,starts_with)
-importFrom(tools,file_ext)
-importFrom(tools,file_path_sans_ext)
-importFrom(utils,globalVariables)
-importFrom(utils,head)
-importFrom(utils,menu)
-importFrom(utils,object.size)
-importFrom(utils,read.csv)
-importFrom(utils,read.table)
-importFrom(utils,tail)
-importFrom(utils,type.convert)
-importFrom(utils,write.csv)
-importFrom(utils,write.table)
-importFrom(vctrs,vec_as_names)
-importFrom(vctrs,vec_group_rle)
+importFrom(rlang,
+  "%||%",
+  as_label,
+  enquos,
+  set_names,
+  sym
+)
+importFrom(scales,
+  comma,
+  ordinal,
+  rescale
+)
+importFrom(sf,
+  "st_crs<-",
+  st_as_sf,
+  st_cast,
+  st_combine,
+  st_coordinates,
+  st_crop,
+  st_crs,
+  st_transform
+)
+importFrom(stringr,
+  str_count,
+  str_flatten,
+  str_flatten_comma,
+  str_split,
+  str_sub
+)
+importFrom(tibble,
+  as_tibble,
+  as_tibble_row,
+  enframe
+)
+importFrom(tidyr,
+  complete,
+  pivot_longer,
+  pivot_wider,
+  unnest
+)
+importFrom(tidyselect,
+  all_of,
+  any_of,
+  matches,
+  one_of,
+  starts_with
+)
+importFrom(tools,
+  file_ext,
+  file_path_sans_ext
+)
+importFrom(utils,
+  globalVariables,
+  head,
+  menu,
+  object.size,
+  read.csv,
+  read.table,
+  tail,
+  type.convert,
+  write.csv,
+  write.table
+)
+importFrom(vctrs,
+  vec_as_names,
+  vec_group_rle
+)
 importFrom(withr,defer)
